@@ -1,21 +1,4 @@
 # Courses---
-title: We R a Community-making high quality courses for high education accessible for all; The >eR-Biostat initiative
-author: |
-  | Ziv Shkedy^1,2^, Nolen Joy Perualila^1^ , Khangelani Zuma^3^, Legesse Debusho^4^ and Adetayo Kasim^2,5^
-  |
-  | 1. Interuniversity Institute for Biostatistics and Statistical Bioinformatics (I-BioStat), Center for Statistics, Hasselt University, 3590 Diepenbeek, Belgium
-  | 2. Department of Epidemiology and Biostatistics, Gonder University, Ethiopia
-  | 3. Human Sciences Research Council (HSRC), PRETORIA, South Africa
-  | 4. The University of South Africa (UNISA), PRETORIA, South Africa
-  | 5. Wolfson Research Institute for Health and Wellbeing, Durham University, Durham
-nocite: null
-output: html_document
-bibliography: bibliography_useR.bib
----
-
-**Keywords**: Developing countries, master programs, Biostatistucs, E-learning using R
-
-**Webpage**: TBA
 
 One of the main problems in high education at a master level in developing countries is the lack of high quality course materials for courses in master programs. The **>eR-Biostat**  initiative is focused on masters programs in Biostatistics/Statistics and aim to develop new E-learning system for courses at a master level.
 
