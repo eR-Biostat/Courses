@@ -20,6 +20,6 @@ The **>eR-Biostat** initiative introduces a new, R based, learning system, the m
 # How to use this website ?
 Just click on the course that you are looking for a download the course materials:
 * Linear Models: 
-+ Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
-+ R programs: 
+  + Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
+  + R programs: 
 * Non Parametric...
