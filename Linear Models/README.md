@@ -13,6 +13,8 @@ This course is based on the book **Practical Regression and Anova using R**  by 
 * Transformations
 * Model diagnostic
 
+Homework assignments and an example of an exam is available as well.
+
 The course was developed by Legesse Kassa Debusho, UNISA, South
 Africa and Ziv Shkedy, Hasselt University, Belgium.
 
