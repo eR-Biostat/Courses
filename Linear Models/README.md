@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-## Linear Models
+# Linear Models
 
 This course is based on the book **Practical Regression and Anova using R**  by Julian J. Faraway which is abilable online.
 
