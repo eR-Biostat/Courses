@@ -20,6 +20,7 @@ The **>eR-Biostat** initiative introduces a new, R based, learning system, the m
 # How to use this website ?
 Just click on the course that you are looking for a download the course materials:
 * Linear Models: 
+  + Book: https://cran.r-project.org/doc/contrib/Faraway-PRA.pd
   + Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
   + R programs: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/R%20programs
 * Non Parametric...
