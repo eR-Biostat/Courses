@@ -1,14 +1,11 @@
 # The >eR-Biostat initative
 # Linear Models
+# Homework assignments
 
-Details about the slides by topic
+Details about the homeworks.
+Tpoics
 
-Co-authors of slides
-
-Co-authors of notes.
-
-**Links to FACEBOOK and Twitter **
-
-**Link to project website **
+Notes for students.
+Notes for teachers.
 
 Explain how the slides are structure
