@@ -18,8 +18,11 @@ This course is based on the book **Practical Regression and Anova using R**  by 
 Homework assignments and an example of an exam is available as well.
 
 The course was developed by Legesse Kassa Debusho, UNISA, South
-Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY.
+Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY and John Lennon.......
 
+**Links to FACEBOOK and Twitter **
+
+**Link  to project website **
 
 
 # Course materials
