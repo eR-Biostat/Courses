@@ -27,8 +27,8 @@ Just click on the course that you are looking for a download the course material
   
 * Non Parametric...
 # The cross-cutting project
-link to the project website
-link to VLIR website ? (useful for students)
+* link to the project website
+* link to VLIR website ? (useful for students)
 # Other information
 * contact persons for developemnt
 * contact persons for teachers
