@@ -26,3 +26,11 @@ Just click on the course that you are looking for a download the course material
   + R programs: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/R%20programs
   
 * Non Parametric...
+# The cross-cutting project
+link to the project website
+link to VLIR website ? (useful for students)
+# Other information
+contact persons for developemnt
+contact persons for teachers
+list of partner usiversities
+
