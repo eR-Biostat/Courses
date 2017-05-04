@@ -1,6 +1,8 @@
 # The >eR-Biostat initative
 # Linear Models
 
+** THIS IS ONLY A TEMPORARY VERSION OF THE PAGE TO CHECK HOW/WHICH MATERAILS SHOULD BE UPLOADED. AN WORKING VERSION WITH ALL DEATAILS WILL BE AVILABLE IN SEPTEMBER !!! **
+
 This course is based on the book **Practical Regression and Anova using R**  by Julian J. Faraway which is available online. The course consists of 9 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
 * Simple linear regression
@@ -16,7 +18,8 @@ This course is based on the book **Practical Regression and Anova using R**  by 
 Homework assignments and an example of an exam is available as well.
 
 The course was developed by Legesse Kassa Debusho, UNISA, South
-Africa and Ziv Shkedy, Hasselt University, Belgium.
+Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY.
+
 
 
 # Course materials
