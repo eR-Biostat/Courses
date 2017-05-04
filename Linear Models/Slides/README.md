@@ -10,3 +10,5 @@ Co-authors of notes.
 **Links to FACEBOOK and Twitter **
 
 **Link to project website **
+
+Explain how the slides are structure
