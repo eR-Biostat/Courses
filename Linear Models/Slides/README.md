@@ -1,6 +1,6 @@
-The >eR-Biostat initative
+#The >eR-Biostat initative
 
-Linear Models
+#Linear Models
 
 Details about the slides by topic
 
