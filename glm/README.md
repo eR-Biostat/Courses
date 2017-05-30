@@ -1,23 +1,31 @@
  The >eR-Biostat initative
-# Generalized Linear  Models
+# Applied Generalized Linear Models (GLM) using R 
 
 ** THIS IS ONLY A TEMPORARY VERSION OF THE PAGE TO CHECK HOW/WHICH MATERAILS SHOULD BE UPLOADED. AN WORKING VERSION WITH ALL DEATAILS WILL BE AVILABLE IN SEPTEMBER !!! **
 
-This course is based on the book **Practical Regression and Anova using R**  by Julian J. Faraway which is available online. The course consists of 9 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
+This course is based on the book **XXXXX **  by YYYY which is available online. The course consists of 5-6 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
-* Simple linear regression
-* Multiple linear regression
-* Least squares and generalized least squares
-* Estimation
-* Inference
-* Variable selection 
-* Lack of fit tests
-* Transformations
-* Model diagnostic
+*   Analysis of Variance
+*   Linear regression models with normal error.
+*   Generalized linear models.
+*    Exponential Family
+*    Generalized linear model function in R
+*    Models for Binary data.
+*    Estimation and confidence intervals.
+*    Inference.
+*     Model Selection.
+*     Model diagnostic.
+*    Poisson Regression.
+*    Beyond Poisson and binomial distributions:  models with 
+       different link functions and/or distributions.
+*  Poisson regression and log linear models.
+*  Over dispersion.
+*  Special topic (I): Estimation of the prevalence and force of 16.  infection from current status data.
+*   Special topic (II): Growth data.
 
 Homework assignments and an example of an exam is available as well.
 
-The course was developed by Legesse Kassa Debusho, UNISA, South
+The course was developed by Tadesse Awoke, Gondar Univesrity, Ethiopia, Legesse Kassa Debusho, UNISA, South
 Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY and John Lennon.......
 
 **Links to FACEBOOK and Twitter **
@@ -26,6 +34,5 @@ Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY and John Lennon
 
 
 # Course materials
-* Book: https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
 * R programs: htt
