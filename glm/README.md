@@ -8,19 +8,18 @@ This course is based on the book **XXXXX **  by YYYY which is available online. 
 *   Analysis of Variance
 *   Linear regression models with normal error.
 *   Generalized linear models.
-*    Exponential Family
-*    Generalized linear model function in R
-*    Models for Binary data.
-*    Estimation and confidence intervals.
-*    Inference.
-*     Model Selection.
-*     Model diagnostic.
-*    Poisson Regression.
-*    Beyond Poisson and binomial distributions:  models with 
-       different link functions and/or distributions.
-*  Poisson regression and log linear models.
-*  Over dispersion.
-*  Special topic (I): Estimation of the prevalence and force of 16.  infection from current status data.
+*   Exponential Family
+*   Generalized linear model function in R
+*   Models for Binary data.
+*   Estimation and confidence intervals.
+*   Inference.
+*   Model Selection.
+*   Model diagnostic.
+*   Poisson Regression.
+*   Beyond Poisson and binomial distributions: models with different link functions and/or distributions.
+*   Poisson regression and log linear models.
+*   Over dispersion.
+*   Special topic (I): Estimation of the prevalence and force of 16.  infection from current status data.
 *   Special topic (II): Growth data.
 
 Homework assignments and an example of an exam is available as well.
