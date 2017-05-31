@@ -12,7 +12,7 @@ The **>eR-Biostat** initiative introduces a new, R based, learning system, the m
 
 ## Available courses:
 * Linear Models
-* GLM
+* GLM 
 * Non Parametric Statistics
 * Survival Analysis
 * More to come....
