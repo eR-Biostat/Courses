@@ -8,7 +8,7 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Homework assignments and exams.
 
 ## Available courses:
-* Linear Models
+* Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models)
 * GLM 
 * Non Parametric Statistics
 * Survival Analysis
