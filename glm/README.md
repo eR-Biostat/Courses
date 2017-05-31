@@ -1,7 +1,7 @@
  The >eR-Biostat initative
 # Applied Generalized Linear Models (GLM) using R 
 
-** THIS IS ONLY A TEMPORARY VERSION OF THE PAGE TO CHECK HOW/WHICH MATERAILS SHOULD BE UPLOADED. AN WORKING VERSION WITH ALL DEATAILS WILL BE AVILABLE IN SEPTEMBER !!! **
+** THIS IS ONLY A TEMPORARY VERSION OF THE PAGE. THE COURSE WILL BE AVILABLE IN 2018 !!! **
 
 This course is based on the book **XXXXX **  by YYYY which is available online. The course consists of 5-6 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
@@ -27,11 +27,3 @@ Homework assignments and an example of an exam is available as well.
 The course was developed by Tadesse Awoke, Gondar Univesrity, Ethiopia, Legesse Kassa Debusho, UNISA, South
 Africa and Ziv Shkedy, Hasselt University, Belgium, XXXXXX,YYYYY and John Lennon.......
 
-**Links to FACEBOOK and Twitter **
-
-**Link  to project website **
-
-
-# Course materials
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
-* R programs: htt
