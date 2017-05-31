@@ -14,6 +14,8 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Survival Analysis
 * More to come....
 
+**Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
+
 # How to use this website ?
 Just click on the course that you are looking for a download the course materials.
 
