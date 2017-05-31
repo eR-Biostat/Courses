@@ -18,19 +18,13 @@ The **>eR-Biostat** initiative introduces a new, R based, learning system, the m
 * More to come....
 
 # How to use this website ?
-Just click on the course that you are looking for a download the course materials:
-* Linear Models: 
+Just click on the course that you are looking for a download the course materials.
 
-  + Book: https://cran.r-project.org/doc/contrib/Faraway-PRA.pd
-  + Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
-  + R programs: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/R%20programs
+# Interested to contribute a course ?
+Contact Ziv Shkedy ziv.shkedy@uhasselt.be
+
+# Interested to  use the materials in your university ?
+Contact Ziv Shkedy ziv.shkedy@uhasselt.be
+
   
-* Non Parametric...
-# The cross-cutting project
-* link to the project website
-* link to VLIR website ? (useful for students)
-# Other information
-* contact persons for developemnt
-* contact persons for teachers
-* list of partner usiversities
 
