@@ -8,11 +8,12 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Homework assignments and exams.
 
 ## Available courses:
-* Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models)
-* GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
-* Non Parametric Statistics
-* Survival Analysis
-* More to come....
+* Core (I)
++ Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models)
++ GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
++ Non Parametric Statistics
++ Survival Analysis
++ Introduction to Bootstrap
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
