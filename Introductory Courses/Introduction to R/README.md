@@ -15,7 +15,8 @@ Topics (all presented at a basic level) covered in the course include:
 * Statistical modeling in R: one-way ANOVA
 * Statistical modeling in R: logistic regression
 * Programming in R: user functions
-* Two-way ANOVA*Application of a for loop: bootstrap.
+* Two-way ANOVA
+* Application of a for loop: bootstrap.
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
