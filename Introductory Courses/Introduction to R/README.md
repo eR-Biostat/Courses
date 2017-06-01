@@ -19,7 +19,8 @@ Topics (all presented at a basic level) covered in the course include:
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
-The course was developed by Dan Lin and Ziv Shkedy, Hasselt University, Belgium.
+## Course Developers
+The course was developed by Dan Lin and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
 
 # Course materials
 * Book: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
