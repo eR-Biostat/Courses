@@ -5,7 +5,7 @@
 This group of courses are developed at an introductory level. Only basic level knowledge of statistics is required. The courses DO NOT aim to teach the student new topics in statistics but to train the student to use R in data analysis.
 
 ## Available courses in this group:
-* Introduction to R.
+* Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
 * Basic concepts in exploratory data analysis and computational statistics.
 * Introduction to statistical modeling using R.
 
