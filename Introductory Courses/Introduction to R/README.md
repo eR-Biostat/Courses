@@ -22,6 +22,6 @@ Homework assignments and an example of an exam are NOT available as a part of th
 The course was developed by Dan Lin and Ziv Shkedy, Hasselt University, Belgium.
 
 # Course materials
-* Book: 
+* Book: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
 * Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Slides
 * R programs: 
