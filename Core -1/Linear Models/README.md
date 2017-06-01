@@ -23,5 +23,5 @@ Africa and Ziv Shkedy, Hasselt University, Belgium.
 
 # Course materials
 * Book: https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/Slides
+* Slides: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models/Slides
 * R programs: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/R%20programs
