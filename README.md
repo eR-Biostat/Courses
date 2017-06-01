@@ -10,7 +10,7 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 # Available courses:
 ## Introductory courses
 * Introduction to R
-* Introduction to exploratory data analysis and comutensional statistics
+* Introduction to exploratory data analysis and computational statistics
 * Introduction to statistical modeling using R.
 ## Core (I) 
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
