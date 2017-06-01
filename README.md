@@ -7,13 +7,17 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * R programs, ready to use, which contain all data and R code for the all examples and illustrations discussed in the course.
 * Homework assignments and exams.
 
-## Available courses:
-* Core (I)
-+ Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models)
-+ GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
-+ Non Parametric Statistics
-+ Survival Analysis
-+ Introduction to Bootstrap
+# Available courses:
+## Introductory courses
+* Introduction to R
+* Introduction to exploratory data analysis and comutensional statistics
+* Introduction to statistical modeling using R.
+## Core (I)
+* Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models)
+* GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
+* Non Parametric Statistics
+* Survival Analysis
+* Introduction to Bootstrap
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
