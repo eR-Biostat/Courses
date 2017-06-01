@@ -11,7 +11,7 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 The courses are organized in three clusters.  **Introductory courses** that do not aim to cover new topics in statistics but to train new master students to use R for data analysis. The course clusters **Core (I)** and **Core (II)** consists of basic and advanced courses, respectively. 
 
 ## Introductory courses
-* Introduction to R
+* Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)
 * Introduction to exploratory data analysis and computational statistics
 * Introduction to statistical modeling using R.
 ## Core (I) 
