@@ -13,7 +13,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 ## Introductory courses
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)
 * Introduction to exploratory data analysis and computational statistics
-* Introduction to statistical modeling using R.
+* Introduction to statistical modeling using R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R).
 ## Core (I) 
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
 * GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
