@@ -11,8 +11,3 @@ This group of courses are developed at an introductory level. Only basic level k
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
-# Interested to contribute a course ?
-Contact Ziv Shkedy ziv.shkedy@uhasselt.be
-
-# Interested to  use the materials in your university ?
-Contact Ziv Shkedy ziv.shkedy@uhasselt.be
