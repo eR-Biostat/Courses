@@ -1,8 +1,8 @@
 # The >eR-Biostat initative
-## Basic concepts in exploratory data analysis and computational statistics
+## Basic concepts in exploratory data analysis (EDA) and computational statistics
 ** THE COURSE WILL BE AVILABLE IN 2018 **
 
-This course is an introductory course about statistical modeling in R. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).
+This course presents the basic concepts in EDA and computational statistics. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).
 Topics (all presented at a basic level) covered in the course include:
 
 * Exploratory data analysis in R.
