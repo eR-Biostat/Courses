@@ -10,8 +10,4 @@ The E-learning system for the Core (I) consists of 5 courses:
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
-# How to use this website ?
-Just click on the course that you are looking for a download the course materials.
 
-# Interested to contribute a course ?
-Contact Ziv Shkedy ziv.shkedy@uhasselt.be
