@@ -22,6 +22,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * Introduction to Bootstrap
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
+
 **Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
 
 # How to use this website ?
