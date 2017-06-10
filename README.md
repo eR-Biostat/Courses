@@ -27,10 +27,10 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 Just click on the course that you are looking for a download the course materials.
 
 # Interested to contribute a course ?
-Contact Ziv Shkedy erbiostat@gmail.com
+Contact us by email erbiostat@gmail.com
 
 # Interested to  use the materials in your university ?
-Contact Ziv Shkedy erbiostat@gmail.com
+Contact us by email erbiostat@gmail.com
 
   
 
