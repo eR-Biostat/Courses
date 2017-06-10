@@ -26,4 +26,4 @@ The course was developed by Dan Lin and Ziv Shkedy (ziv.shkedy@uhasselt.be), Has
 * Book: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
 * Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Slides
 * R programs: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/R%20programs
-* External datasets: 
+* External datasets: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Data
