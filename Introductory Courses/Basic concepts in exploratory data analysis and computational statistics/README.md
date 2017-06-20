@@ -5,14 +5,8 @@
 
 This course presents the basic concepts in EDA and computational statistics. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).  Topics (all presented at a basic level) covered in the course include:
 
-* Basic Exploratory data analysis in R:
-+ Location.
- + Spread.
-+ Resistance and Robustness.
-
-* Computational statistics:
-+ Basic bootstrap.
- + Likelihood and basic optimization.
+* Basic Exploratory data analysis in R (Location, Spread, Resistance and Robustness).
+* Computational statistics (Basic bootstrap, Likelihood and basic optimization).
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
