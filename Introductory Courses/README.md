@@ -6,7 +6,7 @@ This group of courses are developed at an introductory level. Only basic level k
 
 ## Available courses in this group:
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
-* Basic concepts in exploratory data analysis and computational statistics ((will be available online in 2018).
+* Basic concepts in exploratory data analysis and computational statistics in R(https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20and%20computational%20statistics).
 * Introduction to statistical modeling using R (will be available online in 2018).
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
