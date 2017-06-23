@@ -20,7 +20,7 @@ Homework assignments and an example of an exam are NOT available as a part of th
 The course was developed by Martin Otava and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
 
 ## Course materials
-* Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Slides
-* R programs: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/R%20programs
+* Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20and%20computational%20statistics/Slides
+* R Programs: 
 * External datasets: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Data
 
