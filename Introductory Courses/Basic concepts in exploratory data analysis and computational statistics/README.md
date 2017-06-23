@@ -1,9 +1,8 @@
 
 # The >eR-Biostat initative
 ## Basic concepts in exploratory data analysis (EDA) and computational statistics
-** THE COURSE WILL BE AVILABLE IN 2018 **
 
-This course presents the basic concepts in EDA and computational statistics. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).  Topics (all presented at a basic level) covered in the course include:
+This course presents the basic concepts in EDA and computational statistics. The course can be given as a  two-days workshop or as a course of 3-4 classes (3 hours per class).  Topics (all presented at a basic level) covered in the course include:
 
 * Basic Exploratory data analysis in R (Location, Spread, Resistance and Robustness). The course covers selected chapters from the book “Understanding robust and exploratory data analysis” by David C. Hoaglin, Frederick Mosteller and John W. Tukey (Editors): 
   + Chapter 3: BOXPLOTS AND BATCH COMPARISON
