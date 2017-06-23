@@ -5,8 +5,16 @@
 
 This course presents the basic concepts in EDA and computational statistics. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).  Topics (all presented at a basic level) covered in the course include:
 
-* Basic Exploratory data analysis in R (Location, Spread, Resistance and Robustness).
-* Computational statistics (Basic bootstrap, Likelihood and basic optimization).
+* Basic Exploratory data analysis in R (Location, Spread, Resistance and Robustness). The course covers selected chapters from the book “Understanding robust and exploratory data analysis”: 
+  + Chapter 3: BOXPLOTS AND BATCH COMPARISON
+  + Chapter 10: COMPARING LOCATION ESTIMATORS: TRIMMED MEANS, MEDIANS, AND TRIMEAN
+  + Chapter 11: M-ESTIMATORS OF LOCATION: AN OUTLINE OF THE THEORY
+
+* Computational statistics (Basic bootstrap, Likelihood and basic optimization). For the basic bootstrap, the course covers chapters from the book  “An Introduction to the Bootstrap”:
+ + Chapter 4: The empirical distribution function and the plug-in
+ + principle 
+ + Chapter 5: Standard errors and estimated standard errors 
+ + Chapter 6 The bootstrap estimate of standard error
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
