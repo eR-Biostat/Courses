@@ -11,10 +11,9 @@ This course presents the basic concepts in EDA and computational statistics. The
   + Chapter 11: M-ESTIMATORS OF LOCATION: AN OUTLINE OF THE THEORY
 
 * Computational statistics (Basic bootstrap, Likelihood and basic optimization). For the basic bootstrap, the course covers chapters from the book  “An Introduction to the Bootstrap”:
- + Chapter 4: The empirical distribution function and the plug-in
- + principle 
- + Chapter 5: Standard errors and estimated standard errors 
- + Chapter 6 The bootstrap estimate of standard error
+  + Chapter 4: The empirical distribution function and the plug-in principle 
+  + Chapter 5: Standard errors and estimated standard errors 
+  + Chapter 6 The bootstrap estimate of standard error
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
