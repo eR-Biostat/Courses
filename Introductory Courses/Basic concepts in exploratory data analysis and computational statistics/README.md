@@ -13,8 +13,5 @@ Homework assignments and an example of an exam are NOT available as a part of th
 ## Course Developers
 The course was developed by Martin Otava and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
 
-# Course materials
-* Book: will be available in 2018
-* Slides: will be available in 2018.
-* R programs:  will be available in 2018.
+
 
