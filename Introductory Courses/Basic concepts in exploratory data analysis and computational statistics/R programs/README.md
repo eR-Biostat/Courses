@@ -3,5 +3,5 @@
 
 * EDA-er-M.T: R program for the EDA part of the course.
 * Boot-er-M.T: R program which contains the code for the bootstrap part of the course.
-* Boot-er-M.T: R program which contains the code for the likelihood and optimization part of the course.
+* Likelihhod-er-M.T: R program which contains the code for the likelihood and optimization part of the course.
 
