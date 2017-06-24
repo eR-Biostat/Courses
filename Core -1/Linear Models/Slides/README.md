@@ -1,6 +1,6 @@
 # The >eR-Biostat initative
 ## Linear Models: Slides
-** All course materials will be fully available on line in September 2017. **
+### All course materials will be fully available on line in September 2017. 
 
 The slides for the course cover the follwing topics:
 
