@@ -14,4 +14,5 @@ The slides for teh course cover the follwing topics:
 * Model diagnostic
 
 Data for the examples and illustration and either available in R or in the data repository.
+
 ** All course materials will be available on line in September 2017**
