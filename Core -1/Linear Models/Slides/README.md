@@ -1,7 +1,8 @@
 # The >eR-Biostat initative
-# Linear Models: Slides
+## Linear Models: Slides
+** All course materials will be fully available on line in September 2017**
 
-The slides for teh course cover the follwing topics:
+The slides for the course cover the follwing topics:
 
 * Simple linear regression
 * Multiple linear regression
@@ -15,4 +16,3 @@ The slides for teh course cover the follwing topics:
 
 Data for the examples and illustration and either available in R or in the data repository.
 
-** All course materials will be available on line in September 2017**
