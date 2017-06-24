@@ -1,14 +1,17 @@
 # The >eR-Biostat initative
-# Linear Models
+# Linear Models: Slides
 
-Details about the slides by topic
+The slides for teh course cover the follwing topics:
 
-Co-authors of slides
+* Simple linear regression
+* Multiple linear regression
+* Least squares and generalized least squares
+* Estimation
+* Inference
+* Variable selection
+* Lack of fit tests
+* Transformations
+* Model diagnostic
 
-Co-authors of notes.
-
-**Links to FACEBOOK and Twitter **
-
-**Link to project website **
-
-Explain how the slides are structure
+Data for the examples and illustration and either available in R or in the data repository.
+** All course materials will be available on line in September 2017**
