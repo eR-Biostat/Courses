@@ -13,7 +13,7 @@ The following datasets are used as external datasets to illustrate few examples 
   + Age of fish (days).
   + Temperature of water (degrees Celsius).
   + Length of fish.
-* BP_dat_V1.txt:dataset for homework 1 and 2 contains the following variables:
+* BP_dat_V1.txt: dataset for homework 1 and 2 contains the following variables:
   + ID.
   + Column of 1.
   + Age
