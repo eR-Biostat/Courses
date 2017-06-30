@@ -5,7 +5,7 @@
 The slides for the course cover the follwing topics:
 
 * Simple linear regression
-* Multiple linear regression
+* **Multiple linear regression**
 * Least squares and generalized least squares
 * Estimation
 * Inference
