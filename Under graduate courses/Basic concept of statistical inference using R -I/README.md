@@ -6,14 +6,14 @@ This is an **online** course which was developed by Marc Lavielle within his ini
 * Introduction
 * Student’s t-test
   + One sample t-test
- + One sided test
- + Two sided test
- + Confidence interval for the mean
- + Two samples t-test
- + What should we test?
- + Assuming equal variances
- +Assuming different variances
- +Power of a t-test
+  + One sided test
+  + Two sided test
+  + Confidence interval for the mean
+  + Two samples t-test
+  + What should we test?
+  + Assuming equal variances
+  + Assuming different variances
+  + Power of a t-test
 *  Mann-Whitney-Wilcoxon test
 * The limited role of the p-value
 * Equivalence tests
