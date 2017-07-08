@@ -27,9 +27,12 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * Survival Analysis
 * Introduction to Bootstrap
 
-**Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
+**Online or Off-line?
+Some courses developed for this initiative were developed as online courses while other as off line courses.   In both cases, all course materials can be download and used in the class.
 
-**Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
+# Follow the last updates in FACEBOOK: https://www.facebook.com/ER-BioStat-1463845487001786/
+
+# Follow the last updates in Tweeter: @erbiostat, eR-Biostat
 
 # How to use this website ?
 Just click on the course that you are looking for a download the course materials.
