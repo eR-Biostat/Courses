@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-## Basic concept in statistical inference usinf R
+## Basic concept in statistical inference using R (I)
 
 This course presents the basic concepts of  hypothesis testing (for single comparison and multiple comparisons)
 This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). The course structure:
