@@ -19,7 +19,7 @@ Introduction
   + Analysis-of-variance (anova)
   + Likelihood ratio test (LRT)
   + Information criteria
-*  Data transformation
+* Data transformation
   + log based tranformations
   + Diagnostic plots
   + Confidence interval and prediction interval
