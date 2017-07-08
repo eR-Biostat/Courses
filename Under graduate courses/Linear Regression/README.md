@@ -26,3 +26,4 @@ Introduction
   + Model comparison
 
 All course materials are available online in http://sia.webpopix.org/polynomialRegression1.html
+## Course Developer:Marc Lavielle (Marc.Lavielle@inria.fr)
