@@ -14,7 +14,7 @@ Introduction
   + Fitting a polynomial of degree 2
   +  Fitting a polynomial without intercept
   +  Using orthogonal polynomials
-*  Model comparison
+* Model comparison
   + t-test
   + Analysis-of-variance (anova)
   + Likelihood ratio test (LRT)
