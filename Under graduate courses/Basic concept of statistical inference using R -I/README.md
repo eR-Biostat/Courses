@@ -39,5 +39,7 @@ This is an **online** course which was developed by Marc Lavielle within his ini
 All course materials are available online in 
 * single comparison http://sia.webpopix.org/statisticalTests1.html
 * single comparisons http://sia.webpopix.org/statisticalTests2.html
-## Course Developer:Marc Lavielle (Marc.Lavielle@inria.fr)
+## Course Developer:Marc Lavielle 
+* Email: Marc.Lavielle@inria.fr
+* Website: http://sia.webpopix.org/ 
 
