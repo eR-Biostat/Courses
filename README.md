@@ -5,10 +5,11 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Notes for the course.
 * Slides for the course.
 * R programs, ready to use, which contain all data and R code for the all examples and illustrations discussed in the course.
-* Homework assignments and exams.
+* Homework assignments.
+* Example of exams.
 
 # Available courses:
-The courses are organized in three clusters.  **Introductory courses** that do not aim to cover new topics in statistics but to train new master students to use R for data analysis. The course clusters **Core (I)** and **Core (II)** consist of basic and advanced courses, respectively. 
+The courses are organized in three clusters.  **Introductory courses** that do not aim to cover new topics in statistics but to train new master students to use R for data analysis. The course cluster **Under graduate courses** provide courses in intermediate level and a basic level in statistics is required  in order to follow the courses. The courses within this cluster can be also use as training courses  for non statisticians. The course clusters **Core (I)** and **Core (II)** consist of basic and advanced courses, respectively. 
 
 ## Introductory courses
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)
@@ -38,6 +39,5 @@ Contact us by email erbiostat@gmail.com
 
 # Interested to  use the materials in your university ?
 Contact us by email erbiostat@gmail.com
-
   
 
