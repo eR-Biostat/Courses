@@ -5,7 +5,7 @@ This course presents the basic concepts of  hypothesis testing (forsingle compar
 This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). The course structure:
 * Introduction
 * Student’s t-test
- + One sample t-test
+  +One sample t-test
  + One sided test
  + Two sided test
  + Confidence interval for the mean
