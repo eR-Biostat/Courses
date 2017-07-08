@@ -6,8 +6,8 @@ This group of courses are developed at an undergraduate level. Only basic level 
 
 ## Available courses in this group:
 * Introduction to statistical modeling using R (will be available online in 2018).
-* Linear regression using R.
-* Basic concept of statistical inference using R.
+* Linear regression using R (an online course).
+* Basic concept of statistical inference using R (an online course).
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
