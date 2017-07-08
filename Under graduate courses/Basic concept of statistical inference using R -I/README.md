@@ -1,8 +1,9 @@
 # The >eR-Biostat initative
-## Linear Regression
+## Basic concept in statistical inference usinf R
 
 This course presents the basic concepts of  hypothesis testing (for single comparison and multiple comparisons)
 This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). The course structure:
+## Single comparison
 * Introduction
 * Student’s t-test
   + One sample t-test
@@ -26,6 +27,6 @@ This is an **online** course which was developed by Marc Lavielle within his ini
 
 All course materials are available online in 
 * single comparison http://sia.webpopix.org/statisticalTests1.html
-* single comparisons http://sia.webpopix.org/statisticalTests1.html
+* single comparisons http://sia.webpopix.org/statisticalTests2.html
 ## Course Developer:Marc Lavielle (Marc.Lavielle@inria.fr)
 
