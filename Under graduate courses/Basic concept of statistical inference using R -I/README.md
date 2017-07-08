@@ -24,6 +24,17 @@ This is an **online** course which was developed by Marc Lavielle within his ini
   + Difference testing versus equivalence testing
   + One sample test
 
+## multiple comparisons
+* Introduction
+* Distribution of the p-values
+  + Introduction
+  + Single comparison between 2 groups
+  + A single comparison… among many others
+  + The Bonferroni correction
+  + Permutation test
+* Controlling the False Discovery Rate
+  + Detecting associations
+  + A Monte Carlo simulation
 
 All course materials are available online in 
 * single comparison http://sia.webpopix.org/statisticalTests1.html
