@@ -17,11 +17,11 @@ This is an **online** course which was developed by Marc Lavielle within his ini
 *  Mann-Whitney-Wilcoxon test
 * The limited role of the p-value
 * Equivalence tests
- + Introduction
- + Two samples test
- + The TOST procedure
- + Difference testing versus equivalence testing
- + One sample test
+  + Introduction
+  + Two samples test
+  + The TOST procedure
+  + Difference testing versus equivalence testing
+  + One sample test
 
 
 All course materials are available online in http://sia.webpopix.org/polynomialRegression1.html
