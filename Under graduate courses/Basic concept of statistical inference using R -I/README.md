@@ -14,7 +14,7 @@ This is an **online** course which was developed by Marc Lavielle within his ini
  + Assuming equal variances
  +Assuming different variances
  +Power of a t-test
-* Mann-Whitney-Wilcoxon test
+*  Mann-Whitney-Wilcoxon test
 * The limited role of the p-value
 * Equivalence tests
  + Introduction
