@@ -19,6 +19,8 @@ Homework assignments and an example of an exam are NOT available as a part of th
 The course was developed by Martin Otava and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
 
 ## Course materials
-* Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/Slides
+* Slides: https:https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics
+
 * R Programs: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/R%20programs
+
 * External datasets:https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/Data
