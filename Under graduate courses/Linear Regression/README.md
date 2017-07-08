@@ -15,13 +15,13 @@ Introduction
   +  Fitting a polynomial without intercept
   +  Using orthogonal polynomials
 *  Model comparison
-  +  t-test
-  +  Analysis-of-variance (anova)
-  +  Likelihood ratio test (LRT)
-  +  Information criteria
+  + t-test
+  + Analysis-of-variance (anova)
+  + Likelihood ratio test (LRT)
+  + Information criteria
 *  Data transformation
   + log based tranformations
-  +	 Diagnostic plots
-  +	 Confidence interval and prediction interval
-  +	 Model comparison
+  + Diagnostic plots
+  + Confidence interval and prediction interval
+  + Model comparison
 
