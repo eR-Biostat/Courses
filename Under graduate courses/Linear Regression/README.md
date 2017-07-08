@@ -25,3 +25,4 @@ Introduction
   + Confidence interval and prediction interval
   + Model comparison
 
+All course materials are available online in http://sia.webpopix.org/polynomialRegression1.html
