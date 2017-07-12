@@ -27,7 +27,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * Survival Analysis
 * Introduction to Bootstrap
 
-**Online or Off-line?
+## Online or Off-line?
 Some courses developed for this initiative were developed as online courses while other as off line courses.   In both cases, all course materials can be download and used in the class.
 
 # Follow the last updates in FACEBOOK: https://www.facebook.com/ER-BioStat-1463845487001786/
