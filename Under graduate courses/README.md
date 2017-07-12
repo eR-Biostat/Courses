@@ -11,3 +11,5 @@ This group of courses are developed at an undergraduate level. Only basic level 
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
+**Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
+
