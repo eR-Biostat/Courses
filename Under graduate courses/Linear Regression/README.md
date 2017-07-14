@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-## Linear Regression
+## Linear Regression in R
 
 This course presents the basic concepts of linear regression and ANOVA. This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). The course structure:
 Introduction
@@ -25,7 +25,10 @@ Introduction
   + Confidence interval and prediction interval
   + Model comparison
 
-All course materials are available online in http://sia.webpopix.org/polynomialRegression1.html
-## Course Developer:Marc Lavielle
+## Course materials
+* Online course + R code: available online in http://sia.webpopix.org/polynomialRegression1.html
+* Slides 
+
+## Course Developer: Marc Lavielle
  * Email: Marc.Lavielle@inria.fr
  * Website: http://sia.webpopix.org/index.html
