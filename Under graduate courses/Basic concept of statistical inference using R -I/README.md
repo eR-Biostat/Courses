@@ -37,8 +37,8 @@ This is an **online** course which was developed by Marc Lavielle within his ini
   + A Monte Carlo simulation
 
 All course materials are available online in 
-* single comparison http://sia.webpopix.org/statisticalTests1.html
-* single comparisons http://sia.webpopix.org/statisticalTests2.html
+* Single comparison http://sia.webpopix.org/statisticalTests1.html
+* Single comparisons http://sia.webpopix.org/statisticalTests2.html
 ## Course Developer:Marc Lavielle 
 * Email: Marc.Lavielle@inria.fr
 * Website: http://sia.webpopix.org/ 
