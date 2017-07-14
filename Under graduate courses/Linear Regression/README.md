@@ -27,7 +27,7 @@ Introduction
 
 ## Course materials
 * Online course + R code: available online in http://sia.webpopix.org/polynomialRegression1.html
-* Slides 
+* Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression/Slides 
 
 ## Course Developer: Marc Lavielle
  * Email: Marc.Lavielle@inria.fr
