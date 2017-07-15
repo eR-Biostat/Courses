@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-## Making R based education materials assessable for all
+## Making R based education materials accessible for all
 ## Core (I)
 The E-learning system for the Core (I) consists of 5 courses:
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
