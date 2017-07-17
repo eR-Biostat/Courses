@@ -24,18 +24,21 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
 * GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
 * Non Parametric Statistics
+* Analysis of Categotical Data
+  + Analysis of Binary Data
+  + Log Linear Models.
+  
+## Core (II) 
 * Survival Analysis
-* Introduction to Bootstrap
+* Resampling Based Methods
+
 
 ## Online or Off-line?
 Some courses developed for this initiative were developed as online courses while other as off line courses.   In both cases, all course materials can be download and used in the class.
 
-# Follow the last updates in FACEBOOK: https://www.facebook.com/ER-BioStat-1463845487001786/
-
-# Follow the last updates in Tweeter: @erbiostat, eR-Biostat
-
-# How to use this website ?
-Just click on the course that you are looking for a download the course materials.
+# Social Media:
+## Follow the last updates in FACEBOOK: https://www.facebook.com/ER-BioStat-1463845487001786/
+## Follow the last updates in Tweeter: @erbiostat, eR-Biostat
 
 # Interested to contribute a course ?
 Contact us by email erbiostat@gmail.com
