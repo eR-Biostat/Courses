@@ -10,3 +10,5 @@ This group of courses are developed at an introductory level. Only basic level k
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
+**Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
+
