@@ -10,3 +10,5 @@ The E-learning system for the Core (I)  cluster consists of 4 courses at a maste
   + Log Linear Models 
   
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786
+
+**Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
