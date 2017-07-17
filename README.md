@@ -18,7 +18,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 ## Under graduate courses
 * Introduction to exploratory data analysis and computational statistics (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics)
 
-* Linear Rgeression
+* Linear Rgeression in R (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression)
 
 
 ## Core (I) 
