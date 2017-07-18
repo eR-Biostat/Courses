@@ -1,9 +1,11 @@
 # The >eR-Biostat initative
 ## Linear Regression using  R
 
-This course presents the basic concepts of linear regression and ANOVA. This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). The course structure:
-Introduction
+This course presents the basic concepts of linear regression. This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/). All R code for the examples presented in the course is avilable online. Slides which cover most of the materails presented in the course are avilable.
 
+The course structure:
+
+* Introduction
 * Fitting polynomial models
   +  Fitting a polynomial of degree 0
   +  Fitting a polynomial of degree 1
@@ -26,8 +28,9 @@ Introduction
   + Model comparison
 
 ## Course materials
+
 * Online course + R code: available online in http://sia.webpopix.org/polynomialRegression1.html
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression/Slides 
+* Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/Slides
 
 ## Course Developer: Marc Lavielle
  * Email: Marc.Lavielle@inria.fr
