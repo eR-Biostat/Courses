@@ -1,10 +1,11 @@
 # The >eR-Biostat initative
 ## Making R based education materials accessible for all
 
-The E-learning system, developed as a part of the **>eR-Biostat**  initiative, offers free online course materials for under graduate and master students in biostatistics/statistics in developing countries. For each course, the materials are publicly available and consist of several types of course materials: 
+The E-learning system, developed as a part of the **>eR-Biostat**  initiative, offers free online course materials for under graduate and master students in biostatistics/statistics in developing countries. The materials for the courses, that are publicly available,  consist of several types of course materials: 
 * Notes for the course.
 * Slides for the course.
 * R programs, ready to use, which contain all data and R code for the all examples and illustrations discussed in the course.
+* YouTube tutorials.
 * Homework assignments.
 * Example of exams.
 
