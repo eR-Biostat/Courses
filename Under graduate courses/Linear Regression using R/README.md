@@ -31,6 +31,7 @@ The course structure:
 
 * Online course + R code: available online in http://sia.webpopix.org/polynomialRegression1.html
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/Slides
+* You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/YouTube%20turorials
 
 ## Course Developer: Marc Lavielle
  * Email: Marc.Lavielle@inria.fr
