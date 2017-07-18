@@ -3,7 +3,7 @@
 ## Core (I)
 The E-learning system for the Core (I)  cluster consists of 4 courses at a master level:
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
-* GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
+* GLM (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/glm)
 * Non Parametric Statistics
 * Analysis of Categorical data
   +  Analysis of Binary Data
