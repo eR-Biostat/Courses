@@ -31,6 +31,7 @@ The course structure:
 * Online course + R code:
   + Single comparison http://sia.webpopix.org/statisticalTests1.html
 * Slides
+* External datasets: 
 
 ## Course Developer:Marc Lavielle 
 * Email: Marc.Lavielle@inria.fr
