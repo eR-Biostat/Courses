@@ -6,8 +6,8 @@ This group of courses are developed at an undergraduate level. Only basic level 
 
 ## Available courses in this group:
 * Basic concepts in exploratory data analysis -EDA- and computational statistics
-* Basic concept of statistical inference using R –I
-* Linear Regression
+* Basic concept of statistical inference using R (I)
+* Linear Regression Using R
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
