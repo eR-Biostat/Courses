@@ -18,12 +18,12 @@ This course is an introductory course to R and can be given as a two-days worksh
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
-## Course Developers
-The course was developed by Dan Lin and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
-
 # Course materials
 * Book: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
 * Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Slides
 * R programs: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/R%20programs
 * External datasets: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Data
 * TouTube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/YouTube%20tutorials
+
+## Course Developers
+The course was developed by Dan Lin and Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium.
