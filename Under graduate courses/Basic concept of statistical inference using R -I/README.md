@@ -2,7 +2,7 @@
 ## Basic concept in statistical inference using R (I): single comparison
 
 This course presents the basic concepts of  hypothesis testing for single comparison. 
-This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/).  R code for all examples illustrated in the course is available online. Slides will be avilable in September 2017.
+This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/).  R code for all examples illustrated in the course is available online. In addtion, slides and YouTube tutorials are avilable in the repositories of the course.
 
 The course structure:
 
