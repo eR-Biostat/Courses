@@ -20,7 +20,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 
 * Linear Rgeression in R (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression)
 
-
+* Basic concept in statistical inference using R (I) ()
 ## Core (I) 
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
 * GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
