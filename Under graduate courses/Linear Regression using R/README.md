@@ -33,7 +33,10 @@ The course structure:
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/Slides
 * You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/YouTube%20turorials
 
-## Course Developer: Marc Lavielle
+## Online Course Developer: Marc Lavielle
  * Email: Marc.Lavielle@inria.fr
  * Website: http://sia.webpopix.org/index.html
+ 
+ ## Slides Developer: 
+ Ziv Shkedy (ziv.shkedy@uhasselt.be)
 
