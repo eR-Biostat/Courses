@@ -33,8 +33,9 @@ The courses are organized in three clusters.  **Introductory courses** that do n
   + Log Linear Models.
   
 ## Core (II) 
-* Survival Analysis
-* Resampling Based Methods
+* Survival Analysis.
+* Resampling Based Methods.
+* More to come.....
 
 
 ## Online or Off-line?
