@@ -24,4 +24,5 @@ Topics covered in the course include:
 * R programs: 
 * YouTube Turorials:
 
-##  Course Developer and R code: Nasima Akhter (Durham University,UK), Adetayo Kasim  (Durham University,UK a.s.kasim@durham.ac.uk) and Ziv Shkedy (Hasselt University, Belgium, ziv.shkedy@uhasselt.be) 
+##  Course Development and R code: 
+Nasima Akhter (Durham University,UK), Adetayo Kasim  (Durham University,UK a.s.kasim@durham.ac.uk) and Ziv Shkedy (Hasselt University, Belgium, ziv.shkedy@uhasselt.be) 
