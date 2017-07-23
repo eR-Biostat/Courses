@@ -14,5 +14,5 @@ The slides for the course cover the follwing topics:
 * Transformations
 * Model diagnostic
 
-Data for the examples and illustration and either available in R or in the data repository.
+Data for the examples and illustrations are either available in R or in the data repository.
 
