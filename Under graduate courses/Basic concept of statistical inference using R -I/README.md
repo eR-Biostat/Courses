@@ -38,3 +38,5 @@ The course structure:
 * Email: Marc.Lavielle@inria.fr
 * Website: http://sia.webpopix.org/ 
 
+ ## Slides Developer: 
+ Ziv Shkedy (ziv.shkedy@uhasselt.be)
