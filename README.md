@@ -14,8 +14,8 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 
 ## Introductory courses
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
-* Visualizing data using R: an Introduction (Will be avilable at the end of 2017).
-* Introduction to statistical modeling using R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R).
+* Visualizing data using R: an Introduction: **Will be avilable online at the end of 2017**.
+* Introduction to statistical modeling using R: **Will be avilable online in October 2017**. 
 
 ## Under graduate courses
 * Introduction to exploratory data analysis and computational statistics (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics)
@@ -25,12 +25,12 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * Basic concept in statistical inference using R (I) (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I)
 
 ## Core (I) 
-* Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
-* GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
-* Non Parametric Statistics
+* Linear Models: **Will be avilable online in October/November 2017**
+* GLM: **Will be avilable online in December 2017**
+* Non Parametric Statistics:  **Will be avilable online in 2018**
 * Analysis of Categotical Data
   + Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Modelling%20Binary%20Data%20using%20R
-  + Log Linear Models.
+  + Log Linear Models:**Will be avilable online in December 2017** 
   
 ## Core (II) 
 * Survival Analysis.
