@@ -29,7 +29,7 @@ The courses are organized in three clusters.  **Introductory courses** that do n
 * GLM (https://github.com/eR-Biostat/Courses/tree/master/glm)
 * Non Parametric Statistics
 * Analysis of Categotical Data
-  + Analysis of Binary Data
+  + Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Modelling%20Binary%20Data%20using%20R
   + Log Linear Models.
   
 ## Core (II) 
