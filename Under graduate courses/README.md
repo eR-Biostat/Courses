@@ -1,7 +1,7 @@
 # The >eR-Biostat initative
 ## Making R based education materials accessible for all
 
-## Under graduate courses
+## Undergraduate courses
 This group of courses are developed at an undergraduate level. Only basic level knowledge of statistics is required at the beginning of the course. The courses  aim to teach the student basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational  statistics.
 
 ## Available courses in this group:
