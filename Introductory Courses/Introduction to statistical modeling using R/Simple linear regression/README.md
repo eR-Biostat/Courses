@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-## Introduction to statistical modeling in R : Simple linear regression using R.
+## Introduction to statistical modeling : Simple linear regression using R.
 
 This part of the course covers the topic of simple linear regression using the R function lm().
 Topics (all presented at a basic level) covered in the course include:
