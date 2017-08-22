@@ -7,7 +7,7 @@ R functions that used for the analysis presented in the slides include:
 * anova()
 * summary()
 
-For residual analysis, the R package **lmtest** whould be installed. R functions related to resdial analysis include:
+For residual analysis, the R package **lmtest** whould be installed. R functions related to residual analysis include:
 
 * shapiro.test()
 * bptest(fit.dose)
