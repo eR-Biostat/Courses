@@ -1,4 +1,4 @@
-# The >eR-Biostat initative
+# The >eR-Biostat initiative
 ## Introduction to statistical modeling in R 
 
 This course is an introductory course about statistical modeling in R. The course can be given as a  two-days workshop or as a course of 5 classes (3 hours per class).
