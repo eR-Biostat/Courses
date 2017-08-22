@@ -1,4 +1,4 @@
-# The >eR-Biostat initative
+# The >eR-Biostat initiative
 ## Simple linear regression using R:  Extremal datasets
 The following datasets are used as external datasets to illustrate few examples in the courses (for model diagnostic):
 
