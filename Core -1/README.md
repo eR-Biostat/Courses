@@ -1,4 +1,4 @@
-# The >eR-Biostat initative
+# The >eR-Biostat initiative
 ## Making R based education materials accessible for all
 ## Core (I)
 The E-learning system for the Core (I)  cluster consists of 4 courses at a master level:
