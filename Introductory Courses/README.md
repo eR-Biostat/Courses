@@ -6,7 +6,7 @@ This group of courses are developed at an introductory level. Only basic level k
 
 ## Available courses in this group:
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
-* Introduction to statistical modeling using R (will be available online in 2018).
+* Introduction to statistical modeling using R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R).
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
