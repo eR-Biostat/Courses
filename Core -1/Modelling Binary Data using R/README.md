@@ -1,4 +1,4 @@
-# The >eR-Biostat initative
+# The >eR-Biostat initiative
 #  Modelling Binary Data using R
 
 The course covers topics from the books of  David Collett **Modelling Binary Data** and Alan Agresti  **An Introduction to
