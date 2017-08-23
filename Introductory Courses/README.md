@@ -1,10 +1,10 @@
-# The >eR-Biostat initative
+# The >eR-Biostat initiative
 ## Making R based education materials accessible for all
 
 ## Introductory courses
 This group of courses are developed at an introductory level. Only basic level knowledge of statistics is required. The courses **DO NOT** aim to teach the student new topics in statistics but to train the students to use R in data analysis.
 
-## Available courses in this group:
+## Available courses in this module:
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
 * Introduction to statistical modeling using R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R).
 
