@@ -7,7 +7,7 @@ Topics (all presented at a basic level) covered in the course include:
 * Simple linear regression (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Simple%20linear%20regression).
 * One-way ANOVA (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/One%20way%20ANOVA).
 * Two-way ANOVA.
-* Logistic regression.
+* Logistic regression (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Logistic%20regression).
 
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included as a part of each topic.
 
