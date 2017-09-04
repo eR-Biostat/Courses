@@ -22,7 +22,8 @@ The course structure:
 ## Course materials
 * Online course + R code:
   + Multiple comparisons:  http://sia.webpopix.org/statisticalTests2.html
-* Slides
+* Slides: Not avilable for this course.
+* Youtube ttutorial: Multiple Comparisons in R (hosted by Ole Forsberg): https://www.youtube.com/watch?v=nAs2Kq7d48s.
 
 ## Course Developer:Marc Lavielle 
 * Email: Marc.Lavielle@inria.fr
