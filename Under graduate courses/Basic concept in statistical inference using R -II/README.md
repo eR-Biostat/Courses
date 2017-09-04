@@ -23,7 +23,9 @@ The course structure:
 * Online course + R code:
   + Multiple comparisons:  http://sia.webpopix.org/statisticalTests2.html
 * Slides: Not avilable for this course.
-* Youtube ttutorial: Multiple Comparisons in R (hosted by Ole Forsberg): https://www.youtube.com/watch?v=nAs2Kq7d48s.
+* Youtube ttutorial for multiple comparisons:
+  + Multiple comparisons in R (host by Ole Forsberg): https://www.youtube.com/watch?v=nAs2Kq7d48s.
+  + SIngle Factor ANOVA in R with Multiple Comparisons (host by Katie Ann Jager): https://www.youtube.com/watch?v=krhErceFJnE.
 
 ## Course Developer:Marc Lavielle 
 * Email: Marc.Lavielle@inria.fr
