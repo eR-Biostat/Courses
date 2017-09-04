@@ -3,7 +3,7 @@
 
 This course presents the basic concepts of  hypothesis testing multiple comparisons. 
 
-This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/).  R code for all examples illustrated in the course is available online. Slides will be avilable in September 2017.
+This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/).  R code for all examples illustrated in the course is available online. Slides will not be avilable in September 2017.
 
 The course structure:
 
@@ -20,7 +20,7 @@ The course structure:
   + A Monte Carlo simulation
 
 ## Course materials
-* Online course + R code:
+* Online course + R program:
   + Multiple comparisons:  http://sia.webpopix.org/statisticalTests2.html
 * Slides: Not avilable for this course.
 * Youtube ttutorial for multiple comparisons:
