@@ -26,6 +26,7 @@ The course structure:
 * Youtube ttutorial for multiple comparisons:
   + Multiple comparisons in R (host by Ole Forsberg): https://www.youtube.com/watch?v=nAs2Kq7d48s.
   + SIngle Factor ANOVA in R with Multiple Comparisons (host by Katie Ann Jager): https://www.youtube.com/watch?v=krhErceFJnE.
+  + Analysis of Variance (ANOVA) and Multiple Comparisons in R (host by MarinStatsLectures): https://www.youtube.com/watch?v=lpdFr5SZR0Q
 
 ## Course Developer:Marc Lavielle 
 * Email: Marc.Lavielle@inria.fr
