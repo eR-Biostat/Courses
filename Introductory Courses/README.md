@@ -9,7 +9,9 @@ This group of courses are developed at an introductory level. Only basic level k
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
 * Introduction to statistical modeling using R:
   + Simple linear regression using R: (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R).
-  + One-Way ANOVA using R: 
+  + One-Way ANOVA using R: **Will be avilable online during the acedemic year 2017/1018**
+  + Logistic regression using R: **Will be avilable online during the acedemic year 2017/1018**
+  
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
