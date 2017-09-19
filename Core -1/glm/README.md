@@ -1,9 +1,9 @@
 # The >eR-Biostat initative
 # Applied Generalized Linear Models (GLM) using R 
 
- **THIS IS ONLY A TEMPORARY VERSION OF THE PAGE. THE COURSE WILL BE AVILABLE IN 2018 !!!**
+**THIS IS ONLY A TEMPORARY VERSION OF COURSE. THE COMPLETE VERSION WILL BE AVIABLE ONLINE DURING THE ACEDEMIC YEAR 2017/2018 !!!**
 
-This course is based on the book **XXXXX **  by YYYY which is available online. The course consists of 5-6 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
+The course consists of 5-6 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
 *   Analysis of Variance
 *   Linear regression models with normal error.
