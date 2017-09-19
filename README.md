@@ -14,7 +14,10 @@ The courses are organized in four clusters.  The **Introductory courses** that a
 ## Introductory courses
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
 * Visualizing data using R: an Introduction: **Will be avilable online at the end of 2017**.
-* Introduction to statistical modeling using R: **Will be avilable online in October 2017**. 
+* Introduction to statistical modeling using R: 
+  + Simple linear regression using R: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Simple%20linear%20regression
+  + One-Way ANOVA using R:  **Will be avilable online in October 2017**. 
+  + Logistic regression using R:  **Will be avilable online in October 2017**. 
 
 ## Undergraduate courses
 * Introduction to exploratory data analysis and computational statistics (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics)
