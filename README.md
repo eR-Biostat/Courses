@@ -29,12 +29,12 @@ The courses are organized in four clusters.  The **Introductory courses** that a
 ## Core (I): basic and advance modeling. 
 * Linear Models: **Will be avilable online during the acedemic year 2017/1018**
 * GLM:  **Will be avilable online during the acedemic year 2017/1018**
-* Non Parametric Statistics:  **Will be avilable online in 2018**
-* Analysis of Categotical Data
+* Analysis of Categotical Data:
   + Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Modelling%20Binary%20Data%20using%20R
   + Log Linear Models: **Will be avilable online during the acedemic year 2017/1018**
   
 ## Core (II) 
+* Non Parametric Statistics:  **Will be avilable online in 2018**
 * Survival Analysis.
 * Resampling Based Methods.
 * More to come.....
