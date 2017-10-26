@@ -4,7 +4,7 @@
 ## In the next two weeks, until 15/10/2017, the page is under construction and not all courses will  be available. Updated version of the courses will be available from 15/10/2017 onward.
 
 ## Undergraduate courses
-This group of courses are developed at an undergraduate level. Only basic level knowledge of statistics is required at the beginning of the course. The courses  aim to teach the student basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational  statistics.
+This group of courses are developed at an undergraduate level. Only basic level knowledge of statistics and R is required at the beginning of the course. The courses  aim to teach the students basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational statistics.
 
 ## Available courses in this module:
 * **Basic concepts in exploratory data analysis -EDA- and computational statistics:** https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics 
