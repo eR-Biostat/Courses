@@ -8,7 +8,7 @@
 #baseurl: ""
 
 # If you are building a GitHub project page then use these settings:
-url: "https://eR-Biostat.github.io/courses"
+url: "https://erbiostat.github.io/Courses"
 baseurl: "/RcmdrPlugin.BiclustGUI"
 
 #https://ewouddt.github.io/RcmdrPlugin.BiclustGUI/
