@@ -1,4 +1,17 @@
-.Rproj.user
+# project
+_site
+.sass-cache
+.vagrant
+
+# general
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+
+.Rproj.user/
+pkg.Rproj
 .Rhistory
-.RData
-.Ruserdata
+.Rproj.user
+cran-comments.md
+vignettes
