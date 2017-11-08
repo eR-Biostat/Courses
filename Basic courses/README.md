@@ -1,7 +1,7 @@
 # The >eR-Biostat initiative
 ## Making R based education materials accessible for all
 
-## In the next two weeks, until 15/10/2017, the page is under construction and not all courses will  be available. Updated version of the courses will be available from 15/10/2017 onward.
+##  The page is under construction and not all courses will  be available. Updated version of the courses will be available from 15/12/2017 onward.
 
 ## Basic courses
 This group of courses are developed at an undergraduate level. Only basic level knowledge of statistics and R is required at the beginning of the course. The courses  aim to teach the students basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational statistics.
