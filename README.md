@@ -35,7 +35,6 @@ The courses are organized in four clusters.  The **Introductory courses** that a
 
 
 ## Statistical modeling (I) - basic and advance modeling: 
->>>>>>> 934128126bf91739be2aff41ec865bc72e6db7f3
 * Linear Models: **Will be avilable online during the acedemic year 2017/1018**
 * GLM:  **Will be avilable online during the acedemic year 2017/1018**
 * Analysis of Categotical Data:
