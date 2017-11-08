@@ -1,0 +1,1208 @@
+Child_Anemic,Mother_Anaemic,Child_Gender,Child_Agecat,Mother_20orless,Areas,SES
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area C,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Poor
+No,Anemic,Boy,24-59 months,Mother aged <=20years,Area C,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Better-off
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area C,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Better-off
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area C,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Better-off
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area C,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area C,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area C,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area C,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged <=20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Better-off
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged <=20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Better-off
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Better-off
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged <=20years,Area B,Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area B,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area B,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area B,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area B,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Boy,24-59 months,Mother aged <=20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged <=20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged <=20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Better-off
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area D,Better-off
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Anemic,Girl,6-23 months,Mother aged <=20years,Area D,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Better-off
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Poor
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area D,Better-off
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Poor
+No,Anemic,Girl,24-59 months,Mother aged <=20years,Area D,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area D,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area D,Middle
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area D,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area D,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Better-off
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area D,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area D,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Better-off
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area D,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area D,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Better-off
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Better-off
+No,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Better-off
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Better-off
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Better-off
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged <=20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged <=20years,Area A,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Boy,6-23 months,Mother aged <=20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged <=20years,Area A,Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Better-off
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Area A,Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Area A,Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area A,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Better-off
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged <=20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged <=20years,Area A,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged <=20years,Area A,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Area A,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Area A,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Area A,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Area A,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged <=20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged <=20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged <=20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Better-off
+Yes,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Poor
+No,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Poor
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Better-off
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Not anemic,Boy,6-23 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+Yes,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Anemic,Girl,24-59 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Girl,6-23 months,Mother aged > 20years,Missing value,Middle
+Yes,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Very Poor
+No,Not anemic,Boy,24-59 months,Mother aged > 20years,Missing value,Middle
