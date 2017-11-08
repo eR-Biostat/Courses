@@ -1,8 +1,6 @@
 # The >eR-Biostat initative
 ## Making R based education materials accessible for all
 
-## In the next two weeks, until 15/10/2017, the page is under construction and not all courses will  be available. Updated version of the courses will be available from 15/10/2017 onward.
-
 The E-learning system, developed as a part of the **>eR-Biostat**  initiative, offers free online course materials in statistics in all education level, non statisticians, undergraduate and master students in biostatistics/statistics in developing countries. The materials for the courses, that are publicly available, consist of several types: 
 * Notes for the course.
 * Slides for the course.
@@ -12,7 +10,7 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Example of exams.
 
 # Available courses:
-The courses are organized in four clusters.  The **Introductory courses** that aim to train users in data analysis **using R**  at a basic level. These courses were developed for undergraduate students, both non statisticians and statisticians.. The courses within this cluster can also be used as courses to support R usage in undergraduate program in biostatistic/statistics. The course cluster **Undergraduate courses** provides courses  at intermediate level and a basic knowledge in statistics is required  in order to follow the courses. The courses within this cluster can be also use as training courses  for non-statisticians and as courses to support R usage in under graduate program in biostatistic/statistics. The course clusters **Core (I)** and **Core (II)** consist of basic and advanced courses at a master level in biostatistics/statistics  respectively.  
+The courses are organized in four clusters.  The **Introductory courses** that aim to train users in data analysis **using R**  at a basic level. These courses were developed for undergraduate students, both non statisticians and statisticians.. The courses within this cluster can also be used as courses to support R usage in undergraduate program in biostatistic/statistics. The course cluster **Basic  courses** provides courses  at intermediate level and a basic knowledge in statistics is required  in order to follow the courses. The courses within this cluster can be also use as training courses  for non-statisticians and as courses to support R usage in under graduate program in biostatistic/statistics. The course clusters **Statistical modeling (I)** and **Statistical modeling (II)** consist of basic and advanced courses at a master level in biostatistics/statistics  respectively.  
 ## Introductory courses
 * Introduction to R (https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R).
 * Visualizing data using R: an Introduction: **Will be avilable online at the end of 2017**.
@@ -21,21 +19,21 @@ The courses are organized in four clusters.  The **Introductory courses** that a
   + One-Way ANOVA using R:  **Will be avilable online in October 2017**. 
   + Logistic regression using R:  **Will be avilable online in October 2017**. 
 
-## Undergraduate courses
+## Basic courses
 * Introduction to exploratory data analysis and computational statistics (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics)
 
 * Linear Rgeression in R (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression)
 
 * Basic concept in statistical inference using R (I) (https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I)
 
-## Core (I): basic and advance modeling. 
+## Statistical modeling (I): basic and advance modeling. 
 * Linear Models: **Will be avilable online during the acedemic year 2017/1018**
 * GLM:  **Will be avilable online during the acedemic year 2017/1018**
 * Analysis of Categotical Data:
   + Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Modelling%20Binary%20Data%20using%20R
   + Log Linear Models: **Will be avilable online during the acedemic year 2017/1018**
   
-## Core (II) 
+## Statistical modeling (II) 
 * Non Parametric Statistics:  **Will be avilable online in 2018**
 * Survival Analysis.
 * Resampling Based Methods.
