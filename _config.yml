@@ -20,7 +20,7 @@ baseurl: "/Courses"
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-title: >eR-BioStat
+title: eR-BioStat
 
 # Short description of your site
 description: E-learning system for statistics using R
