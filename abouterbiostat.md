@@ -8,10 +8,10 @@ subtitle: Course list  & Links
 Introductory courses
 --------------------
 
--   *Introduction to R* (See [R](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)).
--   *Simple linear regression using R* (See [Regression](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Simple%20linear%20regression)).
--   *One-way ANOVA using R* (see [ANOVA](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/One%20way%20ANOVA))
--   *Logistic Regression using R* (see [Logistic regression](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Logistic%20regression))
+-   **Introduction to R** (See [R](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)).
+-   **Simple linear regression using R** (See [Regression](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Simple%20linear%20regression)).
+-   **One-way ANOVA using R** (see [ANOVA](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/One%20way%20ANOVA))
+-   **Logistic Regression using R** (see [Logistic regression](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Logistic%20regression))
 
 Basic courses
 -------------
