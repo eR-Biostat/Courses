@@ -91,7 +91,9 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "ewouddt.github.io/RcmdrPlugin.BiclustGUI/"  # eg. "deanattali.com/beautiful-jekyll"
+
+url-pretty: "eR-Biostat.github.io/Courses/"  # eg. "deanattali.com/beautiful-jekyll"
+#url-pretty: "ewouddt.github.io/RcmdrPlugin.BiclustGUI/"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Misc --- #
 
