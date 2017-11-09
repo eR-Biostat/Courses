@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Courses
+title: Introductory courses
 subtitle: Course list  & Links
 ---
 

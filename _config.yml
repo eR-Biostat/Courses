@@ -30,7 +30,7 @@ description: E-learning system for statistics using R
 # List of links in the navigation bar
 navbar-links:
   Blog: "index"
-  Courses: "abouterbiostat"
+  Introductory courses: "abouterbiostat"
 #  Documentation:
 #    - Presentations: "presentations"
 #    - Videos: "videos"
