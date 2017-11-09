@@ -5,9 +5,6 @@ subtitle: Course list  & Links
 ---
 
 
-Basic courses
--------------
-
 -   **Linear Regression using R** (See [linear regression](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R)).
 
 This course presents the basic concepts of linear regression. This is an online course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). All R code for the examples presented in the course is avilable online. Slides which cover most of the materails presented in the course are avilable.

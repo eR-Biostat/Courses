@@ -5,9 +5,6 @@ subtitle: Course list  & Links
 ---
 
 
-Introductory courses
---------------------
-
 -   **Introduction to R** (See [R](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)).
 
 This course is an introductory course to R and can be given as a two-days workshop or as a course of 3-4 classes (3 hours per class). All topics in the course are presented at a basic level and do not intend to introduce new statistical materials. Only a limited knowledge in R is required. 
