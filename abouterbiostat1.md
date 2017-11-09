@@ -4,8 +4,6 @@ title: Introductory courses
 subtitle: Course list  & Links
 ---
 
-Courses:
--------
 
 -   **Introduction to R** (See [R](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)).
 
