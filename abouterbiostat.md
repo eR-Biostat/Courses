@@ -33,11 +33,11 @@ This group of courses are developed at an undergraduate level. Only basic level 
 
 -   **Linear Regression using R** (See [linear regression](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R)).
 
-This course presents the basic concepts of linear regression. This is an online course which was developed by Marc Lavielle within his initiative statistics in action with R (http://sia.webpopix.org/). All R code for the examples presented in the course is avilable online. Slides which cover most of the materails presented in the course are avilable.
+This course presents the basic concepts of linear regression. This is an online course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). All R code for the examples presented in the course is avilable online. Slides which cover most of the materails presented in the course are avilable.
 
 -   **Basic concept in statistical inference using R (I): single comparison**(See [Basic Inference(I)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses)).
 
-This course presents the basic concepts of hypothesis testing for single comparison. This is an **online** course which was developed by Marc Lavielle within his initiative statistics in action with R (http://sia.webpopix.org/). R code for all examples illustrated in the course is available online. In addition, slides and YouTube tutorials are available in the repositories of the course.
+This course presents the basic concepts of hypothesis testing for single comparison. This is an **online** course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). R code for all examples illustrated in the course is available online. In addition, slides and YouTube tutorials are available in the repositories of the course.
 
 -   **Basic concept in statistical inference using R (II): multiple comparisons** (see [Basic Inference (II)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses))
 
@@ -50,5 +50,13 @@ This course presents the basic concepts in EDA and computational statistics. Bas
 Statistical modeling (1)
 -----------------------
 
--   *Modelling Binary Data using R* (See [Binary Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/Modelling%20Binary%20Data%20using%20R)).
+-   **Modelling Binary Data using R** (See [Binary Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/Modelling%20Binary%20Data%20using%20R)).
 
+The course covers topics from the books of David Collett *Modelling Binary Data* and Alan Agresti *An Introduction to Categorical Data Analysis*. The course consists of 3 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
+
+  + Comparing Proportions in Two-by-Two Tables.
+  +  The Relative Risk and the Odds Ratio.
+  + Chi-Squared Tests of Independence.
+  + Generalized Linear Models for Binary Data (an introduction).
+  + Logistic Regression: model formulation, interpretion, estimation and inference.
+  + Model Selection
