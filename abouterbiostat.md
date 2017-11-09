@@ -29,7 +29,6 @@ fitting a simple linear logistic regression model using the glm() function in R,
 
 Basic courses
 -------------
-This group of courses are developed at an undergraduate level. Only basic level knowledge of statistics and R is required at the beginning of the course. The courses aim to teach the students basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational statistics.
 
 -   **Linear Regression using R** (See [linear regression](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R)).
 
