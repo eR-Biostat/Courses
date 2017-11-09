@@ -4,7 +4,8 @@ title: Statistical modeling (1)
 subtitle: Course list  & Links
 ---
 
-
+Courses
+-------
 
 -   **Modelling Binary Data using R** (See [Binary Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/Modelling%20Binary%20Data%20using%20R)).
 
