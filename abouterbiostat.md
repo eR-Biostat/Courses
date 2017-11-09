@@ -19,7 +19,7 @@ Basic courses
 -   *Linear Regression using R* (See [linear regression](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R)).
 -   *Basic concept in statistical inference using R (I): single comparison*(See [Basic Inference(I)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses)).
 -   *Basic concept in statistical inference using R (II): multiple comparisons* (see [Basic Inference (II)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses))
--   *Basic concepts in exploratory data analysis (EDA) and computational statistics* (see [EDA](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics))
+-   *Basic concepts in exploratory data analysis (EDA) and computational statistics* (see [EDA](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses))
 
 
 Statistical modeling (1)
