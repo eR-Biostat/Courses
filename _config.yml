@@ -42,7 +42,10 @@ navbar-links:
 #    - Download Stand-Alone: "https://ibiostat.be/online-resources/online-resources/biclustgui/shinyapp"
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/mondrian.jpg"
+#avatar: "/img/mondrian.jpg"
+avatar: "C:\projects\eR-Biostat\Temp\ERlogo1.png"
+
+
 
 # --- Footer options --- #
 
