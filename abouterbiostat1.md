@@ -4,6 +4,7 @@ title: Introductory courses
 subtitle: Course list  & Links
 ---
 
+This group of courses are developed at an introductory level. Only basic level knowledge of statistics and R  is required. These courses were developed for both non statisticians and statisticians. The courses within this cluster can also be used as courses to support R usage in undergraduate program in biostatistic/statistics.
 
 -   **Introduction to R** (See [R](https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R)).
 
