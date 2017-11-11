@@ -32,7 +32,8 @@ navbar-links:
   Blog: "index"
   Introductory courses: "abouterbiostat1"
   Basic courses: "abouterbiostat2"
-  Statistical modeling: "abouterbiostat3"
+  Statistical modeling: 
+  Statistical modeling 1: "abouterbiostat3"
 #  Documentation:
 #    - Presentations: "presentations"
 #    - Videos: "videos"
