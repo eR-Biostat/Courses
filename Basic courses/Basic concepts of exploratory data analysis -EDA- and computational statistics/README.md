@@ -21,7 +21,7 @@ The course was developed by Martin Otava and Ziv Shkedy (ziv.shkedy@uhasselt.be)
 ## Course materials
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/Slides
 
-* R Programs: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concepts%20in%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/R%20programs
+* R Programs: https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/R%20programs
 
 * External datasets:https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics/Data
 
