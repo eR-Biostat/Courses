@@ -3,7 +3,7 @@ layout: page
 title: Basic courses
 subtitle: Course list  & Links
 ---
-This group of courses are developed at an undergraduate level in statistics. Only basic level knowledge of statistics and R is required at the beginning of the course. The courses aim to teach the students basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational statistics. The courses in inference and regression are also available online (http://sia.webpopix.org/).  
+This group of courses are developed at an undergraduate level in statistics. Only basic level knowledge of statistics and R is required at the beginning of the course. The courses aim to teach the students basic topics in inference (hypothesis testing), modeling (regression) and basic ideas in exploratory data analysis and computational statistics. The courses in inference and regression are also available online (http://sia.webpopix.org/). Slides for the course in regression and inference (I) are available for offline usage.  
 
 -   **Linear Regression using R** (See [linear regression](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R)).
 
