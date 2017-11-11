@@ -8,7 +8,7 @@ This group of courses are developed at an undergraduate level. Only basic level 
 
 ## Available courses in this module:
 * **Basic concepts in exploratory data analysis -EDA- and computational statistics:** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics 
-* **Basic concepts of statistical inference using R (I):** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I
+* **Basic concepts of statistical inference using R (I):** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20statistical%20inference%20using%20R%20-I
 * **Linear Regression Using R:** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R
 
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
