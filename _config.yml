@@ -59,7 +59,7 @@ author:
   email: "erbiostat@gmail.com"
   facebook: https://www.facebook.com/ER-BioStat-1463845487001786/  # eg. daattali
   github: eR-Biostat    # eg. daattali
-  twitter: eR-Biostat   # eg. daattali
+  twitter: erbiostat   # eg. daattali
   google-plus: +yourname   # eg. +DeanAttali or 109424658772469020925
   linkedin: yourname  # eg. daattali
   xing: yourname      # eg. daattali
@@ -74,7 +74,7 @@ footer-links-active:
   rss: true
   facebook: true
   email: true
-  twitter: false
+  twitter: true
   google-plus: false
   github: true
   linkedin: false
