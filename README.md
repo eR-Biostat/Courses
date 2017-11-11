@@ -31,7 +31,7 @@ The courses are organized in four clusters.  The **Introductory courses** that a
 
 * **Linear Rgeression using R:** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Linear%20Regression%20using%20R
 
-* **Basic concept in statistical inference using R (I):** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I
+* **Basic concept in statistical inference using R (I):** https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20statistical%20inference%20using%20R%20-I
 
 ## Statistical modeling (I) - basic and advance modeling: 
 * Linear Models: **Will be avilable online during the acedemic year 2017/1018**
