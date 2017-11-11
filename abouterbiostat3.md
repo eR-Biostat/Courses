@@ -3,6 +3,7 @@ layout: page
 title: Statistical modeling (1)
 subtitle: Course list  & Links
 ---
+This course cluster is focused on basic statistical modeling and consists of 4 courses at a master level: Practical linear models using R,  GLM using R, Analysis of Binary Data and long linear models using R and Bayesian Analysis. All courses will be avilable online during the acedemic year 2017/2018.
 
 
 -   **Modelling Binary Data using R** (See [Binary Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/Modelling%20Binary%20Data%20using%20R)).
