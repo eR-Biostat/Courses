@@ -9,7 +9,7 @@ This group of courses are developed at an undergraduate level in statistics. Onl
 
 This course presents the basic concepts of linear regression. This is an online course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). All R code for the examples presented in the course is avilable online. Slides which cover most of the materails presented in the course are avilable.
 
--   **Basic concept in statistical inference using R (I): single comparison**(See [Basic Inference(I)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20exploratory%20data%20analysis%20-EDA-%20and%20computational%20statistics)).
+-   **Basic concept in statistical inference using R (I): single comparison**(See [Basic Inference(I)](https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20statistical%20inference%20using%20R%20-I)).
 
 This course presents the basic concepts of hypothesis testing for single comparison. This is an **online** course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). R code for all examples illustrated in the course is available online. In addition, slides and YouTube tutorials are available in the repositories of the course.
 
