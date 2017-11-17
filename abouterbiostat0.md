@@ -15,7 +15,7 @@ The **>eR-Biostat** initiative introduces a new, R based, learning system, the m
 
 # VLIR-UOS
 
-VLIR-UOS supports partnerships between universities and university colleges, in Flanders, Belgium and in developing countries, looking for innovative responses to global and local challenges. Over the last 10 years, VLIR-UOS supported our activities related to the development of education materails in Statistics. For more details (See [VLIR](http://www.vliruos.be/en/)). 
+VLIR-UOS supports partnerships between universities and university colleges, in Flanders, Belgium and in developing countries, looking for innovative responses to global and local challenges. Over the last 10 years, VLIR-UOS supported our activities related to the development of education materails in Statistics. For more details about VLIR-UOS (See [VLIR](http://www.vliruos.be/en/)). 
  
 
 # Social media 
