@@ -20,7 +20,7 @@ VLIR-UOS supports partnerships between universities and university colleges, in 
 
 # Social media 
 
-**Follow us in FACEBOOK:** (https://www.facebook.com/ER-BioStat-1463845487001786/)
+**Follow us in FACEBOOK:** (see [FACEBOOK](https://www.facebook.com/ER-BioStat-1463845487001786/))
 
 **Follow us in Tweeter:** @erbiostat, eR-Biostat
 
