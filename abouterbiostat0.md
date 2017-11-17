@@ -1,8 +1,8 @@
 ---
 layout: page
-title: The >eR-Biostat initiative
+title: We R a community
 ---
-# Making R based education materials accessible for all
+# The >eR-Biostat initiative: making R based education materials accessible for all
 # What is all about ?
 One of the main problems in high education at both under graduate and master levels in developing countries is the lack of high quality , **R based**,  materials for courses in education programs.  The **>eR-Biostat**  initiative is focused on education programs (both undergraduate and master) in Biostatistics/Statistics and for non-statisticians and aim to develop new E-learning system for courses at different education  level.
 
