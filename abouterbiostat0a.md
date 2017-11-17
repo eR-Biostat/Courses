@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The >eR-Biostat initiative
+title: We R a community: the >eR-Biostat initiative
 ---
 # Making R based education materials accessible for all
 # What is all about ?
@@ -11,7 +11,7 @@ We believe that accessibility to free high quality education materials is crucia
 
 # Where can you find us ?
 
-Course materaials and updated infromation about our ctivities are avilable online (See [eR-BioSata](https://er-biostat.github.io/Courses/))
+Course materaials and updated infromation about our ctivities are avilable online (See [>eR-BioStat](https://er-biostat.github.io/Courses/))
 
 
 # Why R based new E-learning system ?
