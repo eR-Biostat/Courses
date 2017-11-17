@@ -13,7 +13,7 @@ We believe that accessibility to free high quality education materials is crucia
 
 The **>eR-Biostat** initiative introduces a new, R based, learning system, the multi-module learning system,  in which the students in the local universities in developing countries are be able to follow courses in different learning format, including e-courses taken online and a combination between e-courses and local lectures given by local staff members. R software and packages are used in all courses as data analysis tool for all examples and illustrations. The **>eR-Biostat**  initiative provides a free, accessible and ready to use tool for capacity building in biostatistics/statistics for local universities in developing countries with current low or near zero capacity in these topics. In its nurture, the R community is used for this type of collaboration (for example, CRAN and Bioconductor which offer access to the most up-to-date R packages for data analysis). The **>eR-Biostat**  initiative is aimed to bring the R community members for the development of high education courses in the same way it is currently done in software development.
 
-**Follow us in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
+**Follow us in FACEBOOK:** (https://www.facebook.com/ER-BioStat-1463845487001786/)
 
 **Follow us in Tweeter:** @erbiostat, eR-Biostat
 
