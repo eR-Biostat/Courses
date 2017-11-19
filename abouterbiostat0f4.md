@@ -43,6 +43,6 @@ title: Contributors and colaborators
 
 **Follow us in Tweeter:** @erbiostat, eR-Biostat
 
-**Interested to join as partnet university ?**  send an email to 	erbiostat@gmail.com or ziv.shkedy@uhasselt.be
+**Interested to contribute a course  ?**  send an email to 	erbiostat@gmail.com or ziv.shkedy@uhasselt.be
 
 
