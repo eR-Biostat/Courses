@@ -1,33 +1,37 @@
 ---
 layout: page
-title: Contributors and colaborators
+title: Contributors 
 ---
-# Course and curiculum development:
+# Course and curiculum development for >eR-BioStat:
 
- * aaa.
- * bbb.
- * ccc 
+ * Adetayo Kasim (Durham University, UK).
+ * Ziv Shkedy (Uhasselt University, Belgium).
+ * Khangelani Zuma (HSRC, Sauth Africa).
 
-# Workshops and short courses in the south:
+# >eR-BioStat Workshops and short courses:
 
- * aaa.
- * bbb.
- * ccc  
-
+ * Gondar University, Ethiopia, 28/08/2017:
+     - Topics: introduction to R, Introduction to statistical modeling in R, modeling infectious      diseases using R..
+ *  Jomo Kenyatta University of Agriculture and Technology, Kenya, 11/12/2017: 
+    - Topics: introduction to R, Introduction to statistical modeling in R, modeling infectious diseases using R.
+ * Gondar University, Ethiopia, 19/03/2018:
+     - Survey analysis using R, visualzing data in R.
+ 
 # Contributors:
 
  * Introductory courses: 
-     - aaa
-     - bbb
-     - ccc
+     - Legesse Kassa Debusho (UNISA, South Africa).
+     - Tadele Worku Mengesha (Gondar University, Ethiopia).
+     - Abdisa Gurmessa (Jimma University,Ethiopia). 
+     - Dan Lin (Uhasselt University, Belgium).
+     - Ziv Shkedy (Hasselt University, Belgium).
  * Basic courses:
-     - aaa
-     - bbb
-     - ccc
+     - Marc Lavielle (CMAP, Ecole Polytechnique, France).
+     - Ziv Shkedy (Hasselt University, Belgium).
  * Statistical modeling (I): 
-     - aaa
-     - bbb
-     - ccc
+     - Adetayo Kasim (Durham University, UK): Modelling Binary Data using R.
+     - Nasima Akhter (Durham University, UK): Modelling Binary Data using R.
+     - Fetene Tekle (Janssen Phamacutical, Belgium): Applied GLM using R.
  * Statistical modeling (II): 
      - aaa
      - bbb
