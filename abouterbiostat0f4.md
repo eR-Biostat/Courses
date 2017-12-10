@@ -20,26 +20,27 @@ title: Contributors
 # Contributors:
 
  * Introductory courses: 
-     - Legesse Kassa Debusho (UNISA, South Africa).
-     - Tadele Worku Mengesha (Gondar University, Ethiopia).
      - Abdisa Gurmessa (Jimma University,Ethiopia). 
+     - Legesse Kassa Debusho (UNISA, South Africa).
      - Dan Lin (Uhasselt University, Belgium).
+     - Tadele Worku Mengesha (Gondar University, Ethiopia).
      - Ziv Shkedy (Hasselt University, Belgium).
+     - Tadele Worku Mengesha (Gondar University, Ethiopia).
  * Basic courses:
      - Marc Lavielle (CMAP, Ecole Polytechnique, France).
+     - Martin Otava (Hasselt Univesrsity, Belgium).
+     - Dinberu Seyoum (Jimma University, Ethiopia). 
      - Ziv Shkedy (Hasselt University, Belgium).
  * Statistical modeling (I): 
-     - Adetayo Kasim (Durham University, UK): Modelling Binary Data using R.
-     - Nasima Akhter (Durham University, UK): Modelling Binary Data using R.
-     - Fetene Tekle (Janssen Phamacutical, Belgium): Applied GLM using R.
+     - Tadesse Awoke (Gondar University, Ethiopia).
+     - Nasima Akhter (Durham University, UK).
+     - Adetayo Kasim (Durham University, UK).
+     - Said Mussa (Mekele University, EThiopia).
+     - Fetene Tekle (Janssen Phamacutical, Belgium).
  * Statistical modeling (II): 
      - aaa
-     - bbb
-     - ccc
  * Statistical inference: 
      - aaa
-     - bbb
-     - ccc
      
 # Social media 
 
