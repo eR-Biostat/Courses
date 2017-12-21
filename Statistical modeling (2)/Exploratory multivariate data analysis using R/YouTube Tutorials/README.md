@@ -17,20 +17,20 @@ YouTube tutorials are available for:
    + Interpretation aids
    + CA with FactoMineR 
    + Text mining with correspondence analysis 
-  * Multiple Correspondence Analysis (MCA) 
+ * Multiple Correspondence Analysis (MCA) 
    + Data - issues
    + Visualizing the point cloud of individuals
    + Visualizing the cloud of categories
    + Interpretation aids
    + MCA with FactoMineR
    + Handling missing values in MCA
-  * Clustering
+ * Clustering
    + Introduction
    + Example and how to choose the number of clusters
    + The partitioning method K-means
    + Characterizing clusters
    + Clustering with FactoMineR
-  * Multiple Factor Analysis
+ * Multiple Factor Analysis
    + Introduction
    + Weighting and global PCA
    + Study of the groups of variables
