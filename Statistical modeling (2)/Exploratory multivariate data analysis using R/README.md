@@ -17,7 +17,7 @@ The course structure:
 * Offline Slides:
  * You Tube tutorials: https://www.youtube.com/watch?v=aiqGyLGrQ48&list=PLnZgp6epRBbTsZEFXi_p6W48HhNyqwxIu
 
-## Online Course DeveloperR code, sildes and YouTube tutorials: François Husson
-
+## Online Course Developer, R code, sildes and YouTube tutorials: 
+ * François Husson.
  * Email:
  * Website: http://math.agrocampus-ouest.fr/infoglueDeliverLive/membres/Francois.Husson
