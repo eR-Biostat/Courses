@@ -18,21 +18,23 @@ YouTube tutorials are available for:
    + CA with FactoMineR (https://www.youtube.com/watch?v=vP4korRby0Q).
    + Text mining with correspondence analysis (https://www.youtube.com/watch?v=62N0JMf5hOs).
  * Multiple Correspondence Analysis (MCA) 
-   + Data - issues
-   + Visualizing the point cloud of individuals
-   + Visualizing the cloud of categories
-   + Interpretation aids
-   + MCA with FactoMineR
-   + Handling missing values in MCA
+   + Data - issues (https://www.youtube.com/watch?v=gZ_7WWEVlTg).
+   + Visualizing the point cloud of individuals (https://www.youtube.com/watch?v=b4kRAt4mkB8).
+   + Visualizing the cloud of categories (https://www.youtube.com/watch?v=OZW1KrKO5Ac).
+   + Interpretation aids (https://www.youtube.com/watch?v=wTCuThGiy4w).
+   + MCA with FactoMineR (https://www.youtube.com/watch?v=Sl1-UYD6iac).
+   + Handling missing values in MCA (https://www.youtube.com/watch?v=uyIH1CtrfsU).
  * Clustering
-   + Introduction
-   + Example and how to choose the number of clusters
-   + The partitioning method K-means
-   + Characterizing clusters
-   + Clustering with FactoMineR
+   + Introduction (https://www.youtube.com/watch?v=J-IddCBb-ZQ).
+   + Example and how to choose the number of clusters (https://www.youtube.com/watch?v=Emi1eMvGEJQ).
+   + The partitioning method K-means (https://www.youtube.com/watch?v=qaE9D_kjhLk).
+   + Characterizing clusters (https://www.youtube.com/watch?v=w-EGV6xExWw).
+   + Clustering with FactoMineR (https://www.youtube.com/watch?v=7HHuKsl2_fk&feature=youtu.be).
  * Multiple Factor Analysis
-   + Introduction
-   + Weighting and global PCA
-   + Study of the groups of variables
-   + Complements: qualitative groups, frenquency tables
-   + MFA with FactoMineR
+   + Introduction (https://www.youtube.com/watch?v=MOl0Aw1TTFE&feature=youtu.be).
+   + Weighting and global PCA (https://www.youtube.com/watch?v=kGSjHD3yG84&feature=youtu.be).
+   + Study of the groups of variables (https://www.youtube.com/watch?v=OVtNX6Or1FI&feature=youtu.be).
+   + Complements: qualitative groups, frenquency tables (https://www.youtube.com/watch?v=Vumu7OoFHdA&feature=youtu.be).
+   + MFA with FactoMineR (https://www.youtube.com/watch?v=7HHuKsl2_fk&feature=youtu.be).
+   
+   
