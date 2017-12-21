@@ -10,13 +10,13 @@ YouTube tutorials are available for:
    + Factoshiny: interactive graphs in exploratory multivariate data analysis (https://www.youtube.com/watch?v=QO0bwMbp50I).
    + Handling missing values in PCA (https://www.youtube.com/watch?v=OOM8_FH6_8o).
  * Correspondence Analysis (CA) 
-   + Introduction
-   + Visualizing the row and column clouds
-   + Inertia and percentage of inertia
-   + Simultaneous representation
-   + Interpretation aids
-   + CA with FactoMineR 
-   + Text mining with correspondence analysis 
+   + Introduction (https://www.youtube.com/watch?v=Z5Lo1hvZ9fA).
+   + Visualizing the row and column clouds (https://www.youtube.com/watch?v=VVYPQKG7jfw).
+   + Inertia and percentage of inertia (https://www.youtube.com/watch?v=ffZb9wAiElk).
+   + Simultaneous representation (https://www.youtube.com/watch?v=3-zxmzZZTIQ).
+   + Interpretation aids (https://www.youtube.com/watch?v=Jg9IXaAi98w).
+   + CA with FactoMineR (https://www.youtube.com/watch?v=vP4korRby0Q).
+   + Text mining with correspondence analysis (https://www.youtube.com/watch?v=62N0JMf5hOs).
  * Multiple Correspondence Analysis (MCA) 
    + Data - issues
    + Visualizing the point cloud of individuals
