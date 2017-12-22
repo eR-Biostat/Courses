@@ -38,7 +38,7 @@ title: Contributors
      - Said Mussa (Mekele University, EThiopia).
      - Fetene Tekle (Janssen Phamacutical, Belgium).
  * Statistical modeling (II): 
-     - aaa
+     - François Husson (Agrocampus Ouest, France)
  * Statistical inference: 
      - aaa
      
