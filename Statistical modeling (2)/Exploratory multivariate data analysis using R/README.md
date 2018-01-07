@@ -19,5 +19,5 @@ The course structure:
 
 ## Online Course Developer, R code, sildes and YouTube tutorials: 
  * François Husson.
- * Email:
+ * Email: husson@agrocampus-ouest.fr>
  * Website: http://math.agrocampus-ouest.fr/infoglueDeliverLive/membres/Francois.Husson
