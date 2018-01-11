@@ -8,5 +8,8 @@ This group of courses are developed at an undergraduate/master level in statisti
 
 *   **Exploratory multivariate data analysis using R** (See [Exploratory Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Exploratory%20multivariate%20data%20analysis%20using%20R)).
 
+The course covers selected topics in multivariate data analysis such as Principal Component Analysis (PCA), Correspondence Analysis (CA),Multiple Correspondence Analysis (MCA) Cluster analysis and Multiple Factor Analysis (MFA). Both slides and YouTube lectures are available.
+
 *   **Resampling based methods using R**
 
+The course covers selected chapters from the book of Efron and Tibshitani ‘’an introduction to the bootstrap’’. Topics covered in the course include: basic bootstrap, bootstrap estimation of the standard error, bootstrap confidence intervals, resampling based inference (bootstrap and permutation), bootstrap application for liner and generalized linear models.   
