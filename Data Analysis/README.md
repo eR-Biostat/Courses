@@ -2,16 +2,14 @@
 ## Making R based education materials accessible for all
 
 ## Data Analysis
-This group of courses are developed at an undergraduate/master level. Only basic level knowledge of statistics is required. These courses were developed for undergraduate students, both non statisticians and statisticians. The courses within this cluster can also be used as courses to support R usage in undergraduate program in biostatistic/statistics. 
+This group of courses are developed at an undergraduate/master level in statistics. Advance knowledge in both statistics and R is required at the beginning of the courses. Students are expected to be familiar with linear models, GLM and basic inference. It is recommended to take the course Basic concepts in exploratory data analysis (EDA) and computational statistics using R. 
 
 
 ## Available courses in this module:
-* **Introduction to R :** https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R.
-* **Introduction to statistical modeling using R:** 
-  + **Simple linear regression using R:** https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Simple%20linear%20regression
-  + **One-Way ANOVA using R:** https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/One%20way%20ANOVA
-  + **Logistic regression using R:** https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20statistical%20modeling%20using%20R/Logistic%20regression
-  
+* **Exploratory multivariate data analysis using R** (See [Exploratory Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Exploratory%20multivariate%20data%20analysis%20using%20R)).
+
+*   **Resampling based methods using R**
+
 **Follow the last updates in FACEBOOK:** https://www.facebook.com/ER-BioStat-1463845487001786/
 
 **Follow the last updates in Tweeter:** @erbiostat, eR-Biostat
