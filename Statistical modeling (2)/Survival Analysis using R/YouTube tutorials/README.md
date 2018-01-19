@@ -11,4 +11,4 @@ YouTube tutorials are available for:
   + Confidence Intervals and Differential Plots: https://www.youtube.com/watch?v=HkZSmviB8ps&index=5&list=PLCj1LhGni3hOON9isnuVYIL8dNwkvwqr9
   + Cox Proportional Hazards Model and Residuals: https://www.youtube.com/watch?v=4Edu6Ij7jEM&list=PLCj1LhGni3hOON9isnuVYIL8dNwkvwqr9&index=6
   + Accelerated Failure Time (AFT) Model: https://www.youtube.com/watch?v=v1TFklm4OFM&list=PLCj1LhGni3hOON9isnuVYIL8dNwkvwqr9&index=7
-
+* Biostatistics with R: Kaplan-Meier survival curve analysis (host: Phil Chan): https://www.youtube.com/watch?v=oxTIiJaMbk0
