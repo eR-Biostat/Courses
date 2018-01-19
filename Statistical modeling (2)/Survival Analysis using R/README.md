@@ -25,3 +25,6 @@ Topics covered in the course include:
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/Slides
 * You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/YouTube%20tutorials
 
+## Course and slides developer: Roel Braekers 
+ * Email: roel.braekers@uhasselt.be 
+ * Website: http://sia.webpopix.org/index.html
