@@ -23,5 +23,5 @@ Topics covered in the course include:
 ## Course materials
 
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/Slides
-* You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Linear%20Regression%20using%20R/YouTube%20turorials
+* You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/YouTube%20tutorials
 
