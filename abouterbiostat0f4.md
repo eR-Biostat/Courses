@@ -2,7 +2,7 @@
 layout: page
 title: Contributors 
 ---
-# Course and curiculum development for >eR-BioStat:
+# Curiculum development for >eR-BioStat:
 
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
