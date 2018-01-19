@@ -27,4 +27,4 @@ Topics covered in the course include:
 
 ## Course and slides developer: Roel Braekers 
  * Email: roel.braekers@uhasselt.be 
- * Website: http://sia.webpopix.org/index.html
+ * Website: https://ibiostat.be/staff
