@@ -22,8 +22,7 @@ The course consists of 5-6 classes, each of three hours and combines theory and 
 *   Special topic (I): Estimation of the prevalence and force of 16.  infection from current status data.
 *   Special topic (II): Growth data.
 
-Homework assignments and an example of an exam is available as well.
 
 The course was developed by Tadesse Awoke, Gondar Univesrity, Ethiopia, Legesse Kassa Debusho, UNISA, South
-Africa and Ziv Shkedy, Hasselt University, Belgium.
+Africa,Ziv Shkedy, Hasselt University, Belgium and Fetene Tekle, Janssen Phamautical, Belgium.
 
