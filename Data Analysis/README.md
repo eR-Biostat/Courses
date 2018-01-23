@@ -6,7 +6,7 @@ This group of courses are developed at an undergraduate/master level in statisti
 
 
 ## Available courses in this module:
-* **Exploratory multivariate data analysis using R** (See [Exploratory Data](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Exploratory%20multivariate%20data%20analysis%20using%20R)).
+* **Exploratory multivariate data analysis using R** (See [Exploratory Data](https://github.com/eR-Biostat/Courses/tree/master/Data%20Analysis/Exploratory%20multivariate%20data%20analysis%20using%20R)).
 
 *   **Resampling based methods using R**
 
