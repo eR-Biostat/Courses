@@ -2,12 +2,20 @@
 layout: page
 title: Contributors 
 ---
+# Coordination:
+
+ * Adetayo Kasim (Durham University, UK).
+ * Ziv Shkedy (Uhasselt University, Belgium).
+ * Khangelani Zuma (HSRC, Sauth Africa).
+ 
 # Curiculum development for >eR-BioStat:
 
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
  * Khangelani Zuma (HSRC, Sauth Africa).
-
+ * Luc Duchateau (Gent University, Belgium).
+ * Iven Van Mechelen (KULeuven, Belgium).
+ 
 # >eR-BioStat Workshops and short courses:
 
  * Gondar University, Ethiopia, 28/08/2017:
