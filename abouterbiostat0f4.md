@@ -38,7 +38,8 @@ title: Contributors
      - Said Mussa (Mekele University, EThiopia).
      - Fetene Tekle (Janssen Phamacutical, Belgium).
  * Statistical modeling (II): 
-     - Roel Braekers (Hasselt University, Belgium)
+     - Roel Braekers (Hasselt University, Belgium).
+     - Alessio Crippa (Karolinska Institutet,Sweden).
  * Data analysis: 
      - François Husson (Agrocampus Ouest, France)
      - Julie Josse (Ecole Polytechnique, France)
