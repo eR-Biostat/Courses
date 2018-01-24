@@ -1,8 +1,6 @@
 # The >eR-Biostat initative
 # Applied Generalized Linear Models (GLM) using R 
 
-**THIS IS ONLY A TEMPORARY VERSION OF COURSE. THE COMPLETE VERSION WILL BE AVIABLE ONLINE DURING THE ACEDEMIC YEAR 2017/2018 !!!**
-
 The course consists of 5-6 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
 *   Analysis of Variance
@@ -23,5 +21,5 @@ The course consists of 5-6 classes, each of three hours and combines theory and 
 *   Special topic (II): Growth data.
 
 ## Course and slides developers:
-The course was developed by Tadesse Awoke (tawoke7@gmail.com) , Gondar Univesrity, Ethiopia, Legesse Kassa Debusho (debuslk@unisa.ac.za), UNISA, South Africa,Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium and Fetene Tekle (ftekle@its.jnj.com), Janssen Phamautical, Belgium.
+The course was developed by Tadesse Awoke (tawoke7@gmail.com), Gondar Univesrity, Ethiopia, Legesse Kassa Debusho (debuslk@unisa.ac.za), UNISA, South Africa,Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium and Fetene Tekle (ftekle@its.jnj.com), Janssen Phamautical, Belgium.
 
