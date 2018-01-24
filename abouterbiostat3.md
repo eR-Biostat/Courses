@@ -21,7 +21,30 @@ The course covers topics from the books of David Collett *Modelling Binary Data*
        
 * **Log linear models using R**
    
-* **Applied Generalized Linear Models (GLM) using R**.   
+* **Applied Generalized Linear Models (GLM) using R** (See [GLM](https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/glm)).
+
+The course covers topics discussed in
+
+* Collet D (1994): Modeling Binary data.
+* Lindsey (1997): Applying generalized linear models.
+* Dobson (2002): An introduction to generalized linear models.
+* McCillagh and Nelder (1983): Generalized linear models (first edition).
+
+Topics include in the course: 
+
+    
+    Linear  models with normal error.
+    Generalized linear models.
+    Exponential Family
+    Generalized linear model function in R
+    Models for Binary data.
+    Estimation, confidence intervals and Inference.
+    Model Selection and Model diagnostic.
+    Poisson regression and log linear models.
+    Beyond Poisson and binomial distributions: models with different link functions and/or       
+    distributions.
+    Over dispersion.
+
 
 *   **Practical linear models using R**
 
