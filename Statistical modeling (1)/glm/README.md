@@ -17,8 +17,6 @@ The course consists of 5-6 classes, each of three hours and combines theory and 
 *   Beyond Poisson and binomial distributions: models with different link functions and/or distributions.
 *   Poisson regression and log linear models.
 *   Over dispersion.
-*   Special topic (I): Estimation of the prevalence and force of 16.  infection from current status data.
-*   Special topic (II): Growth data.
 
 ## Course and slides developers:
 The course was developed by Tadesse Awoke (tawoke7@gmail.com), Gondar Univesrity, Ethiopia, Legesse Kassa Debusho (debuslk@unisa.ac.za), UNISA, South Africa,Ziv Shkedy (ziv.shkedy@uhasselt.be), Hasselt University, Belgium and Fetene Tekle (ftekle@its.jnj.com), Janssen Phamautical, Belgium.
