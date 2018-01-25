@@ -1,0 +1,26 @@
+20 22  S1  D1 H1 Early  
+ 8  9  S1 D1 H1 Mid
+ 4  8  S1 D1 H1 Late
+13 13  S1 D1 H2 Early  
+ 8  8  S1 D1 H2 Mid
+12 12  S1 D1 H2 Late
+ 8 11  S1 D2 H1 Early  
+ 4  5  S1 D2 H1 Mid
+ 5  8  S1 D2 H1 Late
+ 6  6  S1 D2 H2 Early  
+ 0  0  S1 D2 H2 Mid
+ 1  2  S1 D2 H2 Late
+34 45  S2 D1 H1 Early  
+69 89  S2 D1 H1 Mid
+18 28  S2 D1 H1 Late
+31 36  S2 D1 H2 Early  
+55 59  S2 D1 H2 Mid
+13 16  S2 D1 H2 Late
+17 32  S2 D2 H1 Early  
+60 92  S2 D2 H1 Mid
+8  16  S2 D2 H1 Late
+12 13  S2 D2 H2 Early  
+21 26  S2 D2 H2 Mid
+ 4  8  S2 D2 H2 Late
+ 
+

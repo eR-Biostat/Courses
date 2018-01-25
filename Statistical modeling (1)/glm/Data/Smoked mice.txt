@@ -1,0 +1,4 @@
+group tumour total
+
+1  21  23
+2  19  32

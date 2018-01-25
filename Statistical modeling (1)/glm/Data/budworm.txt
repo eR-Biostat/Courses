@@ -1,0 +1,13 @@
+Dose	Response	Gender
+1	1	M
+2	4	M
+4	9	M
+8	13	M
+16	18	M
+32	20	M
+1	0	F
+2	2	F
+4	6	F
+8	10	F
+16	12	F
+32	16	F
