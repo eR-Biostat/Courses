@@ -7,7 +7,7 @@ The E-learning system for the Core (I) cluster is focused on basic statistical m
 * Linear Models (https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models)
 * GLM (https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/glm)
 * Analysis of Categorical data
-  +  Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Modelling%20Binary%20Data%20using%20R 
+  +  Analysis of Binary Data: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(1)/Modelling%20Binary%20Data%20using%20R
   + Log Linear Models 
 * Bayesian Analysis
 
