@@ -4,7 +4,7 @@ title: Inference
 subtitle: Course list  & Links
 ---
 
-This group of courses is focused on statistical inference and it is developed at an master level in statistics. Advance knowledge in both statistics and R is required at the beginning of the courses.  Students are expected to be familiar with hypothesis testing and stimation, distrubution functions and basic probability. 
+This group of courses is focused on statistical inference and it is developed at an master level in statistics. Advance knowledge in both statistics and R is required at the beginning of the courses.  Students are expected to be familiar with hypothesis testing and stimation, distrubution functions and basic concepts in probability. 
 
 *   **Sample size calculation using R** (See [Sample size](
 https://github.com/eR-Biostat/Courses/tree/master/Data%20Analysis/Exploratory%20multivariate%20data%20analysis%20using%20R)).
