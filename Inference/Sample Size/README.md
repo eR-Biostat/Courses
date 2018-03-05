@@ -20,7 +20,7 @@ The course contents:
 * Course notes + R code:https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/R%20program
   + Online code: 
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/Slides
-* YouTube toturials: 
+* YouTube toturials: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/YouTube%20Turorials
 
 ## Course developer and R code:  Martin Otava  (Hasselt University and Janssen Pharmaceutica) 
 * Email: motava@its.jnj.com
