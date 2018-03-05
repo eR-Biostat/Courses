@@ -2,7 +2,7 @@
 ## Making R based education materials accessible for all
 
 ## Inference
-This group of courses are developed at a master level  and cover difference aspects of statistical inference.
+This group of courses is developed at a master level  and cover different aspects of statistical inference.
 
 ## Available courses in this module:
 * **## Sample size calculation using R
