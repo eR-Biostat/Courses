@@ -3,5 +3,5 @@
 
 Slides for the course.
 
-Most of the examples presented in the slides are based on datasets available in R (for example the cars or and the sleep datasets). Some examples use external datasets which are available in the data directory.
+The slides contain the theoretical details about the course. R notes, code and and examples are available in the Program respiratory.
 
