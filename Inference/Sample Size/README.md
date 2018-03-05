@@ -18,8 +18,8 @@ The course contents:
 
 ## Course materials
 * Course notes + R code:https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/R%20program
-  + Online code: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/R%20program/Online%20code
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/Slides
+  + Online code: https://github.com/eR-Biostat/Courses/blob/master/Inference/Sample%20Size/R%20program/Online%20code/Rexamples3Rmd.Rmd
+ * Slides: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/Slides
 * YouTube toturials: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/YouTube%20Turorials
 
 ## Course developer and R code:  Martin Otava  (Hasselt University and Janssen Pharmaceutica) 
