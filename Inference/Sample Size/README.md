@@ -18,7 +18,7 @@ The course contents:
 
 ## Course materials
 * Course notes + R code:https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/R%20program
-  + Online code: http://sia.webpopix.org/statisticalTests1.html
+  + Online code: 
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/Slides
 * YouTube toturials: 
 
