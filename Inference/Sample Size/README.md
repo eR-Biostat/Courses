@@ -11,11 +11,10 @@ The course contents:
   + Introduction
   + Two samples test
  ## Course materials
-* Online course + R code:
-  + Single comparison http://sia.webpopix.org/statisticalTests1.html
+* Course notes + R code:https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/R%20program
+  + Online code: http://sia.webpopix.org/statisticalTests1.html
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Inference/Sample%20Size/Slides
-* External datasets: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I/Data
-* YouTube toturials: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I/YouTube%20turorials
+* YouTube toturials: 
 
-## Online course developer and R code:  motava@its.jnj.com  
+## Course developer and R code:  Martin Otava  (Hasselt University and Janssen Pharmaceutica) 
 * Email: motava@its.jnj.com
