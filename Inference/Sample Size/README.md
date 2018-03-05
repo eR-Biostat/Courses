@@ -1,8 +1,8 @@
 # The >eR-Biostat initiative
 ## Sample size calculation using R
 
-This course presents methods for sample size calculation using R
-This is an **online** course which was developed by Marc Lavielle within his initiative **statistics in action with R** (http://sia.webpopix.org/).  R code for all examples illustrated in the course is available online. In addtion, slides and YouTube tutorials are avilable in the repositories of the course.
+This course presents methods for sample size calculation using R. The course is developed at a master level by Martin Otava.
+R code for all examples illustrated in the course is available online. In addtion, slides and YouTube tutorials are avilable in the repositories of the course.
 
 The course contents:
 * Sample size calculation for normal endpoints.
