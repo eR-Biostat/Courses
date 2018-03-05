@@ -1,0 +1,531 @@
+---
+title: 'Sample size calculation in R'
+author: "Martin Otava"
+date: '`r format(Sys.time(), "%d %B %Y (%X)")`'
+output: html_document
+---
+
+```{r setup, include = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+  dev = "png",
+  fig.ext = ".png")
+
+library(crayon)
+library(rstudioapi)
+library(cli)
+library(ggplot2)
+library(tibble)
+library(tidyr)
+library(readr)
+library(purrr)
+library(dplyr)
+library(forcats)
+
+library(tidyverse)
+library(plotly)
+library(ggthemes)
+
+library(nlme)
+library(lme4)
+library(longpower)
+library(pwr)
+library(gee)
+library(Sequential)
+library(asypow)
+
+```
+
+### SBS example
+
+This example has been used in class and we will use it in several calculations below. We set the framework as experiment to investigate effect of hypothetical drug on blood pressure
+1. Two samples of independent patients
+2. Compare systolic blood pressure (SBP) in a treatment group and control group
+3. SBP is measured using a standard sphygmomanometer
+4. Treatment is expected to reduce SBP
+
+Question is how many patients should we include in control group and test group. 
+
+For calculations below, we will assume following choices:
+
+1. Significance level to control Type I error set to 0.05
+2. Power of 80%
+3. Variance of 400 (standard deviation 20) 
+4. Effect size of smallest effect of interest to be reduction of 15
+
+
+### Z-test manually
+
+Let us use the formula for one sample Z-test explicitly: 
+
+1. `zA` quantile of standard normal distribution related to Type I error
+2. `zB` quantile of standard normal distribution related to power (Type II error)
+3. `sigma^2` variance of the distribution
+4. `delta` effect size that we are interested to detect
+
+
+```{r echo=TRUE}
+sampleSizeZtest <-  function(alpha, sigma, beta, delta){
+	zA <-  qnorm(p = alpha, mean = 0, sd = 1)
+	zB <-  qnorm(p = beta, mean = 0, sd = 1)
+	sampleSize <- 2*(zA-zB)^2*(sigma^2/delta^2)
+	return(sampleSize)
+}
+
+```
+For SBS example, we will have
+
+```{r echo=TRUE}
+sampleSizeZtest(alpha = 0.05, sigma=20, beta=0.85, delta=15)
+
+```
+Note that we have slightly different result than in class (26 instead of 27). The reason is that we did not consider known variance in class, while Z-test does have this assumtion. Hence, there is less information needed to be estimated, so it is natural that less samples are needed here. 
+
+
+
+## Core options
+
+R core library `stats` is fully reliable tool and very simple to use, but it offers solution for several basic sample size calculations frameworks.
+
+
+### t test
+```{r echo=TRUE}
+power.t.test(n = , delta = 15, sig.level = 0.05, sd = 20, power = 0.85, type = "two.sample",
+		alternative = "one.sided", strict = TRUE)
+```
+Notice that we fill in all the items except the `n` that we wish to calculate. This is the function that was used to obtain 27 patients per group as result for SBP data set. Indeed, we do not obtain value of 27 precisely, but 26.26614. Reasonable practice is to round the result up to next higher integer value. If we wish to know exact of the power achieved with 27 patients, we can proceed with filling in `n` and leaving `power` empty: 
+```{r echo=TRUE}
+power.t.test(n = 27, delta = 15, sig.level = 0.05, sd = 20, power = NULL, type = "two.sample",
+		alternative = "one.sided", strict = TRUE)
+```
+We reach power of almost 86%. 
+
+In classical situations, `strict` intepretation is used that assumes successful rejection regardless sign of the effect. Hence, even situations when true effect is positive, but large negative effect is observed, are considered as good result from power perspective. It is worth to investigate performance of this option. For details, refer to help of the function:
+```{r echo=TRUE, eval = FALSE}
+?power.t.test
+```
+
+
+
+### Binary data
+
+In case of comparison of two proportions, i.e. probabilties of success of two uniform or binary distributions, not only difference between proportions p1 and p2, but also actual value is important. That is caused by dependence between mean and variance p1(1-p1)+p2(1-p2). 
+
+Therefore, although the absolute value of difference is 0.3 in both following examples, we obtain different sample size: 
+```{r echo=TRUE}
+power.prop.test(n = NULL, p1 = 0.1, p2 = 0.4, sig.level = 0.05, power = 0.80)
+power.prop.test(n = NULL, p1 = 0.5, p2 = 0.8, sig.level = 0.05, power = 0.80)
+```
+Note that it won't be case in following examples and we will obtain same sample size, due to symmetry around 0.5 
+```{r echo=TRUE}
+power.prop.test(n = NULL, p1 = 0.1, p2 = 0.4, sig.level = 0.05, power = 0.80)
+power.prop.test(n = NULL, p1 = 0.6, p2 = 0.9, sig.level = 0.05, power = 0.80)
+```
+Indeed, the variance of both examples is same: $0.1*(1-0.1)+0.4*(1-0.4)=0.33= 0.9*(1-0.9)+0.6*(1-0.6)$
+
+### ANOVA data
+In case of ANOVA, following paramters are needed:
+
+1. Number of groups: important for correct specification of F distribution
+2. Between variability: parameter determined by assumed effect size
+3. Within variability: nuisance parameter for testing the classical ANOVA hypothesis of means equality
+
+```{r echo=TRUE}
+power.anova.test(groups = 5, n = NULL, between.var = 1, within.var = 5, sig.level = 0.05, power = 0.9)
+```
+
+Note that in case of five groups, between variability does not depend only on maximal difference, but on actual means of all groups. For example, we will achieve different results for following effect sizes:
+```{r echo=TRUE}
+power.anova.test(groups = 5, n = NULL, between.var = var(c(10, 10, 10, 10, 15)), within.var = 5, sig.level = 0.05, power = 0.9)
+power.anova.test(groups = 5, n = NULL, between.var = var(c(10, 15, 10, 10, 15)), within.var = 5, sig.level = 0.05, power = 0.9)
+```
+The difference is quite high in relative sense given that small sample size is sufficient. Let us see what happens if we would have used second setting for calculations, but we are really interested in detecting the first setting as well: 
+```{r echo=TRUE}
+power.anova.test(groups = 4, n = 4, between.var = var(c(10, 10, 10, 10, 15)), within.var = 5, sig.level = 0.05, power = NULL)
+```
+Power of detecting this type of setting, i.e. one group only being different from the rest, is actually only 69% instead of 90%. In practice, reasonable approach would be to clearly identify the settings of interest and then run calculation across all of them, selecting the maximum. In case of no prior information, we can always test all the settings and keep maximum needed. 
+
+## Specialized libraries
+
+For more advanced situations, specialized libraries needs to be used. There are many options in R regarding the calculations of sample size, some of them more general, while others field and context specific. In general, caution is needed while using third party libraries and thorough study of manual and codes is recommended. 
+
+### longpower: Correlated data
+
+The core function of this library is `lmmpower`. However, it is rather complex function and it is not that easy to understand it fully. Checking the help files is recommended: 
+```{r echo = TRUE, eval = FALSE}
+?lmmpower
+
+```
+Note that the help file uses sentence "in the pilot estimate of the parameter of interest"; which is not correct, the effect size of interest should be always used, not pilot study result
+
+```{r echo=TRUE}
+lmmpower(delta = 1.5, t = seq(0, 1.5, 0.25),
+	sig2.i = 55, sig2.s = 24, sig2.e = 10, cov.s.i = 0.8*sqrt(55)*sqrt(24), power = 0.80)
+
+```
+The parameter of interest in this example is `delta` and value of 1.5. Variance and covariance structure are estimated form the pilot study and covariance structure is rather complex in this example. Note that `t` represents sampling points for longitudinal studies and that sample size may depend on this structure, so correct specification is important.  
+
+Alternative parametrization is possible with `beta` standing for pilot estimate of placebo effect and effect size is determined by `pct.change` as $delta = 1.5 = 5 * 0.3 = beta*pct.change$. Therefore, result is exactly the same
+```{r echo=TRUE}
+lmmpower(beta = 5, pct.change = 0.30, t = seq(0, 1.5, 0.25),
+	sig2.i = 55, sig2.s = 24, sig2.e = 10, cov.s.i=0.8*sqrt(55)*sqrt(24), power = 0.80)
+
+```
+
+Instead of such specification, you can actually use directly pilot data set.However, you need to be *very* careful what the function takes from the data besides variance-covariance structure. In example below, `beta` is actually estimated from the pilot data, which is typically not appropriate, since effect of interest (not one observed in pilot data), should be used for sample size calculations. 
+```{r echo=TRUE}
+data(sleepstudy)
+fm1 <- lmer(Reaction ~ Days + (Days|Subject), sleepstudy)
+lmmpower(fm1, pct.change = 0.30, t = seq(0,9,1), power = 0.80)
+```
+However, if you specify anything in the function itself, the pilot estimate won't be used. 
+```{r echo=TRUE}
+lmmpower(fm1, delta = 1.5, t = seq(0,9,1), power = 0.80)
+lmmpower(fm1, delta = 1.5, t = seq(0,9,1), power = 0.80, sig2.i = 10, sig2.s = 5, sig2.e = 7)
+```
+
+Instead of `lmer`, `lme` function can be used instead as input: 
+```{r echo=TRUE}
+# random intercept and slope
+#fm2 <- lme(Reaction ~ Days, random = ~Days|Subject, sleepstudy)
+#lmmpower(fm2, delta = 1.5, t = seq(0,9,1), power = 0.80)
+# random intercept only
+#fm3 <- lme(Reaction ~ Days, random=~1|Subject, sleepstudy)
+#lmmpower(fm3, delta = 1.5, t = seq(0,9,1), power = 0.80)
+
+```
+Similarly other functions can be used: 
+```{r echo = TRUE, eval = FALSE}
+fm4 <- gee(Reaction ~ Days, id = Subject,
+            data = sleepstudy,
+            corstr = "exchangeable")
+lmmpower(fm4, pct.change = 0.30, t = seq(0,9,1), power = 0.80)
+
+```
+
+The help file assists greatly in understanding `lmmpower` function and contains references to the formulas used for calculations behind:  Diggle (2002) and  Liu and Liang (1997). 
+
+For example, you may wish to compare slopes using approach of Diggle:
+```{r echo=TRUE, eval = FALSE}
+diggle.linear.power(n = NULL, delta = 0.5, t = seq(0,1.5,0.25), sigma2 = 1,
+R = 0.8, sig.level = 0.05, power = 0.8, alternative = "two.sided", tol = .Machine$double.eps^2)
+```
+
+It is strongly recommended to consult help files, vignette and/or underlying references before using this library:
+```{r echo=TRUE, eval = FALSE}
+?lmmpower
+browseVignettes(package = "longpower")
+```
+
+### pwr library
+
+This library is rather example of how librarires in open source community should not look like. Although it offers interesting tools and extends on `stats` library, it is almost impossible to use it successfully without consulting respective book. Problem is that tranformed effect sizes are used and they are not described sufficiently in the help files. Therefore, original reference needs to be consulted: Cohen (1988). Cohen's book is rather famous in some disciplines and therefore `pwr` library is often cited as the library for sample size calculation in `R`. However, I have doubts on its clarity and also value of some of the proposed tests. Let us look at multiple cases in detail. 
+
+#### t test
+
+Effect size is $d=(mu1-mu2)/sigma = delta/sigma$. Hence, one sample t-test is 
+```{r echo=TRUE, eval = TRUE}
+pwr.t.test(d = -15/20, power = 0.85, sig.level = 0.05, type = "two.sample", alternative= "less")
+```
+Note that this code gives same result for SBP example, as `stats` library. However, we need to know that `delta` is actually ratio of effect size and standard deviation. 
+
+#### ANOVA
+
+Effect size `f` is function of grouped variances against pooled variance: 
+```{r echo=TRUE, eval = TRUE}
+pwr.anova.test(k = 5, f = 0.25, sig.level = 0.05, power = 0.8)
+```
+
+#### Binary data
+
+With p1 and p2 being proportions in each sample, effect size should be $abs(2*asin(sqrt(p1))-2*asin(sqrt(p2)))$.
+
+```{r echo=TRUE, eval = TRUE}
+p1 <- 0.1
+p2 <- 0.4
+(ES <- abs(2*asin(sqrt(p1)) - 2*asin(sqrt(p2))))
+pwr.2p.test(n =, h = ES, sig.level = 0.05, power = 0.80) 
+```
+
+However, if we try to compare to `stats`, we obtain different result. It can be due to different approximation used, or I have found wrong formula in the book (or some other reasons). Without formula directly in help file, it is not possible to identify root cause without going through codes in detail.
+```{r echo=TRUE, eval = TRUE}
+power.prop.test(n = NULL, p1 = 0.1, p2 = 0.4, sig.level = 0.05, power = 0.80)
+
+```
+
+#### Correlation test
+Correlation coefficient `r` is tested against hypothesis of being zero
+```{r echo=TRUE, eval = TRUE}
+pwr.r.test(r = 0.3, n = NULL, sig.level = 0.05, power = 0.85, alternative = "two.sided")
+
+```
+Note that practical value of such test is disputable. Even highly significant result may have little pracical value, if the estimated correlation (point estimate or confidence interval) is not sufficiently high. 
+
+#### Linear regression
+In this case, `f2` represents transformation of $R^2$ and `u` and `v` degrees of freedom. 
+```{r echo=TRUE, eval = TRUE}
+pwr.f2.test(u = 5, v = 89, f2 = 0.1/(1-0.1), sig.level = 0.05)
+
+```
+#### Chisq test
+Effect size is function of counts under $H_0$ and $H_1$ in each cell
+```{r echo=TRUE, eval = TRUE}
+pwr.chisq.test(w = 0.289, df = (4-1), N = NULL, sig.level = 0.05, power = 0.8)
+
+```
+
+###  Examples of other useful libraries
+
+1. `TrialSize` for sample size calculation in clinical research
+2. `powerSurvEpi` for survival analysis in epidemiological studies 
+3. `asypow` very powerful library for calculations based on asymptotic methods
+4. `powerTOST` power for equivalence studies
+5. `clusterPower` power for cluster-randomized crossover trials 
+
+## Simulations
+
+### Case study: Poisson data
+
+Poisson data generally poses challenge in the sample size calculation due to fact that variance and mean are equal. Hence, pilot knowledge on variance immediately imply knowledge on effect size. There exists some solution in library `Sequential` and also library `asypow` mentioned above can be used. 
+
+```{r echo=TRUE, eval = FALSE}
+?SampleSize.Poisson
+?asypow.n
+```
+
+However, the simulation approach can be very efficient solution for Poisson data. 
+
+
+### Simple example: t-test 
+
+Let us start with simpler example below to demonstrate the essential principles of simulation approach towards sample size calculation. Indeed, in following setting, simulation would not be necessary since there is simple analytical solution. 
+
+
+First, let us choose the sample size to start with. It can be completely random choice, since the approach we are taking is iterative and we are just specifying starting condition. 
+
+```{r echo = TRUE, eval = TRUE}
+#  1. Fix sample size N
+N <- 10 # choose one fixed N
+
+```
+
+We have to choose significance level, effect size and nuisance parameters (variance). 
+```{r echo = TRUE, eval = TRUE}
+# 2. Fix other parameters
+delta = 15
+sdChoice = 20
+alpha = 0.05
+```
+
+The core part of the simulation approach is that we will simulate hundreds of data sets from distribution with exactly the specified effect size and then we check how many times we would reject appropriate statistical test. The portion of rejected tests is approximate power of the test under given effect size and sample size. 
+
+```{r echo = TRUE, eval = TRUE}
+# 3. Simulate huge number of experiments
+numberSimulation <- 1000
+pval <- numeric(numberSimulation) # here we store p-value of 1000 tests
+
+set.seed(1234) # set the seed for reproducible resuts
+for (i in 1:numberSimulation){
+	# we set any mean we wish, it does not matter, only important is to keep difference delta
+  # [this holds for this particular setting of normal distribution and t-test]
+  # we simulate from normal distribution
+	controlGroup <- rnorm(N, mean = 120, sd = sdChoice)
+	treatedGroup <- rnorm(N, mean = 120-delta, sd = sdChoice)
+	# we perform the t-test on the data and keep the p-value
+	pval[i] <- t.test(controlGroup,treatedGroup, alternative = "greater",
+			mu = 0, paired = FALSE, var.equal = TRUE, conf.level = 1-alpha)$p.value
+}
+hist(pval)
+# power translates to: how often we reject if true effect is delta?
+# (if given significance level alpha = 0.05 an sd = 20)
+```
+
+Now, we can estimate the power if true effect size is as specified, assuming specified significance level and variance. 
+
+```{r echo = TRUE, eval = TRUE}
+# 4. Estimate power
+sum(pval<0.05)/numberSimulation
+# here we achieve power only 0.476
+
+```
+
+Estimated power is only $47.5\%$. Last step would be to increase `N` and run the whole code again. We repeat this procedure, until desired power is achieved. 
+
+Naturally, the whoel approach can be automated, so the change of power does not need to be done manually. Simple solution is running over loop of of $N$, given that it does not take too much computational time. Otherwise, more advanced iterative method can be applied.  
+
+```{r echo = TRUE, eval = TRUE}
+nvec <- seq(15, 30, by = 1) 
+numberSimulation <- 1000   
+pval <- numeric(numberSimulation)
+
+sampleSizeCalculations <- numeric(length(nvec))
+names(sampleSizeCalculations) <- nvec		
+
+set.seed(1234)
+
+for (j in 1:length(nvec)){
+	for (i in 1:numberSimulation){
+		controlGroup <- rnorm(nvec[j], mean = 120, sd = 20)
+		treatedGroup <- rnorm(nvec[j], mean = 120 - 15, sd = 20)
+		pval[i] <- t.test(controlGroup,treatedGroup, alternative = "greater",
+				mu = 0, paired = FALSE, var.equal = FALSE, conf.level = 0.95)$p.value
+	}
+	sampleSizeCalculations[j] <- sum(pval < 0.05)/numberSimulation
+}
+# power for all sample sizes between 15 and 30
+sampleSizeCalculations
+
+which(sampleSizeCalculations>0.85)
+```
+
+The result suggests that we wshould use 27 observations per group. As expected, the result correspond to output of automated function from `stats` library. 
+
+```{r echo = TRUE, eval = TRUE}
+power.t.test(n=, delta=15, sig.level=0.05, sd=20, power=0.85, type = "two.sample",
+		alternative="one.sided", strict=TRUE)
+```
+
+### Poisson distribution simulation
+
+Our task will be to compare two samples with different parameter lambda. We start with random choice of `N` and proceed with choice of significance level. However, although we are primarily interested in difference, we need to specify actual values of two means. There is no way around this for Poisson distribution. There is clear paradox, becuase if we know these values, we do not need experiment. Hence, the suggested strategy can be to run following code for smallest and largetst considered possible value of parameter (maybe based on some pilot evaluation) and then select sample size appropriatelly. Another option can be to run medium size pilot experiment to get reasonable estimate effect for control group and then specify treated group per desired effect size. 
+
+Note that similar approach would need to be considered for Binary distribution. 
+
+```{r echo = TRUE, eval = TRUE}
+# 1. Choose one fixed N 
+N <- 50 
+
+# 2. Select parameters
+control = 7
+treated = 5.6
+alpha = 0.05
+
+
+# 3. Simulate huge number of experiments and test
+numberSimulation <- 1000
+pval <- numeric(numberSimulation) 
+
+set.seed(1234) # set the seed for reproducible resuts
+for (i in 1:numberSimulation){
+  # we simulate from Poisson distribution
+  controlGroup <- rpois(N, lambda = control)
+  treatedGroup <- rpois(N, lambda = treated)
+  # we use GLM model for Poisson regression to test effect of treatment
+  simData <- data.frame(response = c(controlGroup, treatedGroup), treatment = rep(c(0,1), 
+                                                                                  each = N))
+  pval[i] <- summary(glm(response ~ treatment, data = simData, family=poisson()))$coeff["treatment", "Pr(>|z|)"]
+}
+hist(pval)
+
+# Estimate power
+sum(pval < 0.05)/numberSimulation
+```
+We achieved power of 82.2\% in this case. If required power would be 85%, we may need to increase `N` slightly and rerun the code. 
+
+
+### Design for more complex data set: Linear regression
+
+Simulation approach gets more complicated, if we consider more complex statistical model and test. especially if covariance structure may play role, the simulation of data needs to be performed very carefully. However, the basic idea is always the same:
+
+\begin{itemize}
+\item Create the simulated data set with effect of interest with fixed `N`\\
+\item Perform the test of interest\\
+\item Run in a loop many times and count how many times you reject to estimate power\\
+\item Adjust `N` appropriately and iterate \\
+\end{itemize}
+
+Let us assume model $outcome = \beta_0 + \beta_1*gender + \beta_2*country + \beta_3*age$. Let us say that we wish to mainly focus on effect of gender and effect size of interest is five, i.e. $\beta_1 = 5$. 
+
+We start with specifying the initial values for parameters. Be careful with meaning of specified sample size variable: if it refers to total sample size or per some group or combination of groups. See `n` below. 
+
+```{r echo = TRUE, eval = TRUE}
+Nsimulations <- 1000
+n <- 10 # per gender+country
+sdChoice <- 10
+effectSize <- 5
+```
+
+We continue with creating the data set. 
+
+```{r echo = TRUE, eval = TRUE}
+gender <- rep(c(0,1), each = n*2)
+country <- rep(rep(seq(0, 1), each = n), 2)
+set.seed(1234)
+age <- sample(seq(15, 50, by = 1), size = n*2*2, replace = TRUE) 
+
+# our structure so far
+data.frame(gender = as.factor(gender), country = as.factor(country),  age = age)
+
+```
+Note that for age, we have taken random values between some range. In practice, you would often have good idea of age distribution in your population and you can simulate from such distribution. 
+
+Now we will establish deterministic mean value based on model specified above. Note that we can actually specify any value for other parameters, because as we see later, they do not have any influence on result for gender. 
+
+```{r echo = TRUE, eval = TRUE}
+meanResponse <- 5  + effectSize*gender - 2*country + 0.7* age 
+
+# we add response for each observation
+data.frame(gender = as.factor(gender), country = as.factor(country),  age = age, 
+           meanResponse = meanResponse)
+```
+Note that we have performed these steps outside of the loop, becuase there has not been any randomness so far. Adding the random error to the observations is the first step that needs to be performed within the loop. 
+
+
+```{r echo = TRUE, eval = TRUE}
+set.seed(1234)
+pvaluesSim <- numeric(Nsimulations)
+for (i in 1:Nsimulations){
+  # simulated response is the mean response from model plus the random error
+	response <- meanResponse + rnorm(length(meanResponse ), 0, sd = sdChoice) 
+	# the final data set used for each simulation step contains random error as well 
+	simulatedDataSet <- data.frame(gender = as.factor(gender), country = as.factor(country ), 
+		response = response, age = age)
+	# keep the p-value for testing for gender 
+	pvaluesSim[i] <- summary(lm(response ~ gender + country + age, data = simulatedDataSet))$coeff["gender1",4]
+}
+
+# Estimate the power
+sum(pvaluesSim < 0.05)/Nsimulations 
+```
+
+The estimated power is only 34.4\%, so we will need to increase the `n` per group. Note that the result depends on `seed` specified above. Hence, it is important to track the seed and note that changing the seed may have small influence on reported result, in this case, we obtain 34.1\%. How large the difference is indeed depends on amount of simulated data sets that we have used. 
+
+```{r echo = TRUE, eval = TRUE}
+set.seed(5678)
+pvaluesSim <- numeric(Nsimulations)
+for (i in 1:Nsimulations){
+  # simulated response is the mean response from model plus the random error
+	response <- meanResponse + rnorm(length(meanResponse ), 0, sd = sdChoice) 
+	# the final data set used for each simulation step contains random error as well 
+	simulatedDataSet <- data.frame(gender = as.factor(gender), country = as.factor(country ), 
+		response = response, age = age)
+	# keep the p-value for testing for gender 
+	pvaluesSim[i] <- summary(lm(response ~ gender + country + age, data = simulatedDataSet))$coeff["gender1",4]
+}
+
+# Estimate the power
+sum(pvaluesSim < 0.05)/Nsimulations 
+```
+
+Finally, let us check how we will change the if we change the parameters for other variables. There may be small difference even if same seed is used, becuase the data set is different in this case. 
+
+```{r echo = TRUE, eval = TRUE}
+gender <- rep(c(0,1), each = n*2)
+country <- rep(rep(seq(0, 1), each = n), 2)
+set.seed(1234)
+age <- sample(seq(15,50,by=1), size = n*2*2, replace = TRUE) 
+
+# change the values of betas below: 
+meanResponse <- -3 + effectSize*gender - 0.1*country + 12* age 
+set.seed(1234)
+pvaluesSim <- numeric(Nsimulations)
+for (i in 1:Nsimulations){
+  response <- meanResponse + rnorm(length(meanResponse ), 0, sd = sdChoice) 
+  simulatedDataSet <- data.frame(gender = as.factor(gender), country = as.factor(country ), 
+                                 response = response, age = age)
+  pvaluesSim[i] <- summary(lm(response ~ gender + country + age, data = simulatedDataSet))$coeff["gender1", 4]
+}
+sum(pvaluesSim < 0.05)/Nsimulations
+```
+
+Very important note is that statement above only hold if main effects solely are used. If there are interactions, the result depends both on variable of interest as on values of all related variables.
+
