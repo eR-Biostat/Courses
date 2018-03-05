@@ -11,4 +11,4 @@ R code is included in the notes and available online as well. R functions discus
 * pwr.anova.test()
 * pwr.chisq.test()
 
-Online notes and code are avilale here: https://github.com/eR-Biostat/Courses/blob/master/Inference/Sample%20Size/R%20program/Online%20code/Rexamples3Rmd.Rmd
+**Online notes and code** are avilale here: https://github.com/eR-Biostat/Courses/blob/master/Inference/Sample%20Size/R%20program/Online%20code/Rexamples3Rmd.Rmd
