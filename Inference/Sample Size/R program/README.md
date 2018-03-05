@@ -12,3 +12,5 @@ R code is included in the notes and available online as well. R functions discus
 * pwr.chisq.test()
 
 **Online notes and code** are avilale here: https://github.com/eR-Biostat/Courses/blob/master/Inference/Sample%20Size/R%20program/Online%20code/Rexamples3Rmd.Rmd
+
+The  PDF file **Examples-Using-R_2018.pdf** contains the same information and the notes avilable online.
