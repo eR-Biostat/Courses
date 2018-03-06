@@ -21,6 +21,7 @@ This course presents methods for sample size calculation using R. The course is 
       +  Poisson distribution.
       +  Survival analysis.
       +  Correlated data and Longitudinal data.
+      
 All theoretical topics are illustared using examples in R.
 
 
