@@ -52,7 +52,7 @@ title: Contributors
      - François Husson (Agrocampus Ouest, France)
      - Julie Josse (Ecole Polytechnique, France)
  * Statistical inference: 
-     - aaa
+     -  Martin Otava (Hasselt Univesrsity, Belgium).
      
 # Social media 
 
