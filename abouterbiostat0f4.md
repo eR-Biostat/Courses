@@ -50,8 +50,8 @@ title: Contributors
      - Khangelani Zuma (HSRC).
      - Alessio Crippa (Karolinska Institutet,Sweden).
  * Data analysis: 
-     - François Husson (Agrocampus Ouest, France)
-     - Julie Josse (Ecole Polytechnique, France)
+     - François Husson (Agrocampus Ouest, France).
+     - Julie Josse (Ecole Polytechnique, France).
  * Statistical inference: 
      -  Martin Otava (Hasselt Univesrsity, Belgium).
      -  Ziv Shkedy  (Hasselt Univesrsity, Belgium).
