@@ -30,6 +30,11 @@ All theoretical topics are illustared using examples in R.
 
 This course presents the basic concepts of hypothesis testing for single comparison. This is an **online** course which was developed by Marc Lavielle within his initiative *statistics in action with R* (http://sia.webpopix.org/). R code for all examples illustrated in the course is available online. In addition, slides and YouTube tutorials are available in the repositories of the course. This course can be used as an introductory course for the other course in this cluster. 
 
-*   **Basic concepts in statistical inference using R**: the course will be avilable by the end of 2018,
+*   **Introductory Statistics for the Life and Biomedical Sciences**(See [Introductory Statistics](https://github.com/eR-Biostat/Courses/tree/master/Inference/Introductory%20Statistics%20for%20the%20Life%20and%20Biomedical%20Sciences)).
+
+This course was developed for undergraduate students in Biomedical and life science. The course cover the topics of probability, distribution of random variables, foundations of inference, simple and multiple regression and inference for categorical data. This is an **online** course which was developed by Julie Vu (UCL) and David Harrington (Harvard). Materails for the course (book, R programs and data) are avibaleonline (https://github.com/OI-Biostat).  
+
+
+*   ** Concepts in statistical inference using R**: the course will be avilable by the end of 2018,
 
   
