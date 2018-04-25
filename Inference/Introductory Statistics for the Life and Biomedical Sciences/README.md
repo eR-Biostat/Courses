@@ -9,7 +9,7 @@ Topics covered in the course include:
 * Simple and multiple regression.
 *Inference for categorical data
 # Course materials
-* open-source textbook: https://github.com/OI-Biostat/oi_biostat_text/blob/master/oi_biostat_24Mar2018.pdf
+* An open-source textbook: https://github.com/OI-Biostat/oi_biostat_text/blob/master/oi_biostat_24Mar2018.pdf
 * R labs and R programs: https://github.com/OI-Biostat/oi_biostat_labs.
 
 ##  Online course development, R labs and R code: 
