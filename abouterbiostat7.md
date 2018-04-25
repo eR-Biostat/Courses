@@ -32,7 +32,7 @@ This course presents the basic concepts of hypothesis testing for single compari
 
 *   **Introductory Statistics for the Life and Biomedical Sciences**(See [Introductory Statistics](https://github.com/eR-Biostat/Courses/tree/master/Inference/Introductory%20Statistics%20for%20the%20Life%20and%20Biomedical%20Sciences)).
 
-This course was developed for undergraduate students in Biomedical and life science. The course cover the topics of probability, distribution of random variables, foundations of inference, simple and multiple regression and inference for categorical data. This is an **online** course which was developed by Julie Vu (UCL) and David Harrington (Harvard). Materails for the course (book, R programs and data) are avibaleonline (https://github.com/OI-Biostat).  
+This course was developed for undergraduate students in Biomedical and life science. The course cover the topics of probability, distribution of random variables, foundations of inference, simple and multiple regression and inference for categorical data. This is an **online** course which was developed by Julie Vu (UCL) and David Harrington (Harvard). Materails for the course (book, R programs and data) are available online (https://github.com/OI-Biostat).  
 
 
 *   **Concepts in statistical inference using R**: A master level course that will be avilable by the end of 2018,
