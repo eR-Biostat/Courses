@@ -35,6 +35,6 @@ This course presents the basic concepts of hypothesis testing for single compari
 This course was developed for undergraduate students in Biomedical and life science. The course cover the topics of probability, distribution of random variables, foundations of inference, simple and multiple regression and inference for categorical data. This is an **online** course which was developed by Julie Vu (UCL) and David Harrington (Harvard). Materails for the course (book, R programs and data) are avibaleonline (https://github.com/OI-Biostat).  
 
 
-*   ** Concepts in statistical inference using R**: the course will be avilable by the end of 2018,
+*   **Concepts in statistical inference using R**: the course will be avilable by the end of 2018,
 
   
