@@ -13,4 +13,4 @@ Topics covered in the course include:
 * R labs and R programs: https://github.com/OI-Biostat/oi_biostat_labs.
 
 ##  Online course development, R labs and R code: 
-Julie Vu (UCL) and David Harrington (Harvard University) 
+Julie Vu (UCL, https://www.linkedin.com/in/julie-vu-391066aa) and David Harrington (Harvard University, https://www.hsph.harvard.edu/david-harrington/) 
