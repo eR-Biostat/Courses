@@ -13,8 +13,6 @@ title: Contributors
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
  * Khangelani Zuma (HSRC, Sauth Africa).
- * Luc Duchateau (Gent University, Belgium).
- * Iven Van Mechelen (KULeuven, Belgium).
  
 # >eR-BioStat Workshops and short courses:
 
