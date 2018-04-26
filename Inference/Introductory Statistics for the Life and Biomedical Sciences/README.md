@@ -19,4 +19,6 @@ Topics covered in the course include:
 
 ##  Online course development, R labs and R code: Julie Vu and David Harrington
  * Wedsite (Julie Vu): https://www.linkedin.com/in/julie-vu-391066aa.
+ * Email: julievu777@gmail.com
  * Website (David Harrington):https://www.hsph.harvard.edu/david-harrington/. 
+ * Email: dph@jimmy.harvard.edu
