@@ -13,9 +13,10 @@ Topics covered in the course include:
 * Simple and multiple regression.
 * Inference for categorical data
 # Course materials
-* The course's book: https://github.com/OI-Biostat/oi_biostat_text/blob/master/oi_biostat_24Mar2018.pdf
-* Source files for the book:https://github.com/OI-Biostat/oi_biostat_text
+* The course's book: https://github.com/OI-Biostat/oi_biostat_text/blob/master/oi_biostat_24Mar2018.pdf.
+* Source files for the book:https://github.com/OI-Biostat/oi_biostat_text.
 * R labs and R programs: https://github.com/OI-Biostat/oi_biostat_labs.
+* Data: https://github.com/OI-Biostat/oi_biostat_data.
 
 ##  Online course development, R labs and R code: Julie Vu and David Harrington
  * Wedsite (Julie Vu): https://www.linkedin.com/in/julie-vu-391066aa.
