@@ -1,4 +1,4 @@
-This course in survival analysis (also known as the analysis of event-time data) will introduce the main ideas in non-parametric and semi-parametric regression for censored event-time data. Some background theory will be covered, but the emphasis will be on applications. The material are organized into both standard lectures and interactive lab sessions. All computing will be done using \textsf{R}. Lectures and labs will include both output and code; datasets will be in an \textsf{R} package.  
+This course in survival analysis (also known as the analysis of event-time data) will introduce the main ideas in non-parametric and semi-parametric regression for censored event-time data. Some background theory will be covered, but the emphasis will be on applications. The material are organized into both standard lectures and interactive lab sessions. All computing will be done using **R**. Lectures and labs will include both output and code; datasets will be in an **R** package.  
 
 The main topics:
 
