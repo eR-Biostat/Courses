@@ -1,7 +1,8 @@
 # The >eR-Biostat initiative
 ## Making R based education materials accessible for all
 ## Statistical modeling (II)
-The E-learning system for  statistical modeling (II) incluse the folwoing courses:
+The E-learning system for  statistical modeling (II) includes the folwoing courses:
+
 * Introduction to Survival Analysis using R: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R.
   
 * Survival analysis using R:https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20analysis%20using%20R%20-II
