@@ -3,7 +3,7 @@
 
 This course in survival analysis (also known as the analysis of event-time data) will introduce the main ideas in non-parametric and semi-parametric regression for censored event-time data. Some background theory will be covered, but the emphasis will be on applications. The material are organized into both standard lectures and interactive lab sessions. All computing will be done using **R**. Lectures and labs will include both output and code; datasets will be in an **R** package.  
 
-The main topics:
+The course cover the following topics:
 
 **Introduction and background**
 
@@ -11,7 +11,7 @@ The main topics:
   + Types of censoring
   + Parametric survival distributions
 
-*Non-parametric estimation of a survival distribution*
+**Non-parametric estimation of a survival distribution**
 
   + The Kaplan-Meier estimator
   + The cumulative hazard estimator
@@ -26,19 +26,19 @@ The main topics:
   + Tests for more than two groups
   + Stratified tests
 
-*Proportional hazards regression: basics*
+**Proportional hazards regression: basics**
 
   + The Cox proportional hazards model
   + Partial likelihood estimation and inference
   + The link between the Cox model and the log-rank test
   + Time-varying covariates
 
-*Proportional hazards regression: special topics*
+**Proportional hazards regression: special topics**
  
   + Graphical diagnostics for the Cox model
   + Regression with correlated event-time data
 
-*Designing a surival study*
+**Designing a surival study**
 
   + Power and sample size calculations for survival distributions and proportions in two groups
   + Adjusting for staggered arrival and loss to follow-up
