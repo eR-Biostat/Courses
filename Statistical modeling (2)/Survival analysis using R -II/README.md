@@ -5,7 +5,7 @@ This course in survival analysis (also known as the analysis of event-time data)
 
 The main topics:
 
-*Introduction and background*
+**Introduction and background**
 
   + Basic definitions of survival distributions and hazard functions
   + Types of censoring
