@@ -6,29 +6,40 @@ This course in survival analysis (also known as the analysis of event-time data)
 The main topics:
 
 *Introduction and background*
+
   + Basic definitions of survival distributions and hazard functions
   + Types of censoring
   + Parametric survival distributions
+
 *Non-parametric estimation of a survival distribution*
+
   + The Kaplan-Meier estimator
   + The cumulative hazard estimator
   + Estimating standard errors, including Greenwood's formula and the delta method for transformations
   + Confidence intervals and confidence bands for survival distributions
   + Alternatives to median survival: restricted mean survival
+
 *Significance tests with censored data*
-  + The log-rank test for two samples
+
+ + The log-rank test for two samples
   + The Tarone-Ware family of weighted log-rank tests for non-proportional hazards
   + Tests for more than two groups
   + Stratified tests
+
 *Proportional hazards regression: basics*
+
   + The Cox proportional hazards model
   + Partial likelihood estimation and inference
   + The link between the Cox model and the log-rank test
   + Time-varying covariates
+
 *Proportional hazards regression: special topics*
+ 
   + Graphical diagnostics for the Cox model
   + Regression with correlated event-time data
+
 *Designing a surival study*
+
   + Power and sample size calculations for survival distributions and proportions in two groups
   + Adjusting for staggered arrival and loss to follow-up
   + Software in \textsf{R} for trial design
