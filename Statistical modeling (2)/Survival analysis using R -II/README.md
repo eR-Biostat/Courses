@@ -52,7 +52,7 @@ The course cover the following topics:
 * Labs: https://github.com/dave-harrington/survival_workshop/tree/master/labs
 * Notes (Survival_analysis in_R): https://github.com/dave-harrington/survival_workshop/blob/master/additional_resources/survival_analysis_in_R.pdf
 * Notes (cox-regression in R and S-plus): https://github.com/dave-harrington/survival_workshop/blob/master/additional_resources/fox-appendix-cox-regression.pdf
-
+* Papers: https://github.com/dave-harrington/survival_workshop/tree/master/clinical_papers and https://github.com/dave-harrington/survival_workshop/tree/master/methods_papers
 
 ## Course and slides developer:   Dave Harrington 
  * Email: davidharrington@g.harvard.edu 
