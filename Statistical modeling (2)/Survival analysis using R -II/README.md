@@ -47,9 +47,12 @@ The course cover the following topics:
 
 ## Course materials
 
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/Slides
-* Examples in R: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/Practical%20survival%20analysis%20in%20R
-* You Tube tutorials: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Survival%20Analysis%20using%20R/YouTube%20tutorials
+* Course description: https://github.com/dave-harrington/survival_workshop/blob/master/course_description/survival_course_description.pdf
+* Slides and Tex files for the lectures: https://github.com/dave-harrington/survival_workshop/tree/master/lectures
+* Labs: https://github.com/dave-harrington/survival_workshop/tree/master/labs
+* Notes (Survival_analysis in_R): https://github.com/dave-harrington/survival_workshop/blob/master/additional_resources/survival_analysis_in_R.pdf
+* Notes (cox-regression in R and S-plus): https://github.com/dave-harrington/survival_workshop/blob/master/additional_resources/fox-appendix-cox-regression.pdf
+
 
 ## Course and slides developer:   Dave Harrington 
  * Email: davidharrington@g.harvard.edu 
