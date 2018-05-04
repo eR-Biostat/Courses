@@ -47,12 +47,15 @@ title: Contributors
      - Roel Braekers (Hasselt University, Belgium).
      - Khangelani Zuma (HSRC).
      - Alessio Crippa (Karolinska Institutet,Sweden).
+     - David Harrington (Harvard, USA).
  * Data analysis: 
-     - François Husson (Agrocampus Ouest, France).
+     - Franaois Husson (Agrocampus Ouest, France).
      - Julie Josse (Ecole Polytechnique, France).
  * Statistical inference: 
      -  Martin Otava (Hasselt Univesrsity, Belgium).
      -  Ziv Shkedy  (Hasselt Univesrsity, Belgium).
+     -  David Harrington (Harvard, USA).
+     -  Julie Vu (Harvard, USA).
      
 # Social media 
 
