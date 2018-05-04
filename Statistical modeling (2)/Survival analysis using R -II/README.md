@@ -53,6 +53,6 @@ The course cover the following topics:
 * Notes (cox-regression in R and S-plus): https://github.com/dave-harrington/survival_workshop/blob/master/additional_resources/fox-appendix-cox-regression.pdf
 * Papers: https://github.com/dave-harrington/survival_workshop/tree/master/clinical_papers and https://github.com/dave-harrington/survival_workshop/tree/master/methods_papers
 
-## Course and slides developer:   Dave Harrington 
+## Course and slides developer:  David P. Harrington
  * Email: davidharrington@g.harvard.edu 
  * Website: https://statistics.fas.harvard.edu/people/david-p-harrington
