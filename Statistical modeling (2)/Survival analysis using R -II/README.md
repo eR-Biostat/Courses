@@ -1,7 +1,7 @@
 # The >eR-Biostat initative
 # Survival Analysis using R
 
-This course in survival analysis (also known as the analysis of event-time data) will introduce the main ideas in non-parametric and semi-parametric regression for censored event-time data. Some background theory will be covered, but the emphasis will be on applications. The material are organized into both standard lectures and interactive lab sessions. All computing will be done using **R**. Lectures and labs will include both output and code; datasets will be in an **R** package. The course is an open sourse course, all course mataerisl (slides, labs, R programs and Tex files) are avilable online.  
+This course in survival analysis (also known as the analysis of event-time data)  introduces the main ideas in non-parametric and semi-parametric regression for censored event-time data. Background theory is covered as well, but the emphasis is on applications. The course was developed by David Harrington and the material are organized into both standard lectures and interactive lab sessions.  All computing will be done using R. Lectures and labs will include both output and code; datasets will be in an R package. The course is an open source course, all course materials (slides, labs, R programs and Tex files) are available online.
 
 The course cover the following topics:
 
