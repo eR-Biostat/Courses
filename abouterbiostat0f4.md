@@ -43,7 +43,7 @@ title: Contributors
      - Adetayo Kasim (Durham University, UK).
      - Said Mussa (Mekele University, EThiopia).
      - Fetene Tekle (Janssen Phamacutical, Belgium).
- * Statistical modeling (II): 
+ * Statistical modeling (II):
      - Roel Braekers (Hasselt University, Belgium).
      - Khangelani Zuma (HSRC).
      - Alessio Crippa (Karolinska Institutet,Sweden).
