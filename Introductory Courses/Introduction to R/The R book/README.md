@@ -5,8 +5,11 @@ Rafael Irizarry’s book was developed as a textbook for a first course in Data 
 The book cover the following topics:
 
 **Basic concepts in R **
+
 **Data visualization **
+
 **Probability **
+
 **Inference and Modeling **
 
 ## Book materials
