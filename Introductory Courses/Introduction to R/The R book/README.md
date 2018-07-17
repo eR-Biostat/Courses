@@ -1,6 +1,7 @@
 # The >eR-Biostat initative
 ## Introduction to R: The R book
-Rafael Irizarry’s book was developed as a textbook for a first course in Data Science. No previous knowledge of R or statistics is necessary, although we do assume a high level of quantitative ability and some experience with programming. If you possess these skills, read all the chapters and complete all the exercises, you will be well positioned to perform basic data analysis tasks and to take more advanced courses and become an expert.
+
+Rafael Irizarry’s book was developed as a textbook for a first course in Data Science. No previous knowledge of R or statistics is necessary. It contains illustration and R code from a basic level of R usage to more advanced examples.
 
 The book cover the following topics:
 
