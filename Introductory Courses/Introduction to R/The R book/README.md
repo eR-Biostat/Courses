@@ -12,7 +12,7 @@ The book cover the following topics:
 ## Book materials
 
 * Online book: https://rafalab.github.io/dsbook/
-* R code: https://github.com/rafalab/dsbook
+* R code: 
 ## Book and practical sessions  developer:  Rafael Irizarry
 
  * Email: rafa@jimmy.harvard.edu
