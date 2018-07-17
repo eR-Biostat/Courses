@@ -19,7 +19,8 @@ This course is an introductory course to R and can be given as a two-days worksh
 Homework assignments and an example of an exam are NOT available as a part of the course but practical sessions are included at the end of each chapter.
 
 # Course materials
-* Book: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
+* The R book: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/The%20R%20book
+* More books: For an excellent collection of R related books see https://r-dir.com/learn/e-books.html
 * Slides: https: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Slides
 * R programs: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/R%20programs
 * External datasets: https://github.com/eR-Biostat/Courses/tree/master/Introductory%20Courses/Introduction%20to%20R/Data
