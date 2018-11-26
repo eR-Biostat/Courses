@@ -4,6 +4,7 @@ title: Contributors
 ---
 # Coordination:
 
+ * Tadesse Awoke (Gondar University, Ethiopia).
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
  * Khangelani Zuma (HSRC, Sauth Africa).
