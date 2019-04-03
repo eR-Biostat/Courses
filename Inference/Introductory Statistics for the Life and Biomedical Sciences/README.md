@@ -12,6 +12,8 @@ Topics covered in the course include:
 * Inference for numerical data.
 * Simple and multiple regression.
 * Inference for categorical data
+# Slides
+* Will be avilable soon
 # Course materials
 * The course's book: https://github.com/OI-Biostat/oi_biostat_text/blob/master/oi_biostat_24Mar2018.pdf.
 * Source files for the book:https://github.com/OI-Biostat/oi_biostat_text.
