@@ -10,7 +10,7 @@ Course materials include:
 * Slides: Transmission models and transmission parameters.
 * R programs and slides for practical sessions.
 
-## Course and slides developers: Khangelani Zuma (HSRC, South Africa) and Zic Shkedy (UHasselt, Belgium) 
+## Course and slides developers: Khangelani Zuma (HSRC, South Africa) and Ziv Shkedy (UHasselt, Belgium) 
  * Email (Khangelani Zuma): kzuma@hsrc.ac.za 
  * Email (Ziv Shkedy): ziv.shkedy@uhasselt.be
  * Website (Khangelani ZUma): http://www.hsrc.ac.za/en/news/saph/khangelani-zuma
