@@ -6,7 +6,7 @@ The course was given as one day workshop in the Joint Conference of the Sub-Saha
 
 Course materials include:
 
-* Slides: Survey methods for HIV and AIDS.
+* Slides: Survey methods for HIV and AIDS (https://github.com/eR-Biostat/Courses/tree/master/Modeling%20Infectious%20diseases/HIV/HIV%20and%20AIDS%20survey%20methods)
 * Slides: Transmission models and transmission parameters.
 * R programs and slides for practical sessions.
 
