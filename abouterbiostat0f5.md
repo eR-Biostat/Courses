@@ -7,7 +7,7 @@ title: The >eR-BioStat school
 
 The ITP >eR-BioStat school will take place from 04/05/2020 to 19/05/2020. An Initial program for the >eR-BioStat school is given below:
 
-** Week 1 ** :
+** Week 1** :
 
 * An “open source” education: introduction and main concepts.
 * R Markdown.
@@ -16,7 +16,7 @@ The ITP >eR-BioStat school will take place from 04/05/2020 to 19/05/2020. An Ini
 * Development of online courses using GitHub.
 * The >eR-BioStat platform.
 
-** Week 2 and 3 ** :
+** Week 2 and 3** :
 Develop your own course using R markdown, GitHub and the >eR-BioStat platform.
 
 Full program will be available in December.
