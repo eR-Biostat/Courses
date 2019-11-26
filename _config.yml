@@ -41,7 +41,8 @@ navbar-links:
    -  Contributors and colaborators: "abouterbiostat0f4"
    -  Partner Universities in the south: "abouterbiostat0f3"
    -  VLIR UOS: "abouterbiostat0f2"
-#  Documentation:
+   -  >eR-BioStat school: "abouterbiostat0f5"
+   #  Documentation:
 #    - Presentations: "presentations"
 #    - Videos: "videos"
 #    - Examples: "examples"
