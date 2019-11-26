@@ -27,9 +27,7 @@ Deadline to submit an application: 15/01/2020. DO NOT WAIT for the last day !!!
 
 # Application forms  
  
-Online application form can be downloded from:  
-
-https://docs.google.com/forms/d/e/1FAIpQLScoXI7plTmAN-gDECKkrt6wuETurkCf2sQbcXTH1cUtMnlD-A/viewform
+Online application form can be downloded from here: ( [Application](https://docs.google.com/forms/d/e/1FAIpQLScoXI7plTmAN-gDECKkrt6wuETurkCf2sQbcXTH1cUtMnlD-A/viewform))  
 
 # Social media 
 
