@@ -26,6 +26,15 @@ title: Partner Universities in the south
  * Contact person: Noah Mutai.
  * E mail: nmutai@ttu.ac.ke 
  
+ 
+# Civil Engineering, Amrita Vishwa Vidyapeetham University, India.
+
+ * Education program: PhD students in Civil Engineering. 
+     - Course(s): Applied Statistics for Research
+     - Academic Year: 2019-20
+ * Contact Person: Dr B Soundharajan
+ * Email: b_soundharajan@cb.amrita.edu
+ 
 
 # Social media 
 
