@@ -32,8 +32,8 @@ title: Partner Universities in the south
  * Education program: PhD students in Civil Engineering. 
      - Course(s): Applied Statistics for Research.
      - Academic Year: 2019-20.
- * Contact Person: Dr B Soundharajan
- * Email: b_soundharajan@cb.amrita.edu
+ * Contact Person: Dr B Soundharajan.
+ * Email: b_soundharajan@cb.amrita.edu.
  
 
 # Social media 
