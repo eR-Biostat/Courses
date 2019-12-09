@@ -11,12 +11,19 @@ title: Contributors
  
 # Curiculum development for >eR-BioStat:
 
+ * Tadesse Awoke (Gondar University, Ethiopia).
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
  * Khangelani Zuma (HSRC, Sauth Africa).
  
 # >eR-BioStat Workshops and short courses:
 
+ * Gondar University, Ethiopia, 09/12/2019:
+     - Topics: he >eR-BioStat Platform + modeling infectious diseases using R.      
+ * Havana University, Cuba, 28/10/2017:
+     - Topics: Analysis of high dimensional data using R (part 1).      
+ * SUSAN-SSACAB 2019 conference, cape Town, South Africa, 09/09/1019:
+     - Topics: The >eR-BioStat Platform + modeling infectious diseases using R.      
  * Gondar University, Ethiopia, 28/08/2017:
      - Topics: introduction to R, Introduction to statistical modeling in R, modeling infectious      diseases using R..
  *  Jomo Kenyatta University of Agriculture and Technology, Kenya, 11/12/2017: 
@@ -64,6 +71,6 @@ title: Contributors
 
 **Follow us in Tweeter:** @erbiostat, eR-Biostat
 
-**Interested to contribute a course  ?**  send an email to 	erbiostat@gmail.com or ziv.shkedy@uhasselt.be
+**Interested to contribute a course  ?**  send an email to 	erbiostat@gmail.com or ziv.shkedy@uhasselt.be or erbiostat@uhasselt.be. 
 
 
