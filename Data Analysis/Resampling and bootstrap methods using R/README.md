@@ -14,7 +14,7 @@ The course structure:
  
 ## Course materials
 
-* Online notes and code are available here: https://github.com/eR-Biostat/Courses/blob/master/Data%20Analysis/Resampling%20and%20bootstrap%20methods%20using%20R/Slides/CIM_Temp_1-pdf-_V1.html
+* Online notes and code are available here:https://github.com/eR-Biostat/Courses/blob/master/Data%20Analysis/Resampling%20and%20bootstrap%20methods%20using%20R/Slides/INF_Temp_1_V1.html
  
 * Online Slides: https://github.com/eR-Biostat/Courses/tree/master/Data%20Analysis/Resampling%20and%20bootstrap%20methods%20using%20R/Slides 
 
