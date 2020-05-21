@@ -13,7 +13,9 @@ The course structure:
   * GLMs
  
 ## Course materials
-* Online course  available in http://math.agrocampus-ouest.fr/infoglueDeliverLive/membres/Francois.Husson/enseignement?languageId=1#AnaDoGB 
+
+* Online notes and code are available here: https://github.com/eR-Biostat/Courses/blob/master/Data%20Analysis/Resampling%20and%20bootstrap%20methods%20using%20R/Slides/CIM_Temp_1-pdf-_V1.html
+ 
 * Online Slides: https://github.com/eR-Biostat/Courses/tree/master/Data%20Analysis/Resampling%20and%20bootstrap%20methods%20using%20R/Slides 
 
 ## Online Course Developer, R code, sildes and YouTube tutorials: 
