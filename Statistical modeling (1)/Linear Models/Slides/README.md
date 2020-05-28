@@ -1,6 +1,6 @@
 # The >eR-Biostat initative
 ## Linear Models: Slides 
-### The final version of all course materials will be fully available on line in September 2017. 
+### The final version of all course materials will be fully available on line in September 2020. 
 
 The slides for the course cover the follwing topics:
 
