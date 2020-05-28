@@ -1,7 +1,7 @@
 # The >eR-Biostat initative
-## Resampling and bootstrap methods using R 
+## Resampling and bootstrap methods using R - the course will be avilable soon
 
-This course is focused on Resampling and bootstrap methods using R : the course will be avilable soon.  
+This course is focused on Resampling and bootstrap methods using R.  
 
 The course structure:
 
