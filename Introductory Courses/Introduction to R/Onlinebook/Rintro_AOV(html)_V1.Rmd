@@ -1,0 +1,194 @@
+---
+title:  "Introduction to R: One-Way ANOVA "
+author:
+- name: Ziv Shkedy
+  affiliation: Hasselt University, Belgium
+subtitle:  First steps in statistical modeling in R
+
+#institute: UHasselt
+date: May, 2020
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    use_bookdown: TRUE
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+categories: ["R"]
+bibliography: bibliography.bib
+---
+
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+```{r style, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+suppressPackageStartupMessages({
+  library(BiocStyle)
+  library(knitr)
+  library(rmarkdown)
+  library(bookdown)
+})
+options(width = 100)
+opts_chunk$set(fig.width = 5, fig.height = 5)
+
+```
+
+```{r,echo=FALSE}
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(mvtnorm)
+```
+
+# Introduction
+
+## Slides, code and tutorials
+
+This part of the interactive book contains all R code that was used to produce the results and output presented in chapter 3 (modeling:one way ANOVA) in the course's slides. We include YouTube tutorials as a part of the book and links to the relevant tutorials are provided in different chapters. Note that these tutorials were not developed especially for this book, they cover the same topics using different examples. 
+
+## R ?
+No previous knowledge about R is required. We use the R function <tt> aov() </tt> to fit a One-Way ANOVA in R and the chicken Weights dataset is used for illustraion. The model can be fitted using the functions <tt> lm() </tt> and <tt> glm() </tt> as well.
+
+##  Slides
+Slide for this part of the course are avilable online in the >eR-BioStat website. See  [Rcoursemodeling](https://github.com/eR-Biostat/Courses/blob/master/Introductory%20Courses/Introduction%20to%20R/Slides/eR-Biostat_An%20Introduction%20to%20R_2017_Modeling1.pdf).
+
+# The Chicken Weights data
+
+Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement. Their weights (the response variable) in grams after six weeks are given along with feed types (the factor). The Chicken Weights data is a data frame in R, <tt> chickwts </tt>. 
+
+```{r}
+head(chickwts)
+```
+
+# One-Way ANOVA model
+
+
+## YouTube tutorials: One-Way ANOVA in R
+
+### R - One-way ANOVA
+
+For a YouTube tutorial about One-Way ANOVA in R R Statistics and Research see [YTOneWayANOVA1](https://www.youtube.com/watch?v=4DeCaCaC2JQ).
+
+### One way ANOVA in RStudio
+
+For a YouTube tutorial about One-Way ANOVA by 
+Tom Sherrattin R see [YTOneWayANOVA2](https://www.youtube.com/watch?v=zDGQxC0bWn4).
+
+## Model formulation
+
+We consider a one-way ANOVA model for that data
+
+\[
+Y_{ij}=\mu_{i}+\varepsilon_{ij}\;\;\;\;i=1,\dots,6 ,\;j=1,\dots,n_{i}. 
+\]
+Here,
+
+ * $Y_{ij}$ is the weight of the $j$'th subject in diet group $i$.
+ * The parameters $\mu_{i}$ represent the mean of the distribution of weight  at each age group.
+ * \item $\varepsilon_{ij}$ is a random error which assumed to be normally distributed,      
+   $$\varepsilon_{ij}\sim\mbox{N}(0,\sigma^{2})$$.
+   
+
+Our primary of interest is to estimate the group means and then to test the hypotheses
+\[
+\begin{array}{l}
+\mbox{H}_{0}:\mu_{1}=\mu_{2}=\dots=\mu_{6},\\
+\mbox{H}_{1}: \mu_{l} \ne \mu_{k}\;\;\mbox{for at least one pair}.
+\end{array}
+\]
+
+## Visualizing the Data 
+
+
+The striptplot in Figure~\@ref(fig:fig1) reveals that the cash offers in the middle age group are higher than the cash offers in the young and elderly age groups. 
+
+```{r fig1, fig.cap="Chicks weight by diet group."}
+stripplot(feed ~ jitter(weight), 
+            data = chickwts, 
+            aspect = 1, jitter = T, 
+            xlab="Cash Offers", col = 1)
+```
+
+The boxplot in Figure~\@ref(fig:fig2) can be used to visualize the patterns in teh data. Note how the box of the middle group is located higher than the boxes of the other groups.
+
+```{r fig2, fig.cap="Chicks weight by diet group."}
+boxplot(split(chickwts$weight,chickwts$feed))
+```
+
+The sample means for the 6 diet groups are equal to
+
+```{r}
+ tapply(chickwts$weight,chickwts$feed,mean)
+```
+
+# Fitting a One-way ANOVA Model in R
+
+## The <tt> aov() </tt> Function
+
+The R  function which we use to fit an ANOVA  model in R is <tt>  aov() </tt>. A General call of the function has the form of <tt> aov(dependent variable~factor) </tt>.  For example one-way ANOVA for the response <tt> y </tt> and the factor <tt> x </tt> can be fitted using <tt> aov(y~x) </tt>. If <tt> x </tt> is a numerical vector, we can use <tt> aov(y~as.factor(x)) </tt>.
+
+##  Fitting an ANOVA Modelfor the Chicken Weights data
+
+ In order to fit the model 
+\[
+Y_{i}=\beta_{0}+\beta_{1}X_{i}+\varepsilon_{i},\;\;i=1,\dots,n,
+\]
+
+we use
+
+```{r}
+Fit.aov<-aov(chickwts$weight~chickwts$feed)
+```
+the object <tt> Fit.aov </tt> contains the results. The ANOVA table is given by:
+
+```{r}
+ summary(Fit.aov)
+```
+
+
+# Diagnostic Plots
+
+## Residuals
+
+The object <tt> Fit.aov$resid </tt> contains the residuals values.
+
+```{r}
+Fit.aov$resid
+```
+
+Stem-and-leaf diagram reveals a symatical distribution.
+
+```{r}
+stem(Fit.aov$resid)
+```
+
+Stripplot for the residuals by diet group is shown in Figure~\@ref(fig:fig3)
+
+```{r fi3, fig.cap="Residuals by diet group."}
+stripplot(chickwts$feed ~ jitter(Fit.aov$resid), aspect = 1, jitter = T, xlab = 
+	"Residuals", col = 1)
+```
+
+Boxplot, histogram and normal probability plot and shown in Figure ~\@ref(fig:fig4).
+
+```{r fig4,fig.cap="Distribution for the residuals."}
+par(mfrow = c(2, 2))
+hist(Fit.aov$resid)
+boxplot(split(Fit.aov$resid, chickwts$feed))
+qqnorm(Fit.aov$resid)
+```
+
+Alternativly, these figures can be produce using the function <tt> plot() </tt> in the following way
+
+```{r fig5, fig.cap="Diagnostic plots."}
+plot(Fit.aov)
+```
+
+
+
+
+
