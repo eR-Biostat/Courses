@@ -30,7 +30,7 @@ The course structure:
 ## Course materials
 * Online course + R code:
   + Single comparison http://sia.webpopix.org/statisticalTests1.html
-* Slides: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I/Slides
+* Slides: https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Basic%20concepts%20of%20statistical%20inference%20using%20R%20-I/Slides
 * External datasets: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I/Data
 * YouTube toturials: https://github.com/eR-Biostat/Courses/tree/master/Under%20graduate%20courses/Basic%20concept%20of%20statistical%20inference%20using%20R%20-I/YouTube%20turorials
 
