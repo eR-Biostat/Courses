@@ -12,13 +12,7 @@ Topics covered in the course include:
 * Inference for numerical data.
 * Simple and multiple regression.
 * Inference for categorical data
-# Slides
-* Will be avilable soon
-# Course materials
-* The course's book: https://github.com/eR-Biostat/Courses/tree/master/Inference/Introductory%20Statistics%20for%20the%20Life%20and%20Biomedical%20Sciences.
-* Source files for the book:https://github.com/OI-Biostat/oi_biostat_text.
-* R labs and R programs: https://github.com/OI-Biostat/oi_biostat_labs.
-* Data: https://github.com/OI-Biostat/oi_biostat_data.
+# Course materials: This course is temporarily not available.
 
 ##  Online course development, R labs and R code: Julie Vu and David Harrington
  * Wedsite (Julie Vu): https://www.linkedin.com/in/julie-vu-391066aa.
