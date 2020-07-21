@@ -1,21 +1,2 @@
 # The >eR-Biostat initiative
-#  Introductory Statistics for the Life and Biomedical Sciences
-
-The course covers topics from the open-source textbook **Introductory Statistics for the Life and Biomedical Sciences**. The course is developed for undergraduate students. This is an **online** course which was developed by **Julie Vu**  and **David Harrington**. All Tex files, R labs,  R programs and data are available online. 
-
-Topics covered in the course include:
-
-* Introduction to data.
-* Probability.
-* Distribution of random variables.
-* Foundations of inference.
-* Inference for numerical data.
-* Simple and multiple regression.
-* Inference for categorical data
-# Course materials: This course is temporarily not available.
-
-##  Online course development, R labs and R code: Julie Vu and David Harrington
- * Wedsite (Julie Vu): https://www.linkedin.com/in/julie-vu-391066aa.
- * Email: julievu777@gmail.com
- * Website (David Harrington):https://www.hsph.harvard.edu/david-harrington/. 
- * Email: dph@jimmy.harvard.edu
+#  Introductory Statistics for the Life and Biomedical Sciences: This course is temporarily not available.
