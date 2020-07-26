@@ -1,0 +1,764 @@
+---
+title:  "Introduction to R: basic programming"
+author:
+- name: Ziv Shkedy
+  affiliation: Hasselt University, Belgium
+subtitle:  First steps of programing in R (July 2020)
+
+#institute: UHasselt
+date: May, 2020
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    use_bookdown: TRUE
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+categories: ["R"]
+bibliography: bibliography.bib
+---
+
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+```{r style, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+suppressPackageStartupMessages({
+  library(BiocStyle)
+  library(knitr)
+  library(rmarkdown)
+  library(bookdown)
+})
+options(width = 100)
+opts_chunk$set(fig.width = 5, fig.height = 5)
+
+```
+
+```{r,echo=FALSE}
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(mvtnorm)
+```
+
+
+
+\newpage
+
+# Introduction
+
+## Slides, code and tutorials
+
+This chapter of the interactive book contains all R code that was used to produce the results and output presented in chapter 2 (programming) in the course's slides. We include YouTube tutorials as a part of the chapter and links to the relevant tutorials are provided in different sections. Note that these tutorials were not developed especially for this book, they cover the same topics using different examples. 
+
+## R ?
+No previous knowledge about R is required. We start from the basic and follow a user approach and not a programmer approach. The datasets used for illustrations are available in R, one of them (the law school data) is part of the \texttt{ bootstrap} R package. To run the code smoothly, this package need to be installed.
+
+```{r}
+library(bootstrap)
+```
+
+
+##  Slides
+Slide for this part of the course are avilable online in the >eR-BioStat website. See  [RcoursePrograming](https://github.com/eR-Biostat/Courses/blob/master/Introductory%20Courses/Introduction%20to%20R/Slides/eR-Biostat_An%20Introduction%20to%20R_2017_Programming.pdf).
+
+
+# R Objects
+
+## YouTube tutorial: objects in R
+
+For a short YouTube introduction, by Mike Marin, about objects in R see [YTobjects1](https://www.youtube.com/watch?v=UYclmg1_KLk).
+
+
+## Introduction
+
+R works with objects. An object in R could be a scaler, for example
+
+```{r}
+x<-1
+```
+
+ We can print the object <tt> x </tt>:
+
+```{r}
+print(x)
+```
+
+The object <tt> x </tt> can be a vector defined using the R function <tt> c() </tt> 
+
+```{r}
+x<-c(1,2,3,4,5,6,7,8,9,10)
+x
+```
+
+The data structures that will be discussed in this chapter are
+  
+  * scaler
+  * vector
+  * matrix
+  * data frame
+
+### Functions
+
+Another important concept in R are functions. For example, if we want to calculate the mean of a sample we can use the R function <tt> mean() </tt> 
+
+```{r}
+mean(x)
+```
+
+This will be discuused from Section 3 onward.
+
+
+## Scaler
+
+The most simple object in R is a scaler. In order to define $X=5$ we use
+
+```{r}
+x <- 5  
+```
+ 
+ <tt> x </tt> is an object and the numerical value of this object is 5. In order to see the object we type <tt> x </tt> (or we use the function <tt> print() </tt>)
+
+```{r}
+x
+```
+
+Note that the arrow in R means equal (=). We can define a new object <tt> y </tt> which is equal to $x^{2}$:
+
+```{r}
+ y <- x^2
+ y
+```
+
+ The object $z=x+5$.
+
+```{r}
+z <- x + 5
+z
+```
+
+### Practical session
+
+Define two objects $w=10$ and $z=3$, calculate $w \times z$, $z+w$, $w^z$,
+$w \times (z+5)$. 
+
+
+
+## vectors
+
+### YouTube tutorial: vectors and matrices in R
+
+For a YouTube tutorial by Mike Marin about objects in R see [YTobjects2](https://www.youtube.com/watch?v=2TcPAZOyV0U).
+
+
+### Numerical vectors
+
+As we saw in Section 2.2, a vector in R can be defined by using the function <tt> c() </tt>. For example the vector $x=(10,15,15,25,100)$ can be defined in the following way
+
+```{r}
+x <- c(10, 15, 15, 25, 100)
+x
+```
+
+The first element in $x$, $x_{1}$, is
+
+```{r}
+x[1]
+```
+
+
+The second element in $x$:
+
+```{r}
+ x[2]
+```
+
+The first three elements in $x$ are 10,15,15. 
+
+```{r}
+ x[1:3]
+```
+
+We can define a new vector, $y$ which equal to $x+5$ by adding to $x$ the constant 5. Note that this constant is added for all the element in $x$ 
+
+
+```{r}
+y <- x + 5
+y
+```
+
+#### Practical session
+
+Define two vectors: $x=(1,2,3,4,5)$ and $y=(10,15,25,5,12)$.
+
+  * Define a new vector $w$, $w=x+y$.
+  * Produce a scatterplot of $x$ versus $y$ with the basic plot function \texttt{plot()}.
+
+
+## Factors
+
+A character vector or a factor is defined by
+
+```{r}
+ z <- c("A", "B", "A", "A", "A", "A", "B")
+ z
+```
+
+In the followig example, <tt> z </tt> is a numerical vector.
+ 
+ 
+```{r}
+ z <- c(1, 2, 1, 1, 1, 1, 2)
+```
+
+We can use the function <tt> as.factor() </tt> to change <tt> z </tt> from numerical vector to a       
+   factor with two levels: 1 and 2.
+
+
+```{r}
+ x <- as.factor(z)
+print(x)
+```
+
+
+## index vectors
+
+Consider a dataset with 5 subjects, for each we have information about the gender and the height. Let us define two vectors. The first is a factor represents the gender: $sex=(M,M,M,F,F)$. 
+
+```{r}
+sex <- c("M", "M", "M", "F", "F")
+sex
+```
+
+The second is a numeric vector represents the heights: $height=(190, 180, 192, 165, 170)$.
+
+```{r}
+height <- c(190, 180, 192, 165, 170)
+height
+```
+
+We can combine the two vectors into one data structure. This will be discussed further in Section 2.7.
+
+```{r}
+cbind(sex,height)
+```
+
+The first subject is a male,
+
+```{r}
+sex[1]
+```
+
+and his height is 190.
+
+```{r}
+height[1]
+```
+
+The last subject is a female
+```{r}
+sex[5]
+```
+
+and her height is equal to 170.
+
+```{r}
+height[5]
+```
+
+We can print the heights of the males with
+
+```{r}
+height[sex == "M"]
+```
+
+Equivalently, the heights of the females
+
+```{r}
+height[sex == "F"]
+```
+
+Note that the vector <tt> sex == "M" </tt> is a factor with lvels equal to TRUE and FALSE
+
+```{r}
+sex == "M"
+```
+
+
+## Data frame
+
+### YouTube tutorial: vectors and matrices in R
+
+For a YouTube tutorial by LearnR about data frames in R see [YTobjects3](https://www.youtube.com/watch?v=J-WFKleKEA4).
+
+### Example: data frame in R 
+
+A data frame in R is a data structure which combines few vectors together. We can create a data frame by using the function <tt> data.frame() </tt>. For example, we define a new object in R, <tt> z </tt> which is a data frame which contains the vectors <tt> sex </tt> and <tt> height </tt>.
+
+```{r}
+z<-data.frame(sex, height)
+```
+
+To see the data frame we type <tt> z </tt>
+
+```{r}
+z
+```
+
+The data frame \texttt{z} contains two vectors: a factor <tt> sex </tt> (a factor) and a numerical vector <tt> height </tt>. To print the vector <tt> sex </tt> we use
+
+```{r}
+z$sex
+```
+
+The $\$$ means: the vector <tt> sex </tt> in the data frame <tt> z </tt>.
+
+The vector height.
+
+```{r}
+z$height
+```
+
+## Matrix
+
+A matrix in R is an object which combines together few vectors.
+
+```{r}
+z <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+z
+```
+We use the function <tt> matrix() </tt> to create a $3 \times 3$ matrix from the vector <tt> z </tt>.
+
+```{r}
+w <- matrix(z, 3, 3)
+```
+
+The matrix <tt>  w </tt> which is a $3 \times 3$ matrix
+
+```{r}
+w
+```
+
+The entery $W_{11}$.
+
+```{r}
+w[1, 1]
+```
+
+$W_{1,3}$:
+
+```{r}
+w[1, 3]
+```
+
+$W_{2,3}$:
+
+```{r}
+w[2, 3]
+```
+
+The first column:
+
+```{r}
+w[, 1]
+```
+
+The second row:
+
+```{r}
+w[2,  ]
+```
+\newpage
+
+# Basic plots in R
+
+## Introduction
+
+In previous sections we created R objects, we used R statements and functions in order to define vectors and data frames. In this section we focus on two real datasets: the <tt> airquality </tt> } and the  law school datasets.\newline
+Both datasets are entered to R as data frame. The aim of this section is to illustrate the useage of R in working with the data and in particular how to produce basic plots in R.
+
+
+### YouTube tutorial: basic plots in R
+
+#### Basic plots in R
+
+For a YouTube tutorial by Jonathan Tuke about basic plots in R see [YTplots1](https://www.youtube.com/watch?v=qK0aHV3UseE&t=179s).
+
+####  Basic plots in R (line, scatter, histogram, box, matrix plots)
+
+For a YouTube tutorial by Research HUB about basic plots in R see [YTplots2](https://www.youtube.com/watch?v=qK0aHV3UseE).
+
+
+## Graphical functions (I)
+
+In this section, We focus on two graphical functions <tt> plot() </tt> and  <tt> hist() </tt> to visualize the airquality data.
+
+###  The airquality data
+
+The <tt> airquality </tt> dataset is a data frame in R which contains information about 4 variables: ozone level, radiation, temperature and wind speed. We use the function <tt> print(airquality) </tt> to see the data. The first column is the ozone level, the second column is the radiation, the third is the temperature and the last column is the wind speed. A partial printout in given below.
+
+```{r}
+head(airquality)
+```
+
+In order to get more information about the data use the function <tt> help() </tt>. The wind speed is shown below.
+
+
+```{r}
+airquality$Wind 
+```
+
+###  Basic plots
+
+A scatterplot of ozone versus the wind speed can be produced with the function <tt> plot() </tt> shown in Figure~\@ref(fig:fig1)  
+
+```{r fig1,fig.cap="Ozone level versus wind speed."}
+plot(airquality$Wind,airquality$Ozone) 
+```
+
+
+Figure~\@ref(fig:fig1b) presents an Histogram of the ozone.
+
+```{r fig1b,fig.cap="Histogram for the Ozone level."}
+hist(airquality$Ozone)
+```
+
+###  The <tt>par()</tt> function
+
+
+We can use the function <tt>  par() </tt> to plot the two figures in one page. A general call of the function <tt>  par() </tt> has the form  <tt> par(mfrow=c(number of rows, number of columns)) </tt>. For example, <tt>  par(mfrow=c(1,2)) </tt>  produces a graphical page with two figures in one row as shown in Figure~\@ref(fig:fig2) 
+
+```{r fig2,fig.cap="Two figures in the same page."}
+par(mfrow=c(1,2)) #put 2 figures in the same page
+plot(airquality$Wind,airquality$Ozone)     
+hist(airquality$Ozone)
+```
+
+## Graphical functions (II): the law school data
+
+The low school data gives information about LSAT and GPA scores in 82 low schools in USA. It a part of the R package <tt> bootstrap </tt> so we first need to install the package. Figure~\@ref(fig:fig3) shows a scatterplot for the scores and a random sample of 15 schools from the population of 82 schools.
+
+```{r fig3, fig.cap="The low schools data"}
+par(mfrow=c(1,2))
+plot(law82$LSAT,law82$GPA,xlim=c(450,700),ylim=c(2.5,3.5))
+points(law$LSAT,law$GPA,pch="o",col=2)
+plot(law$LSAT,law$GPA,pch="o",xlim=c(450,700),ylim=c(2.5,3.5))
+```
+
+The population correlation is equal to 
+
+```{r}
+cor(law82$LSAT,law82$GPA)
+```
+
+and the sample correlations is equal to 0.776.
+
+```{r}
+cor(law$LSAT,law$GPA) 
+```
+
+The correlation is an example of a summary statistic that we calculated for the population or the sample. This topic is discussed in the next Sectionr.
+
+# Summary statistics
+
+## introduction
+
+In this section we focus on R functions that can be used in order to calculate summary statistics of a sample. The summary statistics that will be discussed are:
+ 
+  * Sample mean.
+  * Sample median.
+  * Variance.
+  * Minimum and Maximum.
+  
+## YouTube tutorials
+  
+### Summary Statistics In R Software (Pt. 1 of 3)
+
+For a YouTube tutorial by economicurtis about Summary Statistics in R see [YTstat1](https://www.youtube.com/watch?v=srMUO8vp9yc).
+
+### Summary statistics in R
+
+For a YouTube tutorial by LawrenceStats about Summary Statistics in R see [YTstat2](https://www.youtube.com/watch?v=O03ysvNRlxo).
+
+
+## Calculation of summary statistics in R
+
+### Summary statistics for the Chicken Weights data
+
+We use the Chicken Weights data frame (the <tt> chickwts </tt> object in R). The first few lines are shown below
+
+
+```{r}
+head(chickwts)
+```
+
+
+We use the function <tt> mean() </tt> to calculate the mean of a vector.The mean of the Chicken Weights:
+
+```{r}
+mean(chickwts$weight)
+```
+
+The median of the Chicken Weights
+
+```{r}
+median(chickwts$weight)
+```
+
+The variance the Chicken Weights
+
+```{r}
+var(chickwts$weight)
+```
+
+The minimum of the Chicken Weights
+
+```{r}
+min(chickwts$weight)
+```
+
+
+The maximum of the Chicken Weights
+
+```{r}
+max(chickwts$weight)
+```
+
+A boxplot of the Chicken Weights is shown in Figure~\@ref(fig:fig5a1)
+
+```{r fig5a1,fig.cap="Chicken weights."}
+boxplot(chickwts$weight)
+```
+
+We use the function <tt> split() </tt> to produce a boxplot of the Chicken Weights by diet group as shown in Figure~\@ref(fig:fig5)
+
+```{r fig5,fig.cap="Chicken weights by diet group."}
+boxplot(split(chickwts$weight,chickwts$feed))
+```
+
+The mean of the Chicken Weights per group can be calculated using the function <tt> tapply() </tt>. A general call of the function has the form \newline
+<tt> tapply(numerical vector, factor, statistics) </tt>. \newline
+
+To calculate the mean for the Chicken Weights dataset we use
+
+
+```{r}
+tapply(chickwts$weight,chickwts$feed,mean)
+```
+
+### Practical session 
+
+The data frame <tt> mtcars </tt> contains information about fuel consumption of cars.
+
+ * What are the variables names in the data frame ?
+ * Calculate the mean, median minimum and maximun of the variable mile per gallon (the R object   
+   <tt> mpg </tt>).
+ * Calculate the variance of the cars' displacement by the cars' number of forward gears.
+ * Produce a boxplot of the cars' weights by the number of cylinders.   
+   
+
+# A for loop
+
+
+## YouTube tutorial: the for loop in R
+
+For a short online YouTube introduction by Richard Webster about a for loop in R see [YTforlorloop](https://www.youtube.com/watch?v=h987LWDvqlQ).
+
+## Example 1: distribution of the sample means
+
+### One sample $(n=10)$ from $N(0,1)$
+
+A for loop in R is a loop in which we repeatedly ask R to do the same actions in each step of the loop. For example, suppose that we would like to draw a sample of 10 observations from $N(0,1)$. In R this can be done using the code
+
+```{r}
+x<-rnorm(10,0,1)
+```
+
+The sample is 
+
+```{r}
+x
+```
+
+and the sample mean
+
+```{r}
+mx<-mean(x)
+mx
+```
+
+### 1000 samples $(n=10)$ from $N(0,1)$
+
+Suppose that we would like to draw a sample of 10 observations from $N(0,1)$ 1000 times. To do this we can use a ``for loop'' in the following way. First, we define a vector that will be used to store the sample means (the R object <tt> mx </tt>).
+
+```{r}
+mx<-c(1:1000)
+```
+
+The for loop with 1000 steps we use
+
+```{r}
+for(i in 1:1000)
+{
+x<-rnorm(10,0,1)
+mx[i]<-mean(x)
+}
+```
+Note that in each step in the loop we draw a sample of size 10 from $N(0,1)$ and calculate the sample mean (which is stored in the $i$th entry of <tt> mx</tt>). A histogram of the 1000 sample means is shown in Figure~\@ref(fig:fig6)
+
+```{r fig6, fig.cap="Histogram for 1000 sample means"}
+hist(mx,nclass=20)
+```
+
+## Example 2: print on the screen
+
+Print a text on the screen $K$ times:
+
+```{r}
+for(i in 1:10)
+{
+print("Text")
+}
+```
+
+We can print both test and iteration number using the R function <tt> paste() </tt>:
+
+```{r}
+for(i in 1:10)
+{
+print(paste("Step:",i))
+}
+```
+
+## Practical session
+
+ * Draw 100 samples a of size 20 from $U(0,1)$. For each sample calculate the minimum and plot a    
+   histogram that presents that distribution of the minimum.
+
+ * Program a for loop that Writes on the screen the flowing line:  I program a for loop in R with 1000   steps. This is  step: 1.....
+
+
+# User functions in R
+
+A user function in R consists of a sets of instructions/commands  that we want to use repeatedly. For example, suppose that we would like to write a code that calculate the mean and the median for a sample <tt> x </tt> and to draw a histogram. As we saw in Section 3, we can use the R functions <tt> mean( ) </tt>, <tt> median( ) </tt>) and  <tt> hist( ) </tt>. In this section we focus on user functions in R, i.e., function that we write to produce a specific output (for example, calculate the mean and median of a sample).
+
+## YouTube tutorials: user function in R
+
+### Making Functions in R
+
+For a YouTube tutorial about user function in R by Richard WebsterR see [YTfunctions1](https://www.youtube.com/watch?v=i2VH5jIL76Y&t=7s).
+
+### User-defined functions in R
+
+For a YouTube tutorial about user function in R by Jonatan Lindh see [YTfunctions2](https://www.youtube.com/watch?v=SRr74Z05uig).
+
+## Example 1: descriptive statistics for a sample
+
+A function that calculates the sample mean and median and plot a histogram of the sample can be defined by
+
+```{r}
+fun20<-function(x)
+{
+mean.x<-mean(x)
+med.x<-median(x)
+hist(x)
+return(c(mean.x,med.x))
+}
+```
+
+The R object <tt>  fun20 </tt> is the function. For the Chicken's Weights we have
+
+```{r}
+results.1<-fun20(chickwts$weight)
+```
+
+The object <tt> results.1 </tt> contains the results. To see the mean and median we print the object
+
+```{r}
+results.1
+```
+
+In the same way, the same output (the mean and median of the sample) can be produced for the wind speed of the aitquality data
+
+```{r}
+fun20(airquality$Wind)
+```
+
+## Example 2: simple linear regression model
+
+For this example we use the cars dataset (<tt> cars </tt>) that gives the speed of cars and the distances taken to stop.  We would like to write a function that
+
+  * Calculate the correlation between two variables.
+  * Fit a regression model of the form $y_{i}=\alpha+\beta x_{i}+\varepsilon_{i}$. 
+  * Plot the variable x and y with the regression line.
+  
+For the cars data set the corresponding R code can be used to produce the results. First we define the variables $x$ and $y$:
+
+
+
+```{r}
+x<-cars$speed
+y<-cars$dist
+```
+
+The correlation
+
+```{r}
+cor(x,y)
+```
+
+The regression model and output
+
+```{r}
+fit.lm<-lm(y~x)
+fit.lm
+```
+
+and the scaterplot with the fitted model.
+
+```{r fig7, fig.cap="The cars dataset: data and fitted model"}
+plot(x,y)
+lines(x,fit.lm$fit)
+```
+
+The function <tt> fun21 </tt> is a user function that was written to produce the output above.
+
+```{r}
+fun21<-function(x,y)
+{
+print(cor(x,y))
+fit.lm<-lm(y~x)
+plot(x,y)
+lines(x,fit.lm$fit)
+title("x versus y: data and fitted model")
+return(fit.lm)
+}
+```
+
+We define an R object <tt> model.1 </tt> that contains the output
+
+
+```{r}
+model.1<-fun21(x,y)
+```
+
+Note that the correlation is printed on the screen as requested. To see the parameter estimate we use
+
+```{r}
+summary(model.1)
+```
+
+## Practical session
+
+Write a function which is equivalent to PROCEDURE FREQ in SAS for univariate sample. The function should produce the following output:
+
+ * The sample size.
+ * The sample mean and standard deviation.
+ * The sample medina, minimum and maximum.
+ * A histogram and QQ normal plot for the sample.
+ * A Boxplot for the sample.
+
+
