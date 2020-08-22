@@ -11,7 +11,7 @@ The course focuses on the linear mixed model, assuming normally distributed data
 
  * Slides: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/Slides
  * R programs:
- * Notes: 
+ * Notes: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/Notes
  * Datasets
 
 ## Course and slides developer:  Prof. Tadesse Awoke, Gondar University, Ethiopia.
