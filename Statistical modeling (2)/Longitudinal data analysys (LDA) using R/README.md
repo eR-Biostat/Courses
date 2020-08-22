@@ -14,6 +14,6 @@ The course focuses on the linear mixed model, assuming normally distributed data
  * Notes: 
  * Datasets
 
-## Course and slides developer:  Prof. Tadesse Awoke, Gondar University
+## Course and slides developer:  Prof. Tadesse Awoke, Gondar University, Ethiopia.
  * Email: tawoke7@gmail.com
  * Mobile: +251910173308
