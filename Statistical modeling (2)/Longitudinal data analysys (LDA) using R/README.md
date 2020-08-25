@@ -1,5 +1,5 @@
 # The >eR-Biostat initative
-# Longitudinal data analysys (LDA) using R
+# Longitudinal data analysis (LDA) using R
 
 The course covers statistical tools and methods used to analyze data collected on the same group of individuals on multiple occasions over time. 
 Mixed models are a modern powerful data analysis tool to analyze longitudinal data, typically arising in studies where the levels of a factor 
