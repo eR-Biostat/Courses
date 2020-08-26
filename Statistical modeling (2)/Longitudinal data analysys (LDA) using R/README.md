@@ -17,6 +17,9 @@ Throughout the course lectures, the emphasis will be on understanding the why an
  * R programs:https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/R%20programs
  * Notes: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/Notes
  * Datasets: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/Data
+ 
+ ## Online Course materials
+ * Online course + R code: https://github.com/eR-Biostat/Courses/tree/master/Statistical%20modeling%20(2)/Longitudinal%20data%20analysys%20(LDA)%20using%20R/Online%20course
 
 ## Course and slides developer:  Prof. Tadesse Awoke, Gondar University, Ethiopia.
  * Email: tawoke7@gmail.com
