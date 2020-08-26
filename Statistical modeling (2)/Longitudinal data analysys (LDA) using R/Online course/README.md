@@ -7,13 +7,13 @@ R code for all examples illustrated in the course is available online.
 
 The course structure:
 
-* Introduction
-  + The orthodont data
-  + Fitting linear models to the data
-* Mathematical definition of a linear mixed effects models
-* Statistical inference in linear mixed effects models
-* Fitting linear mixed effects models to the orthodont data
-* Some examples of models and designs
+* Introduction.
+  + The orthodont data.
+  + Fitting linear models to the data.
+* Mathematical definition of a linear mixed effects models.
+* Statistical inference in linear mixed effects models.
+* Fitting linear mixed effects models to the orthodont data.
+* Some examples of models and designs:
  + One factor (or one-way) classification
  + Two factors block design
 
