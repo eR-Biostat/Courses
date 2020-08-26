@@ -19,7 +19,7 @@ The course structure:
 
 ## Course materials
 
-* Online course + R code:
+* Online course + R code: http://sia.webpopix.org/lme.html
 
 ## Online course developer and R code: Marc Lavielle 
 
