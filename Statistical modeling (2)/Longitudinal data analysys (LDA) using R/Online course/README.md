@@ -14,9 +14,8 @@ The course structure:
 * Statistical inference in linear mixed effects models.
 * Fitting linear mixed effects models to the orthodont data.
 * Some examples of models and designs:
-
- + One factor (or one-way) classification
- + Two factors block design
+  + One factor (or one-way) classification
+  + Two factors block design
 
 ## Course materials
 
