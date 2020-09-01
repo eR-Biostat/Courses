@@ -1,10 +1,10 @@
 
 # The >eR-Biostat initative
-# Linear Models
+# Applied Linear Models using R
 
-**THE COMPLETE VERSION WILL BE AVIABLE ONLINE IN SEPTEMBER 2020 !!!**
+**THIS IS NOT THE FINAL VERSION OF THE COURSE **
 
-This course is based on the book **Practical Regression and Anova using R**  by Julian J. Faraway which is available online. The course consists of 9 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
+This course is based on the book **Practical Regression and Anova using R**  by Julian J. Faraway which is available online (see the link below). The course consists of 9 classes, each of three hours and combines theory and application using R. Topics covered in the course include:
 
 * Simple linear regression
 * Multiple linear regression
@@ -16,12 +16,16 @@ This course is based on the book **Practical Regression and Anova using R**  by 
 * Transformations
 * Model diagnostic
 
-Homework assignments and an example of an exam is available as well.
-
-The course was developed by Legesse Kassa Debusho, UNISA, South
-Africa and Ziv Shkedy, Hasselt University, Belgium.
 
 # Course materials
 * Book: https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf
 * Slides: https://github.com/eR-Biostat/Courses/tree/master/Core%20-1/Linear%20Models/Slides
 * R programs: https://github.com/eR-Biostat/Courses/tree/master/Linear%20Models/R%20programs
+
+
+# Course development
+
+The course was developed jointy by Bisrat Misganaw, Gondar University, Ethiopia, Legesse Kassa Debusho, UNISA, South Africa and Ziv Shkedy, Hasselt University, Belgium.
+
+ * E-Mail: bisratcsa@gmail.com
+ * Phone:+251920190998
