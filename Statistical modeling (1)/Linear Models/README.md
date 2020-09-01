@@ -27,7 +27,7 @@ This course is based on the book **Practical Regression and Anova using R**  by 
 
 The course was developed jointy by Bisrat Misganaw, Gondar University, Ethiopia, Legesse Kassa Debusho, UNISA, South Africa and Ziv Shkedy, Hasselt University, Belgium.
 
-Contact details for Dr. Bisrat Misganaw:
+Contact details for Prof. Bisrat Misganaw:
 
  * E-Mail: bisratcsa@gmail.com
  * Phone:+251920190998
