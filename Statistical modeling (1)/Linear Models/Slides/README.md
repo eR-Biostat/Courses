@@ -1,11 +1,11 @@
 # The >eR-Biostat initative
-## Linear Models: Slides 
-### The final version of all course materials will be fully available on line in September 2020. 
+## Applied Linear Models using R: Slides 
+### This is NOT the final version of the course !!!. 
 
 The slides for the course cover the follwing topics:
 
-* **Simple linear regression** (EXAMPLE, NOT A FINAL VERSION)
-* **Multiple linear regression** (EXAMPLE, NOT A FINAL VERSION)
+* Simple linear regression
+* Multiple linear regression
 * Least squares and generalized least squares
 * Estimation
 * Inference
