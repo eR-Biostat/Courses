@@ -1,0 +1,367 @@
+---
+title:  "Introduction to R: practical sessions (1)"
+author:
+- name: Ziv Shkedy, Marijke Van Moerbeke, Ewoud De Troyer, Rudradev Sengupta, Mohamad Zafer Merhi
+affiliation: Hasselt University, Belgium
+subtitle:  A collection of R exercises (2020)
+
+#institute: UHasselt
+date: May, 2020
+output:
+  rmdformats::readthedown:
+    highlight: kate
+    use_bookdown: TRUE
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+categories: ["R"]
+bibliography: bibliography.bib
+---
+
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+```{r style, echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+suppressPackageStartupMessages({
+  library(BiocStyle)
+  library(knitr)
+  library(rmarkdown)
+  library(bookdown)
+})
+options(width = 100)
+opts_chunk$set(fig.width = 5, fig.height = 5)
+
+```
+
+
+```{r,echo=FALSE}
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(mvtnorm)
+library(tidyverse)
+library(dslabs)
+library(dplyr)
+library(NHANES)
+```
+
+
+\newpage
+
+# Introduction
+
+The practical sessions are a collection of exercises about selected topics that were discussed in the course. You will receive information by email about the submission date of the solution. Solution should be submitted in a <tt>Rmd</tt> file. 
+
+# The NHANES data
+
+In many practical sessions the NHANES dataset (the R object <tt> NHANES$</tt>) will be used. The NHANES dataset consists of data from the US National Health and Nutrition Examination Study. Information about 76 variables is available for 10000 subjects included in the study. Note that you need to install the package <tt>NHANES</tt>.
+
+
+```{r}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+```
+
+Variables names are listed below.
+
+
+```{r}
+names(NHANES)
+```
+
+# Practical session 1: sampling from a population
+
+
+In this practical session we use the <tt>NHANES</tt> as a population of 10000 individuals. Useful R functions for this parctical sessions include:
+
+ * <tt>sample()</tt>.
+ * <tt> na.omit()</tt>.
+ 
+## The mean and variance weight in the population
+
+ * Calculate the mean, median and the variance of the weight.
+
+### Solution
+
+```{r}
+mean(na.omit(NHANES$Weight))
+median(na.omit(NHANES$Weight))
+var(na.omit(NHANES$Weight))
+```
+
+
+## The mean and variance weight in the population
+
+ * Draw 5 samples of size 500 from the population. For each sample calculate the mean and the variance    and plot the histogram for the sample. 
+ * Use the R function <tt>qqnorm</tt> normality.
+ 
+
+### Solution
+ 
+
+
+## Correlation
+
+ * Calculate the population correlation between weight and Height.
+ * Draw 5 samples of weight and Height (size 100) from the population and calculate the sample   
+   correlation.
+ * Produce a scatterplot, per sample for weight and Height.
+ 
+ 
+### Solution
+ 
+ 
+
+
+
+## BMI
+
+  * The BMI is define as:
+  \[
+  MBI= \frac{weight}{height^2}.
+  \]
+  
+  Calculate the individual MBI in the 5 samples and plot the BMI versus the subject age.
+  
+
+### Solution
+ 
+ 
+
+# Practical session 2: probability
+
+Solve the follwoing queatons using R:
+
+ * Let $X$ be a random variable, $X \sim B(10,0.3)$. Calculate the probability $P(X<3)$, $P(5<X<9)$
+ * Plot the densities (in one figure) for $N(0,1)$ and $N(2,1)$.
+ * Plot the densities (in one figure) for $N(0,1)$ and $N(0,2)$.
+ * Calculate the probability function for a random variable $X \sim B(2,0.5)$.
+ * Let $X$ be a random variable, $X \sim Poisson(3) $. Calculate the probability $P(X<4)$.
+ * Draw a random sample of 55 observations form $P(3)$, calculate the mean and variance of the sample.
+ * Let $X$ be a random variable, $X \sim N(1,2)$, calculate the probability $P(X < 0)$.
+ * Let $X$ be a random variable, $X \sim N(0,1)$, calculate the probability $P(X < 0)$.
+ * Let $X_{1},\dots,X_{10}$ be a random sample from $N(10,1)$ and let $\bar{X}$ be the sample mean.       Calculate the probability that $P(\bar{X}<9)$ and the probability that $P(X<9)$.
+ * Draw a random sample of 1000 observations from $N(10,1)$. Calculate the sample mean. What is the       proportion of observations smaller than 9 ? Plot a histogram of the sample.
+  
+## Solution
+ 
+ 
+# Practical session 3: basic Graphical displays
+ 
+In this question we use the NHANES dataset, the R object <tt>NHANES</tt>. Use the basic graphical functions in R produce the following plots:
+
+ * Histogram for the BMI.
+ * scaterplot of the BMI versus age.
+ * scaterplot of the BMI versus age in which the indivudlas with Diabetes and without Diabetes are   
+   ploted in different colors.
+ * Boxplot of age across the level of the factor Diabetes.
+ * Normal probability plot for height.
+ * Normal probability plot for weight by Diabetes status (in one page).
+ * Define the z-scores for the weight by
+ \[
+ z_{i}=\frac{w_{i}-\bar{w}}{sqrt{var(w_{i})}},
+ \]
+ 
+ and (1) caluculate the mean and variance of $z_{i}$ and (2) plot the normal probability plot for $z_{i}$.
+  
+  
+## Solution
+
+
+# Practical session 4: two samples t-test
+
+
+In this question we use the NHANES dataset, the R object <tt>NHANES</tt>. 
+
+ * Use a two-sample t-test to test the null hypothesis that the BMI of Diabetes patients is equal to   
+   the BMI of non Diabetes patients against two sided alternative. Assume that the variance in equal in      the two groups.
+ * Use a graphical display to visualize the distribution of the BMI for Diabetes and non Diabetes         patients. 
+ * calculate the mean BMI by Diabetes status.
+ 
+
+## Solution
+
+
+# Practical session 5: One-way ANOVA
+
+## The Motor Trend Car Road dataset
+
+In this question we use the Motor Trend Car Road dataset, the R object <tt>mtcars</tt>. Use <tt>help(mtcars)</tt> to get more information about the data.
+
+ * Formulate a One-way  ANOVA model in which the response variable is mile per gallon and the factor is    Number of forward gears.
+ 
+ * Use a graphical display to visualize the distribution of the response across the factor levels.
+ * Calculate overall the mean mile per gallon and across the factor level.
+ * Fit the One-way ANOVA model in R and, use two different functions to fit the model and compare
+   between the output.
+
+### Solution
+
+
+## The NHANES dataset
+
+In this question we use the NHANES dataset, the R object <tt>NHANES</tt>. 
+
+ * Formulate a One-way  ANOVA model in which the response variable is the income (<tt>BMI</tt>) and the factor is the edcuation level (<tt>Education</tt>).
+
+ * Use a graphical display to visualize the distribution of the response across the factor levels.
+ * Calculate mean income in the huosehold for level of eduation. 
+ * Fit the One-way ANOVA model in R. How many individuals were included in the analysis ?
+
+###  Solution
+
+
+
+# Practical session 6: Simple linear regression
+
+## The airquality  dataset
+
+In this question we use the airquality dataset , the R object <tt> airquality </tt>. Use <tt> help(airquality)</tt> to get more information about the data.
+
+  * Formulate a simple linear regression model in which the dependent variable in the Ozone level and      the predictor is the maximum daily temperature in degrees Fahrenheit at La Guardia Airport.
+  * Produce a scatterplot of the Ozone versus the temperature and calculate the correlation between the     two variables.
+  * Fit the model in R . Interpret the results.
+  * Do you think that a simple linear regression model is appropriate in this case.
+
+### Solution
+
+
+
+## The NHANES data
+
+In this question we use the NHANES dataset.
+
+ * Fit a linear regreesion model for the BMI with age as predictor. Incluse in the analysis individuals    for whom the age is smaller than 40 years old.
+ * Produce a scapterplot for the BMI versus the age.
+ * Plot the data and fitted model.
+ 
+### Solution 
+ 
+
+
+# Practical session 7: Linear regression
+
+## The Motor Trend Car Road dataset
+
+In this question we use the Motor Trend Car Road dataset, the R object <tt>mtcars</tt>. Use <tt>help(mtcars)</tt> to get more information about the data.
+
+ * Formulate a linear regression model in which the response variable is mile per gallon and the   
+   predictors are the Number of cylinders and the cars weight. Include in the model main effects and      interaction.
+   
+ * Fit the model in R and use a F-test to text if the interaction is needed. Interpret the results.
+ * Visualize the results.
+
+## Solution
+
+
+# Practical session 8: for loop
+
+## Random sample for a population (I) 
+
+ * Draw a random sample of size 10 from $N(10,2)$. Calculate the sample mean, the sample variance and 
+   the standard error of the sample mean.
+ * Draw 1000 random samples of size 10 from $N(10,2)$. For each sample, calculate the sample mean, the    sample variance and the standard error of the sample mean. 
+ * Produce the histogram for the sample means.
+ * Calculate the variance of the 1000 sample means.
+
+### Solution
+
+
+## Random sample for a population (II)
+
+ * Draw 1000 random samples of size 10000 from $N(0,1)$. For each sample, calculate $\hat{P}(X<-1.96)$
+ * Produce the histogram for $\hat{P}(X<-1.96)$.
+ * Calculate the mean of  $\hat{P}(X<-1.96)$ and interprate the results.
+ 
+### Solution
+
+
+
+# Practical session 9: user functions
+
+## One-way ANOVA
+
+Write a function that fit a One-way ANOVA model for a continuous response and a factor. The function should produce the following output:
+
+ * A side by side boxplot in which the response is presented across the factor levels.
+ * A multi-way histogram in which the response is presented across the factor levels.
+ * The overall response mean and the response mean by the factor level.
+ * ANOVA table.
+ * Distribution of the residuals.
+ 
+### Solution
+
+* The function:
+
+
+
+* Application to the <tt>mtcars</tt> data:
+
+
+
+## Univariate analysis
+
+Write a function that explore the distribution of a continues response.  The function should produce the following output:
+
+ * Produce a qq-normal plot for the response.
+ * Produce a histogram for the response.
+ * Produce a boxplot for the response.
+ * Calculate the mean, median and trimmed mean ($10\%$) for the response. 
+ * Calculate the variance and the range of the response.
+
+### Solution
+
+* The function:
+
+
+* Application to the <tt>mtcars</tt> data:
+
+
+# Practical session 10: using a <tt>for loop </tt>
+
+The following practical session was proposed by Omer Sercik. \newline
+
+## Sampling from $N(0,1)
+
+The following practical session was proposed by Omer Sercik. \newline
+
+During the lecture, we generated a random sample which has a standard normal distribution, meaning mean = 0 and variance = 1. When you calculate the mean and the variance of this sample, say x, we don't get exactly 0 and 1 for the mean and variance, respectively. 
+
+* Draw a random sample of size 25 from $N(0,1)$. Plot the histogram and density estimate and calculate the mean and variance.
+* Draw 100 random samples of size 25 from $N(0,1)$, for each sample, calculate the sample mean and variance. Plot a histogram for the sample mean and variance and add a vertical line with the true values.
+* Draw random sample of size 5,10,25,50,100,200,500 and 1000 form $N(0,1)$. For each sample size draw 100 random samples. For each sample calculate the mean and variance. Produce a boxplot in which you plot the sample means for each sample size (in the same figure). Do the same for the variance.
+
+
+## Solution
+
+
+# Practical session 11: Data menagemanet using <tt>Tidyverse</tt>
+
+See ptactical session in the <tt>Tidyverse</tt> chapter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
