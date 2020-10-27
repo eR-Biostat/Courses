@@ -1,0 +1,855 @@
+---
+title: "The tidyverse"
+subtitle: " "
+author: "Ziv SHkedy et al. (2020)"
+institute: "Hasselt University"
+date: "16/09/2020"
+output:
+  xaringan::moon_reader:
+    css: ["default", "chocolate", "rladies-fonts"]
+    lib_dir: libs
+    seal: false
+    nature:
+      beforeInit: "cols_macro.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE,
+                      eval = TRUE,
+                      tidy = FALSE)
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(dplyr)
+
+```
+
+
+
+class: center, middle
+
+
+# An introduction to the <tt>tidyverse</tt>
+
+#### Ziv Shkedy et al. (2020)
+
+
+---
+
+
+class: center, middle
+
+# Part 1: Introduction 
+
+`Focus: a quick introduction to tidyverse` <br>
+
+---
+
+
+# The <tt> tidyverse </tt>
+
+ * The <tt> tidyverse </tt> is a collection of R packages that work in data frames in a tidy format.
+ * All packages are uploaded in CRAN, and can be installed  using <tt>  install.packages </tt> . 
+ * In this chapter of the interactive book, we cover materials at an introduction level and follow closely the topics    
+   presented in Chapter 4 in the book  Data Analysis and Prediction Algorithms with R by 
+   Rafael A. Irizarry.
+
+---
+
+# What do we cover in this chapter ?
+
+* The chapter is developed at a beginner level.
+* We cover few functions from the <tt> tidyverse </tt> packages and illustrate the basic concepts using different examples   of the following functions:
+
+ - <tt> mutate() </tt>
+ - <tt> filter() </tt>
+ - <tt> select() </tt> (separate set of slides)
+ - The pipe: $\% > \%$ (separate set of slides)
+ - <tt> summarize() </tt>
+ - <tt> group_by() </tt>
+ - <tt> arrange() </tt>
+ - <tt> top_n() </tt>
+ 
+---
+
+
+# <tt>ggplot2</tt> ?
+
+* Our aim in this tutorial is not to teach <tt> ggplot2 </tt> (this will be done in a different chapter). 
+* Some functions of the package are used to visualized the main patterns in the datasets we used to illustrate the examples presented in this chapter. 
+* The following graphical functions are used for visualization:
+
+  - <tt> qplot() </tt>
+  - <tt> ggplot() + geom_jitter()</tt>
+  - <tt> ggplot() + geom_point() </tt>
+  - <tt> gplot() +    geom_density() </tt>
+  - <tt>stripplot()</tt>
+
+
+---
+
+# Online references (I)
+
+* Materials about <tt> tidyverse </tt> are widely available online. 
+
+ * For a YouTube tutorial about tidyverse in R by 
+   Mark Gingrass see [YTtidyverse1](https://www.youtube.com/watch?v=JtQfXY0lIzc).
+ * For a YouTube tutorial about tidyverse in R by 
+   Garreet Grolemund see [YTtidyverse2a](https://www.youtube.com/watch?v=jOd65mR1zfw).
+ * For a YouTube tutorial about tidyverse in R by 
+   Garreet Grolemund see [YTtidyverse2b](https://www.youtube.com/watch?v=1ELALQlO-yM).
+ * For a YouTube tutorial about tidyverse in R by 
+   Ben Stenhaug see [YTtidyverse3](https://www.youtube.com/watch?v=lTTJPRwnONE&list=PLLxj8fULvXwGOf8uHlL4Tr62oXSB5k_in).
+
+---
+
+# Online references (II)
+
+* Interactive book for the course: [Booktidyverse1](http://htmlpreview.github.io/?https://github.com/eR-Biostat/Courses/blob/master/Introductory%20Courses/Introduction%20to%20R/Onlinebook/Rintro_Tidy-html-_V1.html)
+* Chapter 4 in the book: Data Analysis and Prediction Algorithms with R by Rafael A. Irizarry see [Chapter4](https://rafalab.github.io/dsbook/tidyverse.html).
+
+---
+
+class: center, middle
+
+# Part 2: the tidyverse package and tidy data
+
+`Focus: modern data frames` <br>
+
+
+---
+
+# Tidy data
+
+* Tidy data is a data format in which each row represents one measurement for one observation and columns are, as usual, the variables in the data.
+
+---
+
+
+# The murders data
+
+.pull-left[
+* The <tt>murders</tt> is an example of a tidy data. 
+* The information for each state is given in one line. 
+* Note that in this case, each observation (=state) has information in one data line.
+]
+
+.pull-right[
+```{r}
+data("murders")
+head(murders) 
+```
+]
+
+---
+
+# The murders data
+.pull-left[
+* The murder rate by region  is shown in the stripplot.
+* It shows clearly that in the west, the total murders is the lowest.
+]
+
+.pull-right[
+```{r fig1b,fig.cap="Dotplot using the gg2plot package"}
+ggplot(murders, aes(region,total)) + geom_jitter(position = position_jitter(width = .05))
+```
+]
+
+---
+
+# The ChickWeight data
+
+* The Chicken Weight data gives information about weights of chicken in differnt diet groups.
+* Each observation is a chick and it was measured in 12 times points. 
+
+
+```{r}
+names(ChickWeight)
+unique(ChickWeight$Time)
+```
+
+* In the data frame, each measurement is presented in one data line. 
+* Hence, the <tt> ChickWeight </tt> is a tidy data. 
+
+---
+
+# The ChickWeight data
+.pull-left[
+* This implies that that the data for each observation is presented in 12 lines.
+* note that NOT ALL subjects were measured in 12 times. 
+* Data for the first 6 time points of the first chick are listed below.
+]
+
+.pull-right[
+```{r}
+head(ChickWeight)
+```
+]
+
+---
+
+# The ChickWeight data
+
+.pull-left[
+* The boxplot of the chicken weights by time point.
+* Itshows the increasing trend of the weight over time.
+]
+
+.pull-right[
+```{r fig1c,fig.cap="Boxplot for the singers data (I.1)."}
+ggplot(ChickWeight, aes(as.factor(Time),weight)) + geom_boxplot()
+```
+]
+
+---
+
+class: center, middle
+
+# Part 3: the <tt>mutate()</tt> 
+
+`Focus: adding a column(s)` <br>
+
+---
+
+#  Adding a variable (column)
+
+* Suppose that we would like to calculate the murder rate per 100000 people  that is
+
+$$rate=\frac{total}{population} \times 100000.$$
+* This can be done using the <tt> mutate() </tt> funtion.
+* The function has the grneral call of:  <tt> mutate(data frame , new variable) </tt>.
+
+---
+
+# The murders data
+
+* For the <tt>murders</tt> data we have
+
+```{r}
+data("murders")
+murders <- mutate(murders, rate = total / population * 100000)
+```
+
+* Note that after calculating the murder rate, the <tt> murders </tt> has an extra column (=variable) for the <tt>rate</tt>.
+
+```{r}
+head(murders) 
+```
+
+---
+
+# The NHANES data
+
+* The BMI of a person is given by $$BMI=\frac{weight}{height^{2}}$$.
+
+
+* To calculate the BMI in the <tt> NHANES </tt> we use
+
+```{r}
+data("NHANES")
+Data_new <- mutate(NHANES, BMI_new = Weight / (Height*Height))
+```
+
+---
+
+# The NHANES data
+
+.pull-left[
+* The histogram of the BMI.
+]
+
+.pull-right[
+```{r fig1d,fig.cap="Histogram for the BMI."}
+qplot(BMI_new , data=Data_new, geom="histogram")
+```
+]
+---
+
+# Practical session
+
+* For the cars data (<tt> mtcars</tt>):
+  
+  - Define a new variable: mile per gallon / weight.
+  - Produce a boxplot for the variable mile per gallon / weight by number of number of cylinders.
+
+* For the murders data :
+  
+  - Produce a boxplot for the murder rate by region.
+
+---
+
+class: center, middle
+
+# Part 4: the <tt> filter() function </tt> 
+
+`Focus: selection of cases` <br>
+
+---
+
+# Filtering
+
+* Selection of observations (=cases) from the data.
+* A subset of the data.
+* can be done using the function <tt> filter() </tt>.
+* The new data: has the same variables.
+
+---
+
+# The murders data
+
+* For murder dataset, we can select all the states with murder rate $\le 0.71$ by
+
+```{r}
+filter(murders, rate <= 0.71)
+```
+
+---
+
+# The cars data
+
+* For cars data, suppose that we would like to plot the cars' weight versus the cars mpg for cars with weight $\le 3$. 
+* We first select all cars with weight smaller or equal to 3:  
+
+```{r}
+dim(mtcars)
+mtcars1<-filter(mtcars, wt <= 3)
+dim(mtcars1)
+```
+
+---
+
+# The cars data
+
+* The new data frame <tt> mtcars1 </tt> contains the information for all cars with weight lower than 3,
+
+```{r}
+mtcars1
+```
+---
+
+# The cars data
+
+.pull-left[
+* Car's weight <= 3.
+* The scaterplot below of the weight versus the mpg can be produce using the following code.
+]
+
+.pull-right[
+```{r fig1e,fig.cap="mile per galllon versus weight."}
+ggplot(mtcars1, aes(x=wt, y=mpg)) + 
+  geom_point()
+```
+]
+
+---
+
+# Practical session
+
+* For the NHANES data:
+
+ - Select all the observations for which the BMI is greater or equal to 30.
+ - Produce the histogram for the variable BMI for all male. 
+
+* For the chick weight data (<tt>chickwts</tt>):
+
+ - Select all chicks with weight smaller than 158.
+ - Select all chicks from the <tt>horsebean</tt> feed group.
+
+---
+
+
+class: center, middle
+
+# Part 5: the <tt>select()</tt> function 
+
+`Focus: selection of variables` <br>
+
+---
+
+
+class: center, middle
+
+# Part 6: the pipe $\% > \%$ 
+
+`Focus: multiple startments in one run` <br>
+
+---
+
+
+class: center, middle
+
+# Part 7: the <tt> summarize()</tt> function 
+
+`Focus: summary statistics` <br>
+
+---
+
+# The summarize function 
+
+* The function <tt> summarize() </tt> allows us to produce summery statistics for variables in the data frame.
+
+---
+
+# The heights data
+
+* The height data frame gives the height by gender for 1050 individuals
+
+```{r}
+library(dplyr)
+library(dslabs)
+data(heights)
+dim(heights)
+```
+
+* The first 6 observations in the data are listed below.
+
+```{r}
+head(heights)
+```
+
+---
+
+## Mean and standard deviation
+
+* We can calculate the mean and standard deviation for female using the function <tt> summarize () </tt>.
+* Note that we first filter the data and define and subgroup contains the data for female
+
+```{r}
+s <- heights %>%  filter(sex == "Female") %>%
+  summarize(average = mean(height), standard_deviation = sd(height))
+```
+
+* The object <tt> s </tt> stores the results
+
+```{r}
+s
+```
+
+---
+
+## Mean and standard deviation
+
+* We can define a vector that contains the results
+
+
+```{r}
+c(s$average,s$standard_deviation)
+```
+
+---
+
+# Summary statistics by group
+
+Alternatively, we can define a vector with the female heights (<tt> height.female </tt> ) and calculate the mean and standard deviation for this vector.
+
+```{r}
+height.female<-heights$height[heights$sex == "Female"]
+mean(height.female)
+sd(height.female)
+```
+
+---
+
+## Quantiles
+
+* The median, minimum and maximum height for female
+
+```{r}
+heights %>% 
+  filter(sex == "Female") %>% summarize(median = median(height), minimum = min(height), 
+                                         maximum = max(height))
+```
+
+---
+
+## Quantiles
+
+* These summary statistics can be also calculate can the function <tt> quantile </tt>.
+
+```{r}
+heights %>%  filter(sex == "Female") %>%
+  summarize(range = quantile(height, c(0, 0.5, 1)))
+```
+
+
+---
+
+# The chicks data
+
+* To calculate the mean and standard deviation for the chick weights we use
+
+```{r}
+s <- chickwts %>%  summarize(average = mean(weight), standard_deviation = sd(weight))
+s
+```
+
+* Note that for this example we ignore the diet group. 
+
+---
+
+# Practical session
+
+* For the NHANES data:
+  
+  * Canculate the mean, meadian and standard deviation of the variable BMI.
+  * Canculate the mean, meadian and standard deviation of the variable BMI only for male.
+
+* For the cars data:
+  
+  * Canculate the mean, meadian and standard deviation of the variable weight.
+  * Canculate the mean, meadian and standard deviation of the variable weight only for cars with       
+    automatic transmission.
+  
+---
+
+
+class: center, middle
+
+# Part 8: the <tt> group_by()</tt> function 
+
+`Focus: summary statistics by group` <br>
+
+---
+
+# Analysis by group
+
+* In this section we focus on an analysis in which the analysis is done across a level of a factor in the data frame. 
+* For example, the diet group in the chick data frame etc.
+
+---
+
+
+# The heights data
+
+* The mean and standard deviation for the height by gender can be calculate by adding the function <tt> group_by(sex) </tt>
+
+```{r}
+heights %>% 
+  group_by(sex) %>%
+  summarize(average = mean(height), standard_deviation = sd(height))
+```
+
+---
+
+# The heights data
+
+* The same results can be obtained using the function <tt> tapply </tt>.
+
+
+```{r}
+tapply(heights$height,heights$sex,mean)
+tapply(heights$height,heights$sex,sd)
+```
+
+---
+
+# The murders data
+
+* The median murder rate by region using the <tt> group_by(region) </tt> and the <tt> summarize () </tt> functions
+
+```{r}
+murders %>% group_by(region) %>%
+  summarize(median_rate = median(rate))
+```
+
+---
+
+# The murders data
+
+The median murder rate by region using the <tt> tapply() </tt> function.
+
+```{r}
+tapply(murders$rate,murders$region,median)
+```
+
+---
+
+# The chicks data
+
+* Summary statistics by diet group
+
+```{r}
+chickwts %>% 
+  group_by(feed) %>%
+  summarize(average = mean(weight), standard_deviation = sd(weight))
+```
+---
+
+# The chicks data
+
+.pull-left[
+* The striptplot reveals that the weights in the horsebean group are, in general, the smallest in the sample. 
+]
+
+.pull-right[
+
+```{r figh, fig.cap=" by diet group."}
+stripplot(feed ~ jitter(weight), 
+            data = chickwts, 
+            aspect = 1, jitter = T, 
+            xlab="Chicks weight", col = 1)
+```
+]
+
+---
+
+
+# Practical session
+
+* For the NHANES data:
+
+  * Calculate the mean BMI by gender.
+  * Calculate the mean age by diabetes status (the variable <tt>Diabetes</tt>).
+  
+* For the cars data:
+  
+  * Canculate the mean, meadian and standard deviation of the variable weight by transmission type (automatic vs. manual).
+  * Canculate the mean, meadian and standard deviation of the variable miles per gallon by number ofcylinders.
+  
+---
+
+
+
+class: center, middle
+
+# Part 9: the <tt> arrange()</tt> function 
+
+`Focus: sorting the data` <br>
+
+---
+
+
+# The murders data
+
+* We can sort a data frame by a variable <tt> x </tt> using the function <tt> arrange(x) </tt>. 
+* For the murder data frame, we sort the data by the population size
+
+```{r}
+murders %>%
+  arrange(population) %>% head()
+```
+
+---
+
+# The murders data
+
+* The same sorting can be implemented using the function <tt> order () </tt>. 
+* In this case the rows will be presented in the order of the population.
+
+```{r}
+data1<-murders[order(murders$population),]
+head(data1)
+```
+
+---
+
+# Sorting and changing the order
+
+* We sort the data frame by rate from the lowest to the highest rate
+
+```{r}
+murders %>% 
+  arrange(rate) %>%
+  head()
+```
+
+---
+
+# Sorting and changing the order
+
+
+* We can change the order using the function <tt> desc() </tt> so the data are presented from the highest to the lowest rate in a decreasing order.
+
+```{r}
+murders %>% 
+  arrange(desc(rate)) %>%
+  head
+```
+
+---
+
+# The Chicken Weight data
+
+* The first 6 observations in the chicken weight data belongs to the first chick at time point 0 to 10.
+
+```{r}
+head(ChickWeight)
+```
+
+---
+
+# The Chicken Weight data
+
+* We sort the data frame according to the <tt> Time </tt> variable. After sorting, the first 6 lines in the data frame are the measurements for chock 1-6 at day 21. 
+
+```{r}
+ChickWeight %>% 
+  arrange(desc(Time)) %>%
+  head
+```
+
+---
+
+# The Chicken Weight data
+
+* We can reverse the order, in this case the first 6 lines are the measurements for check 1-6 at baseline (<tt> Time =0 </tt>).
+
+```{r}
+ChickWeight %>% 
+  arrange(Time) %>%
+  head
+```
+
+---
+
+# Practical session
+
+  * Sort the NHANES data according to the subjects' BMI.
+  * For the NHANES data, select all subjects with diabetes (the variable <tt>Diabetes</tt>) and sort
+    according to the subjects' age.
+  * Sort the cars data according to the cars' mpg. 
+  
+
+---
+
+class: center, middle
+
+# Part 10: Nested sorting 
+
+`Focus: sorting with two variables` <br>
+
+---
+
+# Nested sorting 
+
+* Suppose that we want to present the data in an increasing order  of <tt> x </tt>  across a level of a factor <tt> y </tt>.  
+* We can sort the data frame by a variable <tt> x </tt> within the factor levels using the function <tt> arrange(y,x) </tt>. 
+
+---
+
+# the murder data
+
+* For the murder data frame, we sort the data by murder rate within the region
+
+```{r}
+murders %>% 
+  arrange(region, rate) %>% 
+  head()
+```
+
+---
+
+# The cars data
+
+.pull-left[
+* The figure  shows that <tt>mpg</tt> as the number of cylinders decreases.
+]
+
+.pull-right[
+```{r figi, fig.cap="MPG by number of cylinders."}
+stripplot(cyl ~ jitter(mpg), 
+            data = mtcars, 
+            aspect = 1, jitter = T, 
+            xlab="MPG", col = 1)
+```
+]
+
+---
+
+# The cars data
+
+* We can sort the cars according to their mpg (in an increasing order) by the number of cylinders
+
+```{r}
+mtcars %>% 
+  arrange(cyl, mpg) 
+```
+
+---
+
+# Practical session
+
+  * Sort the NHANES data according to the subjects' BMI by Gender.
+  * Sort the NHANES data according to the subjects' age by smoking status (the variable    
+    <tt>Smoke100</tt>).
+  * Sort the Chicks Weights data (<tt>chickwts</tt>) according to the chicks' weight by diet group.
+  
+
+---
+
+
+class: center, middle
+
+# Part 11: The <tt>top_n()</tt> function 
+
+`Focus: selection of the top K observations` <br>
+
+---
+
+# Top n
+
+* To print the top $n$ observations according to the variable <tt> x </tt> we can use the function <tt> top_n(n, x) </tt>. 
+
+---
+
+
+# The murders data
+
+* For the murders data, we print the top 5 states with the highest murder rate
+
+```{r}
+murders %>% top_n(5, rate)
+```
+
+---
+
+# The cars data
+
+.pull-left[
+* The scaterplot of the cars' weight versus the cars' <tt>mpg</tt>.
+* The top 4 cars, with the highest mpg are given below
+
+```{r}
+mtcars %>% top_n(4,mpg)
+```
+]
+
+.pull-right[
+```{r figj, fig.cap="MPG by number of cylinders."}
+ggplot(mtcars, aes(x=wt, y=mpg)) + 
+  geom_point()
+```
+]
+
+---
+# Practical session
+ 
+ * Print the 10 observations in the NHANES data with the highest BMI.
+ * Create a new data frame that contains the top 5 observations with the older age in in the NHANES   
+   data. 
+
+
+---
+
