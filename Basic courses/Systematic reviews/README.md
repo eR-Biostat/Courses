@@ -26,7 +26,7 @@ Systematic reviews and meta-analyses are critical for evidence-based clinical an
     * Describe evidence grading and demonstrate  
 
 ## Course materials
-* Slides
-## Online course developer: Tadesse Awoke 
+* Slides : https://github.com/eR-Biostat/Courses/tree/master/Basic%20courses/Systematic%20reviews/Slides
+## Online course developer: Tadesse Awoke, Gondar University, Ethiopia. 
 * Email: tawoke7@gmail.com
 
