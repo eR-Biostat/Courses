@@ -1,6 +1,4 @@
-# The >eR-Biostat initative
-
-## Making R based education materials accessible for all
+# The >eR-Biostat initative: making R based education materials accessible for all
 
 ## Coordination & Curiculum development for >eR-BioStat:
  * Tadesse Awoke (Gondar University, Ethiopia).
