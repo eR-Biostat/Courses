@@ -1,8 +1,8 @@
 # The >eR-Biostat initative
 
-##Making R based education materials accessible for all
+## Making R based education materials accessible for all
 
-##Coordination:
+## Coordination:
  * Tadesse Awoke (Gondar University, Ethiopia).
  * Adetayo Kasim (Durham University, UK).
  * Ziv Shkedy (Uhasselt University, Belgium).
@@ -13,40 +13,38 @@
  * Ziv Shkedy (Uhasselt University, Belgium).
  * Khangelani Zuma (HSRC, Sauth Africa).
 ## Contributors:
-###	Introductory courses:
+
+### Introductory courses:
  * Abdisa Gurmessa (Jimma University,Ethiopia).
  * Legesse Kassa Debusho (UNISA, South Africa).
-o	Dan Lin (Uhasselt University, Belgium).
-o	Tadele Worku Mengesha (Gondar University, Ethiopia).
-o	Ziv Shkedy (Hasselt University, Belgium).
-o	Tadele Worku Mengesha (Gondar University, Ethiopia).
-•	Basic courses:
-o	Marc Lavielle (CMAP, Ecole Polytechnique, France).
-o	Martin Otava (Hasselt Univesrsity, Belgium).
-o	Dinberu Seyoum (Jimma University, Ethiopia).
-o	Ziv Shkedy (Hasselt University, Belgium).
-•	Statistical modeling (I):
-o	Tadesse Awoke (Gondar University, Ethiopia).
-o	Nasima Akhter (Durham University, UK).
-o	Adetayo Kasim (Durham University, UK).
-o	Said Mussa (Mekele University, EThiopia).
-o	Fetene Tekle (Janssen Phamacutical, Belgium).
-•	Statistical modeling (II):
-o	Roel Braekers (Hasselt University, Belgium).
-o	Khangelani Zuma (HSRC).
-o	Alessio Crippa (Karolinska Institutet,Sweden).
-o	David Harrington (Harvard, USA).
-•	Data analysis:
-o	Franaois Husson (Agrocampus Ouest, France).
-o	Julie Josse (Ecole Polytechnique, France).
-•	Statistical inference:
-o	Martin Otava (Hasselt Univesrsity, Belgium).
-o	Ziv Shkedy (Hasselt Univesrsity, Belgium).
-o	David Harrington (Harvard, USA).
-o	Julie Vu (Harvard, USA).
-
-
-
+ * Dan Lin (Uhasselt University, Belgium).
+ * Tadele Worku Mengesha (Gondar University, Ethiopia).
+ * Ziv Shkedy (Hasselt University, Belgium).
+ * Tadele Worku Mengesha (Gondar University, Ethiopia).
+### Basic courses:
+ * Marc Lavielle (CMAP, Ecole Polytechnique, France).
+ * Martin Otava (Hasselt Univesrsity, Belgium).
+ * Dinberu Seyoum (Jimma University, Ethiopia).
+ * Ziv Shkedy (Hasselt University, Belgium).
+###	Statistical modeling (I):
+	* Tadesse Awoke (Gondar University, Ethiopia).
+	* Nasima Akhter (Durham University, UK).
+	* Adetayo Kasim (Durham University, UK).
+	* Said Mussa (Mekele University, EThiopia).
+	* Fetene Tekle (Janssen Phamacutical, Belgium).
+### 	Statistical modeling (II):
+	* Roel Braekers (Hasselt University, Belgium).
+	* Khangelani Zuma (HSRC).
+	* Alessio Crippa (Karolinska Institutet,Sweden).
+	* David Harrington (Harvard, USA).
+### Data analysis:
+  * Franaois Husson (Agrocampus Ouest, France).
+  * Julie Josse (Ecole Polytechnique, France).
+## Statistical inference:
+  * Martin Otava (Hasselt Univesrsity, Belgium).
+  * Ziv Shkedy (Hasselt Univesrsity, Belgium).
+  * David Harrington (Harvard, USA).
+  * Julie Vu (Harvard, USA).
 
 # Out new website
 
