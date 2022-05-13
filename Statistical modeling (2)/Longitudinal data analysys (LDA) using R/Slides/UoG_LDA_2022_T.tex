@@ -1,0 +1,4140 @@
+\documentclass{beamer}
+%
+% Choose how your presentation looks.
+%\usepackage{adjustbox}
+\usepackage{mdframed}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{graphicx}  % Required for including images
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+\usepackage{fancybox}
+\usepackage{setspace}
+
+% For more themes, color themes and font themes, see:
+% http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+%
+\setbeamercolor{uppercolgreen}{fg=white,bg=green!35}
+\setbeamercolor{lowercolgreen}{fg=black,bg=green!10}
+%
+\mode<presentation>
+{
+  \usetheme{Madrid}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{beaver} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+} 
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+
+
+\title[]{\bfseries\sffamily Longitudinal Data Analysis Using R}
+
+\author[Tadesse A. Ayele]
+{\small Tadesse Awoke Ayele (PhD, Associate Professor)}
+
+\institute[Universities of Gondar] % (optional, but mostly needed)
+{
+	University of Gonder\\
+	\vspace*{2mm}
+	Collage of Medicine and Health Sciences\\
+	\vspace*{2mm}
+	Institute of Public Health
+}
+%\titlegraphic{\hfill\includegraphics[height=1.5cm]{UoGLOGO}}
+%\titlegraphic{\hfill\includegraphics[height=1.5cm]{ACIP}}
+\begin{document}
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{algemeen-foto.pdf}}
+
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{BlankSlide}}
+
+\section{Overview}
+\begin{frame}{Contact Detail}
+\begin{itemize}
+	\item Tadesse Awoke (PhD, Associate Professor)
+	\begin{itemize}
+		
+		\item University of Gondar
+		\item Colleague of Medicine and Health Sciences
+		\item Institute of Public Health
+		\item Epidemiology and Biostatistics 
+		\item Department: Epidemiology and Biostatistics \vspace{0.2cm}
+	\end{itemize}
+	\item Qualifications:
+	\begin{itemize}
+		\item  {\color{blue} MSc Biostatistics}
+		\item {\color{blue}PhD in Biostatistics} 
+	\end{itemize}
+	\item Contacts:
+	\begin{itemize}
+		\item Email: tawoke7@gmail.com 
+		\item Mobile: +251910173308 
+		\item Location: University of Gondar 
+		\item Office hours: Available upon request
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Description}
+\begin{itemize}
+	\item This course focuses on the analysis of longitudinal data with continuous outcome variables. Step by step, we will be developing longitudinal data analysis techniques by extending the well-known multiple linear regression model for studies with repeated observations on the same respondents. This will result in the presentation of the mixed effects model (also known as multilevel model, random-effects model, hierarchical linear model, ...), allowing the analysis of change over time.
+	\item Throughout the course lectures, the emphasis will be on understanding the why and how these models by explaining the underlying theory of these multilevel analyses using lots of examples. The application and interpretation of outcome of these techniques will be demonstrated in R.
+	\item Students entering this course should have knowledge of and experience in using basic statistical concepts and techniques, including multiple linear regression analysis and analysis of variance.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Learning Objectives}
+\begin{itemize}
+	\item At the end of the course, students will learn
+	\vspace{0.2cm}
+	\begin{itemize}
+		\item Explore (graphically and numerically) longitudinal data and recognise the need for mixed effects models (multilevel models)
+		\vspace{0.2cm}
+		\item Understand the theory behind the multilevel model for change
+			\vspace{0.2cm}
+		\item Build, examine, interpret, expand and compare mixed effects models
+			\vspace{0.2cm}
+	   \item Perform all described techniques using R (or other major statistical software packages, see above)
+	   	\vspace{0.2cm}
+		\item Test the assumptions of the models and examine the reliability of the findings 
+		\item Summarize results for publications
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Course Outline}}\\
+\vspace*{3mm}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Part I}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Models for Longitudinal Gaussian Data}}\\
+\end{frame}
+
+\begin{frame}{Chapter 1: Introduction to Longitudinal Data Analysis}
+\begin{itemize}
+\item General Introduction \vspace{0.5cm}
+\item Motivating Examples \vspace{0.5cm}
+\item Cross-sectional versus Longitudinal Data \vspace{0.5cm}
+\item Simple Methods \vspace{0.5cm}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Chapter 2: Exploratory Data Analysis}
+\begin{itemize}
+\item Exploring the Mean Structure  \vspace{0.5cm}
+\item Exploring the Random Effects \vspace{0.5cm}
+\item Exploring the Correlation Structure \vspace{0.5cm}
+\item Exploring the Variability of the Observed Data \vspace{0.5cm}
+	\begin{itemize}
+	\item Individual Profiles  \vspace{0.5cm}
+	\item Average Profile  \vspace{0.5cm}
+	\item Correlation Matrix  \vspace{0.5cm}
+   \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Chapter 3: Models for Longitudinal Gaussian Data}
+\begin{itemize}
+	\item Linear Mixed Models  \vspace{0.5cm}
+	\item A 2-stage Model Formulation \vspace{0.5cm}
+	\item Hierarchical versus Marginal Model \vspace{0.5cm}
+	\item Components of the Linear Mixed Effects Model \vspace{0.5cm}
+	\begin{itemize}
+		\item The Mean Structure  \vspace{0.5cm}
+		\item The Random Effects  \vspace{0.5cm}
+		\item Variance Structure  \vspace{0.5cm}
+		\item The Correlation Structures
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Chapter 4: Practical Guide Using R}
+\begin{itemize}
+	\item Exploratory data analysis using R \vspace{0.5cm}
+	\item Fitting Linear Mixed Effect Models in R \vspace{0.5cm}
+	\item Multivariate Regression Model and gls function in R \vspace{0.5cm}
+	\item Model diagnostics \vspace{0.5cm}
+	\item Extended Linear Modeling Approach
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Part II}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Models for Longitudinal Non-Gaussian Data}}\\
+\end{frame}
+
+\begin{frame}{Chapter 5: Introduction to Longitudinal non-Gaussian data}
+\begin{itemize}
+	\item General Introduction \vspace{0.5cm}
+	\item Motivating Examples \vspace{0.5cm}
+	\item Cross-sectional versus Longitudinal Data \vspace{0.5cm}
+	\item Simple Methods \vspace{0.5cm}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Chapter 6: Models for Correlated Binary Data}
+\begin{itemize}
+\item Introduction to correlated binary data \vspace{0.5cm}
+\item Generalized Estimating Equation \vspace{0.5cm}
+\item Fitting Generalized Estimating Equation in R  \vspace{0.5cm}
+\item Generalized Linear Mixed Effect model \vspace{0.5cm}
+\item Fitting Generalized Linear Mixed Effect Model in R \vspace{0.5cm}
+\item Model Comparison \vspace{0.5cm}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Chapter 7: Models for Correlated Count Data}
+\begin{itemize}
+	\item Introduction to correlated count data \vspace{0.5cm}
+	\item Generalized Estimating Equation \vspace{0.5cm}
+	\item Generalized Linear Mixed Effect model \vspace{0.5cm}
+	\item Model Comparison \vspace{0.5cm}
+	\item Intra class correlation
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{References}
+\begin{itemize}
+\item NSS project in Biostatistics Series: Longitudinal Data Analysis in R 
+\item Andrzej Gałecki  and Tomasz Burzykowski (2013): Linear Mixed-Effects Models Using R: A Step-by-Step Approach
+\item Molenberghs, G. and Verbeke, G. (2005). Models for Discrete Longitudinal Data. New York: Springer.
+\item Garrett Fitzmaurice, Marie Davidian, Geert Verbeke, Geert Molenberghs: Longitudinal Data Analysis: Handbooks of Modern Statistical Methods
+\item Peter Diggle, Patrick Heagerty, Kung-Yee Liang, Scott Zeger: Analysis of Longitudinal Data
+\item Brajendra C. Sutradhar: Longitudinal Categorical Data Analysis
+\item Liu, Xian: Methods and Applications of Longitudinal Data Analysis
+\item Jos W. R. Twisk. Applied Multilevel Analysis. A Practical Guide
+\item Fitzmaurice, Garrett M.,: Handbook of Missing Data Methodology
+\item Jiming Jiang (2007): Linear and Generalized Linear Mixed Models and Their Applications
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teaching Methods and Evaluation}
+\begin{itemize}
+\item Teaching Methods \vspace{0.25cm}
+\begin{itemize}
+\item Lecture \vspace{0.25cm}
+\item Exercise \vspace{0.25cm}
+\item Assignment \vspace{0.25cm}
+\end{itemize}
+\item Evaluation \vspace{0.25cm}
+\begin{itemize}
+\item Participation 5\% \vspace{0.25cm}
+\item Assignment 15\% \vspace{0.25cm}
+\item Project 20\% \vspace{0.25cm}  
+\item Final Exam: 60\% \vspace{0.25cm}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Tentative Schedule}
+\begin{table}
+	\begin{center}
+		\begin{tabular}{|l|c|}
+			\hline \hline
+			\bf{Chapters} & \bf{Date}\\
+			\hline \hline
+			General Introduction & Day 1\\
+			\hline
+			\bf{Part I: Models for Longitudinal Gaussian Data} & \\
+			\hline
+			Introduction to Longitudinal Data & Day 1-2\\
+			\hline
+			Exploratory Data Analysis &Day 2-3\\
+			\hline
+			Models for Longitudinal Gaussian Data &Day 3-4\\
+			\hline
+			Practical Guide using R & Day 5-6\\
+			\hline
+			\bf{Part II: Models for Longitudinal Non-Gaussian Data} & \\
+			\hline
+			Introduction to non-Gaussian Longitudinal Data & Day 6-7\\
+			\hline
+			Model for Correlated Binary Data&Day 8-9\\
+			\hline
+			Model for Correlated Count Data&Day 10-11\\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Chapter 3: Longitudinal Data Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\centering
+\large
+
+\textbf{{\textcolor{red}{Part I}}}
+\vspace{5mm}
+
+\textbf{{\textcolor{red}{Models for Longitudinal/Cluster Data}}}
+
+\end{frame}
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Chapter 1}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Introduction Longitudinal Data Analysis}}
+\end{frame}
+
+\begin{frame}{Correlated Data}
+	\begin{itemize}
+		\item The statistical techniques like analysis of variance and regression have a basic assumption that the residual or error terms are independently and identically distributed \vspace{0.5cm}
+		\item Many types of studies, however, have designs which imply gathering repeated measurement data that are dependent groups or clusters\vspace{0.5cm}
+		\item A longitudinal study refers to an investigation where participant outcomes and possibly treatments or exposures are collected at multiple follow-up times
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Repeated Measures or Clustered data}
+\begin{itemize}
+	\item Clustering arises when data are measured repeatedly on the same unit \vspace{0.25cm}
+	\item When these repeated measurements are taken over time, it is called a longitudinal or, in some applications, a panel study \vspace{0.25cm}
+	\item Longitudinal data are special forms of repeated measurements. \vspace{0.25cm}
+	\item Units could be: \vspace{0.25cm}
+	\begin{itemize}
+		\item Subjects, patients, participants, ...
+		\vspace{0.25cm}
+		\item Animals, plants, ...
+		\vspace{0.25cm}
+		\item Clusters: families, towns, ...
+		\vspace{0.25cm}
+		\item Such repeated measures data are correlated within subjects and thus require special statistical techniques for valid analysis and inference
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Multilevel Data Structure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter7/multilevel}
+	\caption{Multilevel Data Structure. \label{multilevel}}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Types of correlated data}
+\begin{itemize}
+	\item Repeated Cross-sections: Different samples are taken at each measurement time, to measure trends not individuals experiences \vspace{0.25cm}
+	\item Examples
+	\begin{itemize}
+	\item Ethiopian Demographic and Health Survey (EDHS) \vspace{0.25cm}
+	\item Behavioral Risk Factor Surveillance Study (BRFSS)
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Time Series}
+\begin{itemize}
+	\item Collection of data $X_t(t = 1, 2, …, T)$ with the interval between $X_t$ and $X_{t+1}$ being fixed and constant.  
+	\item In time-series studies, a single population is assessed with reference to its change over the time
+	\item Here we measure trend, seasonality
+	\item Examples 
+	\begin{itemize}
+		\item Daily, weekly, or monthly performance of a stock
+		\item Daily pollution levels in a city
+		\item Annual measurements of sun spots
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Panel or Multi-level Data}
+\begin{itemize}
+	\item Same individual/subject/unit is observed over two or more time points. \item \item Typically large number of observations repeated over a few time points $i = 1,2,3…. N$ and $t = 1,2,3… T$ 
+	\item Examples
+	\begin{itemize}
+		\item HIV/AIDS infected individual 
+		\item Patients in chronic care follow-up
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Longitudinal data}
+\begin{itemize}
+	\item An outcome is measured for the same person repeatedly over a period of time. \vspace{0.25cm}
+	\item Different subjects may have different numbers of observations which may be taken at different time points. \vspace{0.25cm}
+	\item Observations made on the same person are likely to be correlated
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Longitudinal data}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter7/longitudinal.jpg}
+\caption{Two Level longitudinal data. \label{long}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Clustered or Hierarchical Data}
+\begin{itemize}
+	\item The observations have a multi-level structure (Same patients (i) from facilities (k) followed over time (t))
+	\begin{itemize}
+		\item $k = 1,2,3…. K$
+		\item $i = 1,2,3…. N$
+		\item $t = 1,2,3… T$
+	\end{itemize}
+	\item Example
+	\begin{itemize}
+		\item Minimum Data Set (MDS) – Quarterly and Annual  clinical information on nursing home residents 
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Data}
+\begin{itemize}
+	\item An outcome is measured once for each subject, and subjects belong to (or are “nested” in) clusters, such as families, schools, or neighborhoods.\vspace{0.25cm}
+	\item The number of subjects in each cluster may vary from cluster to cluster. \vspace{0.25cm}
+	\item Outcomes measured for members of these groups are likely to be correlated
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Clustered Data}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter7/twolevel.jpg}
+\caption{Two Level cluster data. \label{twolevel}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Repeated measures data}
+\begin{itemize}
+	\item Multiple observations are made for the same person over time, space or other dimension. \vspace{0.25cm}
+	\item Each subject need not have all measurements. \vspace{0.25cm}
+	\item Outcomes measured for the same person are likely to be correlated. \vspace{0.25cm}
+	\item Clustered/longitudinal/repeated measures data is more generally known as “multilevel” data.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Repeated measures data}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter7/repeated.jpg}
+\caption{Two Level longitudinal data. \label{repeated}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Types of Responses in Longitudinal Data}
+\begin{itemize}
+	\item Continuous – Cost of health care
+	\item Discrete – Use or non-use of mental health services
+	\item count – number of outpatient visits
+	\item survival – time from diagnosis to death 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Advantages of modern longitudinal methods}
+\begin{itemize}
+	\item The methods of analysis used in Longitudinal Data Analysis relax the independence assumption and take into account more complicated data structure.
+	\item You have much more flexibility in research design
+	\begin{itemize}
+		\item Not everyone needs the same rigid data collection schedule—cadence can be person specific
+		\item Not everyone needs the same number of waves—can use all cases, even those with just one wave! 
+	\end{itemize}
+	\item You can identify temporal patterns in the data
+	\begin{itemize}
+		\item Does the outcome increase, decrease, or remain stable over time?
+		\item Is the general pattern linear or non-linear?
+		\item Are there abrupt shifts at substantively interesting moments?
+	\end{itemize}
+	\item You can include time varying predictors (those whose values vary over time)
+	\item You can include interactions with time (to test whether a predictor’s effect varies over time) 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Challenges in Analyzing Longitudinal Data}
+\begin{itemize}
+	\item Failure to account for the effect of correlation can result in erroneous estimation of the variability of parameter estimates, 	and hence in misleading inference.
+	\item Account for dependency of observations
+	\item Both dependent and independent variables change over time–time varying covariates
+	\item Invariable presence of missing data
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Designs of Longitudinal Data}
+\begin{itemize}
+\item Equally spaced or balanced panel data \vspace{0.25cm}
+\begin{itemize}
+	\item When each subject is scheduled to be measured at the same set of times (say, t1, t2, …, tn), then resulting data is referred as equally-spaced or balanced data \vspace{0.25cm}
+\end{itemize}
+\item Unequally spaced or unbalanced data \vspace{0.25cm}
+\begin{itemize}
+	\item When subjects are each observed at different sets of times 
+	there are missing data
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Motivating Datasets}
+\begin{itemize}
+	\item Five datasets will considered in this section \vspace{0.25cm}
+	\item These are; \vspace{0.25cm}
+	\begin{itemize}
+		\item Rat dataset
+		\item Jimma infant survival data set \vspace{0.25cm}
+		\item Orthodontic growth dataset \vspace{0.25cm}
+		\item Epileptic dataset \vspace{0.25cm}
+		\item Toenail Dataset \vspace{0.25cm}
+		\item Gondar HIV/AIDS dataset \vspace{0.25cm}
+		\item Gilgel Gibe Mosquito Data
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rat dataset}
+\begin{itemize}
+\item Randomized experiment in which 50 male Wistar rats are randomized to:
+\begin{itemize}
+	\item Control (15 rats)
+	\item Low dose of Decapeptyl (18 rats)
+	\item High dose of Decapeptyl (17 rats)
+\end{itemize}
+\item Research Question: \color{red}{How does craniofacial growth depend on
+	testosteron production?}
+\item Measurements with respect to the roof, base and height of the skull
+\item Here, we consider only one response, reflecting the height of the skull.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Rat dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Chapter1/rat}
+	\caption{Subject specific profiles of response (height of the skull)}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]{Jimma infant survival data set}
+\begin{itemize}
+	\item The data introduced in this section were obtained from a follow-up study of new born infants in Southwest Ethiopia
+	\item Wide ranges of data were collected on the following characteristics:
+	\begin{itemize}
+		\item basic demographic information
+		\item feeding practice
+		\item anthropometric measurements
+		\item and others
+	\end{itemize}
+\item Infants were followed during 12 months
+\item Measurements were taken at seven time points from each child, resulting in a maximum of seven measurements per subject
+\item For our purpose, we will consider the variable weight and part of the data can be printed by the following R code
+\begin{verbatim}
+# To print the first 16 rows of the data
+head(mydata1, n=16)
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+Part of the data ...
+\begin{verbatim}
+   ind sex place weight length bf age numdays help BMIBIN
+1    1   0     2   3300     49  1   0       0    1      0
+2    1   0     2   5000     60  1   2       0    1      0
+3    1   0     2   6000     60  1   4       0    1      0
+4    1   0     2   6500     66  1   6       0    1      0
+5    1   0     2   6200     67  1   8       7    0      0
+6    1   0     2   6500     67  1  10       0    1      0
+7    1   0     2   7300     70  1  12       0    1      0
+8    2   1     2   3000     43  1   0       0    1      1
+9    2   1     2   6000     64  1   2       0    1      0
+10   3   1     2   4200     53  1   0       0    1      1
+11   3   1     2   5700     61  1   2       0    1      0
+12   3   1     2   7100     65  1   4       0    1      0
+13   3   1     2   8000     70  1   6       7    0      0
+14   3   1     2   7300     70  1   8       0    1      0
+15   3   1     2   6200     70  1  10       5    1      0
+.    .   .     .    .       .   .  .        .    .      .
+
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Jimma infant survival data set}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter1/Jimma}
+	\caption{Subject specific profiles of weight. \label{Jmma infant weight}}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+The profile plot is produced by using the following R code. \\
+\vspace{1cm}
+\textcolor{blue}{R CODE:} \scriptsize\begin{verbatim}
+library(foreign)
+View(mysample)
+mydata<- read.dta(file="C:/Users/lucp8319/Desktop/Biostat_2018/
+LDA/LDA_2018/1dataset/infant.dta")
+mydata1 <- mydata[which(mydata$ind<31),] # data only <31 days of follow up
+
+library(ggplot2)
+library(methods)
+library(labeling)
+p <- ggplot(data = mydata1, aes(x = age, y = weight, group = ind))
+# simple scatter plot
+p + geom_point()
+# simple spaghetti plot
+p + geom_line()
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Jimma infant survival data set}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter1/FemaleMale}
+	\caption{Subject specific profiles of weight. \label{Profile by sex}}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+The profile plot by sex groups using the following R code. \\
+\vspace{1cm}
+\textcolor{blue}{R CODE:} \scriptsize\begin{verbatim}
+## facet (condition) the graph base on the male variable
+library(reshape2)
+p + geom_line() + facet_grid(. ~ sex)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item There is an increase in weight overtime for both males and females \vspace{0.25cm}
+	\item On the average, males appear to have higher mean profile than females \vspace{0.25cm}
+	\item It is not yet possible to decide on the significance of this difference \vspace{0.25cm}
+	\item From individual profiles, the variability seems almost the same among the two groups.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Orthodontic growth dataset}
+\begin{itemize}
+	\item This data set is taken from Potthoff and Roy, Biometrika (1964)
+	\item A set of measurements of the distance from the pituitary gland to the pterygo-maxillary fissure taken every two years from 8 years of age until 14 years of age on a sample of 27 children, 16 males and 11 females
+	\item The data, were collected by orthodontists from x-rays of the children’s skulls
+	\item The individual profile plot and the mean profile for males and females separately are given below
+	\item Research question: {\color{red}{Is dental growth related to gender?}}
+	\item  Variables in the data include: (1) obs: observation number (2) group: group according to height of the mother (1: small; 2: medium; 3: tall) (3) child: subject identification number (4) age: age at which the observation is taken (years) (5) height: the response measured (cm)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Orthodontic growth dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.45\textwidth]{Chapter1/growth}
+	\caption{Subject specific profiles of growth}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+The profile plot by sex groups using the following R code. \\
+\vspace{1cm}
+\textcolor{blue}{R CODE:} \scriptsize\begin{verbatim}
+############ The Orthodontic Growth DataSet #############3
+mydata2<- read.csv(file="C:/Users/lucp8319/Desktop/Biostat_2018/
+LDA/LDA_2018/1dataset/growth.csv")
+library(ggplot2)
+library(methods)
+library(labeling)
+library(reshape2)
+d <- ggplot(data = mydata2, aes(x = age, y = response, group = child))
+# simple spaghetti plot
+d + geom_line()
+## facet (condition) the graph base on the male variable
+d + geom_line() + facet_grid(. ~ group)
+\end{verbatim}
+\begin{itemize}
+	\item Remarks:
+	\begin{itemize}
+	\item Much variability between children
+	\item Considerable variability within children
+	\item Fixed number of measurements per subject
+	\item Measurements taken at fixed time points
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Toenail Dataset}
+\begin{itemize}
+	\item Toenail Dermatophyte Onychomycosis: Common toenail infection, difficult to treat, affecting more than 2\% of population.
+\item Classical treatments with antifungal compounds need to be administered until the whole nail has grown out healthy.
+\item New compounds have been developed which reduce treatment to 3 months
+\item  Randomized, double-blind, parallel group, multicenter study for the comparison of two such new compounds (A and B) for oral treatment.
+\item Research question: \color{red}{Are both treatments equally effective for the treatment of TDO?}
+\begin{itemize}
+	\item 2 × 189 patients randomized, 36 centers
+	\item 48 weeks of total follow up (12 months)
+	\item 12 weeks of treatment (3 months)
+	\item Measurements at months 0, 1, 2, 3, 6, 9, 12.
+	\item Response considered here: Unaffected nail length (mm):
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Toenail Dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter1/Toenail}
+	\caption{Subject specific profiles of length. \label{Profile2 by treatment}}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+The profile plot by sex groups using the following R code. \\
+\vspace{1cm}
+\textcolor{blue}{R CODE:} \scriptsize\begin{verbatim}
+########### Toenail Dataset #########
+mydata3 <- read.csv("C:/Users/lucp8319/Desktop/Biostat_2018/LDA/
+LDA_2018/1dataset/Toenail_contineous.csv")
+d <- ggplot(data = mydata3, aes(x = time, y = response, group = id))
+# simple spaghetti plot
+d + geom_line()
+## facet (condition) the graph base on the male variable
+library(reshape2)
+d + geom_line() + facet_grid(. ~ treat)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Gondar VL/HIV dataset}
+\begin{itemize}
+	\item Follow-up data among VL/HIV in Gondar Hospital
+	\item The variables time, age, sex, residence, wbc and hgb were included
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Gondar VL/HIV dataset}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Chapter1/VLHIV}
+	\caption{Subject specific profiles of hgb. \label{Profile2 by Outcome}}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+The profile plot by sex groups using the following R code. \\
+\vspace{1cm}
+\textcolor{blue}{R CODE:} \scriptsize\begin{verbatim}
+########### Toenail Dataset #########
+mydata4 <- read.csv("C:/Users/lucp8319/Desktop/Biostat_2018/
+LDA/LDA_2018/1dataset/VL_HIV.csv")
+d <- ggplot(data=mydata4, aes(x = Day, y = hgb, group = id))
+# simple spaghetti plot
+d + geom_line()
+## facet (condition) the graph base on the male variable
+library(reshape2)
+d + geom_line() + facet_grid(. ~ treat)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Epileptic dataset}
+\begin{itemize}
+	\item  The epileptic data set considered here is obtained from a randomized, multi-center study
+	\item Comparison of placebo with a new anti-epileptic drug (AED)
+	\item In the study, 45 patients were randomized to the placebo group and 44 to the active (new) treatment group
+	\item The number of epileptic seizures were measured on a weekly basis during a 16 weeks period
+	\item After this period, patients were entered into a long-term study up to 27 weeks
+	\item The key research question is whether or not the additional new treatment reduces the number of epileptic seizures
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Gilgel-Gibe Mosquito Data}
+\begin{itemize}
+	\item A study conducted around Gilgel-Gibe dam for three years.
+	\item In
+uence of the dam on mosquito abundance and species composition.
+	\item Eight `At risk' and eight `Control' villages based on distance.
+	\item One collection approach: IRC.
+	\item Mosquito species were identied and counted.
+	\item An. gambaie was found to be the dominant one (more than 95%).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Requirements for Longitudinal Models}
+\begin{itemize}
+\item Capture trend over time while taking account of the correlation that exists between successive measurements
+\item Describe the variation in the baseline measurement and in the rate of change over time
+\item Explain the variations in baseline measurement and trends by relevant covariates
+\item A minimum of 4 time points is recommended; With less than 4 time points, it is not possible to identify enough parameters in the growth model to make the model flexible
+\begin{itemize}
+\item  4 time points give more power
+\item With 3 time points restrictions need to be placed on the growth models 
+\item If only 2, compute change scores, use simple methods
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Cross-sectional versus Longitudinal Data}
+\begin{itemize}
+\item Cross sectional data refers to the data collected at a specific point of time. 
+\item  Longitudinal data refers to measurements made repeatedly over time to study how the subjects evolve over time
+\item Observations from cross sectional data are uncorrelated
+\item In longitudinal study, the measurements made for subjects over a period of time are correlated.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Cross-sectional versus Longitudinal Data}
+\begin{itemize}
+	\item Recall: Longitudinal data refers to measurements made repeatedly over time to study how the subjects evolve over time \vspace{0.25cm}
+	\item And, the repeated measures taken from a subjects tend to correlate with each other \vspace{0.25cm}
+	\item Cross sectional data refers to the data collected at a specific point of time \vspace{0.25cm}
+	\item Observations from cross sectional data are uncorrelated
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Suppose it is of interest to study the relation between some response $Y$ and age
+
+\item A cross-sectional study yields the following data:
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.65\textwidth]{Chapter7/Teken161}
+\end{figure}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item The graph suggests a negative relation between $Y$ and age \vspace{0.5cm}
+\item Exactly the same observations could also have been obtained in a longitudinal study, with 2 measurements per subject as shown below:
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\text{{\textcolor{blue}{First case:}}}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{Chapter7/Teken162}
+\end{figure}
+Are we still inclined to conclude that $Y$ and Age are negatively related? The graph suggests a
+negative cross-sectional association but a positive longitudinal trend.
+\end{frame}
+
+
+\begin{frame}
+\text{{\textcolor{blue}{Second case:}}}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{Chapter7/Teken163}
+\end{figure}
+The graph now suggests cross-sectional as well as longitudinal trend to be negative.
+\end{frame}
+
+\begin{frame}
+Correlation Matrix of Growth Data:
+\vspace*{2mm}
+\[ \left[ \begin{array}{cccc}
+1.00 & 0.63 & 0.71 & 0.60 \\\
+0.63 & 1.00 & 0.63 & 0.76 \\\
+0.71 & 0.63 & 1.00 & 0.80 \\\
+0.60 & 0.76 & 0.80& 1.00 \end{array} \right]\]
+\begin{itemize}
+\item This correlation can not be ignored in the analysis!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item A correct analysis should account for this correlation. \vspace{0.25cm}
+\item This is why the classical methods such as ANOVA, linear regression, ... fail for such data \vspace{0.25cm}
+\item Usually correlation  decreases as the time span between measurements increases \vspace{0.25cm}
+\item The simplest case of longitudinal data are paired data \vspace{0.25cm}
+\item The paired t-test accounts for this by considering subject-specific differences
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Chapter 3}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Simple Methods}}
+\end{frame}
+
+\begin{frame}{Simple Methods}
+\begin{itemize}
+	\item The reason why classical techniques fail in the context of longitudinal data is that observations within subjects are correlated
+	\item In many cases the correlation between two repeated measurements decreases as the time span between two repeated measurements increases
+	\item Paired t-test and difference in difference (DID) can be used if the repeated measurements are two
+	\item This reduces the number of measurements to just one per subject, which implies that classical techniques can be applied
+	\item In the case of more than 2 measurements per subject, similar simple techniques are often applied to reduce the number of measurements for the $ith$ subject, from $n_i$ to 1
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Simple Methods}
+\begin{itemize}
+	\item Some Examples of Simple Methods \vspace{0.25cm}
+	\begin{itemize}
+\item Analysis at each time point separately \vspace{0.25cm}
+\item Analysis of Area Under the Curve (AUC) \vspace{0.25cm}
+\item Analysis of endpoints \vspace{0.25cm}
+\item Analysis of increments \vspace{0.25cm}
+\item Analysis of covariance \vspace{0.25cm}
+\item The above methods have limitations such as:
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analysis at Each Time Point}
+\begin{itemize}
+\item The data are analysed at each occasion separately. \vspace{0.25cm}
+\item Advantages: \vspace{0.25cm}
+\begin{itemize}
+	\item Simple to interpret \vspace{0.25cm}
+	\item Uses all available data \vspace{0.25cm}
+\end{itemize}
+\item Disadvantages: \vspace{0.25cm}
+\begin{itemize}
+	\item Does not consider ‘overall’ differences \vspace{0.25cm}
+	\item Does not allow to study evolution differences \vspace{0.25cm}
+	\item Problem of multiple testing
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analysis of Area Under the Curve}
+\begin{itemize}
+	\item For each subject, the area under its curve is calculated
+	 \begin{equation}
+	AUC_{i} = (t_{i2}- t_{i1})  (y_{i1} + y_{i2})/2 + (t_{i3}-t_{i2})((y_{i2} + y_{i3})/2 +  ....
+	\end{equation}
+	\item Advantages  \vspace{0.25cm}
+	\begin{itemize}
+	\item  No problems of multiple testing \vspace{0.25cm}
+    \item Does not explicitly assume balanced data \vspace{0.25cm}
+    \item Compare 'Overall' differences \vspace{0.25cm}
+	\end{itemize}
+	\item Disadvantages: \vspace{0.25cm}
+	\begin{itemize}
+   \item Uses only partial information :  $\mbox{AUC}_{i}$
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analysis of Endpoints}
+\begin{itemize}
+	\item In randomized studies, there are no systematic differences at baseline.
+	\item Hence, 'treatment' effects can be assessed by only comparing the measurements at the last occasion
+\end{itemize}
+\begin{itemize}
+\item Advantages : 
+\begin{enumerate}
+\item No problem of multiple testing 
+\item Does not explicitly assume balanced data  
+\end{enumerate}
+\begin{itemize}
+\item Disadvantages 
+\end{itemize}
+\begin{enumerate}
+\item Uses only partial information : $\mbox{y}_{in_{i}}$
+\item Only valid for large data sets
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analysis of Increments}
+\begin{itemize}
+	\item  A simple method to compare evolutions between subjects , correcting for differences at baseline , is to analyze the subject specific changes  
+	\begin{equation}
+	\mbox{y}_{in_{i}}- \mbox{y}_{i1}
+	\end{equation}
+	
+	\begin{itemize}
+		\item Advantages
+	\end{itemize}
+		\begin{enumerate}
+		\item  No problem of multiple testing
+		\item Does not explicitly assume balanced data 
+	\end{enumerate}
+		\begin{itemize}
+		\item  Disadvantages: Uses only partial information : $\mbox{y}_{in_{i}}$ - $\mbox{y}_{i1}$.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame} {Analysis of Covariance}
+\begin{itemize}
+	\item Another way to analyze endpoints, correcting for differences at baseline, is to use analysis of covariance techniques where the first measurement is included as covariate in the model. 
+\end{itemize}  
+
+\begin{itemize}
+	\item Advantages :
+\end{itemize}  
+
+\begin{enumerate}
+	\item  No problems of multiple testing
+	\item Does not explicitly assume balanced data 
+\end{enumerate}  
+
+\begin{itemize}
+	\item Disadvantages : 
+\end{itemize}
+\begin{enumerate}
+	\item  Uses only partial information : $\mbox{y}_{i1}$. and $\mbox{y}_{in_{i}}$ 
+	\item Does not take into account the variability of $ \mbox{y}_{i1} $
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+	\item The AUC, endpoints and increments are examples of summary statistics
+	\item Such summary statistics summarize the vector of repeated measurements for each subject  separately.  
+	\item This leads to the following general procedure:
+	\item \textbf{Step 1} : Summarize data of each subject into one statistic , a summary  statistic\\
+	\item \textbf{Step2}  : Analyze the summary statistics, e.g. analysis of covariance to compare groups after correction for important covariates\\
+	\item This way, the analysis of longitudinal data is reduced to the analysis of independent observations, for which classical statistical procedures are available.
+	\item However, all these methods have the disadvantage that lot of information is lost.
+	\item Further, they often do not allow to draw conclusions about the way the end points have been reached.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Chapter 2: Exploratory Data Analysis
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Chapter 2}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Exploratory Data Analysis}}
+\end{frame}
+
+\begin{frame}{Introduction}
+\begin{itemize}
+\item Exploratory analysis comprises techniques to visualize patterns in the data
+\item Data analysis must begin by making displays that expose patterns relevant to the scientific question.
+\item A linear mixed model makes assumptions about:
+\begin{itemize}
+	\item mean structure: (non-)linear, covariates,. . .
+	\item variance function: constant, quadratic, . . .
+	\item correlation structure: constant, serial, . . .
+	\item subject-specific profiles: linear, quadratic, . . .
+\end{itemize}
+\item  In practice, linear mixed models are often obtained from a two-stage model formulation
+\item However, this may or may not imply a valid marginal model Introduction
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exploratory Data Analysis}
+\begin{itemize}
+	\item Longitudinal data analysis, like other statistical methods, has two components which operate side by side:
+	\begin{itemize}
+		\item exploratory and 
+		\item confirmatory analysis.
+	\end{itemize}
+	\item Exploratory analysis comprises techniques to visualize patterns in the data
+	\item Confirmatory analysis is judicial work, weighing evidence in data for, or against hypotheses
+	\item Data analysis must begin by making displays that expose patterns relevant to the scientific question
+	\item The best methods are capable of uncovering patterns which are unexpected
+	\item In this regard graphical displays are so important. At this stage the following guidelines
+	are very useful
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Jimma Infant Data}
+\begin{itemize}
+	\item Follow-up study of new born infants in Southwest Ethiopia.
+	\item Wide ranges of data were collected on the following characteristics:
+	\vspace*{2mm}
+	\begin{itemize}
+		\item basic demographic information
+		\item feeding practice
+		\item anthropometric measurements, \ldots
+		\item Infants were followed during 12 months
+		\item Measurements were taken at seven time points every two months from each child
+		\item Weight was one of the variables recorded at each visit
+		\item Research question: {\textcolor{red} {How does weight change over time?}}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Jimma Infant Data}
+\begin{itemize}
+	\item The individual profiles support a random-intercepts model
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.6\textwidth]{Chapter1/Jimma}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusions From the profile}
+\begin{itemize}
+	\item Much variability between children \vspace{0.25cm}
+	\item Considerable variability within subjects \vspace{0.25cm}
+	\item Fixed number of measurements per subject \vspace{0.25cm}
+	\item Measurements taken at fixed time points
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mean Profile}
+\begin{itemize}
+	\item The mean profile can be plotted using the following R code
+\begin{verbatim}	
+## mean profile 
+attach(mydata)
+mean1<-tapply(weight, age, mean)
+age1<-as.numeric(unique(age))
+plot(age1, mean1, type= "l", xlab="age", ylab=" The mean weight", 
+lwd=1, main=" The mean profile")
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Mean Profile}
+\begin{itemize}
+	\item The mean profiles 
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.6\textwidth]{Chapter1/JimmaMean}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mean Profile by Sex}
+\begin{itemize}
+	\item The mean profiles by sex
+	\begin{verbatim}	
+	## mean profile 
+	interaction.plot(age,sex,weight,fun=mean, col=2:14, 
+	xlab= "age", ylab= " Weight", las=1)
+	\end{verbatim}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Chapter1/JimmaMeanSex}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exploring the Random Effects}
+\begin{itemize}
+\item The mean structure for linear mixed effect model can be determined based on the random effects
+\item Choosing which parameters in the model should have a random-effect component included to account for between-group variation 
+\item The lmList function and the methods associated with it are useful for this
+\item Continuing with the analysis of the Jimma infants data, we see from the individual profiles of these data that a simple linear regression model of weight as a function of age may be suitable
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Jimma Infant Survival}
+\begin{itemize}
+\item The data was fitted this for each subject as follows;
+\begin{verbatim}
+> fit<-lmList(weight~age|ind, mydata)
+Call:
+Model: weight ~ age | ind 
+Data: mydata 
+Coefficients:
+(Intercept)           age
+1       4200.000  2.714286e+02
+2       3000.000  1.500000e+03
+3       5435.714  1.821429e+02
+4       4435.714  2.392857e+02
+5       4139.286  3.196429e+02
+6       4485.714  4.571429e+02
+7       4400.000  3.428571e+02
+8       4550.000  3.250000e+02
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Choosing the random effect}
+\begin{itemize}
+\item The main purpose of this preliminary analysis is to give an indication of what random effects structure to use in the model
+\item We must decide which random effects to include in a model for the data, and what covariance structure these random effects should have 
+\item Objects returned by $lmList$ are of class $lmList$, for which several display
+and plot methods are available
+\item The pairs method provides one view of the random effects covariance structure
+\item To identify outliers-points outside the estimated probability contour at level 1-id/2 will be marked in the plot, we use the R function 
+\item We see that subject 29 has high slope
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Main lmList methods}
+\begin{itemize}
+\item The print method displays minimal information about the fitted object
+\begin{verbatim}
+augPred # predictions augmented with observed values
+coef # coefficients from individual lm fits
+fitted # fitted values from individual lm fits
+fixef # average of individual lm coefficients
+intervals # confidence intervals on coefficients
+lme # linear mixed-effects model from lmList fit
+logLik # sum of individual lm log-likelihoods
+pairs # scatter-plot matrix of coefficients or random effects
+plot # diagnostic Trellis plots
+predict # predictions for individual lm fits
+print # brief information about the lm fits
+qqnorm # normal probability plots
+ranef # deviations of coefficients from average
+resid # residuals from individual lm fits
+summary # more detailed information about lm fits
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{R Code}
+\begin{itemize}
+	\item R code to exploratory the random effect
+	\begin{verbatim}
+	fm.lis<-lmList(response ~ I(age-11)|child, data=mydata2)
+	summary(fm.lis)
+	pairs(fm.lis, id = 0.01, adj = -0.5) # scatter plot
+	
+	intervals(fm.lis) # Confidence intervale 
+
+	plot(intervals(fm.lis))
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exploratory random effect}
+	\begin{verbatim}
+> intervals(fit0.lm)
+, , (Intercept)
+lower     est.    upper
+1   8.105020 8.328701 8.552381
+3   8.347202 8.570882 8.794563
+4   8.159632 8.383312 8.606992
+5   8.089277 8.312957 8.536638
+6   8.168702 8.392382 8.616063
+7   8.141055 8.364736 8.588416
+8   8.179596 8.403276 8.626957
+9   8.016647 8.240327 8.464008
+10  8.196293 8.419973 8.643654
+\end{verbatim}
+\begin{itemize}
+	\item As often happens displaying the intervals as a table of numbers is not very informative
+	\item It is much more effective to plot these intervals
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Pairs Plot}
+\begin{itemize}
+\item This plots are displayed for a subset of	the data using interval plots
+\item 95\% CI on intercept and slope for each subject in the infant weight data
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Chapter1/jimmarandom}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exploring the Correlation Structure}
+\begin{itemize}
+\item In longitudinal data analysis we model two key components of the data:
+\begin{itemize}
+	\item Mean structure
+	\item Correlation structure (after removing the mean structure) 
+\end{itemize} 
+\item Modelling the correlation is important to be able to obtain correct inferences on regression coefficients 
+\item Correlation can be formulated in terms of subject-specific models and/or transition models
+\item Three basic elements of correlation structure:
+\begin{itemize}
+	\item Random effects 
+	\item Autocorrelation or serial dependence 
+	\item Noise, measurement error
+\end{itemize}
+
+\item After we explore the mean function in the regression, we need to explore the correlation structure for the residuals, taking away the mean trend effect
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Jimma Infant Survival Data Set}
+\begin{itemize}
+\item Having appropriate model studying the evolution of the variance is very important step of the modeling approach
+\item The observed variance shows an increase in variability overtime
+\item Hence, a heterogeneous variance structure may be a good starting point
+\item Moreover, the variability for males and females seems to be more or less the same
+\item Hence the same variance structure may be assumed for both groups
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Observed Variance}
+\begin{verbatim}
+interaction.plot(age, sex,wt,fun=var, col=2:3, xlab= 
+"age", ylab= "var[wt]", las=1)
+\end{verbatim}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.8\textwidth]{Chapter1/jimmacorr}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Growth Data}
+
+\begin{itemize}
+	\item The distance from the center of the pituitary to the maxillary fissure was recorded
+	at ages 8, 10, 12, and 14, for 11 girls and 16 boys
+	\item Research question: {\textcolor{red} {Is dental growth related to gender?}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Growth Data}
+\begin{itemize}
+	\item The individual profiles support a random-intercepts model
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.45\textwidth]{Chapter1/growthsex}
+	\end{figure}	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Growth Data}
+\begin{itemize}
+	\item From the exploratory analysis
+	\vspace*{2mm}
+	\begin{itemize}
+		\item mean structure seems linear over time \vspace*{2mm}
+		\item variability between subjects at baseline \vspace*{2mm}
+		\item variability between subjects in the way they evolve \vspace*{2mm}
+	\end{itemize}
+	\item Hence a linear mean, with random intercept and slope is a good idea...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exploring the Mean Structure of Growth data}
+\begin{itemize}
+	\item For balanced data, averages can be calculated for each occasion separately, and standard errors for the means can be added
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.45\textwidth]{Chapter1/meangrowth}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{R code}
+\begin{itemize}
+\item \textcolor{blue}{ R code for average profile:} \vspace{0.5cm}
+
+\begin{verbatim}
+mean1<-tapply(response, age, mean)
+age1<-as.numeric(unique(age))
+plot(age1, mean1, type= "l",ylim=c(100,150), xlab="age", ylab=
+" The mean distance", lwd=3, main=" The mean profile of the growth data set")
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\begin{itemize}
+	\item For Balanced longitudinal data, the correlation structure can be studied through the correlation matrix, or a scatter plot matrix \vspace{0.25cm}
+   \item The correlation matrix for Orthodontic growth data: \vspace{0.25cm}
+\begin{verbatim}
+1.0000000 0.9809247 0.9815512 0.9740140 0.9540426
+0.9809247 1.0000000 0.9858051 0.9803015 0.9584083
+0.9815512 0.9858051 1.0000000 0.9880770 0.9751260
+0.9740140 0.9803015 0.9880770 1.0000000 0.9920014
+0.9540426 0.9584083 0.9751260 0.9920014 1.0000000
+\end{verbatim}
+\vspace{0.25cm}
+\item Data exploration is therefore extremely helpful as additional tool in the selection of appropriate models
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{R code}
+\begin{itemize}
+	\item \textcolor{blue}{ R code for the correlation matrix:} \vspace{0.5cm}
+	
+	\begin{verbatim}
+	##### R-code for Correlation matric ##
+	d1<-response[age==6]
+	d2<-response[age==7]
+	d3<-response[age==8]
+	d4<-response[age==9]
+	d5<-response[age==10]
+	response1<-cbind(d1, d2, d3, d4, d5)
+	cor(response1)
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Scatter plot matrix for growth data}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{Chapter1/growthmatrix}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{R code for scatter plot matrix}
+	\begin{verbatim}
+panel.hist <- function(x, ...)
+{
+usr <- par("usr"); on.exit(par(usr))
+par(usr = c(usr[1:2], 0, 1.5) )
+h <- hist(x, plot = FALSE)
+breaks <- h$breaks; nB <- length(breaks)
+y <- h$counts; y <- y/max(y)
+rect(breaks[-nB], 0, breaks[-1], y, col="cyan", ...)
+}
+pairs(response1, panel=panel.smooth, cex = 1.5, pch = 16,
+bg="light green",diag.panel=panel.hist,
+cex.labels = 2, font.labels=2)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Exploring the Variability of the Observed Data}
+\begin{itemize}
+\item The individual profile plots of the growth data set show a considerable within and between subject variability
+\item This can also be augmented from the variance covariance matrix of the observed data indicated below
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Covariance Matrix}
+\begin{itemize}
+\item Covariance Matrix for Growth Data:
+\vspace*{2mm}
+\[ \left[ \begin{array}{ccccc}
+15.81095 & 17.32547 & 20.33874 & 21.64158 & 21.46295\\
+17.32547 & 19.73063 & 22.81884 & 24.33184 & 24.08595\\
+20.33874 & 22.81884 & 27.15589 & 28.77184 & 28.74984\\
+21.64158 & 24.33184 & 28.77184 & 31.22408 & 31.36171\\
+21.46295 & 24.08595 & 28.74984 & 31.36171 & 32.00997
+\end{array} \right]\]
+\item {\color{red}{R code}}
+\begin{verbatim}
+#variance-covariance matrix
+covmatrix = matrix(c(cov(response1)), nrow=5, ncol=5)
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Overall variability}
+\begin{itemize}
+	\item {\color{red}{R code}}
+	\begin{verbatim}
+plot(age1, varg, type="l",main =" Observed variance ",
+xlab="age", ylab="The variance of distance", lwd=1)
+	\end{verbatim}	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Chapter1/growthVarianceh}
+	\end{figure}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Variability by group}
+	\begin{verbatim}
+interaction.plot(age, group, response, lty=c(1, 2), fun=var,
+ylab="distance from pituitary to pterygomaxillary fissure (mm) ",
+xlab="Age", trace.label="Group")
+title(main=" The variance of the growth data set by sex")
+	\end{verbatim}	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\textwidth]{Chapter1/growthVariance2}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Pairs Plot}
+\begin{itemize}
+	\item Ninety-five percent confidence intervals on intercept and slope for each subject in the orthodontic distance growth data
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.45\textwidth]{Chapter1/growthrandom}
+	\end{figure}
+	\item The individual CI give a clear indication that a random effect is needed to account for subject-to-subject variability in the intercept
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Chapter 5: A Model for Longitudinal Data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Chapter 5}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {A Model for Longitudinal Data}}
+\end{frame}
+
+\begin{frame}{Introduction}
+\begin{itemize}
+\item Linear mixed models (LMM) are models that handle data where observations are not independent
+\item That is, LMM correctly models correlated errors, whereas procedures in the general linear model family (GLM) usually do not
+\item LMM can be considered as a further generalization of GLM to better support analysis of a continuous response
+\item Mixed models contain both fixed and random effects
+\item These models are useful in a wide variety of disciplines in the physical, biological and economic sciences
+\item They are particularly useful in settings where repeated measurements are made on the same statistical units, or where measurements are made on clusters of related statistical units
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mixed Effect Models}
+\begin{itemize}
+\item A mixed effects model for longitudinal or clustered data can be obtained from the corresponding model for cross-sectional data by introducing random effects. Specifically, we have
+\vspace*{2mm}
+\begin{itemize}
+\item Linear mixed effects (LME) models, which can be obtained from linear regression models by introducing random effects;
+\vspace{0.5cm}
+\item Generalized linear mixed models (GLMMs), which can be obtained from GLMs by introducing random effects;
+\vspace{0.5cm}
+\vspace{0.5cm}
+\item Nonlinear mixed effects (NLME) models, which can be obtained from nonlinear regression models by introducing random effects;
+\item  Frailty models, which can be obtained from survival models by introducing random effects.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mixed Effect Models}
+\begin{itemize}
+\item For mixed effects models, the random effects in the models represent the influence of each individual (cluster) on the repeated observations that is not captured by the observed covariates
+\vspace{0.5cm}
+\item A mixed effects model can be named as multi-level or hierarchical model
+\vspace*{2mm}
+\begin{itemize}
+\item In longitudinal studies repeated observations from a subject are nested within this subject
+\vspace{0.5cm}
+\item In multi-center studies observations from a center are nested within this center
+\end{itemize}
+\vspace{0.5cm}
+\item Random effects are used to accommodate the heterogeneity in the data, which may arise from subject or clustering effects or from spatial correlation
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Random Effect Model}
+\begin{itemize}
+\item For each unit, baseline value is the result of a random deviation from some mean intercept.  
+\item The intercept is drawn from some distribution for each unit, and it is independent of the error for a particular observation; we just need to estimate parameters describing the distribution from which each unit’s intercept is drawn
+\item Facilities – could be considered as random if they are random sample from a population 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hierarchical effects}
+\begin{itemize}
+\item Hierarchical designs have nested effects.  
+\item Nested effects are those with subjects within groups
+\item For instance, patients  are nested within doctors and doctors  are nested within hospitals
+\item We can have a hierarchical effect when the  predictor variables are measured at more than one level (ex., reading achievement scores at the student level and teacher-student ratios at the school level
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item In practice: often unbalanced data:
+\begin{itemize}
+\item  unequal number of measurements per subject
+\item measurements not taken at  fixed time points
+\end{itemize}
+\item Therefore, multivariate regression techniques are often not applicable
+\item Often,  subject-specific longitudinal profiles can be well approximated by  linear regression functions
+\item This leads to a 2-stage model formulation: i.e.
+\begin{enumerate}
+\item Stage 1: Linear regression model for each subject separately
+\item Stage 2: Explain variability in the subject-specific regression coefficients using known covariates
+\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Stage 1}
+\begin {itemize}
+\item Response  $Y_{ij}$ for $i^{th}$ subject, measured at time $t_{ij}$, $i=1,\ldots,N$,\
+$j=1,\ldots,n_i$
+
+\item Response vector $Y_{i}$ for $i^{th}$ subject: \hspace*{1cm} $Y_{i} = (Y_{i 1}, Y_{i 2}, \ldots, Y_{i n_{i}})'$
+
+\item Stage 1 model: $Y_{i} \ = \  Z_{i} \beta_{i} + \varepsilon_{i}$
+
+\item $ Z_{i}$ is a $(n_i \times q)$ matrix of known covariates \\
+
+\item $ \beta_{i} $ is a  q  dimensional vector of subject-specific regression coefficients \\
+
+\item $\varepsilon_{i} \sim N(0, \Sigma_{i})$ \\
+\item Often $\Sigma_{i}= \sigma^{2} I_{n_{i}}$
+\item Note that the above model describes the observed variability within subjects
+\end {itemize}
+
+\end{frame}
+
+\begin{frame}{Stage 2}
+\begin {itemize}
+\item Between-subject variability can now be studied from relating the $\beta_{i}$ to known covariates
+\end {itemize}
+
+Stage 2 model:
+
+\[  \beta_{i} \ = \ K_{i} \beta + b_{i}  \]
+
+\begin {itemize}
+
+\item  $ K_{i} $ is a $(q \times p)$ matrix of known covariates
+
+\item $ \beta $ is a $p-$ dimensional vector of unknown regression parameters
+
+\item $ b_{i} \sim N(0, D)$
+\end {itemize}
+\end{frame}
+
+\begin{frame}{The General Linear Mixed-effects Model}
+
+\begin{itemize}
+\item A 2-stage approach can be performed explicitly in the analysis
+\item However, this is just another example of the use of  summary statistics:
+\item $Y_{i} $ is summarized by $ \widehat{\beta_{i}} $
+\item Summary statistics $\widehat{\beta_{i}}$ analyzed in second stage
+\item The associated drawbacks can be avoided  by combining the two stages into one model:
+\begin{eqnarray*}
+\left\{\begin{array}{rcl}
+Y_{i} & = & Z_{i}  \beta_{i} + \varepsilon_{i} \\
+\beta_{i} & = & K_{i} \beta + b_{i}
+\end{array}\right.
+\hspace*{0.5cm} \Longrightarrow \hspace*{0.5cm}
+Y_{i} \ = \ \underbrace{Z_i K_i}_{X_i}
+\beta  +  Z_{i} b_{i}  +  \varepsilon_{i} 
+\end{eqnarray*}
+\end {itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item General linear mixed-effects model
+
+\begin{eqnarray*}
+\left\{ \begin{array}{l}
+Y_{i} = X_{i} \beta + Z_{i} b_{i} + \varepsilon_{i} \\   \\
+b_{i} \sim N(0, D),  \hspace*{1cm} \varepsilon_{i} \sim N(0, \Sigma_{i}),  \\   \\
+b_{1}, \ldots, b_{N}, \varepsilon_{1}, \ldots, \varepsilon_{N} \mbox{ independent}
+\end{array} \right.
+\end{eqnarray*}
+Terminology:
+\item Fixed effects: $ \beta $
+\item Random effects: $ b_{i} $
+\item Variance components: elements in $ D $ and $ \Sigma_{i}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\text{A linear Mixed Model makes assumptions about:}
+\vspace*{3mm}
+\begin{itemize}
+\item mean structure: (non-)linear, covariates,. . . \vspace{0.25cm}
+\item variance function: constant, quadratic, . . . \vspace{0.25cm}
+\item correlation structure: constant, serial, . . . \vspace{0.25cm}
+\item subject-specific profiles: linear, quadratic,
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hierarchical versus Marginal Model }
+\begin{itemize}
+\item The general linear mixed model is given by:
+
+\begin{eqnarray*}
+\left\{ \begin{array}{l}
+Y_{i} = X_{i} \beta + Z_{i} b_{i} + \varepsilon_{i} \\   \\
+b_{i} \sim N(0, D),  \hspace*{1cm} \varepsilon_{i} \sim N(0, \Sigma_{i}),  \\   \\
+b_{1}, \ldots, b_{N}, \varepsilon_{1}, \ldots, \varepsilon_{N}  \mbox{ independent}
+\end{array} \right.
+\end{eqnarray*}
+
+It can be rewritten as:
+
+\begin{eqnarray*}
+Y_{i} | b_{i} & \sim  & N(X_{i} \beta + Z_{i} b_{i}, \Sigma_{i}), \hspace*{2cm}
+b_{i} \sim   N(0, D)
+\end{eqnarray*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item It is therefore also called a hierarchical model:
+\begin{itemize}
+\item A model for $Y_{i}$ given $ b_{i} $
+\item A model for $ b_{i}$
+\end{itemize}
+
+\item Marginally, we have that $Y_{i} $ is distributed as:
+
+\begin{eqnarray*}
+Y_{i} & \sim & N(X_{i} \beta, Z_{i} D Z_{i}' + \Sigma_{i})
+\end{eqnarray*}
+
+\item Hence, very specific assumptions are made about the dependence of mean and covariance on the covariates $X_{i}$ and $Z_{i}$:
+
+\begin{itemize}
+\item Implied mean : $X_{i} \beta $
+\item Implied covariance : $V_{i} = Z_{i} D Z_{i}' + \Sigma_{i} $
+\end{itemize}
+\item Note that the hierarchical model implies the marginal one, \textbf{ NOT} vice versa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Components of the Linear Mixed Effects Model}
+The Mean Structure
+\begin{itemize}
+\item The  $ X_{i} \beta $ part stands for fixed effects.
+where $ X_{i} $ is a set of covariates used for modeling the response.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{The Random Effects}
+\begin{itemize}
+\item In many practical applications, we wish to restrict $D$ to special forms of variance-covariance matrices that are parametrized by fewer parameters.
+\item For example we may be willing to assume that the random effects are independent,
+\begin{itemize}
+\item $D$ would be diagonal, or that, in addition to being independent, they have the same variance, in which case $D$ would be a multiple of the identity matrix.
+\end{itemize}
+Standard  \textbf{pdMat }Classes
+\begin{verbatim}
+pdBlocked   # block-diagonal
+pdCompSymm  # compound-Symmetry structure
+pdDiag      # diagonal
+pdIdent     # multiple of an identity
+pdSymm      # general positive definite matrix
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variance  Structure}
+\begin{itemize}
+\item The \textbf{nlme} library provides a set of classes of variance functions, the \textbf{varFunc} classes, that are used to specify within-group in the mixed effects model
+\item Standard \textbf{varFunc} classes
+\begin{verbatim}
+varFixed	       #fixed variance
+varIdent	       #different variances per stratum
+varPower	       #power of covariate
+varExp	           #exponential of covariate
+varConstpower	   #constant plus power of covariate
+varComb	           #combination of variance functions
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Correlation Structures}
+\begin{itemize}
+\item Correlation structures are used to model dependence among observations
+\item In the context of mixed-effects models, they are used to model dependence among the within-group errors
+\item \textbf{Serial Correlation Structures}\\
+\item Are used to model dependencies in data observed sequentially overtime and indexed by a one dimensional time vector
+\item Some of the most common serial correlation structures used in practice includes:Compound Symmetry, General and Autoregressive-Moving Average.
+\item \textbf{Compound Symmetry} 
+\item This is the simplest serial correlation structure, which assumes equal correlation among all within-group errors pertaining to the same group
+\begin{equation}
+cor(\varepsilon_{ij},\varepsilon_{ik})=\rho,\forall j\neq k,	
+\end{equation}
+\item where the single correlation parameter $\rho$ is referred to as the \textbf{intraclass} correlation coefficient.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{General}
+\begin{itemize}
+\item This structure represents the other extreme in complexity to the compound symmetry structure
+\item Each correlation in the data is represented by a different parameter, corresponding to the correlation function
+\begin{equation}
+h(k,p)=\rho_k, k=1,2,\ldots	
+\end{equation}
+\item As the number of parameters increases quadratically with maximum number of observations per group, the general correlation structure is useful as an exploratory tool to determine a more parsimonious correlation model.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Autoregressive-Moving Average}
+\begin{itemize}
+\item These family of models assume that the data are observed at integer time points
+\item So lag-1 refers to observations one time unit apart and so on.
+\item Autoregressive models express the current observation as a linear function of previous observations plus a homoscedastic noise term, $a_t$, centered at $(E[a_t]=0)$and assumed independent of the previous observations.
+\begin{equation*}
+\varepsilon_{t}=\phi_1\varepsilon_{t-1} + \ldots + \phi_p\varepsilon_{t-p} + a_{t}	
+\end{equation*}
+\item The AR(1) model is the simplest (and one of the most useful) autoregressive model.
+\begin{equation*}
+h(k,\phi)=\phi^k,k=0,1,\ldots	
+\end{equation*}
+\item The single correlation parameter, $\phi$, represents the lag-1 correlation and takes values between -1 and 1.\\
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Semi-Variogram}
+\begin{itemize}
+\item For unbalanced longitudinal data, either the correlation matrix or the scatter plot matrix can be used after discretizing  the time scale.
+\item When the variance function suggest constant variance, the semi-variogram can be used as alternative method.
+\item Reconsider the general linear mixed model :
+\begin{equation*}
+Y_{i}= X _{i}\beta  + Z _{i} \textbf{b}_{i} + \varepsilon_{(1)i} +\varepsilon_{(2)i}
+\end{equation*}
+\item In this model we assume that $ \varepsilon_i $ has constant variance and can be decomposed as
+\item $ \varepsilon_{i} =  \varepsilon_{(1)i} +\varepsilon_{(2)i} $ in which 
+\item $\varepsilon_{(2)i} $ is a component of serial correlation and 
+\item $\varepsilon_{(1)i} $ is an extra component of measurement error reflecting variation added due to the measurement process.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Semi-variogram}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.65\textwidth]{Chapter1/corrstructure}
+\caption{Semi-variogram for Exponential and Gaussian Serial Correlation}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{Example: The Rat Data}
+\begin{itemize}
+\item Stage 1 Model: $Y_{ij} =\beta_{1i} + \beta_{2i}t_{ij}  + \varepsilon_{ij}, i=1.\dots,n_i$
+\item Stage 2 Models: 	\begin{eqnarray*}
+\left\{\begin{array}{rcl}
+\beta_{1i} & = & \beta_{0} + b_{1i} \\
+\beta_{2i} & = & \beta_{1}L_{i} + \beta_{2}H_{i}+\beta_{3}C_{i} + b_{2i}
+\end{array}\right.
+\end{eqnarray*}
+\item Combined: $Y_{ij} =(\beta_0+b_{1i})+ (\beta_{1}L_i + \beta_{2}H_i+ \beta_{3}C_i+b_{2i})t_{ij}  + \varepsilon_{ij}$
+
+\begin{eqnarray*}
+=\left\{\begin{array}{l}
+\beta_{0} + b_{1i} +(\beta_{1} + b_{2i})t_{ij}+\varepsilon_{ij}, \;if \;low \;dose\\
+\beta_{0} + b_{1i} +(\beta_{2} + b_{2i})t_{ij}+\varepsilon_{ij}, \;if \;high \;dose\\
+\beta_{0} + b_{1i} +(\beta_{3} + b_{2i})t_{ij}+\varepsilon_{ij}, \;if \;control
+\end{array}\right.
+\end{eqnarray*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Rat Data}
+\begin{itemize}
+\item Implied marginal mean structure:
+\begin{itemize}
+\item Linear average evolution in each group
+\item Equal average intercepts
+\item Different average slopes
+\end{itemize}
+\item Implied marginal covariance structure $(\Sigma_i=\sigma^2I_{n_i})$
+
+\[Cov(Y_i(t_1),Y_i(t_2))=
+\begin{pmatrix}
+1&t_1
+\end{pmatrix}
+D
+\begin{pmatrix}
+1\\
+t_2
+\end{pmatrix} + \sigma^2\delta_{t_1,t_2}
+\]
+\[=d_{22}t_1t_2+d_{12}(t_1+t_2)+d_{11}+\sigma^2+\delta_{t_1,t_2}\]
+\item The model assumes that the variance function is quadratic over time, with positive curvature $d_{22}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item A model which assumes that all variability in subject-specific slopes can be ascribed to treatment differences can be obtained by omitting the random slopes $d_{2i}$ from the above model:
+\[
+Y_{ij} =(\beta_0+b_{1i})+ (\beta_{1}L_i + \beta_{2}H_i+ \beta_{3}C_i)t_{ij}  + \varepsilon_{ij}\]
+\begin{eqnarray*}
+=\left\{\begin{array}{l}
+\beta_{0} + b_{1i} +\beta_{1}t_{ij}+\varepsilon_{ij}, \;if \;low \;dose\\
+\beta_{0} + b_{1i} +\beta_{2}t_{ij}+\varepsilon_{ij}, \;if \;high \;dose\\
+\beta_{0} + b_{1i} +\beta_{3}t_{ij}+\varepsilon_{ij}, \;if \;control
+\end{array}\right.
+\end{eqnarray*}
+\item This is the so-called random-intercepts model
+\item Implied marginal covariance structure $(\Sigma_i=\sigma^2I_{n_i})$
+\[Cov(Y_i(t_1),Y_i(t_2))=\begin{pmatrix}
+1
+\end{pmatrix}
+D
+\begin{pmatrix}
+1
+\end{pmatrix} + \sigma^2\delta_{t_1,t_2}
+\]
+\[=d_{11}+\sigma^2+\delta_{t_1,t_2}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item This implied that the covariance matrix is compound symmetry:
+\begin{itemize}
+\item constant variance $d_{ii}+\sigma^2$
+\item constant correlation $\rho_i=d_{11}/(d_{11+sigma^2})$ between any two repeated measurements within the same rat
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{A Model for the Residual Covariance Structure}
+\begin{itemize}
+\item Often, $\Sigma_i$ is taken equal to $\sigma^2I_{n_i}$
+\item Then we obtain conditional independence:
+\item Conditional on $b_i$, the elements in $Y_i$ are independent
+\item In the presence of no, or little, random effects, conditional independence is often unrealistic
+\item For example, the random intercepts model not only implies constant variance, it also implicitly assumes constant correlation between any two measurements within subjects
+\item Hence, when there is no evidence for (additional) random effects, or if they would have no substantive meaning, the correlation structure in the data can be accounted for in an appropriate model for $\Sigma_i$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{A Model for the Residual Covariance Structure}
+\begin{itemize}
+\item Frequently used model is:
+\begin{eqnarray*}
+Y_{i} = X_i\beta +Z_ib_i+\underbrace{\varepsilon_{(1)i}+\varepsilon_{(2)i}}_{\varepsilon_{i}} 
+\end{eqnarray*}
+\item 3 stochastic components: \vspace{0.25cm}
+\begin{itemize}
+\item  $b_i$: between-subject variability  \vspace{0.25cm}
+\item  $\varepsilon_{(1)i}$: measurement error  \vspace{0.25cm}
+\item  $\varepsilon_{(2)i}$: serial correlation component
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item $\varepsilon_{(2)i}$ represents the belief that part of an individual’s observed profile is a response to time-varying stochastic processes operating within that individual \vspace{0.25cm}
+\item This results in a correlation between serial measurements, which is usually a decreasing function of the time separation between these measurements \vspace{0.25cm}
+\item The correlation matrix $H_i$ of $\varepsilon_{(2)i}$ is assumed to have $(j, k)$ element of the form $h_{ijk}=g(|t_{ij} − t_{ik}|)$ for some decreasing function $g(.)$ with $g(0) = 1$ \vspace{0.25cm}
+\item Frequently used functions $g(.)$: \vspace{0.25cm}
+\begin{itemize}
+\item Exponential serial correlation: $g(u) = exp(-\phi u)$ \vspace{0.25cm}
+\item Gaussian serial correlation: $g(u) = exp(-\phi u^2)$
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Graphically for $\phi=1$:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{Chapter1/serialcorr}
+\end{figure}
+\item Extreme cases:
+\begin{itemize}
+\item $\phi=+\infty:$ components in $\varepsilon_{(2)i}$ independent
+\item  $\phi=0:$ components in $\varepsilon_{(2)i}$ perfectly correlated
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item In general, the smaller, the stronger is the serial correlation
+\item Resulting final linear mixed model:
+\begin{eqnarray*}
+Y_{i} = X_i\beta +Z_ib_i+\varepsilon_{(1)i}+\varepsilon_{(2)i}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+independent\left\{\begin{array}{l}
+b_i\sim N(0,D)\\\\
+\varepsilon_{(1)i} \sim N(0, \sigma^2I_{n_i})\\\\
+\varepsilon_{(2)i} \sim N(0, \tau^2H_i)
+\end{array}\right.
+\end{eqnarray*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Graphical representation of all 4 components in the model:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{Chapter1/stochasticComp}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Estimation of the Marginal Model}
+\begin{itemize}
+	\item In general, the smaller, the stronger is the serial correlation
+	\item Resulting final linear mixed model:
+	\begin{eqnarray*}
+		Y_{i} = X_i\beta +Z_ib_i+\varepsilon_{(1)i}+\varepsilon_{(2)i}
+	\end{eqnarray*}
+	
+	\begin{eqnarray*}
+		independent\left\{\begin{array}{l}
+			b_i\sim N(0,D)\\\\
+			\varepsilon_{(1)i} \sim N(0, \sigma^2I_{n_i})\\\\
+			\varepsilon_{(2)i} \sim N(0, \tau^2H_i)
+		\end{array}\right.
+	\end{eqnarray*}
+\item Note that inferences based on the marginal model do not explicitly assume the presence of random effects representing the natural heterogeneity between subjects
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Estimation of the Marginal Model}
+\begin{itemize}
+\item Notation:
+\begin{itemize}
+	\item $\beta$: vector of fixed effects 
+	\item $\alpha$: vector of all variance components in D and $\Sigma$ 
+    \item $\theta=(\beta, \alpha) $: vector of all parameters in marginal model
+\end{itemize}
+\item Marginal likelihood function:
+\begin{equation*}
+L_{ml}(\theta)=\prod_{i=1}^{N}\left[(2\pi)^{-n_i/2}|V_i(\alpha)|^{-1/2}exp\left[-\frac{1}{2}(Y_i-X\beta)'V^{-1}(\alpha)(Y_i-X_i\beta)\right]\right]
+\end{equation*}
+\item If $\alpha$ were known, MLE of $\beta$ equals
+\[
+\beta(\alpha)=\left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1}\sum_{i=1}^{N}X^{'}V_iy_i
+\]
+\item In most cases, $\alpha$ is not known, and needs to be replaced by an estimated
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Maximum Likelihood Estimation (ML)}
+\begin{itemize}
+	\item Two frequently used estimation methods for $\alpha$:
+	\begin{itemize}
+		\item Maximum likelihood
+		\item Restricted maximum likelihood
+	\end{itemize}
+	\item ${\bar{\alpha}_{ML}}$ obtained from maximizing  
+	\[L_{ML}(\alpha, \beta(\alpha))\] with respect to $\alpha$
+	\item The resulting estimate for $\beta$ will be denoted by $\hat{\beta_{ML}}$
+	\item ${\bar{\alpha}_{ML}}$ and $\hat{\beta_{ML}}$ can also be obtained from maximizing $L_{ML}(\theta)$ with respect to $\alpha$ and $\beta$ simultaneously
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Restricted Maximum Likelihood Estimation (REML)}
+{\color{blue}{Variance Estimation in Normal Populations}}
+\begin{itemize}
+\item Consider a sample of $N$ observations $Y_i,\dots, Y_N$ from $N(\mu,\sigma^2)$ \vspace{0.25cm}
+\item For known mean $(\mu)$, $ MLE$ of $\sigma^2$ equals: $\hat{\sigma^{2}}=\sum_{i}^{N}(Y_i-\mu)^{2}/N$ \vspace{0.25cm}
+\item Here, $\hat{\sigma^{2}}$ is unbiased estimator for $\sigma^2$ \vspace{0.25cm}
+\item When $\mu$ is not known, MLE of $\sigma^2$ equals: $\hat{\sigma^{2}}=\sum_{i}^{N}(Y_i-\bar{Y})^{2}/N$ \vspace{0.25cm}
+\item Note that $\hat{\sigma^{2}}$ is unbiased for $\sigma^2$ implies that $E(\hat{\sigma^{2}})=\frac{N-1}{N}\sigma^2$
+\item The bias expression tells us how to derive an unbiased estimate:
+\[S^2=\sum_{i}^{N}(Y_i-\bar{Y})^{2}/(N-1)\] 
+\item Estimating $\mu$ apparently introduce bias in MLE of $\sigma^2$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item So, we have to try to estimate $\sigma^2$ without estimating $\mu$ first. How can we do that?
+	\item The model for all the data simultaneously:
+\[Y=
+\begin{pmatrix}
+Y_i\\
+\vdots\\
+Y_N
+\end{pmatrix}
+\sim N
+\begin{pmatrix}
+\begin{pmatrix}
+\mu\\
+\vdots\\
+\mu\\
+\end{pmatrix}, \sigma^2I_N
+
+\end{pmatrix} 
+\]
+\item we transform $Y$ such that $\mu$ vanishes from the likelihood
+\[U=A^{'}Y\sim N(0,\sigma^{2}A^{'}A)
+\]
+\item MLE of $\sigma^2$ based on $U$ equals; $S^{2}=\frac{1}{N-1}\sum_{i}(Y_i-\bar{Y})^2$
+\item $S^2$ is called REML estimate for $\sigma^2$, and $S^2$ is independent of A
+\item $A$ defines a set of $N-1$ linearly independent error contrasts
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Estimation of Residual Variance in Linear Regression Model}
+\begin{itemize}
+	\item Consider a sample of N observations $Y_1,\dots,Y_N$ from linear regression model
+	\[Y=
+	\begin{pmatrix}
+	Y_i\\
+	\vdots\\
+	Y_N
+	\end{pmatrix}
+	\sim N(X\beta,\sigma^{2}I)
+	\]
+\item MLE of $\sigma^2$: 
+\[\hat{\sigma^{2}}=(Y-X\hat{\beta})^{'}(Y-X\hat{\beta})\]
+\item Note that $\hat{\sigma^{2}}$ is biased for $\sigma^2$
+\[E(\hat{\sigma^{2}})=\frac{N-p}{N}\sigma^2
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item The bias expression tells us how to derive an unbiased estimate:
+	\[MSE=(Y-X\beta)^{'}(Y-X\beta)/(N-p),
+	\]
+\item The MSE can also be obtained from transforming the data orthogonal to X:
+\[U=A^{'}Y\sim N(0,\sigma^{2}A^{'}A)
+\]
+\item The MLE of $\sigma^2$, based on U, now equals the mean squared error, MSE 
+\item The MSE is again called the REML estimate $\sigma^2$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{REML for the Linear Mixed Model}
+\begin{itemize}
+	\item We first combine all models
+	\[Y_i\sim N(X_i\beta,V_i)
+	\] into one the model
+		\[Y\sim N(X\beta,V)	\] in which
+	
+	\[Y=
+	\begin{pmatrix}
+	Y_i\\
+	\vdots\\
+	Y_N
+	\end{pmatrix},
+	X=
+	\begin{pmatrix}
+	X_1\\
+	\vdots\\
+	X_N
+	\end{pmatrix},
+	V(\alpha)=
+	\begin{pmatrix}
+	V_1\dots 0\\
+	\vdots \ddots \vdots\\
+	0 \dots V_N
+	\end{pmatrix}
+	\]	
+\item Again, the data are transformed orthogonal to X:
+\[U=A^{'}Y=\sim N(0,A^{'}V(\alpha)A)
+\]		
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item The MLE of $\alpha$, based on U is called REML estimate, and denoted by $\hat{\alpha}_{REML}$
+	\item The resulting estimate $\hat{\beta}(\hat{\alpha}_{REML})$ for $\beta$ will be denoted by $\hat{\beta}_{REML}$
+	\item $\hat{\alpha}_{REML}$ and $\hat{\beta}_{REML}$ can also be obtained from maximizing 
+	\[
+	L_{REML}(\theta)=|\sum_{i=1}^{N}X^{'}W_i(\alpha)X_i|^{-1/2}L_{ML}(\theta)
+	\] with respect to $\theta$ ()$\alpha$ and $\beta$) simultaneously
+	\item $L_{REML}(\alpha,\hat{\beta}(\alpha))$ is the likelihood of error contrast U, and is often called the REML likelihood function
+	\item Note that $L_{REML}(\theta)$ is not the likelihood for our original data Y.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Chapter 6: Fitting Linear Mixed Models in R
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {Chapter 6}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Fitting Linear Mixed Models in R}}
+\end{frame}
+
+\begin{frame}{Fitting Linear Mixed Models in R}
+\begin{itemize}
+	\item There are two packages in R for fitting multilevel models
+	\item The older and more comprehensive package is nlme, an acronym for nonlinear mixed effects models
+	\item It’s limitation is that it only fits normal-based models and was not designed to fit mixed models to	non hierarchical data
+	\item The newer package is lme4
+	\item It can handle generalized linear mixed effect regression models such as logistic and Poisson regression
+	\item It currently lacks the nonlinear features of nlme
+	\item Since we are going to focus on the examples that are based on normal theory our focus will be on nlme package
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model: Jimma infant data}
+\begin{eqnarray*}
+	W_{ij}=\beta_0 + b_{0i}+ \beta_1S_i + (\beta_2 +b_{1i})A_{ij} + \beta_3{A_{ij}}^2 \\
+	+ \beta_4S_iA_{ij} +\beta_5{A_{ij}}^2S_i +\varepsilon_{ij}
+\end{eqnarray*}
+\begin{itemize}
+	\item $W_{ij}$: weight (Kg)  of the $i^{th}$ infant at the $j^{th}$ visit.
+	\item $A_{ij}$: Age of the $i^{th}$ infant at the $j^{th}$ visit.
+	\item $S_i$: Sex of the $i^{th}$ infant $(Female=0, Male=1)$
+	\item $b_{0i}$: is random intercept; $b_{1i}$: is random slope
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Basic components from R}
+\begin{itemize}
+	\item The function lme under the library nlme in R fits 
+	\begin{itemize}
+		\item Linear mixed-effects model
+		\item Multilevel linear mixed effects model  
+	\end{itemize}
+\item It uses maximum likelihood or restricted maximum likelihood
+\item The command $lme$ in R is as follows
+\begin{verbatim}
+lme(fixed, data, random, correlation, weights, subset, 
+method, na.action, control, contrasts = NULL, keep.data = TRUE)
+\end{verbatim}
+\item fixed is an argument to define fixed effects portion 
+\item random is an argument to define the random effects portion 
+\item  data an optional data frame containing the variables named 
+\item correlation describing the within-group correlation structure
+\item method is an argument to lme that changes the estimation method
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+	\item REML the model is fit by maximizing the restricted log-likelihood
+	\item If ML the log-likelihood is maximized. The Default is REML
+	\item the fixed part and the random parts:
+	\begin{itemize}
+		\item The fixed part is $fixed = distance \sim Sex+Sex*age$
+		\item The random part is $random =\sim1 |Subject$
+	\end{itemize}
+\item If the random part is specified as above it means we will fit a model with random intercept
+\item Here the response is specified only on fixed part.
+\item In the random part the model statement begins with just a $\sim$
+\item If the random formula is omitted, it default value is taken as the right hand side of the fixed formula
+\item The vertical bar separates the model specification from the structural specification.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model:}
+\begin{eqnarray*}
+	D_{ij}=\beta_0 +  \beta_1S_i + \beta_2A'_{ij} + \beta_4S_iA'_{ij}  + b_{0i}+ b_{1i}A'_{ij} + \varepsilon_{ij}
+\end{eqnarray*}
+\begin{itemize}
+	\item $D_{ij}$: Orthodontic distance of the $i^{th}$ child at the $j^{th}$ visit.
+	\item $A_{ij}$: Age of the $i^{th}$ child at the $j^{th}$ visit, $A'_{ij}=A_{ij}-8$
+	\item $S_i$: Sex of the $i^{th}$ child $(boys=1, girls=2)$
+	\item $b_{0i}$: is random intercept; $b_{1i}$: is random slope
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Growth data}
+\begin{itemize}
+	\item We want to fit a random intercept model on growth data and the following code can be used
+\begin{verbatim}
+library(nlme)
+growth.fit1 <- lme(fixed = measure ~ sex+sex*age, 
+data = mydata22, random = ~ 1|ind)
+\end{verbatim}
+
+\item Fixed effect $fixed = measure ~ sex+sex*age$
+\item Name for the data $data = mydata22$
+\item random intercept $random = ~ 1|ind$
+\item For the $growth.fit1$ object print($growth.fit1$) gives
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Growth data}
+\begin{verbatim}
+> print(growth.fit1)
+Linear mixed-effects model fit by REML
+Data: mydata22 
+Log-restricted-likelihood: -203.0748
+Fixed: measure ~ sex + sex * age 
+(Intercept)         sex         age     sex:age 
+15.3820544   0.9177677   1.0846088  -0.2976836 
+
+Random effects:
+Formula: ~1 | ind
+(Intercept) Residual
+StdDev:    1.836499 1.440418
+
+Number of Observations: 99
+Number of Groups: 27 
+\end{verbatim}
+\end{frame}
+
+{\footnotesize
+\begin{frame}
+\begin{center}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{2}{|c|}{Main lme methods } \\
+		\hline
+		ACF & empirical autocorrelation function of within-group residuals\\
+		anova & likelihood ratio or conditional tests \\
+		augPred & predictions augmented with observed values \\
+		coef & estimated coefficients for different levels of grouping \\
+		fitted & fitted values for different levels of grouping \\
+		fixef  & fixed-effects estimates \\
+		intervals & confidence intervals on model parameters \\
+		logLik & log-likelihood at convergence \\
+		pairs  & scatter-plot matrix of coefficients or random effects \\
+		plot & diagnostic Trellis plots \\
+		predict & predictions for different levels of grouping \\
+		print & brief information about the fit \\
+		qqnorm & normal probability plots \\
+		ranef & random-effects estimates \\
+		resid & residuals for different levels of grouping \\
+		summary & more detailed information about the fit\\
+		update & update the lme fit \\
+		Variogram& semivariogram of within-group residuals\\
+		\hline
+	\end{tabular}
+\end{center} 
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+	\item The command $coef(growth.fit1)$ in R produced;
+\begin{verbatim}
+   (Intercept)       sex      age    sex:age
+1     14.32099 0.9177677 1.084609 -0.2976836
+2     15.72939 0.9177677 1.084609 -0.2976836
+3     16.13251 0.9177677 1.084609 -0.2976836
+4     17.35446 0.9177677 1.084609 -0.2976836
+5     15.40437 0.9177677 1.084609 -0.2976836
+6     14.05792 0.9177677 1.084609 -0.2976836
+7     15.72939 0.9177677 1.084609 -0.2976836
+8     16.05440 0.9177677 1.084609 -0.2976836
+9     14.05792 0.9177677 1.084609 -0.2976836
+10    11.70671 0.9177677 1.084609 -0.2976836
+11    18.65453 0.9177677 1.084609 -0.2976836
+12    17.80363 0.9177677 1.084609 -0.2976836
+13    14.09445 0.9177677 1.084609 -0.2976836
+14    14.77016 0.9177677 1.084609 -0.2976836
+15    16.82859 0.9177677 1.084609 -0.2976836
+16    13.40292 0.9177677 1.084609 -0.2976836
+.        .       .          .         .
+\end{verbatim}
+\end{itemize}
+\end{frame}
+}
+
+\begin{frame}[fragile]{Fixed effect parameters}
+\begin{itemize}
+	\item Command $fixef(Ortho.fit1)$, the following output is produced 
+	\begin{verbatim}
+	> fixef(growth.fit1)
+	(Intercept)         sex         age     sex:age 
+	15.3820544   0.9177677   1.0846088  -0.2976836 
+	\end{verbatim}
+	\item The parameters are average
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Producing Maximum Likelihood Estimates Using lme}
+\begin{itemize}
+\item In all of the above outputs, we produced the Restricted Maximum Likelihood Estimates as REML is the default method in the $lme$
+\item The argument method=ML requests that estimates be obtained using full maximum likelihood 
+\begin{verbatim}
+> growth.fit2 <-lme(fixed = measure ~ sex+sex*age, method= "ML",
+               data = mydata22, random = ~ 1|ind)
+\end{verbatim}
+\item The output that follows is based on the maximum likelihood estimation 
+\item The intervals $growth.fit2$ command in R will produce the following confidence interval for the parameters of our model
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{verbatim}
+Approximate 95\% confidence intervals
+Fixed effects:
+lower       est.       upper
+(Intercept) 10.6739882 15.3842162 20.09444414
+sex         -2.3469983  0.9188003  4.18459902
+age          0.7106699  1.0844737  1.45827751
+sex:age     -0.5486437 -0.2977482 -0.04685262
+attr(,"label")
+[1] "Fixed effects:"
+
+Random Effects:
+Level: ind 
+lower     est.    upper
+sd((Intercept)) 1.281501 1.759342 2.415358
+Within-group standard error:
+lower     est.    upper 
+1.206178 1.420339 1.672526 
+\end{verbatim}
+\end{frame}
+
+{\scriptsize
+\begin{frame}[fragile]
+\begin{itemize}
+	\item The $summary(growth.fit2)$ command in R will produce the following output for the parameters of our model
+	\begin{verbatim}
+	Linear mixed-effects model fit by maximum likelihood
+	Data: mydata22 
+	AIC      BIC    logLik
+	413.3128 428.8835 -200.6564
+	Random effects:
+	Formula: ~1 | ind
+	(Intercept) Residual
+	StdDev:    1.759342 1.420339
+	Fixed effects: measure ~ sex + sex * age 
+	Value Std.Error DF   t-value p-value
+	(Intercept) 15.384216 2.4108899 70  6.381136  0.0000
+	sex          0.918800 1.6187332 25  0.567605  0.5754
+	age          1.084474 0.1913283 70  5.668131  0.0000
+	sex:age     -0.297748 0.1284187 70 -2.318573  0.0233
+	Correlation: 
+	(Intr) sex    age   
+	sex     -0.944              
+	age     -0.881  0.832       
+	sex:age  0.832 -0.881 -0.944
+	Standardized Within-Group Residuals:
+	Min           Q1          Med           Q3          Max 
+	-3.331674862 -0.531945925 -0.009607243  0.482544286  3.599008895 
+	Number of Observations: 99
+	Number of Groups: 27 
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+}
+
+\begin{frame}
+\begin{itemize}
+\item The maximum likelihood is the estimation method that was used
+\item The AIC and log likelihood can be used to make comparisons between models with different fixed effects (or random effects).
+\item The next estimates for the random effects part of the model
+\item In the line where the numerical estimates appears the label is $StdDev$, indicating that standard deviations are displayed
+\item The estimates displayed are the standard deviations of between variability $(\sigma_b= 1.74)$ and the standard deviations of within variability $(\sigma_w= 1.369 )$.
+\item In the Fixed Effects sections we have, the reported value of the intercept, its estimated standard error, and Wald test for whether its value is significantly different from zero or not
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Random Slope model}
+\begin{itemize}
+	\item Random intercept $random = ~1|ind$
+	\item Random intercept and slope $random = \sim age|subject$
+	\begin{verbatim}
+	library(nlme)
+	growth.fit2 <- lme(fixed = measure ~ sex+sex*age, 
+	data = mydata22, random = ~ age|ind)
+	\end{verbatim}
+\item $VarCorr(growth.fit2)$, variance components can be extracted from the model 
+\begin{verbatim}
+ind = pdLogChol(age) 
+Variance   StdDev    Corr  
+(Intercept) 8.35519280 2.8905350 (Intr)
+age         0.04415048 0.2101202 -0.766
+Residual    1.76655402 1.3291178
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for the Marginal Model}
+\begin{itemize}
+ \item Inference for fixed effects:
+	\begin{itemize}
+		\item Wald test
+		\item t-test and F-test
+		\item Robust inference
+		\item LR test
+	\end{itemize}
+\item Inference for variance components:
+\begin{itemize}
+	\item Wald test
+	\item LR test
+\end{itemize}
+\item Information criteria
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for the Fixed Effects}
+\begin{itemize}
+	\item Estimate for $\beta$:
+	\[
+	\beta(\alpha)=\left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1}\sum_{i=1}^{N}X^{'}V_iy_i
+	\] with $\alpha$ replaced by its ML or REML estimate
+	\item Conditional on $\alpha, \hat{\beta}(\alpha)$ is multivariate normal with mean $\beta$ and covariance $Var(\hat{\beta})$
+
+	\[Var(\hat{\beta})=\left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1}
+\left(\sum_{i=1}^{N}X^{'}V_iVar(Y_i)X_i\right) \left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1}\]
+
+\[ =\left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximate Wald Test}
+\begin{itemize}
+	\item For any known matrix L, consider testing
+	\[H_0:\:L\beta=0, \: versus \: H_A: \: L\beta \ne 0	\]
+	\item Wald test statistics 
+	\[G=\hat{\beta}^{'}L^{'} \left[L\left(\sum_{i=1}^{N}X^{'}_iV^{-1}_i(\alpha)X^{'}_i\right)^{-1}L^{'}\right]^{-1}\hat{\beta}^{'}L
+	\]
+	\item Asymptotic null distribution of G is $\chi^2$ with rank(L) degrees of freedom
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Approximate t-test and F-test}
+\begin{itemize}
+	\item Wald test based on
+	\[Var(\hat{\beta})=\left(\sum_{i=1}^{N}X^{'}V_iX_i\right)^{-1} \]
+	\item Variability introduced from replacing $\alpha$ by some estimate is not taken into account in Wald tests
+	\item Therefore, Wald tests will only provide valid inferences in sufficiently large samples
+	\item In practice, this is often resolved by replacing the $\chi^2$  distribution by an appropriate F-distribution (are the normal by a t)
+	\item For any known matrix L, consider testing
+		\[H_0:\:L\beta=0, \: versus \: H_A: \: L\beta \ne 0	\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item F test statistics
+	\[F=\frac{\hat{\beta}^{'}L^{'} \left[L\left(\sum_{i=1}^{N}X^{'}_iV^{-1}_i(\alpha)X^{'}_i\right)^{-1}L^{'}\right]^{-1}\hat{\beta}^{'}L}{rank(L)}
+	\]
+	\item Approximate null-distribution of F is F with numerator degrees of freedom equal
+	to rank(L)
+	\item Denominator degrees of freedom to be estimated from the data:
+	\begin{itemize}
+		\item Containment method
+		\item Satterthwaite approximation
+		\item Kenward and Roger approximation
+		\item ....
+	\end{itemize}
+\item In the context of longitudinal data, all methods typically lead to large numbers of degrees of freedom, and therefore also to very similar p-values
+\item For univariate hypotheses (rank(L)=1) the F-test reduces to a t-test
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Likelihood Ratio Test}
+\begin{itemize}
+	\item Comparison of nested models with different mean structures, but equal covariance structure
+	\item Test Statistics
+	\[-2ln\lambda_N=-2ln\left[\frac{L_{ML}(\hat{\theta}_{ML,0})}{L_{ML}(\hat{\theta}_{ML})}\right] \]
+	\item Asymptotic null distribution:$\chi^2$ with d.f. equal to difference in dimension of $\Theta_{\beta}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LR Test for Fixed Effects Under REML}
+\begin{itemize}
+	\item How can the negative LR test statistic be explained?
+	\item Under REML, the response Y is transformed into error contrasts $U =A^{'}Y$ for some matrix A with $A^{'}X = 0$
+	\item Afterwards, ML estimation is performed based on the error contrasts
+	\item The reported likelihood value, $L_{REML}(\hat{\theta})$ is the likelihood at maximum for the error contrasts U
+	\item Models with different mean structures lead to different sets of error contrasts
+	\item Hence, the corresponding REML likelihoods are based on different observations, which makes them no longer comparable
+	\item LR tests for the mean structure are not valid under REML
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for the Variance Components}
+\begin{itemize}
+	\item Inference for the mean structure is usually of primary interest.
+	\item However, inferences for the covariance structure is of interest as well:
+	\begin{itemize}
+		\item interpretation of the random variation in the data
+		\item overparameterized covariance structures lead to inefficient inferences for mean
+		\item too restrictive models invalidate inferences for the mean structure
+	\end{itemize}
+\item Asymptotically, ML and REML estimates of $\alpha$ are normally distributed with correct mean and inverse Fisher information matrix as covariance
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Caution with Wald Tests for Variance Components}
+\begin{itemize}
+	\item Wald test: $H_0:d_{33}=0$
+	\item Under the hierarchical model interpretation, this null-hypothesis is not of any interest, as $d_{23}$ and $d_{13}$ should also equals zero when ever $d_{33}=0$
+	\item Hence, the test is meaningful under the marginal model only, i.e., when no underlying random effects structure is believed to describe the data
+	\item Boundary Problems
+	\begin{itemize}
+		\item The quality of the normal approximation for ML or REML estimate strongly depends on the true value of $\alpha$
+		\item Poor normal approximation if $\alpha$ is relatively close to the boundary of the parameter space
+		\item If $\alpha$ is a boundary value, the normal approximation completely fails
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Boundary Problems}
+\begin{itemize}
+	\item Under the hierarchical model interpretation, $d_{33}=0$ is a boundary value
+	\item This imply  that the calculation of the above p-value is based on an incorrect null-distribution for the Wald test statistic
+	\item Indeed, how could ever, under $H_0, d_{33}$ be normally distributed with mean 0, if $d_{33}$ is estimated under the restriction $d_{33}\ge 0$?
+	\item Hence, the test is only correct, when the null-hypothesis is not a boundary value (e.g., $H_0 : d_{33}=0.1$)
+	\item Note that, even under the hierarchical model interpretation, a classical Wald test is valid for testing $H_0 : d_{23}=0$
+	\item Likelihood ratio test for the variance component also suffers with the boundary problem
+	\item Hence, ignoring the boundary problem may invalidate inferences, even for the mean structure
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Information Criteria}
+\begin{itemize}
+	\item LR tests can only be used to compare nested models
+	\item How to compare non-nested models?
+	\item The general idea behind the LR test for comparing model A to a more extensive model B is to select model A if the increase in likelihood under model B is small compared to increase in complexity
+	\item A similar argument can be used to compare non-nested models A and B
+	\item One then selects the model with the largest (log-)likelihood provided it is not (too) complex
+	\item The model is selected with the highest penalized log-likelihood 
+	\item Information criteria are no formal testing procedures
+	\item For the comparison of models with different mean structures, information criteria should be based on ML rather than REML, as otherwise the likelihood values would be based on different sets of error contrasts, and therefore would no longer be comparable
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model comparison}
+\begin{itemize}
+	\item When fitting models, it is possible to increase the likelihood by adding parameters, but doing so may result in over fitting
+	\item Both BIC and AIC attempt to resolve this problem by introducing a penalty term for the number of parameters in the model
+	\item  the penalty term is larger in BIC than in AIC
+	\item Akaike Information Criterion (AIC)
+	\[AIC = -2 log Lik + 2npar ,
+	\]
+	\item Bayesian Information Criterion (BIC)
+	\[BIC = -2 log Lik + npar log(N),
+	\]
+	\item Where $npar=$ number of parameters in the model
+	\item $N=$Total number of observations used to fit the model
+	\item Both AIC and BIC pick the model with the smallest value
+	\item BIC penalizes model complexity more heavily
+	\item Multilevel models and complicated structural equation models, then the BIC is used more frequently than the AIC 	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for the Random Effects}
+\begin{itemize}
+	\item Empirical Bayes inference
+	\item Best linear unbiased prediction
+	\item Example: 
+	\item Shrinkage
+	\item Example: Random-intercepts model
+	\item Example:
+	\item Normality assumption for random effects
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Empirical Bayes Inference}
+\begin{itemize}
+	\item Random effects $b_i$ reflect how the evolution for the $i$th subject deviates from the expected evolution $X_i\beta$
+	\item Estimation of the $b_i$ helpful for detecting outlying profiles
+	\item This is only meaningful under the hierarchical model interpretation:
+	\[Y_i|b_i\sim N(X_i\beta+Z_ib_i,\Sigma_i) \; b_i\sim N(0,D)\]
+	\item Since the $b_i$ are random, it is most natural to use Bayesian methods
+	\item Terminology: prior distribution $N(0,D)$ for $b_i$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item Posterior density:
+	\[\digamma (b_i|y_i)\equiv f(b_i|Y_i= y_i)=\frac{\digamma(b_i|y_i)f(b_i)}{\int \digamma(b_i|y_i)f(b_i)db_i}
+	\]
+	\item Posterior distribution:
+	\[b_i|y_i\sim N(DZ_iW_i(y_i-X_i\beta),\Lambda_i)
+	\] for some positive definite matrix $\Lambda_i$
+	\item Posterior mean as estimate for $b_i$:
+	\item Parameters in $\theta$ are replaced by their ML or REML estimates, obtained from fitting the marginal model.
+	\item $\hat{\beta}_i=\hat{\beta}_i(\hat{\theta})$ is called the {\color{blue} Empirical Bayes} estimate of $\backepsilon_i$
+	\item Approximate t- and F-tests to account for the variability introduced by replacing $\theta$ by $\hat{\theta}$, similar to tests for fixed effects
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Best Linear Unbiased Prediction (BLUP)}
+\begin{itemize}
+	\item Often, parameters of interest are linear combinations of fixed effects in and random effects in $b_i$
+	\item For example, a subject-specific slope is the sum of the average slope for subjects with the same covariate values, and the subject-specific random slope for that subject
+	\item In general, suppose $u=\lambda^{'}_
+	{\beta}\beta+\lambda^{'}_bb_i$
+	\item Conditionally on $\alpha$,  $\bar{u}=\lambda^{'}_{\beta}\bar{\beta}+\lambda^{'}_i\bar{b}_i$
+	\begin{itemize}
+		\item linear in the observations $Y_i$
+		\item unbiased for u
+		\item minimum variance among all unbiased linear estimators
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example: Rate data}
+\begin{itemize}
+	\item We reconsider the reduced model:
+	\[Y_{ij}=\beta_0+\beta_1Age_{ij}+\beta_2Treat_i + \beta_3Treat_iAge_{ij} +b_{0i}+b_{2i}Age_{ij} + \epsilon_{ij} \]
+	\item In R the estimates can be obtained using the following code to the	random statement:
+	\begin{verbatim}
+     ranef(growth.fit2, condVar=TRUE)
+	\end{verbatim}
+	\item In practice, histograms and scatterplots of certain components of $b_i$ are used to detect model deviations or subjects with ‘exceptional’ evolutions over time
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\textbf{\textcolor{blue}{Conclusion}}:
+\vspace*{3mm}
+\begin{itemize}
+	\item No statistically significant difference in orthodontic distance among boys and girls at the start
+	\item The evolution over time (rate of change) is higher among males
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Assignment}
+\begin{itemize}
+\item Consider Jimma infant growth Data.
+\item Outcome Variable ……height of infants measured longitudinally
+\item Factors……….…………Possible covariates from the data
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Instruction I}
+\begin{itemize}
+\item Compute Summary Statistics
+\item Fit an appropriate liner mixed effects model and interpret the findings
+\item Consider linear regression, and compare and contrast with  your results in (c)
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Part II: Models for Non-Gaussian Longitudinal Data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{red} {Part II:}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Models for Non-Gaussian Longitudinal Data}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                   Chapter 7: Marginal Models for Non-Gaussian Longitudinal Data
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{red} {Chapter 7:}}\\
+\vspace*{3mm}
+\textbf{\textcolor{red} {Marginal Models for Non-Gaussian Longitudinal Data}}
+\end{frame}
+
+\begin{frame}{Introduction}
+\begin{itemize}
+\item Repeated measurement occurs commonly in health-related applications \vspace{0.2cm}
+\item In such studies, the response variable for each subject is measured repeatedly, at several times \vspace{0.2cm}
+\item Correlated observations can also occur when the response variable is observed for matched sets of subjects \vspace{0.2cm}
+\item Observations within a cluster are usually positively correlated \vspace{0.2cm}
+\item Analyses should take the correlation into account
+\item Analyses that ignore the correlation can estimate model parameters well, but the standard error estimators can be badly biased \vspace{0.25cm}
+\item As with independent observations, with clustered observations models focus on how the probability of a particular outcome depends on explanatory variables.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Toenail Data}
+\begin{itemize}
+\item Toenail Dermatophyte Onychomycosis: Common toenail infection, difficult to treat, affecting more than 2\% of population.
+\item Classical treatments with antifungal compounds need to be administered until the whole nail has grown out healthy.
+\item New compounds have been developed which reduce treatment to 3 months
+\item Randomized, double-blind, parallel group, multicenter study for the comparison of two such new compounds (A and B) for oral treatment.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item Research question: {\color{red}Severity relative to treatment of TDO?} \vspace{0.2cm}
+\item $2 \times 189$ patients randomized, 36 centers \vspace{0.2cm}
+\item 48 weeks of total follow up (12 months) \vspace{0.2cm} 
+\item 12 weeks of treatment (3 months) \vspace{0.2cm}
+\item measurements at months 0, 1, 2, 3, 6, 9, 12.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Jimma Infant Data}
+\begin{itemize}
+\item It is of particular interest to identify the risk of overweight in early life through weight and height measurements
+\item This helps in  prevention of overweight and obesity to reduce incidence of several adulthood diseases
+\item One possible indicator of overweight is age- and sex- specific BMI, with a BMI over the $85$th percentile referring to overweight
+\item The outcome of interest is BMI coded as 0 (normal or underweight) or 1 (over weight)
+\item The question of interest is whether the percentage of overweight changes over time (age),  differs for gender.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Epilepsy Study}
+\begin{itemize}
+\item The epileptic data set considered here is obtained from  a randomized, multi-center study
+\item Comparison of placebo with  a new anti-epileptic drug (AED)	
+\item In the study, $45$ patients were randomized to the placebo group and $44$ to the active (new) treatment group
+\item The number of epileptic seizures were measured on a weekly basis during a 16 weeks period
+\item After this period, patients were entered into a long-term  study up to 27 weeks
+\item The key research question is whether or not the additional new treatment reduces the number of epileptic seizures	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Gilgel-Gibe Mosquito Data}
+\begin{itemize}
+\item A study conducted around Gilgel-Gibe dam for three years.
+\item Influence of the dam on mosquito abundance and species composition.
+\item Eight `At risk' and eight `Control' villages based on distance.
+\item One collection approach: IRC.
+\item Mosquito species were identified and counted.
+\item An.~gambaie was found to be the dominant one (more than $95\%$).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\textwidth]{Chapter7/ircaverage}
+\caption{Average evolution of An.~gambaie \label{ircbyvillage}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{The Gilgel-Gibe Mosquito Cont'd}
+\begin{itemize}
+\item At-risk seems to be consistently higher. \vspace{0.25cm}
+\item There is a clear seasonality pattern. \vspace{0.25cm}
+\item Fluctuation between wet and dry season.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Generalized Linear Model}
+\begin{itemize}
+\item Suppose a sample $Y_1, \dots, Y_N$ of independent observations is available
+\item All $Y_i$ have densities $f(y_i|\theta_i, \phi)$ which belongs to the exponential family
+\[f(y_i|\theta_i, \phi)=exp\left(\psi^{-1}[y\theta_i-\Psi(\theta_i)]+c(y,\psi)\right)\]
+\item $\theta_i$ is the natural parameters
+\item Linear predictor: $\theta_i=x_i\beta$
+\item $\theta$ is the scale parameter (over dispersion parameter)
+\item $\Psi(.)$ is a function to be discussed next
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mean and Variance}
+\begin{itemize}
+\item We start from the following general property:
+\[\int f(y|\theta,\psi)dy\]
+\[=\int exp\left(\psi^{-1}[y\theta_i-\Psi(\theta_i)]+c(y,\psi)\right)=1\]
+\item Taking first and second-order derivatives with respect to $\theta$ yields
+	\begin{eqnarray*}
+\left\{\begin{array}{l}
+		\frac{\partial}{\partial\theta}\int f(y|\theta,\psi)dy=0\\\\
+		\frac{\partial^{2}}{\partial\theta^{2}}\int f(y|\theta,\psi)dy=0
+		\end{array}\right.
+\end{eqnarray*}
+
+	\begin{eqnarray*}
+	\left\{\begin{array}{l}
+		E(Y)=\Psi^{'}(\theta)\\\\
+		Var(Y)=\phi\Psi^{''}(\theta)
+	\end{array}\right.
+\end{eqnarray*}
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Example: The Normal Model}
+\begin{itemize}
+\item Model
+\[Y\sim N(\mu,\sigma^2)\]
+
+\item Density Function:
+\[f(y|\theta,\psi)=\frac{1}{\sqrt{2\pi\sigma^{2}}}exp\left(-\frac{1}{\sigma^{2}}(y-\mu)^{2}\right)
+\]
+\[=exp\left(-\frac{1}{\sigma^{2}}(y\mu-\frac{\mu^{2}}{2}) + (\frac{ln2\pi\sigma^{2}}{2}-(\frac{y^{2}}{2\sigma^{2}})\right)
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+\item Exponential family;
+\begin{itemize}
+	\item $\theta=\mu$
+	\item $\phi=\sigma^2$
+	\item $\Psi(\phi)=\theta^2/2$
+	\item $c(y,\phi)=\frac{ln(2\pi\psi)}{2}-\frac{y^{2}}{2\psi}$
+\end{itemize}
+	\item The mean and variance functions:
+\begin{itemize}
+	\item $\mu=\theta$
+	\item $Var(\mu)=1$
+\end{itemize}
+\item Note that, under this normal model, the mean and variance are not related:
+\[\psi v(\mu)=\sigma^2\]
+\item The link function is here the identity function: $\theta=\mu$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Bernoulli Model}
+\begin{itemize}
+	\item Model 
+	\[Y\sim Bernoilli(\pi)\]
+	\item Density function 
+	\begin{eqnarray*}
+		\begin{array}{lll}
+	f(y|\theta,\phi)&=&\pi^{y}(1-\pi)^(1-y) \\
+	                &=&exp\left(y\ln\pi + (1-y)\ln(1-\pi)\right)\\
+	                &=&exp\left(y\ln(\frac{\pi}{1-\pi})+\ln(1-\pi)\right)
+		\end{array}
+\end{eqnarray*}
+\item Exponential family:
+\begin{itemize}
+	\item $\theta=\ln(\frac{\pi}{1-\pi})$
+	\item $\phi=1$
+	\item $\psi(\mu)=\ln(1-\pi)=\ln(1+exp(\theta))$
+	\item $c(y,\phi)=0$
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item Mean and variance function: 
+	\begin{itemize}
+		\item $\mu=\frac{exp\theta}{1+exp\theta}=\pi$
+		\item $v(\mu)=\frac{exp\theta}{(1+exp\theta)^{2}}=\pi(1-\pi)$
+	\end{itemize}
+\item Note that, under this model, the mean and variance are related:
+\[\phi v(\mu)=\mu(1-\mu)\]
+\item The link function here is the logit link:
+\[\theta=\ln(\frac{\mu}{1-\mu}) \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Poisson Model}
+\begin{itemize}
+	\item Model:
+	\[Y\sim Poisson(\lambda) \]
+	\item Density function:
+	
+		\begin{eqnarray*}
+		\begin{array}{lll}
+	f(y|\theta,\phi)&=&\frac{e^{-\lambda}\lambda^{y}}{y!} \\
+	                &=&exp\left(y\ln\lambda-\lambda-\ln y!\right)
+			\end{array}
+\end{eqnarray*}
+\item Exponential family:
+\begin{itemize}
+	\item $\theta=\ln\lambda$
+	\item $\phi=1$
+	\item $\psi(\theta)=\lambda=exp\theta$
+	\item $c(y,\phi)=-\ln y!$
+\end{itemize}
+\item Mean and variance function:
+\begin{itemize}
+	\item $\mu=exp\theta=\lambda$
+	\item $v(\mu)=exp\theta=\lambda$
+\end{itemize}
+\item The link function is here the log link:$\theta=\ln\mu$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Maximum Likelihood Estimation}
+\begin{itemize}
+	\item In Generalized Linear model, the parameter $\beta$  is the corresponding vector of unknown regression parameters, to be estimated
+	from the data.
+	\item Log-likelihood
+	\[\ell(\beta,\phi)=\frac{1}{\phi}\sum_{i}\left[y_i\theta_i-\psi_i(\theta_i)\right] +\sum_{i}c(y_i,phi) \]
+	\item First order derivative with respect to $\beta$:
+	\[\frac{\partial\ell(\beta, \phi)}{\partial\beta}=\frac{1}{\phi}\sum_{i}\frac{\partial\theta_i}{\partial\beta}\left[y_i|-\psi_i^{'}(\theta_i)\right]\]
+	\item The score equations for $\beta$ to be solved:
+	\[S(\beta)=\sum_{i}\frac{\partial\theta_i}{\partial\beta}(y_i-\psi^{'}(\theta_i))=0 \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item Since $\mu_i=\psi^{'}(\theta)$ and $v_i=v(\mu_i)=\psi^{''}(\theta_i)$
+	\item The score equation now becomes
+		\[S(\beta)=\sum_{i}\frac{\partial\mu_i}{\partial\beta}v_i(y_i-\mu_i)=0 \]
+	\item Note that the estimation of $\beta$ depends on the density only through the means $\mu_i$ and the variance functions $v_i=v(\mu_i)$
+	\item The score equations need to be solved numerically:
+	\begin{itemize}
+		\item iterative (re-)weighted least squares
+		\item Newton-Raphson
+		\item Fisher scoring
+	\end{itemize}
+\item Inference for $\beta$ is based on classical maximum likelihood theory:
+\begin{itemize}
+	\item asymptotic Wald tests
+	\item likelihood ratio tests
+	\item score tests
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item In some cases, $\psi$ is a known constant, in other examples, estimation of $\psi$ may be	required to estimate the standard errors of the elements in $\beta$
+	\item Estimation can be based on $Var(Y_i)=\phi v_i$:
+	\[\hat{\phi}=\frac{1}{N-p}\sum_{i}(y_i-\hat{\mu}_i)^{2}/v_i(\hat{\mu}_i) \]
+	\item For example, under the normal model, this would yield:
+		\[\hat{\phi}=\frac{1}{N-p}\sum_{i}(y_i-x^{'}_i\hat{\beta}_i)\]
+	\item the mean squared error used in linear regression models to estimate the residual variance.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Marginal Versus Conditional models}
+\begin{itemize}
+	\item Marginal models are population-average models whereas conditional models are subject-specific \vspace{0.25cm}
+	\item Interpretation 1: a 1 unit increase in covariate x is associated with a z-unit average increase in the outcome variable \vspace{0.25cm}
+	\item Interpretation 2: Conditional model you would say something like a 1 unit increase in covariate x is associated with a Z-unit average increase in response variable, holding each random effect for individual constant
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Generalized Estimating Equations (GEE)}
+\begin{itemize}
+	\item Marginal model for non-Gaussian longitudinal data
+	\item Extend GLM to accommodate the modeling of correlated data
+	\item Repeated nature of the data is modeled based on `working correlation' \vspace{0.25cm}
+	\item Same form as for full likelihood procedure, but we restrict specification to the first moment only \vspace{0.25cm}
+	\item GEE analysis IS only suitable for a two-level structure \vspace{0.25cm}
+	\item When a three-level structure exists in a longitudinal study, only multilevel analysis can be used
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Rather than assuming a particular type of distribution for $(Y_1, \dots, Y_T)$, this method only links each marginal mean to a linear predictor and provides a guess for the variance–covariance structure of $(Y_1, \dots, Y_T)$ \vspace{0.25cm}
+\item The method uses the observed variability to help generate appropriate standard errors. \vspace{0.25cm}
+\item The method is called the GEE method because the estimates are solutions of generalized estimating equations \vspace{0.25cm}
+\item These equations are multivariate generalizations of the equations solved to find ML estimates for GLMs
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Generalized Estimating Equations}
+\begin{itemize}
+	\item Let $Y_{ij}, j = 1, \dots ,n. i = 1, \dots, K$ represent the $j$th	measurement on the $i$th subject
+	\item There are $n_i$ measurements on subject $i$ and $\sum_{i=1}^{k}$ total measurements
+	\item Correlated data are modeled using the same link function and linear predictor setup (systematic component) as the independence case
+	\item The random component is described by the same variance functions as in the
+	independence case, but the covariance structure of the correlated measurements must also be modeled
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+	\item Once we have specified a marginal model for each Yt , for the GEE method we must: \vspace{0.25cm}
+	\item Assume a particular distribution for each $Y_t$. This determines how $Var(Y_t)$ depends on $E(Y_t)$ \vspace{0.25cm}
+	\item Make an educated guess for the correlation structure among $Y_t$ \vspace{0.25cm}
+	\item This is called the working correlation matrix \vspace{0.25cm}
+	\item ML fitting of marginal logit models is difficult \vspace{0.25cm}
+	\item Model-based version and Empirically-corrected version \vspace{0.25cm}
+	\item One possible working correlation has exchangeable structure
+	\begin{itemize}
+		\item This treats $\rho =Corr(Y_s, Y_t)$ as identical (but unknown) for all pairs $s$ and $t$ 
+	\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item Let the vector of measurements on the $i$th subject be $Y_i=[Y_{i1}, \dots,Y_{ini}]$ with corresponding vector of means $\mu_i=[\mu_{i1},\dots,\mu_{ini}]^{'}$ and let $V_i$ be an estimate of the covariance matrix of $Y_i$
+	\item The Generalized Estimating  Equation for estimating $\beta$ is an extension of	the independence estimating equation to correlated data and is given by
+	\[\sum_{i=1}^{k}\frac{\partial\mu_i}{\partial\beta}V^{-1}_i(Y_i-\mu_i(\beta))\]
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame} {Correlation Structures}
+\begin{itemize}
+\item For the assumed working correlation structure, the GEE method uses the data to estimate the correlations. \vspace{0.25cm}
+\item Those correlation estimates also impact the estimates of model parameters and their standard errors. \vspace{0.25cm}
+\item When the correlations are small, all working correlation structures yield similar GEE estimates and standard errors. \vspace{0.25cm}
+\item Unless one expects dramatic differences among the correlations, we recommend using the exchangeable working correlation structure.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Even if your guess about the correlation structure is poor, valid standard errors result from an adjustment the GEE method makes using the empirical dependence the actual data exhibit \vspace{0.25cm}
+\item That is, the naive standard errors based on the assumed correlation structure are updated using the information the sample data provide about the dependence \vspace{0.25cm}
+\item The result is robust standard errors that are usually more appropriate than ones based solely on the assumed correlation structure
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ Working Correlation Matrix}
+\begin{itemize}
+	\item suppose $V_i(.)$ is not the true variance of $Y_i$ but only a plausible guess, a so-called working correlation matrix
+	\item Let $R_i(\alpha)$ be an $n_i\times n_i$ working correlation matrix that is fully specified by the vector of parameters $\alpha$
+	\item The covariance matrix of $Y$, is modelled as 
+	\[V_i=\phi A^{1/2}_iR(\alpha)A^{1/2}_i\]
+	\item $\phi$ is a scale (over dispersion) parameter
+	\item where $A$ is an $n_i\times n_i$ diagonal matrix with $v(\mu_{ij})$ as the	$i$th diagonal element
+	\item If $R_i(\alpha)$ is the true correlation matrix of $Y_i$ , then $V$, is the true covariance matrix of $y_i$.
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item The working correlation matrix is not usually known and must be estimated.
+	\item It is estimated in the iterative fitting process using the current value of the parameter vector $\beta$ to compute appropriate functions of the Pearson residual
+	\[r_{ij}=\frac{y_{ij}-\mu_{ij}}{\sqrt{v(\mu_{ij})}} \]
+	\item There are several specific choices of the form of working correlation matrix $R_i(\alpha)$ commonly used to madel the correlation matrix of $Y_i$. 
+	\item A few of the choices are shown below
+	\item The dimension of the vector a, which is treated as a nuisance parameter, and the form of the estimator of a are different for each choice
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Types of Working Correlation Matrix}
+\begin{itemize}
+	\item Consider four repeated measurements from each study participants. Some typical choices for the correlation structure are:
+    
+     \begin{itemize}
+       	\item The independence working correlation structure assumes $Corr(Y_s, Y_t)= 0$ for each pair. This treats the observations in a cluster as uncorrelated \vspace{0.25cm}
+     \begin{itemize} 
+     	    \item ($R_i(\rho)=R_0$), a fixed correlation matrix
+     		\item For $R_0 = I$, the identity matrix, the GEE reduces to the independence estimating equation.
+      	\end{itemize}
+     \[R(\alpha)=\left[ \begin{array}{ccccc}
+      1 & 0 & 0& 0\\
+      0 & 1 &0 & 0\\
+      0 & 0 & 1 & 0\\
+      0& 0 & 0 & 1
+      \end{array} \right]\]
+     	\item Exchangeable: 
+     	\begin{itemize}
+     		\item $corr(Y_{ij}, Y_{ik})=\rho, j\ne k$
+     	\end{itemize}
+      \[R(\alpha)=\left[ \begin{array}{ccccc}
+     1 & \rho & \rho & \rho\\
+     \rho & 1 &\rho & \rho\\
+     \rho & \rho & 1 & \rho\\
+     \rho & \rho & \rho & 1
+     \end{array} \right]\]
+  
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Toenail Data}
+\begin{itemize}
+	   \item Autoregressive (AR-1): 
+	\begin{itemize}
+		\item $corr(Y_{ij}, Y_{ik})=\rho^{t_{ij}-t_{ik}}$
+ 
+	\[R(\alpha)=\left[ \begin{array}{ccccc}
+	1 & \rho^{1} & \rho^{2}& \rho^{3}\\
+	\rho^{1} & 1 & \rho^{1} & \rho^{2}\\
+	\rho^{2} & \rho^{1} & 1 & \rho^{3}\\
+	\rho^{3}& \rho^{2} & \rho^{1} & 1
+	\end{array} \right]\]
+\end{itemize}
+    	\item Unstructured: 
+	\begin{itemize}
+		\item $corr(Y_{ij}, Y_{ik})=\rho_{jk}$ 
+	\end{itemize}
+ \[R(\alpha)=\left[ \begin{array}{ccccc}
+1 & \rho_{12} & \rho_{13} & \rho_{14}\\
+\rho_{21} & 1 & \rho_{23} & \rho_{24}\\
+\rho_{31} & \rho_{32} & 1 & \rho_{34}\\
+\rho_{41}& \rho_{42} & \rho_{43} & 1
+\end{array} \right]\]	
+
+\end{itemize}	
+\end{frame}
+
+
+\begin{frame}{Example: Toenail Data}
+\begin{itemize}
+	\item Variables in the data:
+	\begin{itemize}
+		\item obs: observation number
+		\item treat: treament group (0: Itraconazol (group B); 1: Lamisil (group A))
+		\item id: subject identification number
+		\item time: time at which the observation is taken (months)
+		\item response: the response measured (1: severe infection; 0: no severe infection)
+	\end{itemize}
+\item The research question is {\color{red}whether treatment has effect in curing the infection or not.}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Fitting GEE model in R}
+\begin{itemize}
+	\item A function that fits GEE to deal with correlation structures arising from repeated measures on individuals, or from clustering as in family data is: 
+	\begin{verbatim}
+	gee(formula, family, data , corStructure = "ar1",clusterID , 
+	startCoeff, maxit = 20,	checks = TRUE, display = FALSE, datasources)
+	\end{verbatim}
+	\item $formula$	a string character which describes the model to be fitted.
+	\item $family$	description of the error distribution: 'binomial', 'gaussian', 'Gamma' or 'poisson'.
+	\item $data$ the name of the data frame that hold the variables 
+	\item $corStructure$ the correlation structure: 'ar1', 'exchangeable', 'independence', 'fixed' or 'unstructure'.
+    \item $clusterID$ the name of the column that hold the cluster IDs
+	\item $startCoeff$ a numeric vector, the starting values for the beta coefficients
+   \item $maxit$ an integer, the maximum number of iteration to use for convergence.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\begin{itemize}
+	\item To fit GEE in R, you need the following packages first
+	\begin{itemize}
+		\item $geepack$
+		\item $wgeesel$
+		\item $MuMIn$
+	\end{itemize}
+\scriptsize
+\begin{verbatim}
+fit1 <- geeglm(y ~ treatn + time + treatn*time, id = idnum, 
+data = Toenail, family = binomial, corstr = "exchangeable", 
+scale.fix = TRUE)
+fit2 <- update(fit, corstr = "ar1")
+fit3 <- update(fit2, corstr = "unstructured")
+summary(fit1)
+
+summary(fit1)
+GEE:  GENERALIZED LINEAR MODELS FOR DEPENDENT DATA
+gee S-function, version 4.13 modified 98/01/27 (1998) 
+Model:
+Link:                      Logit 
+Variance to Mean Relation: Binomial 
+Correlation Structure:     Exchangeable 
+Call:
+gee(formula = y ~ treatn + time + treatn * time, id = idnum, 
+data = Toenail, family = binomial, corstr = "exchangeable")
+Summary of Residuals:
+Min      1Q  Median      3Q     Max 
+-0.3603 -0.2495 -0.1037 -0.0232  0.9768 
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\scriptsize
+\begin{verbatim}
+Coefficients:
+             Estimate Naive S.E. Naive z Robust S.E. Robust z
+(Intercept) -0.58406     0.1406 -4.1545      0.1734  -3.3685
+treatn       0.00997     0.1952  0.0511      0.2608   0.0382
+time        -0.17703     0.0218 -8.1100      0.0311  -5.6903
+treatn:time -0.08668     0.0377 -2.3016      0.0568  -1.5259
+
+Estimated Scale Parameter:  1.09
+Number of Iterations:  4
+
+Working Correlation
+[,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]
+[1,] 1.000 0.421 0.421 0.421 0.421 0.421 0.421
+[2,] 0.421 1.000 0.421 0.421 0.421 0.421 0.421
+[3,] 0.421 0.421 1.000 0.421 0.421 0.421 0.421
+[4,] 0.421 0.421 0.421 1.000 0.421 0.421 0.421
+[5,] 0.421 0.421 0.421 0.421 1.000 0.421 0.421
+[6,] 0.421 0.421 0.421 0.421 0.421 1.000 0.421
+[7,] 0.421 0.421 0.421 0.421 0.421 0.421 1.000
+
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Choosing the Best Model}
+\begin{itemize}
+	\item For GEE
+	\begin{itemize}
+		\item QIC(V) – function of V, so can use to choose best correlation structure.
+		\item QICu – measure that can be used to determine the best subsets of covariates for a particular model.
+		\item The best model is the one with the smallest value!
+	\end{itemize}
+	\item GEE works best if
+	\begin{itemize}
+		\item The number of observations per subject is small and the number of subjects is large
+		\item In longitudinal studies the measurements are taken at the same times for all subjects
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\begin{itemize}
+	\item Based on the working correlation structure, there is considerable correlation 
+	\item Different correlation structure can be also used 
+	\item The best model can be selected using QIC values
+	\item The smaller the better
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\begin{itemize}
+	\item QIC was computed for each models 
+	\scriptsize
+	\begin{verbatim}
+> model.sel(fit1,fit3, fit3, rank = QIC)
+Model selection table 
+       (Int)    tim    trt tim:trt corstr qLik  QIC delta weight
+fit3  -0.800 -0.122 0.0980 -0.1348 unstrc -911 1832  0.00  0.397
+fit31 -0.800 -0.122 0.0980 -0.1348 unstrc -911 1832  0.00  0.397
+fit1  -0.587 -0.177 0.0084 -0.0871 exchng -906 1833  1.32  0.206
+Abbreviations:
+corstr: exchng = ‘exchangeable’, unstrc = ‘unstructured’
+Models ranked by QIC(x) 
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\begin{itemize}
+	\item The function $sapply$ can be used to compute QIC for the three model
+\end{itemize}
+{\color{red} R code to compute QIC}
+	\begin{verbatim}
+	sapply(list(fit1, fit2, fit3), QIC) # QIC for the different model
+	\end{verbatim}
+	 
+	{\color{red} QIC Results for the three models}
+	\begin{verbatim}
+> sapply(list(fit1, fit2, fit3), QIC)
+QIC  QIC  QIC 
+1833 1832 1832 
+	\end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{itemize}
+	\item The model with the lowest QIC is better \vspace{0.5cm}
+	\item Autoregressive and exchangeable covariance structure resulted the same QIC
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Alternating Logistic Regression}
+\begin{itemize}
+	\item Models the association between pairs of responses by using log odds ratios instead of using correlations, as ordinary GEEs do
+	\item Diggle, Heagerty, Liang, and Zeger (2002) and Molenberghs and Verbeke (2005)
+	\item When marginal odds ratios are used to model association, can be estimated using ALR, which is
+	\begin{itemize}
+		\item almost as efficient as GEE2
+		\item almost as easy (computationally) than GEE1
+	\end{itemize}
+\[logitPr(Y_{ij}=1|x_{ij})=x_{ij}\beta \]
+\[logitPr(Y_{ij}=1|Y_{ik}=y_{ij})=\alpha_{ij}y_{ik}x_{ik}+\ln\frac{\mu_{ij}-\mu_{ik}}{1-\mu_{ij}-\mu_{ik}+\mu_{ijk}} \]
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{itemize}
+	\item $\alpha_{ijk}$ can be modelled in terms of predictors
+	\item the second term is treated as an offset
+	\item the estimating equations for $\beta$ and $\alpha$  are solved in turn, and the alternating between both sets is repeated until convergence.
+	\item this is needed because the offset clearly depends on $beta$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Generalized Linear Mixed Models (GLMM)}
+\begin{itemize}
+	\item For non-Gaussian data, the well-known generalized linear mixed model is commonly used \vspace{0.25cm}
+	\item The linear predictor contains random effects in addition to the usual fixed effects \vspace{0.25cm}
+	\item These random effects are usually assumed to come from a normal distribution
+	\item Responses Correlated: $g(E(Y|b))=X\beta + Zb$
+	\item Correlation modeled in part by random effects
+	\item Analysis describes differences in the mean of Y conditional on the patient’s specific random effect b
+	\item Most relevant from an individual patient’s perspective Often b represent a dimension of frailty-Hence, $X\beta$ tells about the relationship of Y  to X among patients with the same frailty
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Let $Y_{ij}$ be the $j$th outcome measured for subject $i=1, \ldots, N$,   $j=1, \ldots, n_i$ and group the $n_i$ measurements into a vector $Y_i$
+\item Given a vector $b_i$ of random effects for cluster $i$, it is assumed that all responses $Y_{ij}$ are independent, with density of the form
+\begin{equation}
+f_i(y_{ij}| \theta_{ij}, \phi)=\exp\left\{\phi^{-1}[y_{ij} \theta_{ij} -\psi(\theta_{ij})]+c(y_{ij},\phi) \right\}\nonumber
+\end{equation}
+\item $\theta_{ij}$ is now modelled as 
+\[\theta_{ij}=x_{ij}\beta + Z^{'}_{ij}b_i \]
+\item It is assumed that $b_i\sim N(0, D)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item Let $f_{ij}(y_{ij}|b_i,\beta,\phi)$ denote the conditional density of $Y_{ij}$ given $b_i$, the conditional density of $Y_i$ equals 
+\[f_{i}(y_{i}|b_i,\beta,\phi)=\prod_{j=1}^{n_i}f_{ij}(y_{ij}|b_i,\beta,\phi) \]
+\item The marginal distribution of $Y_i$ is given by
+\begin{eqnarray*}
+	\begin{array}{lll}
+f_i(y_i|\beta,D,\phi)&=&\int\prod_{j=1}^{n_i}f_{ij}(y_i|b_i,\beta,\phi)f(b_i|D)db_i\\
+                     &=&\int\prod_{j=1}^{n_i}f_{ij}(y_{ij}|b_i,\beta,\phi)f(b_i|D)db_i
+\end{array}
+\end{eqnarray*}
+where $f(bi | D)$ be the density of the $N(0, D)$ distribution for the random effects $bi$, and $\phi$ a scale (overdispersion) parameter
+\item The likelihood function for $\beta, D$ and $\phi$ now equals
+\begin{eqnarray*}
+	\begin{array}{lll}
+		L(\beta,D,\phi)&=&\prod_{i=1}^{N}f_i(y_i|\beta,D,\phi)\\
+		&=&\prod_{i=1}^{n}\int\prod_{j=1}^{n_i}f_{ij}(y_{ij}|b_i,\beta,\phi)f(b_i|D)db_i
+	\end{array}
+\end{eqnarray*}
+\end{itemize}
+\end{frame}
+ 
+
+\begin{frame}
+\begin{itemize}
+\item Under the normal linear model, the integral can be worked out analytically
+\item In general, approximations are required:
+\begin{itemize}
+	\item Approximation of integrand
+	\item Approximation of data
+	\item Approximation of integral
+\end{itemize}
+\item Predictions of random effects can be based on the posterior distribution
+\[f(b_i|Y_i=y_i) \]
+\item Empirical Bayes (EB) estimate:  the prior distribution is estimated from the data
+\begin{itemize}
+	\item Posterior mode, with unknown parameters replaced by their MLE
+\end{itemize}
+\end{itemize}		
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item For a given formula for how mean depends on the explanatory variables, the ML method must assume a particular type of probability distribution for Y , in order to determine the likelihood function \vspace{0.25cm}
+\item By contrast, the quasi-likelihood approach assumes only a relationship between mean and $Var(Y)$ rather than a specific probability distribution for Y \vspace{0.25cm}
+\item It allows for departures from the usual assumptions, such as overdispersion caused by correlated observations or unobserved explanatory variables \vspace{0.25cm}
+\item To do this, the quasi-likelihood approach takes the usual variance formula but multiplies it by a constant that is itself estimated using the data.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+For GEE
+\begin{itemize}
+\item Responses Correlated: $g(E(Y))=X\beta$ \vspace{0.25cm}
+\item Analysis describes differences in the mean of Y across the entire population \vspace{0.25cm}
+\item Analysis informative from population perspective; most relevant from perspective of Policy makers \vspace{0.25cm}
+\item Providers desiring to optimize outcomes across entire population
+\item GEE require 50-100 clusters as a fair number of clusters just to get the procedure to run 
+\item QIC (Quasi-likelihood under the independence model criterion).  
+\item CIC (correlation information criterion).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Laplace Approximation of Integrand}
+\begin{itemize}
+	\item Numerical Integration 
+	\item Penalized quasi-likelihood (PQL)
+	\item Marginal quasi-likelihood (MQL)
+	\item Approximation of Integral
+	\begin{itemize}
+		\item Quadrature is a historical mathematical term that means calculating area. Quadrature problems have served as one of the main sources of mathematical analysis
+		\item Gaussian quadrature
+		\item Adaptive Gaussian quadrature
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Toenail Data}
+\begin{itemize}
+\item $Y_{ij}$ is binary severity indicator for subject $i$ at visit $j$
+\item Model
+\[Y_{ij}\sim Bernoulli(\pi_{ij}) \]
+\[log(\frac{\pi_{ij}}{1-\pi_ij})=\beta_0+b_0i+\beta_1T_i+\beta_2t_[ij]+ \beta_3T_it_{ij} \]
+\item Notation:
+\begin{itemize}
+	\item $T_i$: treatment indicator for subject $i$
+	\item $t_{ij}$: time point at which $j$th measurement is taken for $i$th subject
+\end{itemize}
+\item Adaptive as well as non-adaptive Gaussian quadrature can be used
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Generalized Linear Mixed Models in R}
+\begin{itemize}
+	\item The following table gives family generators and default links:
+	\begin{table}
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+		Family&Defult link&range of $y_i$ & $V(Y_i|\eta_i)$\\
+			\hline
+		Gaussian&identity&$(-\infty, +\infty)$ & $\phi$\\
+		Binomial&logit&$\frac{0,1,\dots,n_i}{n_i}$& $\mu_i(1-\mu_i)$\\
+		Poisson&log&$0,1,2,\dots$&$\mu_i$\\
+		Gamma&inverse&$(0,\infty)$& $\phi\mu^2$\\
+		Inverse.gaussian&$1/\mu^2$&$(0,\infty)$& $\phi\mu^3$\\
+		\hline
+		\end{tabular}
+	\end{table}
+\item For distributions in the exponential families, the variance is a function of the mean and a dispersion parameter $\phi$ (fixed to 1 for the binomial and Poisson distributions).
+\item In the $lme4$ package
+\begin{itemize}
+	\item $glmm():$ generalized-linear mixed-effects models using a normal mixing distribution computed by Gauss-Hermite integration
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\begin{itemize}
+	\item The general formula for GLMM in R is defined as;
+	\begin{verbatim}
+	glmm(formula, family=gaussian, data=list(), weights=NULL,
+	offset=NULL, nest, delta=1, maxiter=20, points=10, 
+	control=glm.control(epsilon=0.0001,maxit=10,trace=FALSE))
+	\end{verbatim}
+\item $formula$	A symbolic description of the model to be fitted. 
+\item $family$	A description of the error distribution and link function
+\item $data$ A data frame containing the variables in the model
+\item $weights$	An optional weight vector
+\item $offset$ The known component in the linear predictor
+\item $nest$ The variable classifying observations by the unit (cluster) 
+\item $maxiter$	The maximum number of iterations of the outer loop for numerical integration.
+$points$ The number of points for Gauss-Hermite integration of the random effect.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Required Packages}
+\begin{itemize}
+	\item Before the you run the model, you need to install the required packages
+	\begin{itemize}
+		\item $installed.package(lme4)$ 
+	\end{itemize}
+{\color{red}R CODE}
+\scriptsize
+ \begin{verbatim}
+model.fit <- glmer(y ~ treatn + time + treatn*time + (1|idnum), 
+data = Toenail, family = binomial, control = glmerControl(optimizer 
+= "bobyqa"), nAGQ = 10)
+print(model.fit, corr = TRUE)
+Generalized linear mixed model fit by maximum likelihood (Adaptive Gauss-Hermite Quadrature,
+nAGQ = 10) [glmerMod]
+Family: binomial  ( logit )
+Formula: y ~ treatn + time + treatn * time + (1 | idnum)
+Data: Toenail
+AIC       BIC    logLik  deviance  df.resid 
+1257.8392 1285.6057 -623.9196 1247.8392      1902 
+Random effects:
+Groups Name        Std.Dev.
+idnum  (Intercept) 4.073   
+Number of obs: 1907, groups:  idnum, 294
+Fixed Effects:
+(Intercept)       treatn         time  treatn:time  
+-1.6518      -0.1201      -0.4065      -0.1601 
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\scriptsize
+\begin{itemize}
+	\item Model outputs 
+	\begin{verbatim}
+> summary(model.fit)
+Scaled residuals: 
+Min     1Q Median     3Q    Max 
+-2.969 -0.189 -0.087 -0.007 38.398 
+
+Random effects:
+Groups Name        Variance Std.Dev.
+idnum  (Intercept) 16.59    4.073   
+Number of obs: 1907, groups:  idnum, 294
+
+Fixed effects:
+Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -1.65177    0.45037  -3.668 0.000245 ***
+treatn      -0.12005    0.59256  -0.203 0.839445    
+time        -0.40653    0.04649  -8.744  < 2e-16 ***
+treatn:time -0.16007    0.07235  -2.213 0.026931 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+(Intr) treatn time  
+treatn      -0.633              
+time        -0.138  0.212       
+treatn:time  0.202 -0.296 -0.547
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Conclusion}
+\begin{itemize}
+	\item There is no effect of treatment at baseline \vspace{0.5cm}
+	\item Overtime, the effect of treatment was found to be significant
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Marginal Versus Random-effects Models}
+\begin{itemize}
+	\item GEE
+	\begin{itemize}
+		\item Coefficients relating Y to X
+		\item Inference valid in large samples even if distribution of Y and or variance of Y are incorrectly specified
+		\item Valid inference if data are Missing Completely At Random (MCAR) even if variance model is wrong
+	\end{itemize}
+\item GLMM
+\begin{itemize}
+	\item Coefficients relating Y to X conditional on b
+	\item Valid inference generally requires correct specification of distribution of Y and of variance of Y
+	\item Valid inference if data are Missing At Random (MAR)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GEE: The Jimma Infant Data}
+\begin{itemize}\itemsep=0.2cm
+\item The response variable is categorized body mass index.
+	\begin{eqnarray*}
+	Y_{ij}=\left\{\begin{array}{l}
+		1 \; if \; wt\le 2500\\\\
+		0 \; otherwise
+	\end{array}\right.
+	\end{eqnarray*}
+\item The following model is assumed for the mean structure: $Y_{ij} | b_i  \sim  \mbox{Bernoulli}(\pi_{ij})$, for subject $i$ and measurement $j$,
+\item Exchangeable correlation (or CS)
+\[Y_{ij}\sim Bernoulli(\pi_{ij}) \]
+
+\[\mbox{logit}(\pi_{ij})  =  \xi_0  +  \xi_1 A_{ij} + \xi_2 G_i + \xi_3 G_i A_{ij}
+\]
+\item $G_{i}$ is a gender indicator.
+\item $A_{ij}$ is age of the $i^{th}$  infant at time $j$ (also the time variable).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+GEE Model
+\scriptsize\begin{verbatim}
+Call:
+geeglm(formula = BMIBIN ~ sex + age + sex * age, family = binomial, 
+data = Infant, id = ind, corstr = "exchangeable", scale.fix = TRUE)
+Coefficients:
+Estimate  Std.err   Wald Pr(>|W|)    
+(Intercept) -1.86859  0.11185 279.12   <2e-16 ***
+sex          0.13301  0.15395   0.75     0.39    
+age          0.00139  0.01465   0.01     0.92    
+sex:age     -0.01660  0.02127   0.61     0.44    
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Scale is fixed.
+Correlation: Structure = exchangeable  Link = identity 
+Estimated Correlation Parameters:
+Estimate Std.err
+alpha    0.145  0.0163
+Number of clusters:   990   Maximum cluster size: 7
+\end{verbatim}
+\textcolor{blue}{R CODE:} \begin{verbatim}
+fit21 <- geeglm(BMIBIN~ sex + age + sex*age, id = ind, 
+data = Infant, family = binomial, corstr = "exchangeable", scale.fix = TRUE)
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{itemize}
+	\item GEE can be modeled using different working correlation structure.
+	\begin{itemize}
+		\item $ar1$ for autoregressive order 1
+		\item $unstructured$ for unstructured working correlation structure
+	\end{itemize}
+\end{itemize}
+{\color{red} R code to update GEE}
+\begin{verbatim}
+fit22 <- update(fit, corstr = "ar1")
+fit23 <- update(fit2, corstr = "unstructured")
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame} [fragile]
+\begin{itemize}
+\item The three models can be compared using QIC
+\scriptsize
+\begin{verbatim}
+model.sel(fit21,fit22, fit23, rank = QIC)
+Model selection table 
+       (Int)       age   sex age:sex corstr  qLik  QIC delta weight
+fit23 -1.85  1.62e-05 0.125 -0.0151 unstrc -2429 4870  0.00  0.356
+fit22 -1.86 -1.54e-04 0.136 -0.0151    ar1 -2429 4870  0.11  0.336
+fit21 -1.87  1.39e-03 0.133 -0.0166 exchng -2429 4870  0.29  0.308
+Abbreviations:
+corstr: exchng = ‘exchangeable’, unstrc = ‘unstructured’
+Models ranked by QIC(x) 
+\end{verbatim}
+\begin{verbatim}
+> sapply(list(fit21, fit22, fit23), QIC)
+QIC  QIC  QIC 
+4870 4870 4870 
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusion}
+\begin{itemize}
+	\item There is no effect of gender, age and gender and age interaction \vspace{0.5cm}
+	\item Based on QIC, there is no difference between the different working correlation structure
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GLMM: The Jimma Infant Data}
+\begin{itemize}\itemsep=0.2cm
+	\item Random-effects model for non-Gaussian longitudinal data.
+	\item The following model is assumed for the mean structure: $Y_{ij} | b_i  \sim  \mbox{Bernoulli}(\pi_{ij})$, for subject $i$ and measurement $j$,
+	\item Gaussian distributed random intercepts $b_i$, i.e., $b_i \sim N(0,d)$ can be included to capture the correlation.
+\end{itemize}
+$$
+\mbox{logit}(\pi_{ij})  =  \xi_0  +  \xi_1 A_{ij} + \xi_2 G_i + \xi_3 G_i A_{ij} +   b_i $$
+\end{frame}
+
+\begin{frame}[fragile] {GLMM: Jimma infant data}
+\begin{itemize}
+	\item GLMM with only random intercept was fitted
+\end{itemize}
+{\color{red} R code for GLMM}
+\scriptsize\begin{verbatim}
+> ########### GLMM (random intercept)
+fitGLMM <- glmer(BMIBIN~ sex + age + sex*age + (1|ind), 
+data = Infant, family = binomial(link = "logit"), nAGQ = 25)
+summary(fitGLMM)
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+Odds ratio estimates $\ldots$
+\scriptsize\begin{verbatim}
+Generalized linear mixed model fit by maximum likelihood (Adaptive Gauss-Hermite Quadrature,
+nAGQ = 25) [glmerMod]
+Family: binomial  ( logit )
+Formula: BMIBIN ~ sex + age + sex * age + (1 | ind)
+Data: Infant
+AIC      BIC   logLik deviance df.resid 
+4645     4679    -2318     4635     6094 
+Scaled residuals: 
+Min     1Q Median     3Q    Max 
+-1.282 -0.362 -0.245 -0.237  2.898 
+Random effects:
+Groups Name        Variance Std.Dev.
+ind    (Intercept) 1.46     1.21    
+Number of obs: 6099, groups:  ind, 990
+Fixed effects:
+Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -2.33284    0.12666  -18.42   <2e-16 ***
+sex          0.15899    0.16370    0.97     0.33    
+age          0.00194    0.01471    0.13     0.90    
+sex:age     -0.01990    0.02053   -0.97     0.33    
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Correlation of Fixed Effects:
+(Intr) sex    age   
+sex     -0.688              
+age     -0.664  0.510       
+sex:age  0.479 -0.691 -0.717
+
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\textcolor{blue}{R CODE for odds ratio and 95\% confidence Interval:}
+\begin{verbatim}
+confint(fitGLMM, method="profile", oldNames=FALSE) # CI only
+                     2.5 %  97.5 %
+sd_(Intercept)|ind  1.0669  1.3624
+(Intercept)        -2.5872 -2.0902
+sex                -0.1617  0.4807
+age                -0.0269  0.0308
+sex:age            -0.0602  0.0203
+
+exp(confint(fitGLMM, method="profile", oldNames=FALSE)) # OR and CI 
+                    2.5 % 97.5 %
+sd_(Intercept)|ind 2.9063  3.906
+(Intercept)        0.0752  0.124
+sex                0.8507  1.617
+age                0.9734  1.031
+sex:age            0.9416  1.021
+\end{verbatim}
+\begin{itemize}
+	\item The odds ratio can be also computed in the same way
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+\textcolor{blue}{R CODE for odds ratio:}
+\begin{verbatim}
+exp(cbind(ODDS=coef(fitGLMM), confint(fitGLMM)))
+\end{verbatim}
+\begin{itemize}
+	\item 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}\itemsep=0.2cm
+	\item The model with random intercept and slope can be fitted similarly.
+	\item The following model is assumed for the mean structure: $Y_{ij} | b_i  \sim  \mbox{Bernoulli}(\pi_{ij})$, for subject $i$ and measurement $j$,
+	\item Gaussian distributed random intercepts $b_i$, i.e., $(b_{0i},b_{1i})  \sim N(0,D)$ can be included to capture the correlation.
+\end{itemize}
+$
+\mbox{logit}(\pi_{ij})  =  \xi_0  +  \xi_1 A_{ij} + \xi_2 G_i + \xi_3 G_i A_{ij} +   b_{0i} + b_{1i}A_{ij}$
+\end{frame}
+
+\begin{frame}[fragile]{Random intercept and slope}
+\textcolor{blue}{R CODE for random intercept and slope model:}
+\scriptsize
+\begin{verbatim}
+########### GLMM (random intercept & slope)
+fitGLMMSlope <- glmer(BMIBIN~ sex + age + sex*age + (1+age|ind), 
+data = Infant, family = binomial(link = "logit"))
+
+summary(fitGLMMSlope)
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\scriptsize
+\begin{itemize}
+	\item The model outputs are
+	\begin{verbatim}
+	Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) 	Family: binomial  ( logit )
+	Formula: BMIBIN ~ sex + age + sex * age + (1 + age | ind)
+	Data: Infant
+	AIC      BIC   logLik deviance df.resid 
+	4569     4616    -2278     4555     6092 
+	Scaled residuals: 
+	Min     1Q Median     3Q    Max 
+	-1.092 -0.305 -0.206 -0.198  2.966 
+	Random effects:
+	Groups Name        Variance Std.Dev. Corr 
+	ind    (Intercept) 3.6413   1.91          
+	age         0.0577   0.24     -0.71
+	Number of obs: 6099, groups:  ind, 990
+	Fixed effects:
+	Estimate Std. Error z value Pr(>|z|)    
+	(Intercept) -2.68488    0.18577  -14.45   <2e-16 ***
+	sex          0.17336    0.19908    0.87     0.38    
+	age         -0.00181    0.02516   -0.07     0.94    
+	sex:age     -0.02428    0.02774   -0.88     0.38    
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	Correlation of Fixed Effects:
+	(Intr) sex    age   
+	sex     -0.572              
+	age     -0.769  0.439       
+	sex:age  0.429 -0.757 -0.553
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Epilepsy Data}
+\begin{itemize}
+\item Let $Y_{ij}$ represent the number of epileptic seizures patient $i$ experiences during week $j$ of the follow-up period \vspace{0.25cm}
+\item Let $t_{ij}$ be the time-point (treatment week) at which $Y_{ij}$ has been measured, $t_{ij}= 1, 2, \ldots$ until at most $27$ \vspace{0.25cm}
+\item An indicator variable of treatment group the $i^{th}$ subject receives is denoted by $treat_i$ ($0=placebo$, $1=treated$) \vspace{0.25cm}
+\item The correlation in the data can be modeled by using 'exchangeable' correlation structure.
+\item Assuming that counts are generated from a Poisson-normal process with mean $\lambda_{ij}$
+\begin{eqnarray}
+\ln(\lambda_{ij}) = \xi_0 +\xi_1 treat_i + \xi_2 t_{ij}+ \xi_3 treat_i t_{ij}\nonumber
+\end{eqnarray}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\begin{itemize}
+	\item GEE was fitted for the count data using the following R code\\
+\textcolor{blue}{R CODE:}\scriptsize \begin{verbatim}
+############## GEE
+fit21 <- geeglm(BMIBIN~ sex + age + sex*age, id = ind, 
+data = Infant, family = binomial, corstr = "exchangeable", scale.fix = TRUE)
+summary(fitgee1)
+\end{verbatim}
+\item The model can be updated for the different correlation structure
+\begin{verbatim}
+fit22 <- update(fit21, corstr = "ar1")
+fit23 <- update(fit22, corstr = "unstructured")
+\end{verbatim}
+\item QIC can be computed for model comparison
+\begin{verbatim}
+model.sel(fit21,fit22, fit23, rank = QIC)
+
+sapply(list(fit21, fit22, fit23), QIC)
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\scriptsize\begin{verbatim}
+Call:
+geeglm(formula = nseizw ~ trt + studywee + trt * studywee, family = poisson(link 
+= log), data = epilepsy, id = id, corstr = "exchangeable", 
+scale.fix = TRUE)
+Coefficients:
+Estimate  Std.err  Wald Pr(>|W|)    
+(Intercept)   1.31567  0.18008 53.38  2.8e-13 ***
+trt           0.01704  0.29320  0.00     0.95    
+studywee     -0.01477  0.01684  0.77     0.38    
+trt:studywee  0.00339  0.02015  0.03     0.87    
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Scale is fixed.
+Correlation: Structure = exchangeable  Link = identity 
+Estimated Correlation Parameters:
+Estimate Std.err
+alpha      0.5   0.163
+Number of clusters:   89   Maximum cluster size: 27 
+\end{verbatim}
+\end{frame}
+
+\begin{frame} [fragile]
+Model comparison
+\scriptsize\begin{verbatim}
+Model selection table 
+        (Int)      std   trt  std:trt corstr      qLik   QIC delta weight
+fitgee1  1.32 -0.01477 0.017  0.00339 exchng  7.23e+02 -1456   0.0  0.999
+fitgee2  1.17  0.00388 0.137 -0.01657    ar1  7.20e+02 -1442  13.6  0.001
+fitgee3 56.23 -3.65800 0.939  0.07399 unstrc -1.16e+25 -1403  52.8  0.000
+Abbreviations:
+corstr: exchng = ‘exchangeable’, unstrc = ‘unstructured’
+Models ranked by QIC(x)
+\end{verbatim}
+ \scriptsize\begin{verbatim}
+> sapply(list(fitgee1,fitgee2, fitgee3), QIC)
+ QIC   QIC   QIC 
+-1456 -1442 -1403 
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}{Epilepsy Data}
+\begin{itemize}
+\item Let $Y_{ij}$ represent the number of epileptic seizures patient $i$ experiences during week $j$ of the follow-up period
+\item Let $t_{ij}$ be the time-point (treatment week) at which $Y_{ij}$ has been measured, $t_{ij}= 1, 2, \ldots$ until at most $27$
+\item An indicator variable of treatment group the $i^{th}$ subject receives is denoted by $treat_i$ ($0=placebo$, $1=treated$).
+\item $b_i$ are subject specific random intercepts assumed to have Gaussian distribution with mean $0$ and variance $d$.
+\item Assuming that counts are generated from a Poisson-normal process with mean $\lambda_{ij}$
+\begin{eqnarray}
+\ln(\lambda_{ij}) = \xi_0 + b_i +\xi_1 treat_i + \xi_2 t_{ij}+ \xi_3 treat_i t_{ij} \nonumber
+\end{eqnarray}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Random Intercept Mixed Effect Poisson}
+\begin{itemize}
+	\item The model with random intercept can be fitted by the following R code
+	\scriptsize
+	\begin{verbatim}
+	########### GLMM (random intercept)
+	fitGLMMInt <- glmer(nseizw~ trt + studywee + trt*studywee + (1|id), 
+	data = epilepsy, family = poisson(link = "log"))
+	
+	summary(fitGLMMInt)
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\scriptsize
+\begin{verbatim}
+Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+Family: poisson  ( log )
+Formula: nseizw ~ trt + studywee + trt * studywee + (1 | id)
+Data: epilepsy
+AIC      BIC   logLik deviance df.resid 
+6282.5   6308.7  -3136.2   6272.5     1414 
+Scaled residuals: 
+Min      1Q  Median      3Q     Max 
+-4.6148 -0.8545 -0.4130  0.5323 14.9969 
+Random effects:
+Groups Name        Variance Std.Dev.
+id     (Intercept) 1.154    1.074   
+Number of obs: 1419, groups:  id, 89
+
+Fixed effects:
+Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   0.817901   0.167317   4.888 1.02e-06 ***
+trt          -0.170354   0.238204  -0.715  0.47451    
+studywee     -0.014288   0.004385  -3.258  0.00112 ** 
+trt:studywee  0.002289   0.006140   0.373  0.70929    
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Correlation of Fixed Effects:
+(Intr) trt    studyw
+trt         -0.702              
+studywee    -0.209  0.146       
+trt:studywe  0.149 -0.211 -0.714
+\end{verbatim}
+\end{frame}
+
+\begin{frame}
+\vspace{2mm}
+\begin{itemize}
+\item Include a random slope assuming subjects have different evolution over time.
+\item Both $b_{i1}$ and $b_{i2}$ are jointly normally distributed and possibly correlated.
+\item The varance-covarance matrix can then be `unstructured'.
+\begin{eqnarray}
+\ln(\lambda_{ij}) = \xi_0 + b_{i1} +\xi_1 treat_i + \xi_2 t_{ij}+ \xi_3 treat_i t_{ij} + b_{i2}t_{ij} \nonumber
+\end{eqnarray}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Random Intercept and Slope GLMM}
+\begin{itemize}
+	\item The R code for random intercept and Slope model
+	\scriptsize
+	\begin{verbatim}
+	########### GLMM (random intercept & slope)
+	fitGLMMSlope <- glmer(nseizw~ trt + studywee + trt*studywee + (1+studywee|id), 
+	data = epilepsy, family = poisson(link = "log"))
+	
+	summary(fitGLMMSlope)
+	
+	 AIC      BIC   logLik deviance df.resid 
+	6081.2   6118.0  -3033.6   6067.2     1412
+	\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Model Comparison}
+\begin{itemize}
+\item We compare the two models using AIC \vspace{0.25cm}
+	\begin{itemize}
+		\item 6282.5 versus 6081.2 \vspace{0.25cm}
+	\end{itemize}
+\item Log-likelihood can also be used \vspace{0.25cm}
+\begin{itemize}
+	\item -3136.2 versus -3033.6 \vspace{0.25cm}
+\end{itemize}
+\item In both cases the model with random intercept and random slope is better 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{The Gilgel-Gibe Mosquito Data}
+\begin{itemize}
+\item Let $Y_{ij}$ represent the number of An.~gambaie counts in house $i$.
+\item Let $t_{ij}$ be the time-point (in months) at which $Y_{ij}$ has been measured, $t_{ij}= 1, 2, \ldots$ until at most $32$.
+\item An indicator variable of village group the $i^{th}$ house belongs is denoted by $village_i$ ($0=control$, $1=at risk$).
+\item An indicator variable of season type a specific month belongs is denoted by $season_{ij}$ ($0=dry$, $1=wet$).
+\item $b_i$ are subject specific random intercepts assumed to have Gaussian distribution with mean $0$ and variance $d$.
+\item Assuming that counts are generated from a Poisson-normal process with mean $\lambda_{ij}$
+\normalsize\begin{eqnarray}
+\ln(\lambda_{ij}) = \xi_0 + b_i +\xi_1 village_i  + \xi_2 season_{ij}  +  \xi_3 t_{ij}+ \xi_5 village_i t_{ij}. \nonumber
+\end{eqnarray}
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{Missing Data}
+\begin{itemize}
+\item When applying multilevel analysis to longitudinal data, there is no need to have a complete dataset, and, furthermore, it has been shown that multilevel analysis is very flexible in handling missing data. \vspace{0.5cm}
+\item It has even been shown that applying multilevel analysis to an incomplete dataset is even better than applying imputation methods (Applied Multilevel Analysis)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Missing Mechanisms}
+\begin{itemize}
+	\item Missing Completely at Random (MACR) \vspace{0.5cm}
+	\item Missing at Random (MAR) \vspace{0.5cm}
+	\item Missing Not at Random (MANR)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Handling Mechanisms}
+\begin{itemize}
+	\item Complete case analysis \vspace{0.5cm}
+	\item Available Case Analysis \vspace{0.5cm}
+	\item Last observed carried forward \vspace{0.5cm}
+	\item Imputation \vspace{0.5cm}
+	\begin{itemize}
+		\item Mean imputation \vspace{0.5cm}
+		\item Multiple imputation 
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusions}
+\begin{itemize}
+\item For correlated data, assuming independence my result biased result \vspace{0.25cm}
+\item The dependence between observations can be accounted by fitting \vspace{0.25cm}
+\begin{itemize}
+\item Linear Mixed Effect Model \vspace{0.25cm}
+\item Generalized Estimating Equation \vspace{0.25cm}
+\item Generalized linear mixed effect model (GLMM)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Intra-Class Correlation}
+\begin{itemize}
+	\item The ratio of the between cluster variance to the total variance is called ICC 
+	\item It tells us the proportion of the total variance in the response variable that is accounted for by the cluster 
+	\item It can also be interpreted as the correlation among observations within the same cluster 
+	\[cov(Y_{ij},Y_{ij'})=u_i=\sigma_{0}^2\]
+	\item $u_i\sim iidN(0,\sigma_{0}^2)$ for subject $i$ and 
+	\item $\epsilon_{ij}\sim iidN(0,\sigma^2)$ for outcome $j$
+	\[corr(Y_{ij},Y_{ij'})=\frac{\sigma_{0}^2}{\sigma_{0}^2+\sigma^2}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Intra-Class Correlation}
+\begin{itemize}
+	\item It can help to determine whether or not a mixed model is even necessary \vspace{0.25cm}
+	
+	\item If the correlation is zero that means the observation within cluster are no more similar than the observations from different cluster \vspace{0.25cm}
+	\item It can be theoretically meaningful to understand how much of the the overall variation in the response is explained by clustering \vspace{0.25cm}
+	\item The choice icc=0 is obvious, but is rarely zero \vspace{0.25cm}
+	\item As a rule of thumb, it seems to recall to use 0.1
+	\item After fitting conditional models (mixed effect), use the following stata command
+	\begin{verbatim}
+      estat icc
+	\end{verbatim}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Project}
+\begin{itemize}
+\item Consider EDHS2016 data and outcome variable \vspace{0.25cm}
+\begin{itemize}
+\item Outcome variable 1: Age at first marriage \vspace{0.25cm}
+\item Outcome variable 2: Substance Use \vspace{0.25cm}
+\item Outcome variable 3: Number of ANC visit \vspace{0.25cm}
+\item Outcome variable 4: Number of live birth \vspace{0.25cm}
+\end{itemize}
+\item Independent variable: Sex, age, residence, income, religion, ... \vspace{0.25cm}
+\item Fit GEE for the data \vspace{0.25cm}
+\item Interpret the result
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\centering
+\Large
+\textbf{\textcolor{blue} {The End}}
+\end{frame}
+
+
+
+
+\end{document}
