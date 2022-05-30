@@ -14,8 +14,13 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 
 # Available courses:
 
-The courses are organized in four clusters.  The **Introductory courses** that aim to train users in data analysis **using R**  at a basic level. These courses were developed for undergraduate students, both non statisticians and statisticians.. The courses within this cluster can also be used as courses to support R usage in undergraduate program in biostatistic/statistics. The course cluster **Basic courses** provides courses  at intermediate level and a basic knowledge in statistics is required  in order to follow the courses. The courses within this cluster can be also use as training courses  for non-statisticians and as courses to support R usage in under graduate program in biostatistic/statistics. The course clusters **Statistical modeling (I)** and **Statistical modeling (II)** consist of basic and advanced courses at a master level in biostatistics/statistics  respectively.  
-
+The courses are organized in three clusters.  
+ 
+* The **Introductory courses** that aim to train users in data analysis **using R**  at a basic level. These courses were developed for undergraduate students, both      non statisticians and statisticians.. The courses within this cluster can also be used as courses to support R usage in undergraduate program in (bio)statistic. 
+* The cluster **Basic courses** provides courses  at intermediate level and a basic knowledge in statistics is required  in order to follow the courses. The courses 
+   within this cluster can be also use as training courses  for non-statisticians and as courses to support R usage in under graduate program in       
+   biostatistic/statistics. 
+* The cluster **Advanced courses** consista of basic and advanced courses at a master level in (bio)statistics.  
 
 # Out new website
 
@@ -29,10 +34,6 @@ Some courses developed for this initiative were developed as online courses whil
 ## Follow the last updates in FACEBOOK: https://www.facebook.com/ER-BioStat-1463845487001786/
 ## Follow the last updates in Tweeter: @erbiostat, eR-Biostat
 
-# Interested to contribute a course ?
-Contact us by email erbiostat@gmail.com
 
-# Interested to use the materials in your university ?
-Contact us by email erbiostat@gmail.com
   
 
