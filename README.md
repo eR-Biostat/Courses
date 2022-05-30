@@ -1,6 +1,12 @@
 # The >eR-Biostat initative
 ## Making R based education materials accessible for all
 
+# Online (free) storage:
+
+Welcome to our online course storage space. All course materials (slides, programs, source files etc.) can be download directly  from here or via out new website https://erbiostat.wixsite.com/erbiostat.
+
+# The >eR-Biostat platform
+
 The E-learning system, developed as a part of the **>eR-Biostat**  initiative, offers **free** online course materials in statistics in all education level, non statisticians, undergraduate and master students in biostatistics/statistics in developing countries. The materials for the courses, that are publicly available, consist of several types: 
 
 The E-learning system, developed as a part of the **>eR-Biostat**  initiative, offers free online course materials in statistics in all education level, non statisticians, undergraduate and master students in biostatistics/statistics in developing countries. The materials for the courses, that are publicly available, consist of several types: 
@@ -9,7 +15,6 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Slides for the course.
 * R programs, ready to use, which contain all data and R code for the all examples and illustrations discussed in the course.
 * Online and YouTube tutorials.
-
 
 # Available courses:
 
@@ -23,7 +28,7 @@ The courses are organized in three clusters.
 
 # Our new website
 
-For the complete course list visit our new website: https://erbiostat.wixsite.com/erbiostat
+For a complete course list and more online materials visit our new website: https://erbiostat.wixsite.com/erbiostat
 
 
 # Online or Off-line?
