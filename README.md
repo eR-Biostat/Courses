@@ -8,9 +8,8 @@ The E-learning system, developed as a part of the **>eR-Biostat**  initiative, o
 * Notes for the course.
 * Slides for the course.
 * R programs, ready to use, which contain all data and R code for the all examples and illustrations discussed in the course.
-* YouTube tutorials.
-* Homework assignments.
-* Example of exams.
+* Online and YouTube tutorials.
+
 
 # Available courses:
 
@@ -22,7 +21,7 @@ The courses are organized in three clusters.
    biostatistic/statistics. 
 * The cluster **Advanced courses** consista of basic and advanced courses at a master level in (bio)statistics.  
 
-# Out new website
+# Our new website
 
 For the complete course list visit our new website: https://erbiostat.wixsite.com/erbiostat
 
