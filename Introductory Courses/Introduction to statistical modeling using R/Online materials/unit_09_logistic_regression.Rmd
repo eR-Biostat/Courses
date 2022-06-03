@@ -1,0 +1,278 @@
+---
+title: "Unit 9: Logistic Regression"
+author: "Statistics 102 Teaching Team"
+date: "April 24, 2020"
+output: 
+  beamer_presentation:
+     includes:
+       in_header: ../slides_header.tex
+     fig_width: 3.25
+     fig_height: 3
+     fig_caption: false
+     toc: true
+     keep_tex: true
+classoption: "aspectratio=169"
+slide_level: 3
+---
+
+#  Introduction to logistic regression
+
+### Logistic regression
+
+Logistic regression generalizes methods for two-way tables, allowing for the joint association between a (binary) categorical response and several predictors to be studied.  It also allows for numeric predictors.
+
+Similar in intent to linear regression, but details are different... 
+
+- the response variable is categorical (specifically, binary) 
+
+- the model is not estimated via minimizing least squares 
+
+- the model coefficients have a different interpretation 
+
+
+### Survival to discharge in the ICU
+
+\small
+
+Patients admitted to intensive care units (ICUs) are very ill, either from a serious medical event (e.g. respiratory failure from asthma) or from trauma (e.g, traffic accident).
+
+Can patient features available at admission be used to estimate the probability of survival to hospital discharge? 
+
+The \texttt{icu} dataset in the \texttt{aplore3} package is from a study conducted at Baystate Medical Center in Springfield, MA. 
+
+  - The dataset contains information about patient characteristics at admission, such as heart rate, diagnosis, and kidney function. 
+  
+  - The variable \texttt{sta} is a factor variable with labels \texttt{Died} and \texttt{Lived}, corresponding to the levels \texttt{0} for death before discharge and \texttt{1} survival to discharge. 
+  
+  - Information on other variables measured are in the lab.
+  
+  
+### Survival and CPR
+
+\scriptsize
+
+```{r, warning = FALSE}
+#load the data
+library(aplore3)
+data("icu")
+
+#relevel survival
+icu$sta = factor(icu$sta, levels = rev(levels(icu$sta)))
+
+#two-way table of survival and cpr
+addmargins(table(icu$sta, icu$cpr, dnn = c("Survival", "Prior CPR")))
+```
+
+\small
+
+The odds of survival for those who did not receive CPR are 
+\[154/33 = 4.67.\]
+
+The probability of survival for those who did not receive CPR is 
+\[154/187 = 0.824.\]
+
+### Odds and probabilities
+
+\small
+
+If the probability of an event $A$ is $p$, the odds of the event are 
+  \[\dfrac{p}{1-p}.\]
+
+With some algebra, it is possible to show the following relationship:
+\[\text{odds} = \dfrac{p}{1-p} \qquad p = \frac{\text{odds}}{1 + \text{odds}}\]
+
+
+From the previous example, 
+
+ - odds = 4.67, $p = 0.824$ 
+ 
+ - $\dfrac{p}{1-p} = \dfrac{0.824}{1 - 0.824} = 4.67$
+ 
+ - $\dfrac{\text{odds}}{1 + \text{odds}} = \dfrac{4.67}{1 + 4.67} = 0.824$
+
+
+### Odds and probabilities...
+
+\begin{table}
+\centering
+\begin{tabular}{c|c|c}
+\textbf{Probability} & \textbf{Odds} = $p/(1-p)$ &\textbf{Odds}\\
+\hline
+0 &0/1 = 0 &0 \\
+1/100 = 0.01 &1/99 = 0.0101 &1 : 99 \\
+1/10 = 0.10 & 1/9 = 0.11 & 1 : 9 \\
+1/4 &1/3 &1 : 3 \\
+1/3 &1/2 &1 : 2 \\
+1/2 &$(\frac{1}{2})/(\frac{1}{2})=1$ &1 : 1 \\
+2/3 &$(2/3)/(1/3)=2$ &2 : 1 \\
+3/4 &3 &3 : 1 \\
+1 &1/$0\approx\infty$ &$\infty$ \\
+\end{tabular}
+\end{table}
+
+
+# Simple logistic regression
+
+### The model for logistic regression
+
+Suppose $Y$ is a binary variable and $X$ is a predictor variable.
+
+  - In the ICU example, let $Y$ be survival to discharge and $X$ represent prior CPR.
+
+  - Let $p(x) = P(Y = 1 | X = x)$, where $Y = 1$ denotes survival. 
+
+The model for a single variable logistic regression is 
+\[\log\left[\frac{p(x)}{1 - p(x)}\right] = \beta_0 + \beta_1x\]
+
+### Why log(odds) in regression models?
+
+Logistic regression is based on modeling the association between the probability $p$ of the event of interest occurring and the values of the predictor variables. 
+
+Since a probability only takes values from 0 to 1, it is not ideal as a response. 
+  
+  - The odds, $p/(1-p)$, ranges from 0 to $\infty$.
+  
+  - The natural log of the odds (log odds) ranges from $-\infty$ to $\infty$.
+  
+### Logistic versus linear regression
+
+Similarities: 
+
+  - The right hand side of the model looks the same, but there is no residual error term in the logistic model. 
+
+Differences:
+  
+ - Logistic regression is used to calculate predicted values of log(odds), rather than the predicted mean.
+
+ - The function \texttt{glm} is used to estimate a logistic regression model, and requires an additional specification in the argument: \texttt{family = binomial(link = "logit")}
+
+### CPR status and survival
+
+\scriptsize
+
+```{r, tidy = TRUE}
+glm(sta ~ cpr, data = icu, family = binomial(link = "logit"))
+```
+
+### Interpreting the output
+
+\small
+
+Recall that $p(x) = P(Y = 1| X = x) = p(\text{survival = 1} | \text{cpr})$.
+
+The model equation:  
+
+\[\log\left[\frac{\hat{p}( \text{status = lived} |\text{cpr})}{1 - \hat{p}(\text{status = lived} | \text{cpr})}\right] = 1.540 -1.695(cpr_{yes})\]
+
+
+The intercept represents the log($\widehat{\text{odds}}$ of survival) for patients who did not receive CPR ($cpr_{yes} = 0$) 
+
+  - estimated odds of survival = exp(1.540) = 4.66 
+  
+  - estimated probability of survival = $\dfrac{\text{odds}}{\text{1 + odds}} = \dfrac{4.66}{1 + 4.66} = 0.823$.
+
+
+### Interpreting the output...
+
+\small
+
+The slope coefficient of $cpr_{yes}$ represents the change in log(odds of survival), from the no previous CPR group to the previous CPR group.
+
+The odds of survival in patients who previously received CPR: 
+
+  - $\log\left[\frac{\hat{p}( \text{status = lived} |\text{cpr})}{1 - \hat{p}(\text{status = lived} | \text{cpr})}\right]  = 1.540 - 1.695(1)$ 
+  
+  - $\widehat{\text{odds}}$ of survival = exp(1.540 - 1.695) = 0.856 
+  
+The slope coefficient is the log of the estimated *odds ratio* for survival, comparing those who received CPR to those who did not: 
+
+  - $\widehat{OR} = \exp(-1.695) = 0.184$
+  
+  - $\widehat{OR} = \dfrac{\text{odds}_{\text{cpr = yes}}}{\text{odds}_{\text{cpr = no}}} = \dfrac{0.856}{4.66} = 0.184$
+
+
+### Inference for simple logistic regression
+
+\small
+
+As with linear regression, the model slope captures information about association between a response and predictor. 
+
+ - $H_0: \beta_1 = 0$, the $X$ and $Y$ variables are not associated
+ 
+ - $H_A: \beta_1 \neq 0$, the $X$ and $Y$ variables are associated 
+
+These hypotheses can also be written in terms of the odds ratio. 
+
+
+### What does logistic regression add?
+
+\small
+
+The $\chi^2$ test does not directly show the direction of a significant association.
+
+- Some information about direction from the residuals or differences between observed and expected values. 
+
+Logistic regression gives a numerical estimate of the size of an association. 
+
+A two-way table cannot be used with a numerical variable.
+
+# Multiple logistic regression
+
+### Extending logistic regression to more than one predictor
+
+Suppose $p(x) = p(x_1, x_2,\ldots, x_p) = P(Y=1| x_1, x_2,\ldots,x_p)$.
+
+With several predictors $x_1, x_2, \ldots, x_p$ the model is 
+
+$$ \log\left[\frac{p(x)}{1 - p(x)}\right] = \beta_0 + \beta_1 x_1 + 
+      \beta_2 x_2 + \cdots + \beta_p x_p$$
+
+Each coefficient estimates the change in log(odds) for a one unit change in that variable, if the other variables do not change.
+
+### Survival versus CPR and age
+
+\scriptsize
+
+```{r, echo=FALSE}
+summary(glm(sta ~ cpr + cre + age, data = icu,  
+            family = binomial(link = "logit")))
+```
+
+### Model comparison
+
+\small
+
+The AIC (Akaike's Information Criterion) can be used to compare models.
+
+ - It is analogous to the adjusted $R^2$ for linear regression in that it also penalizes a model for having a larger number of predictors.
+ 
+ - A *lower* AIC is indicative of a more parsimonious model.
+ 
+
+### Inference for multiple logistic regression
+
+\small
+
+Typically, the hypotheses of interest are
+
+ - $H_0: \beta_k = 0$, the variables $X_k$ and $Y$ are not associated
+ 
+ - $H_A: \beta_k \neq 0$, the variables $X_k$ and $Y$ are associated
+
+These hypotheses can also be written in terms of the odds ratio.
+
+
+### Summary of logistic regression
+
+Overall goals similar to linear regression...
+
+-  estimating the association between a response and several predictors
+
+-  assessing statistical significance of the association
+
+However, in logistic regression, association is captured through *odds* and *log(odds)*, instead of the mean of a response variable.
+
+Logistic regression can be thought of as an extension of two-way tables...
+
+- just as linear regression can be thought of as an extension of two-sample *t*-tests and ANOVA.
+

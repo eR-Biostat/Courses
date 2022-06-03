@@ -1,0 +1,689 @@
+---
+title: "Unit 5: Inference for Numerical Data"
+author: "Statistics 102 Teaching Team"
+date: "March 09, 2020"
+output: 
+  beamer_presentation:
+     includes:
+       in_header: ../slides_header.tex
+     fig_width: 3.25
+     fig_height: 3
+     fig_caption: false
+     toc: true
+     keep_tex: true
+classoption: "aspectratio=169"
+slide_level: 3
+---
+
+# Introduction
+
+### Comparing two population means
+
+\small
+    
+Two-sample data can be paired or unpaired (independent). 
+
+- Paired measurements for each `participant' or study unit
+  
+    - each observation can be logically matched to one other observation in the data
+  
+    - e.g., scores on a standardized test before taking a prep course versus scores after the prep course
+        
+- Two independent sets of measurements
+    
+    - observations cannot be matched on a one-to-one basis
+    
+    - e.g., scores on a standardized test of students who did take a prep course versus scores of students who did not
+    
+The nature of the data dictate which two-sample testing procedure is appropriate: the two-sample test for paired data, or the two-sample test for independent group data.
+
+
+    
+#  Two-sample test for paired data
+
+### wetsuits and swimming velocity
+
+Did a new wetsuit design allow for increased swim velocities during the 2000 Olympics?
+
+A study was conducted to assess the effects of wetsuits on swim velocity.
+
+  - 12 competitive swimmers were asked to swim 1500m at maximal velocity, once wearing a wetsuit and once wearing a standard swimsuit.
+  
+  - Order of wetsuit versus swimsuit randomized.
+  
+  - Investigators recorded mean velocity (m/sec) for each trial.
+
+### Viewing swim velocities  
+
+\scriptsize   
+```{r, message = FALSE}
+library(oibiostat)
+data("swim")
+swim
+```
+   
+\normalsize   
+
+### Idea behind the paired $t$-test
+
+\small
+
+The velocities are paired by swimmer: each swimmer has two velocity measurements. 
+
+Suppose that for each swimmer $i$, we have observations $x_{i, WS}$ and $x_{i, SS}$.
+
+- Let $d_i$ be the difference between the measurements:
+\[d_i = x_{i, WS} - x_{i, SS}\]
+
+    - $x_{i, WS}$ is the wetsuit velocity measurement for swimmer $i$
+    
+    - $x_{i, SS}$ is the swimsuit velocity measurement for swimmer $i$
+
+- Base inference on $\overline{d}$, the sample mean of the $d_i$:
+
+\[\overline{d} = \frac{\sum d_i}{n}\]
+
+### The paired $t$-test    
+
+\small
+
+Let $\delta$ be the population mean of the difference in velocities during a 1500m swim if all competitive swimmers recorded swim velocities with each suit type.
+
+The null and alternative hypotheses are 
+
+- $H_0: \delta= 0$, there is no difference in mean swim velocities between swimming with a wetsuit versus a swimsuit
+    - i.e., wetsuits do not change mean swim velocities
+
+- $H_A: \delta \neq 0$, there is a difference in mean swim velocities between swimming with a wetsuit versus a swimsuit
+    - i.e., wetsuits do change mean swim velocities
+
+### The paired $t$-test \ldots
+
+\small
+
+The formula for the test statistic is
+\[ t = \dfrac{\overline{d} -\delta_0}{s_d /\sqrt{n}},\]
+
+where $\overline{d}$ is the mean of the differences, $s_d$ is the standard deviation of the differenes, and $n$ is the number of differences (i.e., number of pairs).
+
+Note how the formula is identical to the one introduced in Unit 4.
+
+- A paired $t$-test is essentially a one-sample test of difference values.
+
+The $p$-value is calculated as usual, from a $t$ distribution with $df = n - 1$.
+
+### Confidence intervals for paired data
+
+A 95\% confidence interval for paired data has the form 
+
+\[\overline{d} \pm \left( t^{\star} \times \dfrac{s_d}{\sqrt{n}} \right) ,\]
+
+where $t^{\star}$ is the point on a *t* distribution with $df = n - 1$ that has area 0.025 to its right.   
+
+### Letting \textsf{R} do the work
+
+\scriptsize
+
+```{r}
+#two-sample syntax
+t.test(swim$wet.suit.velocity, swim$swim.suit.velocity, 
+       alternative = "two.sided", paired = TRUE)
+```
+
+Note: \texttt{t.test(x, y, paired = TRUE)} returns results based on the differences \texttt{x - y}.
+
+
+### Letting \textsf{R} do the work...
+
+\scriptsize
+
+```{r}
+#one-sample syntax
+t.test(swim$velocity.diff, mu = 0, alternative = "two.sided")
+```
+
+   
+# Two-sample test for independent group data
+
+### FAMuSS: comparing ndrm.ch by sex
+
+\small
+
+Does change in non-dominant arm strength after resistance training differ between men and women?
+
+The *FAMuSS* study introduced in Unit 1 examined the change in non-dominant arm strength after resistance training.
+
+\scriptsize
+
+```{r}
+data("famuss")
+famuss[c(1, 2, 3, 595), c("sex", "age", "race", "height", "weight", 
+                          "actn3.r577x", "ndrm.ch")]
+```
+
+
+
+### FAMuSS: comparing ndrm.ch by sex...
+
+\scriptsize
+
+```{r fig.height = 6.0, fig.width = 4.0, fig.align = 'center'}
+boxplot(famuss$ndrm.ch ~ famuss$sex)
+```
+
+
+
+### The independent two-group $t$-test
+
+\small
+
+The null and alternative hypotheses are
+
+  - $H_0: \mu_F = \mu_M$, the population mean change in arm strength for women is the same as the population mean change in arm strength for men
+
+    - Equivalently, $H_0: \Delta = \mu_F - \mu_M = 0$
+
+  - $H_A: \mu_F \neq \mu_M$, the population mean change in arm strength for women is different from the population mean change in arm strength for men
+  
+In general, the hypotheses are written in terms of $\mu_1$ and $\mu_2$.\footnote{The numerical labels are arbitrary, so it is best to explicitly specify which group is considered group 1 versus group 2.}
+
+  - The parameter of interest is $\mu_1 - \mu_2$.
+  
+  - The point estimate is $\overline{x}_1 - \overline{x}_2$.
+
+### The independent two-group $t$-test...
+
+The $t$-statistic is:
+
+\[t =\dfrac{ (\overline{x}_{1} - \overline{x}_{2})- (\mu_1 - \mu_2)}
+  {\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} \]
+
+The $p$-value is calculated as usual, but the degrees of freedom for the distribution are different than for the paired data setting...
+
+### Degrees of freedom for the independent two-group $t$-test
+
+\small
+
+When doing the test by hand, use the following approximation:
+\[df = \text{min}(n_1 - 1, n_2 - 1) \]
+
+\textsf{R} uses a better approximation, known as the Satterthwaite approximation:
+
+\[df = \dfrac{\left[(s_1^2/n_1) + (s_2^2/n_2)\right]^2}{\left[(s_1^2/n_1)^2/(n_1 - 1) + (s_2^2/n_2)^2/(n_2 - 1)\right]}\]
+
+  
+
+### Confidence intervals for independent two-group data
+
+The 95% confidence interval for the difference in population means has the form
+\[( \overline{x}_{1} - \overline{x}_{2}) \pm \left( t^{\star} \times  \sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}} \right), \]
+     
+where $t^{\star}$ is the point on a $t$ distribution that has area 0.025 to the right, with the same $df$ as used for calculating the $p$-value of the associated test. 
+
+### Letting R do the work
+
+\scriptsize
+
+```{r}
+#define categories for sorting ndrm.ch
+female = (famuss$sex == "Female"); male = (famuss$sex == "Male")
+
+#comma syntax
+t.test(famuss$ndrm.ch[female], famuss$ndrm.ch[male], mu = 0,
+       alternative = "two.sided", paired = FALSE)
+```
+
+### Letting R do the work...
+
+Alternatively, take advantage of the way the data are structured and use the tilde (\texttt{$\sim$}) syntax.
+
+\scriptsize
+
+```{r}
+#tilde syntax
+t.test(famuss$ndrm.ch ~ famuss$sex, mu = 0,
+       alternative = "two.sided", paired = FALSE)
+```
+
+    
+### Paired vs. independent data
+
+What if the swimsuit data had been incorrectly analyzed with an independent two-group test?
+
+\scriptsize   
+
+```{r}
+t.test(swim$wet.suit.velocity, swim$swim.suit.velocity, 
+       mu = 0, alternative = "two.sided", paired = FALSE)
+```   
+
+# Statistical power and sample size
+
+### Background
+
+\small
+
+Most studies are done to establish evidence in favor of an alternative hypothesis.
+
+The **power** of a statistical test is the probability that the test will reject the null hypothesis when the alternative hypothesis is true.
+
+  - In other words, power is the probability of correctly rejecting $H_0$.
+
+Power depends on...
+
+  - the hypothesized difference between two population means, also known as the population **effect size** ($|\mu_1 - \mu_2|$)
+  
+  - the population standard deviation of each group ($\sigma_1$, $\sigma_2$)
+  
+  - the sample size of each group ($n_1$, $n_2$)
+  
+Usually, a study team can only control sample size.
+
+
+### Outcomes and errors in testing   
+
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+& \multicolumn{2}{c|}{\textbf{Result of test}} \\ \hline
+\textbf{State of nature}  & \textbf{Reject $H_0$}  & \textbf{Fail to reject $H_0$}\\
+\hline
+ & Type I error, & No error,\\
+$H_0$ is true & probability = $\alpha$ & probability = $1 - \alpha$ \\
+ & (false positive) & (true negative) \\ \hline
+ &  No error, & Type II error,\\
+$H_A$ is true &  probability = $1 - \beta$ & probability = $\beta$\\
+ & (true positive) & (false negative) \\ \hline
+\end{tabular}
+\end{center}   
+
+
+
+### Error probabilities in testing  
+
+Lab 2 uses simulation to explore how Type I and Type II error are controlled, and examines factors influencing the power of a statistical test.
+
+  - Type I error is controlled via rejecting $H_0$ only when a $p$-value is smaller than $\alpha$.
+  
+  - Type II error (and power) is affected by sample size, standard deviation, and effect size.
+  
+      - As sample size increases, power increases.
+      
+      - As standard deviation decreases, power decreases.
+      
+      - As effect size increases, power increases. 
+
+### Choosing the right sample size
+
+\small
+
+Study design often includes calculating a study size (sample size) such that the probability of rejecting a null hypothesis is acceptably large, typically between 0.80 and 0.90. 
+
+It is important to have a precise estimate of an appropriate study size.
+
+  - A study needs to be large enough to allow for sufficient power to detect a difference between groups.
+  
+  - However, unnecessarily large studies are expensive, and can even be unethical.
+
+
+### A typical sample size question
+
+\small
+
+A pharmaceutical company has developed a new drug to lower blood pressure and is planning a clinical trial to test its effectiveness.
+
+  - Individuals whose systolic blood pressure is between 140 and 180 mmHg will be recruited.
+  
+  - Based on previous studies, blood pressures from such individuals will be approximately normally distributed with standard deviation of about 12 mmHg.
+  
+  - Participants will be randomly assigned to the new drug or a placebo, and the company will measure the difference in mean blood pressure levels between the groups.
+
+The company expects to receive FDA approval for the drug if there is evidence that the drug lowers blood pressure, on average, by at least 3 mmHg more than the standard drug.
+
+How large should the study be if the company wants the power of the study to be 0.80 (80%)?
+
+### A typical sample size question \ldots
+
+\small
+
+*OI Biostat* Section 5.4 has an extended discussion of this example, with formulas for hand calculations.
+
+Instead, we go right to the \textsf{R} function \texttt{power.t.test}. Details about syntax for this function are in the Unit 5 Lab Notes.
+
+\scriptsize
+
+```{r}
+power.t.test(n = NULL, delta = 3, sd = 12, sig.level = 0.05, power = 0.80)
+```
+
+
+
+
+# Comparing many means with ANOVA
+
+### Analysis of Variance (ANOVA)
+
+Suppose we are interested in comparing means across more than two groups. Why not conduct several two-sample $t$-tests?
+
+  - If there are $k$ groups, then ${k \choose 2} = \frac{k(k-1)}{2}$ $t$-tests are needed.
+
+  - Conducting multiple tests on the same data increases the overall rate of Type I error.
+  
+ANOVA uses a single hypothesis test to assess whether means across many groups are equal:
+
+  - $H_0$: mean outcome is same across all groups ($\mu_1 = \mu_2 = \mu_3 = ... = \mu_k$)
+  
+  - $H_A$: at least one mean is different from the others (i.e., means are not all equal)
+
+### Idea behind ANOVA
+
+Is the variability in the sample means large enough that it seems unlikely to be from chance alone?
+
+Compare two quantities:
+
+  - Variability between groups ($MSG$): how different are the group means from each other, i.e., how much does each group mean vary from the overall mean? 
+  
+  - Variability within groups ($MSE$): how variable are the data within each group? 
+  
+\footnotesize
+
+$MSG$ denotes mean square between groups, while $MSE$ denotes mean square error. Refer to  \textit{OI Biostat} Section 5.5.1 for details.
+
+
+### Idea behind ANOVA...
+
+\begin{figure}[]
+\includegraphics[height = 5cm]
+{figures/toyANOVA.pdf}
+\end{figure}
+
+
+\small
+
+  - I, II, and III: difficult to discern differences in means, variability within each group is high
+  - IV, V, and VI: appears to be differences in means, these differences are large relative to variance within each group
+
+### Idea behind ANOVA...
+
+\footnotesize
+
+Under the null hypothesis, there is no real difference between the groups; thus, any observed variation in group means is due to chance.
+
+  - Think of all observations as belonging to a single group.
+  
+  - Variability between group means should equal variability within groups 
+  
+The \textit{F-statistic} is the test statistic for ANOVA.
+\[F = \frac{\text{variance between groups}}{\text{variance within groups}}  = \frac{MSG}{MSE}\]
+
+
+  - When the population means are equal, the $F$-statistic is approximately 1.  
+  
+  - When the population means differ, $F$ will be larger than 1. Larger values of $F$ represent stronger evidence against the null. 
+  
+  - The $F$ statistic follows an $F$ distribution, with two degrees of freedom, $df_1$ and $df_2$; $df_1 = n_{groups} - 1$, $df_2 = n_{obs} - n_{groups}$.
+  
+  - The $p$-value for the $F$-statistic is the probability $F$ is larger than the $F$-statistic.
+
+  
+### Assumptions for ANOVA
+
+\small
+
+It is important to check whether the assumptions for conducting ANOVA are reasonably satisfied: 
+
+1. Observations independent within and across groups
+
+    - Think about study design/context 
+
+2. Data within each group are nearly normal
+
+    - Look at the data graphically, such as with a histogram
+    
+    - Normal Q-Q plots can help... 
+    
+3. Variability across groups is about equal
+    
+    - Look at the data graphically
+
+    - Numerical rule of thumb: ratio of largest variance to smallest variance < 3 is considered "about equal"
+    
+### Normal probability plots (Q-Q plots)
+
+\footnotesize
+
+\begin{figure}[]
+\includegraphics[height = 5cm]
+{figures/normalExamples.pdf}
+\end{figure}
+
+ 
+
+If points fall on or near the line, data closely follow a normal distribution.
+
+- Difficult to evaluate in small datasets
+
+- Plots show three simulated normal datasets: from L to R, $n = 40$, $n = 100$, $n = 400$
+
+### Normal probability plots (Q-Q plots)...
+
+\scriptsize
+
+```{r, echo = FALSE, message = FALSE}
+library(openintro)
+data("COL")
+```
+
+```{r}
+#simulate right-skewed distribution
+set.seed(2019)
+sim.data <- c(rnorm(500, 10, 2), rnorm(25, 15, 5))
+```
+
+
+```{r, fig.width = 10, fig.height = 4}
+#plots
+par(mfrow = c(1, 2))
+hist(sim.data, col = COL[1])
+qqnorm(sim.data, cex = 0.75, col = COL[1]); qqline(sim.data)
+```
+
+### Pairwise comparisons
+
+If the $F$-test indicates there is sufficient evidence that the group means are not all equal, proceed with pairwise comparisons to identify which group means are different. 
+
+Pairwise comparisons are made using the two-sample $t$-test for independent groups. 
+
+  - To maintain the overall Type I error rate at $\alpha$, each pairwise comparison is conducted at at an adjusted significance level referred to as $\alpha^\star$. 
+  
+  - The Bonferroni correction is one method for adjusting $\alpha$.
+  \[\alpha^\star = \alpha/K, \text{ where } K = \frac{k(k-1)}{2} \text{ for $k$ groups}\]
+  
+  - Note that the Bonferroni correction is a very stringent (i.e., conservative) correction, made under the assumption that all tests are independent.
+
+### FAMuSS: comparing ndrm.ch by genotype
+
+The main question of interest in the FAMuSS study can be approached with ANOVA.
+
+\begin{centering}
+\textit{Is change in non-dominant arm strength after resistance training associated with genotype?}
+
+\end{centering}
+
+Questions 1 - 3 in Lab 3 step through this analysis.
+
+
+### FAMuSS: comparing ndrm.ch by genotype...
+
+```{r, fig.height=8.0, fig.width= 6.0, echo=FALSE}
+require(oibiostat)
+data(famuss)
+boxplot(famuss$ndrm.ch ~ famuss$actn3.r577x, ylab = ~"% change in non-dominant arm strength",
+        xlab = "genotype at actn3.r577x")
+```  
+
+### FAMuSS: comparing ndrm.ch by genotype...
+
+The null and alternative hypotheses are
+
+  - $H_0: \mu_{CC} = \mu_{CT} = \mu_{TT}$, the mean percent change in non-dominant arm strength is equal across the three genotypes
+  
+  - $H_A$: At least one group has mean percent change in non-dominant arm strength that is different from the other groups
+
+Let $\alpha = 0.05$.
+
+### Letting R do the work
+
+Formulas for hand calculations shown in *OI Biostat* Section 5.5.1.
+
+\footnotesize
+
+```{r}
+#use summary(aov())
+summary(aov(famuss$ndrm.ch ~ famuss$actn3.r577x))
+```
+
+\normalsize
+
+Conclusion: $p < \alpha$, sufficient evidence to reject $H_0$ in favor of $H_A$. There is at least one group with a mean different from the other groups.
+
+  - But which groups have different means?
+
+### Controlling Type I error rate
+
+\small
+
+If the ANOVA $F$-test is significant, then it is appropriate to proceed to conducting pairwise comparisons; i.e., using two-sample $t$-tests to compare each possible pairing of the groups.\footnote{These $t$-tests are typically referred to as \textit{post hoc} tests.}
+
+  - Each test should be conducted at the $\alpha^\star$ significance level so that the overall Type I error rate remains at $\alpha$.
+  
+  - These tests are still conducted under the assumption that the variance between groups is equal; thus, the test statistics are calculated using the pooled estimate of standard deviation between groups. Details are in *OI Biostat* Section 5.5.3.
+  
+  - We will use \texttt{pairwise.t.test( )} to perform these *post hoc* two-sample *t*-tests. Refer to Unit 5, Lab 2 for an example; this function is also discussed in the Unit 5 Lab Notes.
+
+### Controlling Type I error rate...
+
+Pairwise comparisons using two-sample $t$-tests (\texttt{CC} to \texttt{CT}, \texttt{CC} to \texttt{TT}, \texttt{CT} to \texttt{TT}) can now be done if the Type I error rate is controlled.
+
+  - Apply the Bonferroni correction.
+
+  - In this setting, $\alpha^{\star} = 0.05/3 = 0.0167$. 
+
+
+### Letting R do the work
+
+Only \texttt{CC} versus \texttt{TT} resulted in a $p$-value less than $\alpha^{\star}$ of 0.0167.
+
+  - Mean strength change in non-dominant arm for \texttt{CT} individuals not distinguishable from strength change for \texttt{CC} and \texttt{TT}.
+  
+  - However, evidence at $\alpha = 0.05$ level that mean strength change for individuals of genotype \texttt{CC} and \texttt{TT} are different.  
+
+\scriptsize
+
+```{r}
+pairwise.t.test(famuss$ndrm.ch, famuss$actn3.r577x, p.adj = "none")
+```
+
+
+### Letting R do the work...
+
+Alternatively, set \texttt{p.adj} to \texttt{"bonf"}; this instructs R to rescale the $p$-values (by multiplying by $K$) so they can be compared to the original $\alpha$ level of 0.05.
+
+\scriptsize
+
+```{r}
+pairwise.t.test(famuss$ndrm.ch, famuss$actn3.r577x, p.adj = "bonf")
+```
+
+
+# The multiple testing problem
+
+### Type I error rate for a single test
+	
+Hypothesis testing was originally intended for use in either controlled experiments or studies with a small number of comparisons, such as ANOVA.
+	
+Recall that making a Type I error (rejecting $H_0$ when $H_0$ is true) occurs with probability $\alpha$.
+	
+- Type I error rate is controlled by rejecting only when the $p$-value of a test is smaller than $\alpha$.
+		
+- $\alpha$ is typically kept low.
+		
+- With a single two-group comparison at $\alpha = 0.05$, there is a 5% chance of incorrectly identifying an association where none actually exists.
+
+### What about many tests?
+	
+What happens to Type I error when making several comparisons?
+	
+When conducting more than one $t$-test in an analysis... 
+	
+- The significance level ($\alpha$) used in each test controls the error rate for that test.
+		
+- The **experiment-wise error rate** is the chance that at least one test will incorrectly reject $H_0$ when all tested null hypotheses are true.
+
+- Controlling the experiment-wise error rate is one specific approach for controlling Type I error.
+		
+
+### Simulating error rate
+
+Questions 1 - 3 in Lab 4 explore how experiment-wise error rate increases as the number of hypothesis tests increases.
+
+
+### Probability of experiment-wise error
+
+\small
+
+Suppose a scientist is using two $t$-tests to examine the possible association of each of two genes with a disease type. Assume the tests are independent and each are conducted at the $\alpha = 0.05$ significance level.
+
+Let $A$ be the event of making a Type I error on the first test, and $B$ be the event of making a Type I error on the second test, where $P(A) = P(B) = 0.05$.
+
+The probability of making at least one error is equal to the complement of the event that a Type I error is not made with either test.
+\[1 - [P(A^C) P(B^C) ] = 1 - (1 - 0.05)^2 = 0.0975 \]
+
+Thus, when making two independent $t$-tests, there is about a 10\% chance of making at least one Type I error; the experiment-wise error is 10\%.
+
+
+### Probability of experiment-wise error...
+	
+With 10 tests...
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{10} = 0.401\]
+
+With 25 tests...
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{25} = 0.723\]
+
+With 100 tests...
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{100} = 0.994\]
+
+With 100 independent tests, there is a 99.4\% chance an investigator will make at least one Type I error!
+
+### The Golub leukemia data
+
+\small
+
+Recall the Golub leukemia data from Unit 1.
+
+- Expression level of 7,129 genes measured from children known to have either AML or ALL
+
+- Goal: identify genes differentially expressed between AML vs. ALL
+
+The analysis from Unit 1 used a "data-driven" approach:
+
+- Calculate mean differences in expression levels (AML - ALL) for each gene
+
+- Identify genes with mean differences that qualify as outliers, based on the distribution of differences in mean expression levels.
+
+No claims made about whether observed differences more extreme than expected by chance alone.
+
+### Another approach to the Golub data
+
+\small
+
+A hypothesis testing approach can be used to assess whether, for a particular gene $i$, there is significant evidence that the mean expression level among ALL patients is different from the mean expression level among AML patients.
+
+  - Questions 4 - 6 in Lab 4 walk through the details of this approach.
+  
+ In this setting, it is unrealistic to assume that each test is independent. 
+
+  - From a biological perspective, it is unlikely the expression of level of each gene is completely independent of the expression level of another.
+
+  - Question 7 in Lab 4 illustrates a simulation-based method for finding $\alpha^\star$ that maintains overall experiment-wise error at $\alpha$ and does not assume independent tests.
+  
+  - Stat 102 assignments will not test the technical details of conducting a simulation-based correction for correlated data, such as how to use \texttt{mvrnorm()}.
