@@ -1,1 +1,1 @@
-# Slides from the workshop: Dave Harrington and Julie Vu’s 
+# Dave Harrington and Julie Vu’s slides and materials
