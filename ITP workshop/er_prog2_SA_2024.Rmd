@@ -1,0 +1,81 @@
+---
+title: 'The <tt>mtcars</tt> data - R workshop in Cape Town'
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+subtitle: Ziv Shkedy and Rudradev Sengupta.
+layout: page
+---
+
+```{r setup, include=FALSE}
+  knitr::opts_chunk$set(echo = TRUE) 
+
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+```
+
+
+---
+<!-- output: html_document -->
+<!--   use_bookdown: TRUE -->
+--- 
+
+
+
+# Baseline analysis
+
+## The <tt>mtcars</tt> data in R
+
+```{r}
+dim(mtcars)
+names(mtcars)
+```
+
+## First 6 lines
+
+```{r}
+head(mtcars)
+```
+
+## Scatterplot
+
+
+```{r}
+plot(mtcars$wt,mtcars$mpg)
+cor(mtcars$wt,mtcars$mpg)
+```
+
+## Linear regression in R using the <tt>lm()</tt> function
+
+```{r}
+fit.lm=lm(mtcars$mpg~mtcars$wt)
+summary(fit.lm)
+```
+
+
