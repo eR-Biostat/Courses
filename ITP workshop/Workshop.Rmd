@@ -1,0 +1,408 @@
+---
+title: "Workshop - Day 1"
+author: "Rudradev Sengupta"
+date: "2/16/2024"
+output: 
+  html_document:
+    theme: cerulean
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    code_folding: hide
+---
+
+# Introduction and basics
+
+## Load packages
+
+```{r setup, warning=FALSE, message=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(MASS)
+library(tidyverse)
+library(gridExtra)
+
+```
+
+## Example: Normal Distribution
+
+### Displayed by Column
+
+```{r normaldist}
+
+p1 <- ggplot(data.frame(x = c(-6, 6)), aes(x = x)) +
+  stat_function(fun = dnorm, args = c(mean =0, sd =1)) + theme_bw()
+
+
+p2 <- ggplot(data.frame(x = c(-6, 6)), aes(x = x)) +
+  stat_function(fun = dnorm, args = c(mean =1, sd =1)) + theme_bw()
+
+gridExtra::grid.arrange(p1,p2, ncol = 2)
+
+```
+
+
+### Displayed by Row
+
+```{r normaldist2}
+
+p3 <- ggplot(data.frame(x = c(-6, 6)), aes(x = x)) +
+  stat_function(fun = dnorm, args = c(mean =0, sd =4)) + theme_bw()
+
+gridExtra::grid.arrange(p1,p3, ncol = 1)
+
+```
+
+
+# Dataset (cars and diamonds)
+
+
+## Display using head()
+
+```{r cars}
+
+## display part of the data
+head(mtcars)
+head(diamonds)
+```
+
+## Display using tibble()
+
+```{r}
+## display as a tibble
+tibble(mtcars)
+tibble(diamonds)
+```
+
+## Exploratory Scatterplot
+
+### Simple Scatterplot
+
+```{r}
+plot(mpg~wt, data=mtcars, pch=19)
+```
+
+### Scatterplot with ggplot2
+```{r}
+ggplot(mtcars, aes(wt,mpg)) + geom_point()
+```
+
+### Can we make it better ?
+
+```{r}
+## parameters to control the aesthetics
+title_fontsize <- 15
+subtitle_fontsize <- 12
+axisText_fontsize <- 12
+
+ggplot(mtcars, aes(wt,mpg)) + geom_point(col="steelblue", size=3) + 
+labs(title="mtcars dataset", subtitle="mpg vs wt", y="Miles/Gallon", x="Weight", caption="Simple Scatterplot") + 
+theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold")    
+)
+
+```
+
+
+## Boxplot
+
+### Simple boxplot 
+```{r}
+
+plot(mpg~factor(vs), data=mtcars)
+```
+
+### Boxplot using ggplot
+```{r}
+ggplot(mtcars, aes(x=factor(vs), y=mpg)) +
+  geom_boxplot() +
+    labs(title="mtcars dataset", subtitle="mpg vs factor(vs)", y="Miles/Gallon", x="Not V-shaped", caption="Simple Boxplot") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"))   
+
+```
+
+
+# Linear Regression
+
+## Model using lm() and visualization with ggplot
+```{r}
+
+lm.mod=lm(mpg~wt, data=mtcars)
+
+## display results
+summary(lm.mod)
+```
+
+```{r message=FALSE}
+## visualize results
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(col="steelblue", size=3) +
+  geom_smooth(method="lm", col = "black") + 
+  labs(title="mtcars dataset", subtitle="mpg vs wt", y="Miles/Gallon", x="Weight", caption="Simple Scatterplot") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"))    
+
+```
+
+## Implementation with glm()
+
+```{r message=FALSE}
+lm.fit=lm(mpg~wt, mtcars)
+glm.fit=glm(mpg~wt, mtcars, family="gaussian") ## add the family parameter
+
+
+ggplot(mtcars, aes(x=wt, y=mpg)) +
+  geom_point(col="steelblue", size=3) +
+  geom_smooth(method="glm", col = "black") + 
+  labs(title="mtcars dataset", subtitle="mpg vs wt", y="Miles/Gallon", x="Weight", caption="Simple Scatterplot") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"))   
+```
+
+
+# Running ANOVA
+
+```{r}
+aov.mod=aov(mpg~factor(vs), data=mtcars) 
+summary(aov.mod)
+```
+
+The output answers a major question: there is a significant difference in fuel efficiency based on engine shape.
+
+## ANOVA as a Linear Model, which is a GLM
+
+ANOVAs are just a type of linear model in which the predictor variable is categorical. This means that we can actually run the ANOVA using the lm() function as well! However, there is a slight difference in how to get the results of test.
+
+```{r}
+lm.mod2=lm(mpg~factor(vs), data=mtcars) 
+lm.mod2
+summary(lm.mod2)
+```
+
+Notice that the test statistic is a *t-value* instead of *F-value* that we got when we ran the aov() function. The results are identical when we run the following.
+
+```{r}
+anova(lm.mod2)
+```
+
+````{r}
+glm.mod2=glm(mpg~factor(vs), data=mtcars, family="gaussian") 
+anova(glm.mod2, test="F")
+```
+
+## Multiple predictor variables in a Linear Model
+
+We will plot mpg against weight, and then use engine shape as the point color.
+
+```{r}
+legendTitle_fontsize = axisText_fontsize
+legendText_fontsize = legendTitle_fontsize - 2
+
+ggplot(mtcars, aes(x=wt, y=mpg, color=factor(vs))) +
+  geom_point(size = 3) +
+  scale_color_discrete(name="Engine Shape",labels=c("v-shape", "straight")) +
+    labs(title="mtcars dataset", subtitle="mpg vs wt / factor(vs)", y="Miles/Gallon", x="Weight", caption="Simple Scatterplot by Group") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"),
+        legend.title = element_text(face = "bold", size=legendTitle_fontsize),
+        legend.text = element_text(face = "bold", size=legendText_fontsize))   
+```
+
+
+We can now actually add the fit lines using *geom_smooth()* on top of this, and you will get two lines: one for each engine shape.
+
+
+```{r}
+ggplot(mtcars, aes(x=wt, y=mpg, color=factor(vs))) +
+  geom_point(size = 3) +
+  scale_color_discrete(name="Engine Shape",labels=c("v-shape", "straight")) +
+    labs(title="mtcars dataset", subtitle="mpg vs wt / factor(vs)", y="Miles/Gallon", x="Weight", caption="Simple Linear Regression by Group") + 
+  geom_smooth(method="lm")+
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"),
+        legend.title = element_text(face = "bold", size=legendTitle_fontsize),
+        legend.text = element_text(face = "bold", size=legendText_fontsize))   
+
+```
+
++ Is the difference in mpg between the engine shapes actually driven by vehicle weight?
+
++ Is there still an effect after accounting for engine weight?
+
++ Does the relationship between weight and mpg contingent on engine shape?
+
+For the first two questions, we could run a model where we just add the two predictor variables in the formula:
+```{r}
+lm.mod3=lm(mpg~ wt + factor(vs), data=mtcars)
+anova(lm.mod3)
+```
+
+This model output suggests that most of the variation in mpg is explained by vehicle weight, but that there is also additional effect of engine shape. This is because the F value for weight is larger (and P-value is lower) than for engine shape.
+
+To answer the last question, we add the “interaction term” for weight and engine shape. 
+
+```{r}
+
+lm.mod4=lm(mpg~ wt * factor(vs), data=mtcars)
+anova(lm.mod4)
+
+```
+
+Output suggests that there is a significant interaction between vehicle weight and engine shape on their effect on fuel efficiency. This approach is called ANCOVA.
+
+# GLMs with binary, count and proportion data as response variable
+
+
+
+## Binary data
+
+### Basic visualization of the diamonds dataset
+
+```{r}
+ggplot(diamonds, aes(x = cut , fill = cut)) +
+  theme_bw() +
+  geom_bar()+
+  labs(x = "Quality of Diamonds",
+       y = "Diamonds Count",
+       title = "Quality of the Diamonds")
+
+
+ggplot(diamonds, aes(x = carat , y = price)) + geom_point(size = 3) +
+  theme_bw() +
+  labs(x = "Weight of Diamonds",
+       y = "Price of Diamonds",
+       title = "diamonds dataset")
+
+ggplot(diamonds, aes(x = carat , y = price, color = cut)) + geom_point(size = 3) +
+  theme_bw() +
+  labs(x = "Weight of Diamonds",
+       y = "Price of Diamonds",
+       title = "diamonds dataset")
+```
+
+Let’s say we want to predict when a diamond will cost above a certain threshold price (let’s say \$10,000). To do this, let’s make a new variable called “expensive”, which is TRUE if the diamond is priced at or above \$10,000, and FALSE if not.
+
+```{r}
+
+diamonds$expensive= ifelse(diamonds$price >= 10000,1,0)
+
+```
+
+Now, we can test if the probability that a diamond is worth > \$10,000 is dependent on its “carat”.
+
+```{r}
+
+glm.fit=glm(expensive~carat, data=diamonds)
+summary(glm.fit)
+
+```
+
+If we want an F statistic:
+```{r message=FALSE}
+anova(glm.fit, test="F")
+```
+
+
+Visualize the model: 
+
+```{r message=FALSE}
+
+ggplot(diamonds, aes(x=carat, y=expensive))+
+  geom_point() +
+  geom_smooth(method="glm", method.args = list(family = "binomial")) + 
+      labs(title="diamonds dataset", subtitle="carat vs expensive", 
+           y="Expensive", x="Carat", caption="Logistic Regression") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold")) 
+
+```
+
+
+## Count and proportional data
+
+### Count data
+
+We fit a Poisson regression model using the count of deaths as the response variable from the *snails* dataset. The analysis is restricted to snails held for 3 or 4 weeks because we expect the effect to be less apparent if the snails are kept in the experiment for a short amount of time.
+
+```{r}
+count.fit=glm(Deaths~Temp, data=snails, subset=which(Exposure>=3), family="poisson")
+summary(count.fit)
+
+```
+
+Visualize the results:
+
+```{r message=FALSE}
+
+ggplot(snails[which(snails$Exposure>=3),], aes(x=Temp, Deaths)) +
+  geom_count() +
+  geom_smooth(method="glm", method.args=list(family="poisson")) + 
+      labs(title="snails dataset", subtitle="Temp vs Deaths", y="Deaths", x="Temperature (Celsius)", caption="Poisson Regression by Group") + 
+  theme_bw()+
+  theme(axis.title = element_text(size = title_fontsize, face = "bold"),
+        axis.text.y = element_text(size = axisText_fontsize, face = "bold"),
+        axis.text.x = element_text(size = axisText_fontsize, face = "bold"),
+        panel.grid = element_blank(),
+        plot.title = element_text(size = title_fontsize, face = "bold"),
+        plot.subtitle = element_text(size = subtitle_fontsize, face = "bold"),
+        plot.caption = element_text(size = title_fontsize, face = "bold"),
+        legend.title = element_text(face = "bold", size=legendTitle_fontsize),
+        legend.text = element_text(face = "bold", size=legendText_fontsize)) 
+
+```
+
+
+### Proportion data
+
+```{r}
+prop.fit=glm(cbind(Deaths, N)~Temp, data=snails, subset=which(Exposure>=3), family=binomial(link="logit"))
+summary(prop.fit)
+
+```
+
