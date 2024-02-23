@@ -1,0 +1,9 @@
+﻿Abbreviation,Description
+Patient_ID,"Patient ID (1 through 10,000)"
+bdat,Date of birth
+admdat,Index admission (I.e. first HF admission) date
+sex,Sex
+insur,Primary insurance type
+readmreason,"Reason for readmission: HF, AMI, Stroke, TIA or Other"
+readmdat,The date of first readmission after the index admission
+deathdat,Date of death

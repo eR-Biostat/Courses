@@ -1,0 +1,259 @@
+---
+title: "Arranging Data for Clear Communication"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    orientation: columns
+    vertical_layout: fill
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+
+library(flexdashboard)
+library(tidyverse)
+library(lubridate)
+library(scales)
+library(pROC)
+library(broom)
+library(DT)
+library(ggiraph)
+library(gt)
+library(knitr)
+library(kableExtra)
+
+```
+
+```{r load_data}
+
+## File paths 
+data_dir <- file.path("data")
+data_file <- file.path(data_dir, "Assign_hf_readm.csv")
+comorb_file <- file.path(data_dir, "Assign_comorbidities.csv")
+demo_file <- file.path(data_dir, "Assign_demographics.csv")
+
+## Import data
+data <- read_csv(data_file) %>%
+    mutate(age = floor(as.numeric(difftime(admdat, bdat, units = "days")) / 365.25))
+comorb_df <- read_csv(comorb_file)
+demo_df <- read_csv(demo_file)
+    
+```
+
+# Demographics
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Co-morbidity and Prior Cardiovascular Event Frequencies
+
+```{r}
+
+plot_data <- data %>%
+    summarize_if(is.logical, mean) %>%
+    gather(key = "comorb", value = "freq") %>%
+    left_join(comorb_df, by = c(comorb = "Abbreviation")) %>%
+    arrange(freq) %>%
+    mutate(comorb = factor(comorb, levels = comorb)) %>%
+    mutate(Text = paste0(Description, '\n', percent(freq)))
+gg <- ggplot(data = plot_data, aes(x = comorb, y = freq,
+                                   tooltip = Text, data_id = comorb)) +
+    geom_bar_interactive(stat = "identity") +
+    coord_flip() +
+    scale_y_continuous(labels = function(x) percent(x, 1)) +
+    xlab("Comorbidity") +
+    ylab("Frequency") +
+    theme_bw()
+girafe(ggobj = gg, width = 5, height = 3.5)
+
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### HF Admissions by Year
+
+```{r adm_time, fig.height = 4, fig.width = 12}
+
+## Does admission rate vary by year?
+plot_data <- data %>%
+    mutate(adm_year_dbl = year(admdat)) %>%
+    group_by(adm_year_dbl) %>%
+    summarize(admissions = n()) %>%
+    ungroup()
+ggplot(plot_data, aes(x = adm_year_dbl, y = admissions)) +
+    geom_point() +
+    geom_line() +
+    xlab("Year of Index Admission") +
+    ylab("Number of Admissions") +
+    theme_bw()
+
+```
+
+### Summary Statistics {data-height=625}
+
+```{r}
+
+## ## Basic summary from skim() function
+## data %>%
+##     select(age, sex, insur, readmreason) %>%
+##     skimr::skim()
+
+## More informative summary table with gt
+table_dat <- data %>%
+    select(age, sex, insur, readmreason) %>%
+    group_by(readmreason) %>%
+    summarize(N = n(),
+              Age_mean = mean(age),
+              Age_sd = sd(age),
+              Male_perc = mean(sex == "M", na.rm = TRUE),
+              Ins_Commercial_N = sum(insur == "Commercial"),
+              Ins_Other_N = sum(insur == "Medicaid/Self-Pay/Other"),
+              Ins_Medicare_N = sum(insur == "Medicare"),
+              Ins_Commercial_perc = mean(insur == "Commercial"),
+              Ins_Other_perc = mean(insur == "Medicaid/Self-Pay/Other"),
+              Ins_Medicare_perc = mean(insur == "Medicare")) %>%
+    ungroup() %>%
+    mutate_at(vars(ends_with("_perc")), ~percent(., accuracy = 1)) %>%
+    mutate_at(vars(ends_with("N", ignore.case = FALSE)), ~comma(.)) %>%
+    mutate_at(vars(starts_with("Age")), ~round(., 0)) %>%
+    mutate(Age = paste0(Age_mean, " (", Age_sd, ")")) %>%
+    mutate(Ins_Commercial = paste0(Ins_Commercial_N, " (", Ins_Commercial_perc, ")")) %>%
+    mutate(Ins_Medicare = paste0(Ins_Medicare_N, " (", Ins_Medicare_perc, ")")) %>%
+    mutate(Ins_Other = paste0(Ins_Other_N, " (", Ins_Other_perc, ")")) %>%
+    select(readmreason, N, Age, Male_perc, Ins_Commercial, Ins_Medicare, Ins_Other) %>%
+    gather(-readmreason, key = "RowName", value = "value") %>%
+    mutate(readmreason = factor(readmreason,
+                                levels = c("ami", "hf", "stroke",
+                                           "tia", "other", "noreadm"))) %>%
+    arrange(readmreason) %>%
+    spread(key = "readmreason", value = "value") %>%
+    mutate(RowName = str_replace(RowName, "Male_perc", "Sex (% Male)")) %>%
+    mutate(RowName = str_replace(RowName, "Age", "Avg Age (SD)")) %>%
+    mutate(RowName = str_replace(RowName, "Ins_", ""))
+    
+    
+              
+table_dat %>%
+    gt(rowname_col = "RowName") %>%
+    tab_header(title = "Cohort Characteristics") %>%
+    tab_spanner(
+        label = "Readmitted",
+        columns = vars(ami, hf, stroke, tia, other)
+    ) %>%
+    tab_spanner(
+        label = "Not Readmitted",
+        columns = vars(noreadm)
+    ) %>%
+    tab_row_group(
+        group = "Demographics",
+        rows = c("N", "Avg Age (SD)", "Sex (% Male)")
+    ) %>%
+    tab_row_group(
+        group = "Insurance Coverage",
+        rows = c("Commercial", "Medicare", "Other")
+    )
+    
+```
+
+# Model Results
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+```{r model, eval = TRUE, echo = FALSE}
+
+mod_data <- data %>%
+    mutate(readm30 = as.numeric(readmdat - admdat) <= 30) %>%
+    mutate(readm30 = ifelse(is.na(readmdat), FALSE, readm30)) %>%
+    select(-Patient_ID, -bdat, -admdat, -deathdat, -readmreason,
+           -readmdat)
+
+model <- glm(readm30 ~ ., data = mod_data, family = "binomial")
+
+```
+
+### 30-day All-Cause Readmission Model
+
+```{r}
+
+coefficients <- enframe(coef(model)) %>%
+    filter(name != "(Intercept)") %>%
+    mutate(signPos = sign(value) > 0) %>%
+    arrange(abs(value)) %>%
+    mutate(name = factor(name, levels = name))
+
+ggplot(data = coefficients, aes(x = name, y = value)) +
+    geom_col(aes(fill = signPos)) +
+    geom_hline(yintercept = 0, color = "grey40") +
+    scale_fill_manual(values = c(`TRUE` = "blue", `FALSE` = "red")) +
+    guides(fill = FALSE) +
+    ylab("Coefficient of Linear Predictor") +
+    xlab("Predictor Variable") +
+    coord_flip() +
+    theme_bw()
+    
+```
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### ROC Curve
+
+```{r roc}
+
+## pROC
+roc_obj <- pROC::roc(response = mod_data$readm30, predictor = predict(model,
+                                                           newdata = mod_data,
+                                                           type = "response"))
+
+ggroc(roc_obj) +
+    annotate(geom = "segment", x = 1, xend = 0, y = 0, yend = 1) +
+    annotate(geom = "label", x = 0.25, y = 0.25, size = 8,
+             label = paste("AUROC = ", round(as.numeric(roc_obj$auc), 2))) +
+    theme_bw()
+
+```
+
+
+### Model Coefficients
+
+```{r mod_output, results = "asis"}
+
+out <- tidy(model) %>%
+    select(term, estimate, std.error, p.value) %>%
+    mutate(p.value = format.pval(p.value, eps = 0.001)) %>%
+    mutate_at(vars(estimate, std.error), ~round(., 3)) %>%
+    arrange(rev(abs(estimate)))
+
+DT::datatable(out, escape = TRUE, rownames = FALSE,
+              options = list(scrollY = "300px",
+                             paging = FALSE,
+                             dom = 't'))
+
+```
+
+# About
+
+The data set contains simulated hospital admission records of 10,000 heart failure (HF) patients.  Each patient has a single record corresponding to the patient's first HF admission (i.e. the index admission). 
+
+```{r, results = "asis"}
+
+kable(demo_df, format = "html") %>%
+    kable_styling(full_width = FALSE,
+                  bootstrap_options = c("striped", "hover", "bordered", "condensed"))
+
+```
+
+Study endpoints include all-cause death, all-cause readmission and HF readmission. The outcomes are not explicitly defined: `NA`s in **deathdat** and **readmdat** columns signify that the event did not occur until the end of the study (31/12/2015). Each event can be defined within a given time interval (e.g. 30, 60, 90, 180 days, 1 year from the index admission, etc.) and analyzed using, for example, logistic regression. Since both, the date of the index admission and the date of an event are known, survival analysis can also be done. Think of using birth dates as well, e.g. age at the index admission as a covariate in the model, age cohorts, etc.). For the all-cause readmission, the distribution of reasons for the readmission can also be studied.
+
+Comorbidities defined at the time of index admission. These include chronic conditions (hypertension, COPD, diabetes, etc.) as well as prior cardiovascular events (AMI, stroke, TIA, etc.). You can define your own inclusion/exclusion criteria, e.g. cancer.
+
+```{r, results = "asis"}
+
+kable(comorb_df, format = "html") %>%
+    kable_styling(full_width = FALSE,
+                  bootstrap_options = c("striped", "hover", "bordered", "condensed"))
+
+```

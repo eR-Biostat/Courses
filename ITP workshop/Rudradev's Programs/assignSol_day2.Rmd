@@ -1,0 +1,119 @@
+---
+title: "Interactive Dashboards with Flexdashboard and Shiny"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme: simplex
+    source_code: embed
+runtime: shiny
+---
+
+
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+
+library(flexdashboard)
+library(plotly)
+library(readxl)
+library(tidyverse)
+```
+
+
+```{r data}
+dat = read_excel("data/Assign.xlsx", sheet= "Raw Data TV")
+
+## update the body_weight_change_percent column
+dat$body_weight_change_percent <- dat$body_weight_change_percent - 100
+
+# head(dat)
+pd = position_dodge(width = 0.2) # for shift line to avoid overlapping
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+
+```{r}
+selectInput("var", "Select Endpoint", choices = c("tumor_volume","body_weight_change_percent"), selected = "tumor_volume")
+sliderInput("font_size", label = "Plot label font size", min = 4, max = 20, step = 0.5, value = 12)
+radioButtons("day", label = "Study day", choices = unique(dat$day), selected = "7")
+```
+
+
+
+Row {data-height=350}
+-----------------------------------------------------------------------
+
+### Spaghetti plots  
+
+```{r plot1}
+renderPlotly({
+  p1 <- 
+    dat %>%
+    select(!!sym(input$var), treatment, animal_id, day) %>% 
+    mutate(y = .[[1]]) %>%
+    ggplot(aes(x = day, y = y, color = animal_id)) + 
+    geom_point()+
+    geom_line()+
+    theme_bw()+
+    ylab(input$y_axis) +
+    scale_x_continuous(breaks=c(7,11,14,18))+
+    facet_grid(~ treatment) +
+    theme(strip.text = element_text(size = input$font_size))
+  
+  ggplotly(p1)
+})
+```
+
+
+Row {data-height=650}
+-----------------------------------------------------------------------
+
+### Cross-sectional distribution  
+
+```{r plot2}
+
+renderPlotly({
+  p2<-
+    dat %>% 
+    select(!!sym(input$var), treatment, animal_id, day) %>% 
+    mutate(y = .[[1]]) %>%
+    filter(day == input$day)%>%
+    ggplot(aes(x = treatment, y = y, fill = treatment)) +
+    geom_boxplot()+
+    geom_point()+
+    xlab('Treatment') +
+    theme_bw() 
+  
+  ggplotly(p2)
+})
+
+```
+
+### Mean +/- SE over time  
+
+```{r plot3}
+
+renderPlotly({
+  p3 <-
+  dat %>%
+  select(!!sym(input$var), treatment, animal_id, day) %>% 
+  mutate(y = .[[1]]) %>%
+  group_by(treatment, day) %>%
+  summarise(n=n(), mean = round(mean(y),2), 
+            sd = sd(y),
+            se=round(sd/sqrt(n), 2),
+            lower=mean-se, upper=mean+se ) %>%
+  ggplot(aes(x=day, y=mean, colour=treatment)) +
+  geom_line(position = pd) +
+  geom_point(position=pd)+
+  geom_errorbar(aes(ymin=lower, ymax=upper), width=1, position=pd) +
+  scale_x_continuous(breaks=c(7,11,14,18))+
+  xlab('Day') +
+  theme_bw() 
+  
+  ggplotly(p3)
+  })
+```
+
+
