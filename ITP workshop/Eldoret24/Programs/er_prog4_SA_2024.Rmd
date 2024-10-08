@@ -1,0 +1,510 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat" 
+  topic: <font size = "10" > **Simple linear regression using R **</font>
+  author: "Ziv Shkedy et al"
+  date: "15-12-2023"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+
+```
+
+# 1. General Introduction
+
+## Linear rgression models
+
+Linear regression provides methods for examining the association between a quantitative response variable and a set of possible predictor variables.
+Linear regression should only be used with data that exhibit linear or approximately linear relationships. **Simple linear regression** is used to estimate the linear relationship between a response variable $y$ and a single predictor $x$. The response variable $y$ can be referred to as the *dependent* variable, and the predictor variable $x$ the *independent* variable. The statistical model for simple linear regression is based on the straight line relationship 
+\[y = b_0 + b_1x \]. \newine
+**Multiple linear regression** is used to estimate the linear relationship between a response variable $y$ and several predictors $x_1, x_2, \ldots, x_p$.The statistical model for multiple linear regression is based on 
+  \[y = b_0 + b_1x_1 + b_2 x_2 + \cdots + b_p x_p \].
+  
+## Examining scatterplots
+
+### The <tt>mtcars</tt> dataset
+
+The *Motor Trend Car Road Tests* data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). It is avialble in R as <tt>mtcars</tt>. The dataset contains information about 11 variables and 32 cars. Use <tt>help(mtcars)</tt> to get more information about teh data.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(mtcars)
+head(mtcars)
+```
+
+### Miles/(US) gallon vs. the car's Weight
+
+Our aim is to investigate the relahiobship between the fuel con,cemption (in Miles/(US) gallon, the R object <tt>mpg</tt>) and the car's weight (in (1000 lbs), the R object <tt>wt</tt>).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="mog vs. weight"}
+#plot(mtcars$wt,mtcars$mpg, ylab = "mpg", xlab = "weight (1000 lbs)")
+qplot(wt,mpg,data = mtcars)
+```
+
+The relationship between the car's weight and mpg, shown in Figure 1, appears linear. A line might provide a useful summary of this association. Pearson corellation is equal to -0.867, indicates, on a negative association.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+cor(mtcars$wt,mtcars$mpg)
+```
+
+
+# 2. The least squares regression model
+
+
+## Model assumptions
+
+There are 4 assumptions that should be satisfied for a line to be considered a reasonable approximation for a relationship shown in a scatterplot. 
+
+1. Linearity: the data show a linear trend. 
+2. Constant variability: the variability of the response variable about the line remains roughly constant as the predictor variable changes.
+3. Independent observations: the $(x,y)$ pairs are independent; i.e., values of one pair provide no information about values of other pairs. 
+4. Approximate normality of *residuals*:  definition coming later.... 
+
+Special plots for formally evaluating these assumptions are discussed in the next section.
+
+2 Least squares regression
+
+## Residuals in linear regression: estimation
+
+The vertical distance between a point in the scatterplot and the predicted value on the regression line is the **residual** for the point. 
+
+For an observation $(x_i, y_i)$, where $\hat{y}_i$ is the predicted value according to the line $\hat{y} = b_0 + b_1x$, the residual is the value
+\[e_i = y_i - \hat{y}_i \]
+
+
+## Model formulation
+
+For a general population of ordered pairs $(x, y)$, the **population regression model** is
+\[y = \beta_0 + \beta_1x + \epsilon, \]
+where $\epsilon \sim N(0, \sigma)$.
+
+- The error term $\epsilon$ can be thought of as a population parameter for the residuals ($e$).
+
+Since the mean of $\epsilon$ is 0, the population model can also be written as
+\[E(Y|x) = \beta_0 + \beta_1x, \]
+where $E(Y|x)$ denotes the expected value of $Y$ when the predictor variable has value $x$.
+
+
+## Coefficients of the line in least squares regression
+  
+The terms $\beta_0$ and $\beta_1$ are parameters with estimates $b_0$ and $b_1$. These estimates can be calculated from summary statistics.  
+
+\[b_1 = r \dfrac{s_y}{s_x} \qquad b_0 = \overline{y} - b_1 \overline{x} \]
+
+$\overline{x}$, $\overline{y}$: sample means of $x$ and $y$.
+
+$s_x$, $s_y$: sample standard deviations of $x$ and $y$.
+
+$r$: correlation between $x$ and $y$.
+
+
+# 3. Simple linear regression using R
+
+## The <tt>lm()</tt> R function
+
+For the <tt>mtcars</tt> dataset, we consider the model
+
+$$mpg_{i}=\beta_{0}+\beta_{1} \times weight_{i}+\varepsilon_{i}$$.
+
+In the above model, the variable <tt>mpg</tt> is the response and <tt>weight</tt> is the predictor. In R, we can fit the simple linear regression model using the R function <tt>lm</tt>. The function has the genral call of <tt>lm(y~x)</tt>. The output for the <tt>mtcars</tt> data is shown below.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+fit.lm<-lm(mtcars$mpg~mtcars$wt)
+summary(fit.lm)
+```
+
+The parametr estimates for the intercept and slope are equal. respectivly, to $\hat{\beta}_{0}=37.28$ and $\hat{\beta}_{1}=-5.34$ 
+
+## Data and estimated model
+
+Figure 2 shows the data (mpg vs. weight) and fitted regression line, $\hat{mpg}_{i}=37.28-5.34 \times wt_{i}$
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Data and fitted model"}
+qplot(wt,mpg,data = mtcars)+
+geom_smooth(method = "lm",se = F)
+```
+
+## Parameter estimates
+
+Parameter estimates for $S_{y}$ and $S_{x}$ are given by
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+Sy<-sqrt(var(mtcars$mpg))
+Sx<-sqrt(var(mtcars$wt))
+c(Sy,Sx)
+```
+
+The slope can be estimated by 
+
+$$\hat{\beta}_{1}=r \times \frac{Sy}{Sx}$$,
+
+with $r$ equal to teh corelation between $y$ and $x$. For the <tt>mtcars</tt> data we have
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+cor.i<-cor(mtcars$mpg,mtcars$wt)
+cor.i
+beta1<-cor.i*(Sy/Sx)
+beta1
+```
+
+Parameter estimate for the intercepet,
+
+$$\hat{\beta}_{0}=\bar{y}-\beta_{1} \times \bar{x}$$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+mx<-mean(mtcars$wt)
+my<-mean(mtcars$mpg)
+c(my,mx)
+```
+
+For the <tt>mtcars</tt> data,
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+beta0<-my-beta1*mx
+beta0
+```
+
+From the R output we have
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+summary(fit.lm)$coefficients
+```
+
+# 3. Model diagnostic
+
+## Checking assumptions with residual plots
+
+The assumptions in linear regression are linearity, constant variability, independent observations, and approximate normality of residuals.
+
+  - The independence assumption has to be checked by considering study design.
+  
+  - The other assumptions can be examined using *residual plots* and *normal probability plots*.
+      - Residual plots: scatterplots in which predicted values are on the $x$-axis and residuals are on the $y$-axis
+      - Normal probability plots: theoretical quantiles for a normal versus observed quantiles
+
+## Checking linearity and constant variability
+
+### Example 1
+
+Figure~3 shows an example of resuduals for which both normality and constant variability hold.
+
+```{r, echo = FALSE, fig.width = 8.5, fig.height = 4.5,fig.cap="Example 1"}
+set.seed(5011)
+x = runif(100, 1, 10)
+error = rnorm(100, 0, 10)
+y = 15.6*x + error
+
+par(mfrow = c(1, 2))
+plot(y ~ x, cex = 0.75,
+     pch = 21, col = "cornflowerblue", bg = "slategray2",
+     main = "Y versus X")
+abline(lm(y ~ x), col = "red")
+
+plot(resid(lm(y ~ x)) ~ fitted(lm(y ~ x)),
+     xlab = "predicted value", ylab = "residual",
+     cex = 0.75,
+     pch = 21, col = "cornflowerblue", bg = "slategray2",
+     main = "Residual Plot of Y versus X",
+     ylim = c(-30, 30))
+abline(h = 0, col = "red", lty = 2)
+```
+
+### Example 2
+
+Figure~4 shows an example in which there is structure among the residuals which implies that either teh normality assumption or the constant variability (or both) do not hold.
+
+```{r, echo = FALSE, fig.width = 8.5, fig.height = 4.5,fig.cap="Example 2"}
+set.seed(5011)
+x = runif(100, 1, 10)
+error = rnorm(100, 0, 20)
+y = 4*x^2 + 20*x + error
+
+par(mfrow = c(1, 2))
+plot(y ~ x, cex = 0.75,
+     pch = 21, col = "cornflowerblue", bg = "slategray2",
+     main = "Y versus X")
+abline(lm(y ~ x), col = "red")
+
+plot(resid(lm(y ~ x)) ~ fitted(lm(y ~ x)),
+     xlab = "predicted value", ylab = "residual",
+     cex = 0.75,
+     pch = 21, col = "cornflowerblue", bg = "slategray2",
+     main = "Residual Plot of Y versus X")
+abline(h = 0, col = "red", lty = 2)
+```
+
+
+## The <tt>mtcars</tt> dataset
+
+For the <tt>mtcars</tt> data, the residuals from the model can be obtained by calling to the object <tt>resid</tt>, Figure 5 shows the diagnostic plots for the regression model. 
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Diagnostic plots for the residuals"}
+fit.lm$resid
+par(mfrow=c(1,2))
+qqnorm(fit.lm$resid)
+abline(0,1)
+plot(fit.lm$fit,fit.lm$resid)
+abline(0,0,col=2)
+```
+
+# 4. Categorical predictors with two levels
+
+## Simple linear regression with categorical predictor
+
+Although the response variable in linear regression is necessarily numerical, the predictor may be either numerical or categorical. Simple linear regression only allows for categorical predictor variables with two levels while examining categorical predictors with more than two levels requires multiple linear regression. Note that fitting a simple linear regression model with a two-level categorical predictor is analogous to comparing the means of two groups, where the groups are defined by the categorical variable.
+
+## The <tt>mtcars</tt> dataset
+
+As a predictor, let us focus on the variable Transmission (the R object <tt>am</tt>) which takes the value of 0 if the car is automatic and 1 if the car has manual transmition. Figure 6 shows a boxplot of the mile per gallon by transmission type.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot plot for mpg by transmission type"}
+#boxplot(split(mtcars$mpg,mtcars$am))
+ggplot(mtcars, aes(as.factor(am),mpg)) + geom_boxplot()
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violine plot for mpg by transmission type"}
+ggplot(mtcars, aes(as.factor(am),mpg)) + geom_violin(aes(fill=as.factor(am)))
+```
+
+We can see that cars with manuel transmission have, in general, higher <tt>mpg</tt> than cars with automatic transmission. The mean <tt>mpg</tt> by transmission type is given by $\bar{mpg}_{0}$ and $\bar{mpg}_{1}$,
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+#tapply(mtcars$mpg, mtcars$am, mean)
+mtcars %>% group_by(am) %>% dplyr::summarize(average = mean(mpg), standard_deviation = sd(mpg))
+```
+
+We consider the following simple linear regression model 
+
+\[mpg_{i} = \beta_0 + \beta_1 \times am_{i} + \varepsilon_{i}, \]
+
+that can be fitted in R in the fllowing way:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+fit.lm2<-lm(mtcars$mpg~as.factor(mtcars$am))
+summary(fit.lm2)
+```
+
+We note that $\hat{\beta}_{0}=\bar{mpg}_{0}=17.14$ while $\hat{\beta}_{0}+\hat{\beta}_{1}=\bar{mpg}_{1}=17.14+7.24=24.29$. This implies that the intercept is the mean of one category, the baseline category, and the slope is the difference between the means of the two categories.
+
+# 5. Goodness of fit: using $R^2$ to describe the strength of a fit
+
+## The quantity $R^2$
+
+
+The correlation coefficient $r$ measures the strength of the linear relationship between two variables. It is more common to use $r^2$ to measure the strength of a linear fit, which is written as $R^2$ in the context of regression. $R^2$ describes the amount of variation in the response that is explained by the least squares line.
+\[R^{2} = \dfrac{\text{variance of predicted $y$-values}}{\text{variance of observed $y$-values}} = \dfrac{\text{Var}(\hat{y}_i)}{\text{Var}(y_i)}.\]
+
+If a linear model perfectly captured the variability in the observed data, then $\text{Var}(\hat{y}_i)$ would equal $\text{Var}(y_i)$ and $R^2$ would be 1.
+
+## The quantity $R^2$\ldots
+
+$R^2$ can also be calculated using the following formula:
+
+\[R^{2} = \dfrac{\text{variance of observed $y$-values} - \text{variance of residuals}}{\text{variance of observed $y$-values}} = \dfrac{\text{Var}(y_i) - \text{Var}(e_i)}{\text{Var}(y_i)} \]
+
+
+The variability of the residuals about the line represents the remaining variability after the model is fit. In other words, $\text{Var}(e_i)$ is the variability unexplained by the model and $R^{2}$ is the proportion of variability explained by the model.
+
+## The <tt>mtcars</tt> dataset
+
+Let us look again in the output of the linear regression model in which the car's weight is the predictor.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+summary(fit.lm)
+```
+
+The Adjusted $R^{2}$ (to the intercept in teh model) is equal to 0.7446 which implies that the regression model explains approximatly $75\%$ of the total variability of the response.
+
+
+# 6. Statistical inference in regression
+
+## The model for statistical inference
+
+The observed data $(x_i, y_i)$ are assumed to have been randomly sampled from a population where the explanatory variable $X$ and the response variable $Y$ follow a population model
+\[Y = \beta_0 + \beta_1X + \epsilon, \]
+where $\epsilon \sim N(0, \sigma)$.
+Under this assumption, the slope and intercept of the regression line, $b_0$ and $b_1$, are estimates of the population parameters $\beta_0$ and $\beta_1$.
+
+## Hypothesis testing in regression
+
+
+Inference in a regression context is usually about the slope parameter, $\beta_1$.
+
+The null hypothesis is most commonly a hypothesis of 'no association':
+
+  - $H_0: \beta_1 = 0$, the $X$ and $Y$ variables are not associated
+
+  - $H_A: \beta_1 \neq 0$, the $X$ and $Y$ variables are associated
+
+The $t$-statistic has degrees of freedom $n - 2$, where $n$ is the number of ordered pairs in the dataset.
+\[t = \dfrac{b_1 - \beta_1^0}{\text{s.e.}(b_1)} = \dfrac{b_1}{\text{s.e.}(b_1)} \]
+
+The value $\beta_1^0$ equals 0 when the null hypothesis is one of no association.
+
+
+### The <tt>mtcars</tt> dataset
+
+For the linear model $mpg_{i} = \beta_0 + \beta_1 \times am_{i} + \varepsilon_{i}$, $\hat{\beta_{1}}=-5.3445$ with $SE(\hat{\beta_{1}})=0.5591$ and $t=9.559$ and therefore the null hypothesis $H_{0}:\beta_{1}=0$ is rejected and we conclude that the car's weight has an influence on the car's fuel consumption.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+summary(fit.lm)$coefficients
+```
+
+
+## Confidence intervals in regression
+
+A 95\% confidence interval for $\beta_1$ has the following formula
+\[b_1 \pm \left( t^\star \times \text{s.e.}(b_1) \right), \]
+
+where $t^\star$ is the point on a $t$-distribution with $n - 2$ degrees of freedom and $\alpha/2$ area to the right.
+
+### The <tt>mtcars</tt> dataset
+
+For the <tt>mtcars</tt> data we have 
+
+\[b_1 \pm \left( t^\star \times \text{s.e.}(b_1) \right)=-5.34 \pm \left( t^\star \times 0.559 \right) \],
+
+with $t^{*}= 2.042 for $\alpha=0.05$ and $n-2=30$. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+qt(0.975,30)
+```
+
+
+ A $95\%$ C.I for $\beta_{1}$ is given by
+ 
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+UL<- -5.34+2.042*0.55
+LL<- -5.34-2.042*0.55
+c(LL,UL)
+```
+
+
+
