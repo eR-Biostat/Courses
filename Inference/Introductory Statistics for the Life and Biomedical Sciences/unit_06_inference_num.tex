@@ -1,0 +1,1903 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+  aspectratio=169]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{amsmath,verbatim}
+
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage{manfnt}
+\usepackage[normalem]{ulem}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue}
+
+%\usepackage[colorlinks=true]{hyperref}
+
+\mode<presentation>{\usetheme{Malmoe}}
+
+%\synctex=1
+
+\setbeamertemplate{headline}{}
+
+
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+\setbeamercovered{transparent}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]{} 
+
+
+\definecolor{forest}{rgb}{0, .5, 0}
+\definecolor{brick}{rgb}{.5, 0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkred}{rgb}{.7, .15, .15}
+\definecolor{darkblue}{rgb}{0, 0, .5}
+\definecolor{Green}{rgb}{0.2,1,0.2}
+
+
+\newcommand{\R}{\textsf{R}}
+\newcommand{\RStudio}{\textsl{R Studio}}
+
+\usepackage[english]{babel}
+%\usepackage{palatino}
+\usepackage[T1]{fontenc}
+
+
+% make all tt fonts bold to look more like Verbatim
+\usepackage{lmodern}
+\renewcommand\ttfamily{\usefont{T1}{lmtt}{m}{n}}
+
+% Comment these out if you don't want a slide with just the
+% part/section/subsection/subsubsection title:
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \let\insertsectionnumber\relax
+  \let\sectionname\relax
+  \frame{\sectionpage}
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\newcommand{\columnsbegin}{\begin{columns}}
+	\newcommand{\columnsend}{\end{columns}}
+
+\newenvironment{twocol}[4]{
+\begin{columns}[c]
+\column{#1\textwidth}
+#3
+\column{#2\textwidth}
+#4
+\end{columns}
+}
+
+\def\begincols{\begin{columns}}
+\def\begincol{\begin{column}}
+\def\endcol{\end{column}}
+\def\endcols{\end{columns}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Unit 6: Inference for Numerical Data},
+  pdfauthor={Statistics S-100 Teaching Team},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Unit 6: Inference for Numerical Data}
+\author{Statistics S-100 Teaching Team}
+\date{Summer 2024}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}[allowframebreaks]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\begin{frame}{Comparing two population means}
+\protect\hypertarget{comparing-two-population-means}{}
+\small
+
+Two-sample data can be paired or unpaired (independent).
+
+\begin{itemize}
+\item
+  Paired measurements for each `participant' or study unit
+
+  \begin{itemize}
+  \item
+    each observation can be logically matched to one other observation
+    in the data
+  \item
+    e.g., scores on a standardized test before taking a prep course
+    versus scores after the prep course
+  \end{itemize}
+\item
+  Two independent sets of measurements
+
+  \begin{itemize}
+  \item
+    observations cannot be matched on a one-to-one basis
+  \item
+    e.g., scores on a standardized test of students who did take a prep
+    course versus scores of students who did not
+  \end{itemize}
+\end{itemize}
+
+The nature of the data dictate which two-sample testing procedure is
+appropriate: the two-sample test for paired data, or the two-sample test
+for independent group data.
+\end{frame}
+
+\hypertarget{two-sample-test-for-paired-data}{%
+\section{Two-sample test for paired
+data}\label{two-sample-test-for-paired-data}}
+
+\begin{frame}[fragile]{wetsuits and swimming velocity}
+\protect\hypertarget{wetsuits-and-swimming-velocity}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+Did a new wetsuit design allow for increased swim velocities during the
+2000 Olympics?
+
+\vspace{0.5cm}
+
+A study was conducted to assess the effect of wearing a wetsuit on swim
+velocity.
+
+\begin{itemize}
+\item
+  12 competitive swimmers were asked to swim 1500m at maximal velocity,
+  once wearing a wetsuit and once wearing a standard swimsuit.
+\item
+  Order of wetsuit versus swimsuit randomized.
+\item
+  Investigators recorded mean velocity (m/sec) for each trial.
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(oibiostat)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"swim"}\NormalTok{)}
+\NormalTok{swim\_new }\OtherTok{\textless{}{-}}\NormalTok{ swim}
+\FunctionTok{colnames}\NormalTok{(swim\_new) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{, }\StringTok{"ws\_vel"}\NormalTok{, }
+                        \StringTok{"ss\_vel"}\NormalTok{, }\StringTok{"vel\_diff"}\NormalTok{)}
+\NormalTok{swim\_new}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    id ws_vel ss_vel vel_diff
+## 1   1   1.57   1.49     0.08
+## 2   2   1.47   1.37     0.10
+## 3   3   1.42   1.35     0.07
+## 4   4   1.35   1.27     0.08
+## 5   5   1.22   1.12     0.10
+## 6   6   1.75   1.64     0.11
+## 7   7   1.64   1.59     0.05
+## 8   8   1.57   1.52     0.05
+## 9   9   1.56   1.50     0.06
+## 10 10   1.53   1.45     0.08
+## 11 11   1.49   1.44     0.05
+## 12 12   1.51   1.41     0.10
+\end{verbatim}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Idea behind inference for paired data}
+\protect\hypertarget{idea-behind-inference-for-paired-data}{}
+\small
+
+The velocities are paired by swimmer: each swimmer has two velocity
+measurements.
+
+Suppose that for each swimmer \(i\), we have observations \(x_{i, WS}\)
+and \(x_{i, SS}\).
+
+\begin{itemize}
+\item
+  Let \(d_i\) be the difference between the measurements:
+  \[d_i = x_{i, WS} - x_{i, SS}\]
+
+  \begin{itemize}
+  \item
+    \(x_{i, WS}\) is the wetsuit velocity measurement for swimmer \(i\)
+  \item
+    \(x_{i, SS}\) is the swimsuit velocity measurement for swimmer \(i\)
+  \end{itemize}
+\item
+  Base inference on \(\overline{d}\), the sample mean of the individual
+  differences \(d_i\):
+
+  \[\overline{d} = \frac{\sum d_i}{n}\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for paired data}
+\protect\hypertarget{inference-for-paired-data}{}
+\small
+
+Let \(\delta\) be the population mean of the difference in velocities
+during a 1500m swim if all competitive swimmers recorded swim velocities
+with each suit type.
+
+The null and alternative hypotheses are
+
+\begin{itemize}
+\item
+  \(H_0: \delta= 0\), the average difference in swim velocities between
+  swimming with a wetsuit versus a swimsuit equals 0
+
+  \begin{itemize}
+  \tightlist
+  \item
+    i.e., wetsuits do not change swim velocities
+  \end{itemize}
+\item
+  \(H_A: \delta \neq 0\), the average difference in swim velocities
+  between swimming with a wetsuit versus a swimsuit is non-zero
+
+  \begin{itemize}
+  \tightlist
+  \item
+    i.e., wetsuits do change swim velocities
+  \end{itemize}
+\end{itemize}
+
+We can also compute a 95\% confidence interval for \(\delta\).
+\end{frame}
+
+\begin{frame}{Inference for paired data \ldots}
+\protect\hypertarget{inference-for-paired-data-1}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+The formula for the test statistic is
+\[ t = \dfrac{\overline{d} -\delta_0}{s_d /\sqrt{n}},\]
+
+where \(\overline{d}\) is the mean of the differences, \(s_d\) is the
+standard deviation of the differences, and \(n\) is the number of
+differences (i.e., number of pairs).
+
+\begin{itemize}
+\item
+  A paired \(t\)-test is essentially a one-sample test of difference
+  values.
+\item
+  The \(p\)-value is calculated from a \(t\) distribution with
+  \(df = n - 1\).
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+A 95\% confidence interval for paired data has the form
+
+\[\overline{d} \pm \left( t^{\star} \times \dfrac{s_d}{\sqrt{n}} \right) ,\]
+
+where \(t^{\star}\) is the point on a \emph{t} distribution with
+\(df = n - 1\) that has area 0.025 to its right.
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{Letting \textsf{R} do the work}
+\protect\hypertarget{letting-do-the-work}{}
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#two{-}sample syntax}
+\FunctionTok{t.test}\NormalTok{(swim}\SpecialCharTok{$}\NormalTok{wet.suit.velocity, swim}\SpecialCharTok{$}\NormalTok{swim.suit.velocity, }
+       \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  swim$wet.suit.velocity and swim$swim.suit.velocity
+## t = 12.318, df = 11, p-value = 8.885e-08
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  0.06365244 0.09134756
+## sample estimates:
+## mean difference 
+##          0.0775
+\end{verbatim}
+
+Note: \texttt{t.test(x, y, paired = TRUE)} returns results based on the
+differences \texttt{x - y}.
+\end{frame}
+
+\begin{frame}[fragile]{Letting \textsf{R} do the work\ldots{}}
+\protect\hypertarget{letting-do-the-work-1}{}
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#one{-}sample syntax}
+\FunctionTok{t.test}\NormalTok{(swim}\SpecialCharTok{$}\NormalTok{velocity.diff, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  swim$velocity.diff
+## t = 12.318, df = 11, p-value = 8.885e-08
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.06365244 0.09134756
+## sample estimates:
+## mean of x 
+##    0.0775
+\end{verbatim}
+\end{frame}
+
+\hypertarget{two-sample-test-for-independent-group-data}{%
+\section{Two-sample test for independent group
+data}\label{two-sample-test-for-independent-group-data}}
+
+\begin{frame}{COVID-19 vaccine acceptance}
+\protect\hypertarget{covid-19-vaccine-acceptance}{}
+\small
+
+A study conducted in July
+2020\footnote{This was before COVID-19 vaccines were available.}
+investigated factors associated with self-reported willingness to
+receive a COVID-19 vaccine. Researchers collected data from 1,971
+participants via a 15-minute online survey that described 10
+hypothetical vaccines.
+
+\begin{itemize}
+\item
+  For example, one hypothetical vaccine was described as being 70\%
+  effective, approved and licensed by the US Food and Drug
+  Administration, developed in the United States, and endorsed by Vice
+  President Joe Biden.
+\item
+  A vaccine acceptance score from 1 to 7 was calculated, representing
+  the average response to the question ``How likely or unlikely would
+  you be to get Vaccine X?'' for the 10 hypothetical vaccines.
+\item
+  A higher score represents greater willingness.
+\end{itemize}
+
+Does mean vaccine acceptance score differ between respondents who
+described their political ideology as ``very liberal'' versus ``very
+conservative''?
+\end{frame}
+
+\begin{frame}{COVID-19 vaccine acceptance\ldots{}}
+\protect\hypertarget{covid-19-vaccine-acceptance-1}{}
+\scriptsize
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/unnamed-chunk-6-1.pdf}
+\end{frame}
+
+\begin{frame}{Inference for comparing two means}
+\protect\hypertarget{inference-for-comparing-two-means}{}
+\small
+
+The parameter of interest is \(\mu_{VL} - \mu_{VC}\), the difference in
+population mean vaccine acceptance score for those identifying as ``very
+liberal'' versus ``very conservative''.
+
+The null and alternative hypotheses are
+
+\begin{itemize}
+\item
+  \(H_0: \mu_{VL} = \mu_{VC}\), the population mean vaccine acceptance
+  score is the same for those identifying as ``very liberal'' versus
+  ``very conservative''.
+\item
+  \(H_A: \mu_{VL} \neq \mu_{VC}\), the population mean vaccine
+  acceptance score differs between those identifying as ``very liberal''
+  versus ``very conservative''.
+\item
+  Equivalently, \(H_0: \mu_{VL} - \mu_{VC} = 0\) and
+  \(H_A: \mu_{VL} - \mu_{VC} \neq 0\).
+\end{itemize}
+
+In general, the hypotheses are written in terms of \(\mu_1\) and
+\(\mu_2\).\footnote{The numerical labels are arbitrary, so it is best to explicitly specify which group is considered group 1 versus group 2.}
+
+\begin{itemize}
+\item
+  The parameter of interest is \(\mu_1 - \mu_2\).
+\item
+  The point estimate is \(\overline{x}_1 - \overline{x}_2\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Inference for comparing two means\ldots{}}
+\protect\hypertarget{inference-for-comparing-two-means-1}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+The \(t\)-statistic is:
+
+\[t =\dfrac{ (\overline{x}_{1} - \overline{x}_{2})- (\mu_1 - \mu_2)}
+  {\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} \]
+
+\vspace{0.5cm}
+
+The degrees of freedom for the null distribution are different than for
+the paired data setting.
+
+\begin{itemize}
+\item
+  Use this approximation when doing the test by hand:
+  \(df = \text{min}(n_1 - 1, n_2 - 1)\).
+\item
+  R uses a better approximation called the Satterthwaite approximation:
+  \[df = \dfrac{\left[(s_1^2/n_1) + (s_2^2/n_2)\right]^2}{\left[(s_1^2/n_1)^2/(n_1 - 1) + (s_2^2/n_2)^2/(n_2 - 1)\right]}\]
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+The 95\% confidence interval for the difference in population means has
+the form
+\[( \overline{x}_{1} - \overline{x}_{2}) \pm \left( t^{\star} \times  \sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}} \right), \]
+
+where \(t^{\star}\) is the point on a \(t\) distribution that has area
+0.025 to the right, with the same degrees of freedom as used for
+calculating the \(p\)-value of the associated test.
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{Letting R do the work}
+\protect\hypertarget{letting-r-do-the-work}{}
+\small
+
+The tilde syntax is used when one vector contains the numerical variable
+and one vector contains the grouping variable.
+
+\vspace{0.3cm}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#tilde syntax}
+\FunctionTok{t.test}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely }\SpecialCharTok{\textasciitilde{}}\NormalTok{ vax}\SpecialCharTok{$}\NormalTok{ideology, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{, }\AttributeTok{paired =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  vax$likely by vax$ideology
+## t = 4.4389, df = 423.85, p-value = 1.154e-05
+## alternative hypothesis: true difference in means between group very liberal and group very conservative is not equal to 0
+## 95 percent confidence interval:
+##  0.3873987 1.0031275
+## sample estimates:
+##      mean in group very liberal mean in group very conservative 
+##                        5.267829                        4.572566
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Letting R do the work\ldots{}}
+\protect\hypertarget{letting-r-do-the-work-1}{}
+\small
+
+The comma syntax is used when there are two vectors of numerical data.
+
+\vspace{0.3cm}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#comma syntax}
+\FunctionTok{t.test}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely[vax}\SpecialCharTok{$}\NormalTok{ideology }\SpecialCharTok{==} \StringTok{"very liberal"}\NormalTok{], }
+\NormalTok{       vax}\SpecialCharTok{$}\NormalTok{likely[vax}\SpecialCharTok{$}\NormalTok{ideology }\SpecialCharTok{==} \StringTok{"very conservative"}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  vax$likely[vax$ideology == "very liberal"] and vax$likely[vax$ideology == "very conservative"]
+## t = 4.4389, df = 423.85, p-value = 1.154e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.3873987 1.0031275
+## sample estimates:
+## mean of x mean of y 
+##  5.267829  4.572566
+\end{verbatim}
+\end{frame}
+
+\hypertarget{statistical-power-and-sample-size}{%
+\section{Statistical power and sample
+size}\label{statistical-power-and-sample-size}}
+
+\begin{frame}{Outcomes and errors in testing}
+\protect\hypertarget{outcomes-and-errors-in-testing}{}
+\columnsbegin
+
+\column{0.60\textwidth}
+
+\footnotesize
+
+Hypothesis tests can potentially result in incorrect decisions. The
+following table shows the four possible ways that the conclusion of a
+hypothesis test can be right or wrong.
+
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+& \multicolumn{2}{c|}{\textbf{Result of test}} \\ \hline
+\textbf{State of nature}  & \textbf{Reject $H_0$}  & \textbf{Fail to reject $H_0$}\\
+\hline
+ & Type I error, & No error,\\
+$H_0$ is true & probability = $\alpha$ & probability = $1 - \alpha$ \\
+ & (false positive) & (true negative) \\ \hline
+ &  No error, & Type II error,\\
+$H_A$ is true &  probability = $1 - \beta$ & probability = $\beta$\\
+ & (true positive) & (false negative) \\ \hline
+\end{tabular}
+\end{center}
+
+\column{0.40\textwidth}
+
+\footnotesize
+
+In a trial, the defendant is either innocent or guilty. After hearing
+evidence from both the prosecution and the defense, the court must reach
+a verdict.
+
+\vspace{0.5cm}
+
+Under many legal systems, presumption of innocence is a legal right of
+the accused.
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\): The defendant is innocent.
+\item
+  \(H_A\): The defendant is guilty.
+\end{itemize}
+
+\vspace{0.5cm}
+
+What does a Type I error represent in this context?
+
+\vspace{0.25cm}
+
+What does a Type II error represent in this context?
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Error probabilities in hypothesis testing}
+\protect\hypertarget{error-probabilities-in-hypothesis-testing}{}
+\small
+
+Lab 2 uses simulation to explore how Type I and Type II error are
+controlled.
+
+\begin{itemize}
+\tightlist
+\item
+  Type I error is controlled via rejecting \(H_0\) only when a
+  \(p\)-value is smaller than \(\alpha\).
+\end{itemize}
+
+Statisticians are most often concerned with the complement of making a
+Type II error.
+
+\begin{itemize}
+\item
+  The \textbf{power} of a statistical test is the probability that the
+  test will reject the null hypothesis when the alternative hypothesis
+  is true.
+\item
+  In other words, power is the probability of correctly rejecting
+  \(H_0\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Factors affecting power}
+\protect\hypertarget{factors-affecting-power}{}
+\small
+
+The power of a statistical test is determined
+by\footnote{The significance level $\alpha$ also influences power. More on this in Lab 2...}
+
+\begin{itemize}
+\item
+  the hypothesized difference between two population means, also known
+  as the population \textbf{effect size} (\(|\mu_1 - \mu_2|\))
+\item
+  the population standard deviation of each group
+  (\(\sigma_1, \sigma_2\))
+\item
+  the sample size of each group (\(n_1, n_2\))
+\end{itemize}
+
+Think about power as a measure of how easy it is to distinguish whether
+two groups have different (population) means.
+
+Usually, a study team can only control sample size.
+\end{frame}
+
+\begin{frame}{Example: Treatment for Alzheimer's}
+\protect\hypertarget{example-treatment-for-alzheimers}{}
+\small
+
+Treatment for Alzheimer's disease is an active research area. The
+Dementia Severity Rating Scale (DSRS) measures impairment severity of a
+person with Alzheimer's. Scores range from 0 (indicating no impairment)
+to 54 (extreme impairment).
+
+Cognitive decline over several years is measured by annual rate in
+change in DSRS score.
+
+\begin{itemize}
+\tightlist
+\item
+  Example: a person observed for 3 consecutive years whose score
+  increased from 7 to 14.5 has an annual rate of change of 7.5/3 = 2.5
+  points per year.
+\end{itemize}
+
+Suppose a pharmaceutical company developed a drug to slow cognitive
+decline in individuals affected by Alzheimer's disease.
+
+\begin{itemize}
+\item
+  Conduct a randomized trial, comparing standard drug to new drug.
+\item
+  Enroll newly diagnosed patients, measure DSRS at beginning of study
+  and 3 years later.
+\item
+  Compare average annual change in DSRS score between the two groups.
+\end{itemize}
+
+Test \(H_0: \mu_{ctrl} = \mu_{trt}\) against
+\(H_A: \mu_{ctrl} \neq \mu_{trt}\).
+\end{frame}
+
+\begin{frame}{Intuition behind power}
+\protect\hypertarget{intuition-behind-power}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  Suppose \(H_A\) is true and that we know the population distribution
+  of DSRS score among the control group and treatment group:
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item Control: $\mu_{ctrl} = 3.5$ pts/yr
+
+    \item Treatment: $\mu_{trt} = 2.5$ pts/yr
+
+    \end{itemize}
+\item
+  What would the sampling distributions of \(\overline{X}_{trt}\) and
+  \(\overline{X}_{ctrl}\) look like?
+\item
+  If we only get to observe one random sample from each group, how
+  likely would we be to conclude that the population means are
+  different?
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item i.e., How likely would we be to \textbf{reject $H_0$ correctly}?
+
+    \end{itemize}
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/unnamed-chunk-9-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Intuition behind power: effect size}
+\protect\hypertarget{intuition-behind-power-effect-size}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  \textbf{Effect size} (\(|\mu_1 - \mu_2|\)) refers to the hypothesized
+  difference between two population means.
+\item
+  On the previous slide, we supposed that \(\mu_{ctrl}\) = 3.5 pts/yr
+  and \(\mu_{trt} = 2.5\) pts/yr, which corresponds to effect size
+  \(\Delta = |\mu_{ctrl} - \mu_{trt}| = |3.5 - 2.5|\) = 1 pt/yr.
+\item
+  What if the effect size were larger; i.e., if the new drug were
+  actually more effective?
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item What if $\mu_{trt} = 1.5$ pts/yr, $\Delta = 2$ pts/yr?
+
+    \item What if $\mu_{trt} = 0.5$ pts/yr, $\Delta = 3$ pts/yr?
+
+    \end{itemize}
+\item
+  As effect size increases, does power increase or decrease?
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item As effect size increases, does it become easier or harder to detect a difference in population means?
+
+    \end{itemize}
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/effect_size-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Intuition behind power: sample size}
+\protect\hypertarget{intuition-behind-power-sample-size}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  How does \textbf{sample size} affect power?
+\item
+  Hint: recall that the standard error of \(\overline{X}\) depends on
+  \(n\).
+\item
+  Let's run some simulations with different sample size.
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item What if $n_{trt} = n_{ctrl} = 50$?
+
+    \item What if $n_{trt} = n_{ctrl} = 100$?
+
+    \item What if $n_{trt} = n_{ctrl} = 300$?
+
+    \end{itemize}
+\item
+  As sample size increases, does power increase or decrease?
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item As sample size increases, does it become easier or harder to detect a difference in population means?
+
+    \end{itemize}
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/sample_size-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Intuition behind power: standard deviation}
+\protect\hypertarget{intuition-behind-power-standard-deviation}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  How does \textbf{standard deviation} (\(\sigma_{trt}, \sigma_{ctrl}\))
+  affect power?
+\item
+  Hint: recall that the standard error of \(\overline{X}\) depends on
+  \(\sigma\).
+\item
+  Let's run some simulations with different standard deviation of DSRS
+  score.
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item What if $\sigma_{trt} = \sigma_{ctrl} = 4$?
+
+    \item What if $\sigma_{trt} = \sigma_{ctrl} = 6$?
+
+    \item What if $\sigma_{trt} = \sigma_{ctrl} = 10$?
+
+    \end{itemize}
+\item
+  As standard deviation increases, does power increase or decrease?
+
+  \begin{itemize}
+
+    \footnotesize
+
+    \item As standard deviation increases, does it become easier or harder to detect a difference in population means?
+
+    \end{itemize}
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/sigma-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Background for power simulation lab\ldots{}}
+\protect\hypertarget{background-for-power-simulation-lab}{}
+\small
+
+Part I: Controlling Type I error
+
+\begin{itemize}
+\item
+  Assume that \(H_0: \mu_{ctrl} = \mu_{trt}\) is true.
+\item
+  Draw repeated samples from simulated control and treatment
+  populations.
+\item
+  Conduct a hypothesis test for each set of two samples.
+\item
+  How many samples resulted in the \textbf{correct decision}?
+\end{itemize}
+
+Part II: Controlling Type II error
+
+\begin{itemize}
+\item
+  Assume that \(H_A: \mu_{ctrl} \neq \mu_{trt}\) is true.
+\item
+  Draw repeated samples from simulated control and treatment
+  populations.
+\item
+  Conduct a hypothesis test for each set of two samples.
+\item
+  How many samples resulted in the \textbf{correct decision}?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    How does this number change when we change the sample size?
+    \ldots the standard deviation? \ldots the effect size?
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Choosing the right sample size}
+\protect\hypertarget{choosing-the-right-sample-size}{}
+\small
+
+Study design often includes calculating a sample size such that the
+probability of rejecting a null hypothesis correctly is acceptably
+large, typically between 0.80 and 0.90.
+
+It is important to have a precise estimate of an appropriate study size.
+
+\begin{itemize}
+\item
+  A study needs to be large enough to allow for sufficient power to
+  detect a difference between groups.
+\item
+  However, unnecessarily large studies are expensive, and can even be
+  unethical.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{A typical sample size question}
+\protect\hypertarget{a-typical-sample-size-question}{}
+\small
+
+A pharmaceutical company has developed a new drug to lower blood
+pressure and is planning a clinical trial to test its effectiveness.
+
+\begin{itemize}
+\item
+  Individuals whose systolic blood pressure is between 140 and 180 mmHg
+  will be recruited.
+\item
+  Based on previous studies, blood pressures from such individuals will
+  be approximately normally distributed with standard deviation of about
+  12 mmHg.
+\item
+  Participants will be randomly assigned to the new drug or a standard
+  drug, and the company will measure the difference in mean blood
+  pressure levels between the groups.
+\end{itemize}
+
+The company expects to receive FDA approval for the drug if there is
+evidence that the drug lowers blood pressure, on average, by at least 3
+mmHg more than the standard drug.
+
+How large should the study be if the company wants the power of the
+study to be 0.80 (80\%)?
+\end{frame}
+
+\begin{frame}[fragile]{A typical sample size question \ldots}
+\protect\hypertarget{a-typical-sample-size-question-1}{}
+\small
+
+We will use the \texttt{power.t.test()} function for power and sample
+size
+calculations.\footnote{\textit{OI Biostat} Section 5.4 has an extended discussion of this example, with formulas for hand calculations.}
+
+To achieve a power of at least 0.80, the company should recruit at least
+253 patients for each group; i.e., a total of at least 506 patients.
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{power.t.test}\NormalTok{(}\AttributeTok{n =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{delta =} \DecValTok{3}\NormalTok{, }\AttributeTok{sd =} \DecValTok{12}\NormalTok{, }\AttributeTok{sig.level =} \FloatTok{0.05}\NormalTok{, }\AttributeTok{power =} \FloatTok{0.80}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 252.1281
+##           delta = 3
+##              sd = 12
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+\end{frame}
+
+\hypertarget{comparing-several-means-with-anova}{%
+\section{Comparing several means with
+ANOVA}\label{comparing-several-means-with-anova}}
+
+\begin{frame}{Type I error rate for a single test}
+\protect\hypertarget{type-i-error-rate-for-a-single-test}{}
+\small
+
+Suppose we are interested in comparing means across more than two
+groups. Why not conduct several two-sample \(t\)-tests?
+
+\begin{itemize}
+\item
+  If there are \(k\) groups, then \({k \choose 2} = \frac{k(k-1)}{2}\)
+  \(t\)-tests are needed.
+\item
+  Conducting multiple tests on the same data increases the overall rate
+  of Type I error.
+\end{itemize}
+
+Recall that making a Type I error (rejecting \(H_0\) when \(H_0\) is
+true) occurs with probability \(\alpha\).
+
+\begin{itemize}
+\item
+  Type I error rate is controlled by rejecting only when a test
+  \(p\)-value is smaller than \(\alpha\).
+\item
+  \(\alpha\) is typically kept low.
+\item
+  With a single two-group comparison at \(\alpha = 0.05\), there is a
+  5\% chance of incorrectly identifying an association where none
+  actually exists.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What about several tests?}
+\protect\hypertarget{what-about-several-tests}{}
+\small
+
+What happens to Type I error when making several comparisons?
+
+When conducting more than one \(t\)-test in an analysis\ldots{}
+
+\begin{itemize}
+\item
+  The significance level (\(\alpha\)) used in each test controls the
+  error rate for that test.
+\item
+  The \textbf{experiment-wise error rate} is the chance that at least
+  one test will incorrectly reject \(H_0\) when all tested null
+  hypotheses are true.
+\item
+  Controlling experiment-wise error rate is one specific approach for
+  controlling Type I error.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Probability of experiment-wise error}
+\protect\hypertarget{probability-of-experiment-wise-error}{}
+\small
+
+Suppose that two \(t\)-tests are conducted to assess whether two new
+drug candidates are associated with better outcome. Assume the tests are
+independent and each are conducted at the \(\alpha = 0.05\) significance
+level.
+
+Let \(A\) be the event of making a Type I error on the first test, and
+\(B\) be the event of making a Type I error on the second test, where
+\(P(A) = P(B) = 0.05\).
+
+The probability of making at least one error is equal to the complement
+of the event that a Type I error is not made with either test.
+\[1 - [P(A^C) P(B^C) ] = 1 - (1 - 0.05)^2 = 0.0975 \]
+
+Thus, when making two independent \(t\)-tests, there is about a 10\%
+chance of making at least one Type I error; the experiment-wise error is
+10\%.
+\end{frame}
+
+\begin{frame}{Probability of experiment-wise error\ldots{}}
+\protect\hypertarget{probability-of-experiment-wise-error-1}{}
+\small
+
+With 10 tests\ldots{}
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{10} = 0.401\]
+
+With 25 tests\ldots{}
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{25} = 0.723\]
+
+With 100 tests\ldots{}
+\[\text{experiment-wise error }=  1 - (1 - 0.05)^{100} = 0.994\]
+
+With 100 independent tests, there is a 99.4\% chance an investigator
+will make at least one Type I error!
+
+\begin{itemize}
+\tightlist
+\item
+  If a company tested 100 drug candidates (that actually aren't
+  effective), there is a 99.4\% chance of incorrectly concluding that at
+  least one candidate is effective.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Analysis of Variance (ANOVA)}
+\protect\hypertarget{analysis-of-variance-anova}{}
+\small
+
+ANOVA uses a single hypothesis test to assess whether means across
+several groups are equal:
+
+\begin{itemize}
+\item
+  \(H_0\): mean outcome is same across all groups
+  (\(\mu_1 = \mu_2 = \mu_3 = ... = \mu_k\))
+\item
+  \(H_A\): at least one mean is different from the others (i.e., means
+  are not all equal)
+\end{itemize}
+
+By using a single test, the Type I error rate is still maintained at
+\(\alpha\).
+\end{frame}
+
+\begin{frame}{Idea behind ANOVA}
+\protect\hypertarget{idea-behind-anova}{}
+\small
+
+Are the sample means different enough that \(H_0\) seems unlikely to be
+true?
+
+\begin{itemize}
+\tightlist
+\item
+  i.e.~Does it seem like the sample means come from different
+  populations, or could it be plausible that they are simply different
+  samples drawn from one population?
+\end{itemize}
+
+Compare two quantities:
+
+\begin{itemize}
+\item
+  Variability between groups (\(MSG\)): how different are the group
+  means from each other, i.e., how much does each group mean vary from
+  the overall mean?
+\item
+  Variability within groups (\(MSE\)): how variable are the data within
+  each group?
+\end{itemize}
+
+\footnotesize
+
+\(MSG\) denotes mean square between groups, while \(MSE\) denotes mean
+square error. Refer to \textit{OI Biostat} Section 5.5.1 for details.
+\end{frame}
+
+\begin{frame}{Idea behind ANOVA\ldots{}}
+\protect\hypertarget{idea-behind-anova-1}{}
+\begin{figure}[]
+\includegraphics[height = 5cm]
+{figures/toyANOVA.pdf}
+\end{figure}
+
+\small
+
+\begin{itemize}
+\tightlist
+\item
+  I, II, and III: difficult to discern differences in means, variability
+  within each group is high
+\item
+  IV, V, and VI: appears to be differences in means, these differences
+  are large relative to variance within each group
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Idea behind ANOVA\ldots{}}
+\protect\hypertarget{idea-behind-anova-2}{}
+\footnotesize
+
+Under the null hypothesis, there is no real difference between the
+groups; thus, any observed variation in group means is due to chance.
+
+\begin{itemize}
+\item
+  Think of all observations as belonging to a single group.
+\item
+  Variability between group means should equal variability within
+  groups.
+\end{itemize}
+
+The \textit{F-statistic} is the test statistic for ANOVA.
+\[F = \frac{\text{variance between groups}}{\text{variance within groups}}  = \frac{MSG}{MSE}\]
+
+\begin{itemize}
+\item
+  If the \(F\)-statistic is approximately 1, this suggests that the null
+  hypothesis is true.
+\item
+  If the \(F\)-statistic is (much) larger than 1, this suggests that the
+  population means are different.
+\item
+  The \(F\)-statistic follows an \(F\) distribution, with two degrees of
+  freedom, \(df_1\) and \(df_2\); \(df_1 = n_{groups} - 1\),
+  \(df_2 = n_{obs} - n_{groups}\).
+\item
+  The \(p\)-value for ANOVA equals \(P(F \geq F\text{-stat})\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Assumptions for ANOVA}
+\protect\hypertarget{assumptions-for-anova}{}
+\small
+
+Important to check whether the assumptions for conducting ANOVA are
+reasonably satisfied:
+
+\begin{enumerate}
+\item
+  Observations are independent within and across groups.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Think about study design/context.
+  \end{itemize}
+\item
+  Data within each group are approximately normal.
+
+  \begin{itemize}
+  \item
+    Look at the data graphically, such as with a histogram.
+  \item
+    Normal Q-Q plots can help\ldots{}
+  \end{itemize}
+\item
+  Variability across groups is about equal.
+
+  \begin{itemize}
+  \item
+    Look at the data graphically.
+  \item
+    Numerical rule of thumb: ratio of largest variance to smallest
+    variance \textless{} 3 is considered ``about equal''.
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Normal probability plots (Q-Q plots)}
+\protect\hypertarget{normal-probability-plots-q-q-plots}{}
+\footnotesize
+
+\begin{figure}[]
+\includegraphics[height = 5cm]
+{figures/normalExamples.pdf}
+\end{figure}
+
+If points fall on or near the line, data closely follow a normal
+distribution.
+
+\begin{itemize}
+\item
+  Difficult to evaluate in small datasets.
+\item
+  Plots show three simulated normal datasets: from L to R, \(n = 40\),
+  \(n = 100\), \(n = 400\)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Normal probability plots (Q-Q plots)\ldots{}}
+\protect\hypertarget{normal-probability-plots-q-q-plots-1}{}
+\scriptsize
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/unnamed-chunk-17-1.pdf}
+\end{frame}
+
+\begin{frame}{Pairwise comparisons}
+\protect\hypertarget{pairwise-comparisons}{}
+\small
+
+If the \(F\)-test indicates there is sufficient evidence that the group
+means are not all equal, proceed with pairwise comparisons to identify
+which group means are different.
+
+Pairwise comparisons are made using the two-sample \(t\)-test for
+independent groups.
+
+\begin{itemize}
+\item
+  To maintain the overall Type I error rate at \(\alpha\), each pairwise
+  comparison is conducted at at an adjusted significance level referred
+  to as \(\alpha^\star\).
+\item
+  The Bonferroni correction is one method for adjusting \(\alpha\).
+  \[\alpha^\star = \alpha/K, \text{ where } K = \frac{k(k-1)}{2} \text{ for $k$ groups}\]
+\item
+  Note that the Bonferroni correction is a very stringent (i.e.,
+  conservative) correction, made under the assumption that all tests are
+  independent.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{COVID-19 vaccine acceptance, again}
+\protect\hypertarget{covid-19-vaccine-acceptance-again}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+With ANOVA, we can address a different version of the question addressed
+in the two-group context.
+
+\begin{itemize}
+\item
+  Does mean vaccine acceptance score differ by political party?
+\item
+  Respondents reported political party as either Republican, Democrat,
+  or Independent.
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\scriptsize
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/unnamed-chunk-20-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{COVID-19 vaccine acceptance, again\ldots{}}
+\protect\hypertarget{covid-19-vaccine-acceptance-again-1}{}
+\columnsbegin
+
+\column{0.40\textwidth}
+
+\footnotesize
+
+Check assumptions:
+
+\begin{enumerate}
+\item
+  \emph{Independence}. Data are from participants taking an online
+  survey, so it is reasonable to consider the responses as independent
+\item
+  \emph{Approximate normality}. Q-Q plots indicate some departures from
+  normality for the extreme values, but observations mostly follow
+  normality in the centers
+\item
+  \emph{Approximately constant variance}. ratio of largest to smallest
+  variance is 1.65, which is considered ``about equal''
+\end{enumerate}
+
+\column{0.60\textwidth}
+
+\scriptsize
+
+\includegraphics{unit_06_inference_num_files/figure-beamer/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#check variance}
+\FunctionTok{tapply}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely, vax}\SpecialCharTok{$}\NormalTok{party3, var)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  republican    democrat independent 
+##    3.439048    2.163715    2.083126
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FloatTok{3.44}\SpecialCharTok{/}\FloatTok{2.08}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.653846
+\end{verbatim}
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{COVID-19 vaccine acceptance, again\ldots{}}
+\protect\hypertarget{covid-19-vaccine-acceptance-again-2}{}
+\columnsbegin
+
+\column{0.35\textwidth}
+
+\footnotesize
+
+State hypotheses.
+
+\begin{itemize}
+\item
+  \(H_0: \mu_I = \mu_D = \mu_R\), mean vaccine acceptance score is equal
+  across political party.
+\item
+  \(H_A\): at least one group has a mean vaccine acceptance score
+  different from that of the other groups.
+\end{itemize}
+
+\vspace{0.5cm}
+
+Let \(\alpha = 0.05\).
+
+\column{0.65\textwidth}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(}\FunctionTok{aov}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely }\SpecialCharTok{\textasciitilde{}}\NormalTok{ vax}\SpecialCharTok{$}\NormalTok{party3))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Df Sum Sq Mean Sq F value Pr(>F)  
+## vax$party3    2   23.7  11.864   4.188 0.0158 *
+## Residuals   459 1300.4   2.833                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  The \(p\)-value from the ANOVA \(F\)-test is 0.0158.
+\item
+  If the population mean vaccine acceptance scores were actually the
+  same across groups, the probability of observing an \(F\)-statistic as
+  large as 4.19 or larger equals 0.0158.
+\item
+  These data suggest that at least one population mean vaccine
+  acceptance score is different from the others.
+\end{itemize}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Controlling Type I error rate}
+\protect\hypertarget{controlling-type-i-error-rate}{}
+\small
+
+If the ANOVA \(F\)-test is significant, then it is appropriate to
+proceed to conducting pairwise comparisons; i.e., using two-sample
+\(t\)-tests to compare each possible pairing of the
+groups.\footnote{These $t$-tests are typically referred to as \textit{post hoc} tests.}
+
+\begin{itemize}
+\item
+  Each test should be conducted at the \(\alpha^\star\) significance
+  level so that the overall Type I error rate remains at \(\alpha\).
+\item
+  These tests are still conducted under the assumption that the variance
+  between groups is equal; thus, the test statistics are calculated
+  using the pooled estimate of standard deviation between groups.
+  Details are in \emph{OI Biostat} Section 5.5.3.
+\item
+  We will use \texttt{pairwise.t.test( )} to perform these \emph{post
+  hoc} two-sample \emph{t}-tests.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Post hoc testing}
+\protect\hypertarget{post-hoc-testing}{}
+\small
+
+Each test should be conducted at the \(\alpha^\star = 0.05/3 = 0.0167\)
+significance level since there are 3 comparisons being made.
+
+\begin{itemize}
+\item
+  There is evidence that Independents are different from both
+  Republicans and Democrats.
+\item
+  There is not evidence that Republicans and Democrats are different.
+\end{itemize}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pairwise.t.test}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely, vax}\SpecialCharTok{$}\NormalTok{party3, }\AttributeTok{p.adj =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  vax$likely and vax$party3 
+## 
+##             republican democrat
+## democrat    0.7424     -       
+## independent 0.0046     0.0149  
+## 
+## P value adjustment method: none
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Letting \textsf{R} do the work\ldots{}}
+\protect\hypertarget{letting-do-the-work-2}{}
+\small
+
+Setting \texttt{p.adj} to \texttt{"bonf"} instructs R to rescale the
+\(p\)-values (by multiplying by \(K\), the total number of comparisons)
+so they can be compared to the original \(\alpha\) level of 0.05.
+
+\vspace{0.3cm}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pairwise.t.test}\NormalTok{(vax}\SpecialCharTok{$}\NormalTok{likely, vax}\SpecialCharTok{$}\NormalTok{party3, }\AttributeTok{p.adj =} \StringTok{"bonf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  vax$likely and vax$party3 
+## 
+##             republican democrat
+## democrat    1.000      -       
+## independent 0.014      0.045   
+## 
+## P value adjustment method: bonferroni
+\end{verbatim}
+\end{frame}
+
+\hypertarget{a-closer-look-at-the-p-value}{%
+\section{\texorpdfstring{A closer look at the
+\(p\)-value}{A closer look at the p-value}}\label{a-closer-look-at-the-p-value}}
+
+\begin{frame}{Fisher's \(p\)-value}
+\protect\hypertarget{fishers-p-value}{}
+\small
+
+In 1925, Ronald Fisher published \emph{Statistical Methods for Research
+Workers}, a book aimed at providing biologists with the means of
+applying statistical tests accurately to numerical data.
+
+\begin{itemize}
+\item
+  ``The value for which \(P = 0.05\), or 1 in 20, is 1.96 or nearly 2;
+  it is convenient to take this point as a limit in judging whether a
+  deviation is to be considered significant or not. Deviations exceeding
+  twice the standard deviation are thus formally regarded as
+  significant\ldots{}''
+\item
+  Provided a valuable rule of thumb at a time when the use of tables and
+  approximations were essential for practicing researchers
+\end{itemize}
+
+Over time, the \(p\)-value in conjunction with the hypothesis testing
+framework developed by Jerzy Neyman and Egon Pearson became widely used
+across many scientific disciplines.
+\end{frame}
+
+\begin{frame}{The mis-use of \(p\)-values}
+\protect\hypertarget{the-mis-use-of-p-values}{}
+\columnsbegin
+
+\column{0.70\textwidth}
+
+\footnotesize
+
+``\(P\)-hacking'' refers to the conscious or unconscious manipulation of
+data in order to achieve a desired result (i.e., a significant
+\(p\)-value):
+
+\begin{itemize}
+\item
+  There are many possible decisions in the data analysis process, and no
+  obviously correct way to proceed.
+\item
+  Unconscious bias can lead researchers to make decisions that will
+  confirm what they would like to believe.
+\item
+  Non-significant results are difficult to publish in scientific
+  journals.
+\item
+  Tempting to perform many hypothesis tests and only report the
+  statistically significant results.
+\end{itemize}
+
+The following slide shows an interactive ``data analysis'' from
+\href{https://fivethirtyeight.com/features/science-isnt-broken/}{"Science isn't Broken"}.\footnote{FiveThirtyEight, 19 Aug 2015.}
+
+\column{0.30\textwidth}
+
+\begin{figure}[]
+\includegraphics[height = 7cm]
+{figures/xkcdJellybeans.png}
+\end{figure}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{The mis-use of \(p\)-values\ldots{}}
+\protect\hypertarget{the-mis-use-of-p-values-1}{}
+\begin{figure}[]
+\includegraphics[height = 7cm]
+{figures/pHacking.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Statistical significance versus practical significance}
+\protect\hypertarget{statistical-significance-versus-practical-significance}{}
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+In 2016, the American Statistical Association released a formal
+statement clarifying principles about the proper use and interpretation
+of the \(p\)-value. Some main points mentioned:
+
+\begin{itemize}
+\item
+  A \(p\)-value does not measure the size of an effect or the importance
+  of a result. Statistical significance is not equivalent to scientific,
+  human, or economic significance.
+\item
+  Scientific conclusions and business or policy decisions should not be
+  based only on whether a \(p\)-value passes a specific threshold. Many
+  other contextual factors should be considered, such as the design of a
+  study, the external evidence for the phenomenon under study, and the
+  validity of the assumptions that underlie the data analysis.
+\end{itemize}
+
+\column{0.55\textwidth}
+
+\footnotesize
+
+A 2013
+\href{https://www.pnas.org/doi/10.1073/pnas.1222447110}{study published in \textit{PNAS}}
+of 19,000+ people found that people who meet their spouses
+online\ldots{}
+
+\begin{itemize}
+\item
+  Are less likely to divorce than those who meet offline (\(p < 0.002\))
+\item
+  Are more likely to have higher marital satisfaction (\(p < 0.001\))
+\end{itemize}
+
+\vspace{0.25cm}
+
+Important to examine the effect sizes:
+
+\begin{itemize}
+\item
+  Divorce rate of 5.96\% for those who met online versus 7.67\% for
+  those who met in person.
+\item
+  On a 7 point scale, happiness value of 5.64 for those who met online
+  versus 5.48 for those who met offline.
+\end{itemize}
+
+Do these results provide compelling evidence that one should change
+their
+behavior?\footnote{\scriptsize Study results reported in a \textit{Scientific American} article: "Meeting Your Spouse Online May Lead to a Better Marriage".}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Modern solutions}
+\protect\hypertarget{modern-solutions}{}
+\small
+
+Emphasizing reproducibility and replicability.
+
+\begin{itemize}
+\item
+  Making data and analysis code public.
+\item
+  Publishing negative/inconclusive results.
+\end{itemize}
+
+Reporting analysis plan before conducting experiments.
+
+\begin{itemize}
+\tightlist
+\item
+  e.g., a two-stage peer review process in which methods and proposed
+  analyses are peer-reviewed prior to data collection and analysis
+\end{itemize}
+
+Focusing interpretation of data on effect sizes and confidence
+intervals.
+
+\begin{itemize}
+\tightlist
+\item
+  Asking ``How much of an effect is there?'' versus ``Is there an
+  effect?''
+\end{itemize}
+
+\href{https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913}{Moving to a World Beyond "$p < 0.05$"}
+
+\begin{itemize}
+\tightlist
+\item
+  Editorial accompanying a special issue of \emph{The American
+  Statistician} from Mar 2019, containing 43 papers discussing how to
+  move to ``a world where researchers are free to treat `p = 0.051' and
+  `p = 0.049' as not being categorically different.''
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What should you keep in mind?}
+\protect\hypertarget{what-should-you-keep-in-mind}{}
+\small
+
+When conducting research\ldots{}
+
+\begin{itemize}
+\item
+  Clearly specify details of an analysis approach (e.g., primary
+  outcome, significance level, number of tests) \emph{before} viewing
+  data.
+\item
+  Understand how to appropriately use and interpret \(p\)-values.
+\item
+  Report interval estimates, not just \(p\)-values.
+\item
+  When possible, replicate an analysis with new data.
+\end{itemize}
+
+When consuming research\ldots{}
+
+\begin{itemize}
+\item
+  Be wary of strong conclusions based solely on a \(p\)-value.
+\item
+  Consider factors such as study design, measurement quality, validity
+  of any assumptions made, and plausibility (e.g., evidence for a
+  biological mechanism).
+\item
+  Avoid confusing statistical significance with practical significance.
+\end{itemize}
+\end{frame}
+
+\end{document}

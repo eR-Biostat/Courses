@@ -1,0 +1,887 @@
+---
+title: "Unit 9: Inference for Categorical Data"
+author: "Statistics S-100 Teaching Team"
+date: "Summer 2024"
+output: 
+  beamer_presentation:
+     includes:
+       in_header: ../slides_header.tex
+     fig_width: 3.25
+     fig_height: 3
+     fig_caption: false
+     toc: true
+     keep_tex: true
+classoption: "aspectratio=169"
+slide_level: 3
+---
+
+# Introduction  
+
+### Tools for assessing association
+
+\columnsbegin
+
+\column{0.52\textwidth}
+
+\footnotesize
+
+We have covered methods for numerical outcomes:
+
+  - numerical outcome with a categorical predictor
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item two-sample $t$-tests and ANOVA
+      
+      \item simple/multiple linear regression
+      
+      \end{itemize}
+  
+  - numerical outcome with a numerical predictor
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item simple linear regression
+      
+      \end{itemize}
+  
+  - numerical outcome with several predictors, numerical or categorical
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item multiple linear regression
+      
+      \end{itemize}
+      
+\column{0.52\textwidth}
+
+\footnotesize
+
+Next, methods for categorical outcomes:
+
+  - categorical outcome with a categorical predictor
+  
+      \begin{itemize}
+      
+      \footnotesize
+  
+      \item $\chi^2$ test of independence
+      
+      \item Fisher's exact test
+      
+      \item simple/multiple logistic regression
+      
+      \end{itemize}
+      
+  - binary outcome with a numerical predictor
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item simple logistic regression
+      
+      \end{itemize}
+  
+  - binary outcome with several predictors, numerical or categorical
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item multiple logistic regression
+      
+      \end{itemize}
+
+
+\columnsend
+
+#  Inference for binomial proportions 
+
+### Fatal vehicle collisions
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+According to the National Highway Traffic Safety Administration (NHTSA) there were 33,949 fatal vehicle collisions across the US in 2018.
+
+\vspace{0.25cm}
+
+The cause of each accident is reported (e.g., distraction, drowsiness, alcohol consumption, etc.) as well as the location.
+
+\vspace{0.25cm}
+
+In Massachusetts, 136 out of 341 fatal collisions involved alcohol consumption.
+
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+Questions that can be addressed with inference... 
+
+ - What is the estimated **population proportion** of alcohol-related fatal collisions in MA?
+ 
+ - What is the 95\% confidence interval for the estimated population proportion of alcohol-related fatal collisions in MA?
+ 
+ - The nationwide proportion of alcohol-related fatal collisions is thought to be 0.33. Do the observed data for MA suggest that the probability of alcohol being involved in a fatal collision is greater in MA than nationwide?
+
+\columnsend
+
+### Inference for binomial proportions
+
+\small
+
+The collision data are binomial data; "success" can be defined as alcohol being involved.
+
+Suppose $X$ is a binomial random variable with parameters $n$ and $p$, where $n$ is the number of trials and $p$ is the probability of success. 
+
+  - The parameter of interest is $p$, the population probability of success; i.e., population probability of a fatal collision involving alcohol consumption.
+  
+  - The estimate of $p$ from the observed sample is $\hat{p} = x/n$, where $x$ is the observed number of successes. 
+
+Inference for $p$ can be done using the normal approximation to the binomial, or directly using the binomial distribution.
+
+  - The normal approximation approach relies on the **Central Limit Theorem**.
+  
+  - The binomial approach is an example of an **exact** test, in which it is not necessary to approximate the sampling distribution of the test statistic.
+
+### Normal theory approach (CLT for the sample proportion)
+
+\small
+
+The sampling distribution of $\hat{p}$ is approximately normal when 
+
+  1. The sample observations are independent, and 
+  
+  2. At least 10 successes and 10 failures are expected in the sample: $np \geq 10$ and $n(1-p) \geq 10$.\footnote{This condition is commonly referred to as the success-failure condition.} 
+  
+Under these conditions, $\hat{p}$ is approximately normally distributed with mean $p$ and standard deviation $\sqrt{\frac{p(1-p)}{n}}$.
+
+Since $p$ is unknown, it is necessary to substitute either $\hat{p}$ or $p_0$ for $p$ in the standard error term when computing confidence intervals and test statistics.
+
+### Inference with the normal approximation
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+In the context of calculating CIs, substitute $\hat{p}$ for $p$. 
+
+\vspace{0.25cm}
+
+An approximate two-sided 95\% confidence interval for $p$ is given by
+\[\hat{p} \pm 1.96 \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}. \]
+
+\vspace{0.25cm}
+
+With 95\% confidence, the interval (0.347, 0.453) captures the population proportion of fatal collisions in MA that involved alcohol consumption.
+
+\column{0.50\textwidth}
+
+\scriptsize
+
+```{r}
+#calculate confidence interval
+prop.test(x = 136, n = 341, 
+          conf.level = 0.95)$conf.int
+```
+
+
+\columnsend
+
+### Inference with the normal approximation...
+
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+In the testing context, substitute $p_0$ for $p$.
+
+\vspace{0.25cm}
+
+The test statistic $z$ for the null hypothesis $H_0: p = p_0$ is
+\[z = \dfrac{\hat{p} - p_0}{\sqrt{\dfrac{(p_0)(1 - p_0)}{n}}} \]
+
+- If the proportion of fatal collisions in MA that involved alcohol consumption were actually 0.33, there would be only a 0.0041 probability of observing a sample proportion of alcohol-related fatal collisions equal to 0.399 or larger. 
+
+- Thus, these data suggest that the proportion of alcohol-related fatal collisions in MA is higher than the nationwide proportion of 0.33.
+
+\column{0.55\textwidth}
+
+\scriptsize
+
+```{r}
+#conduct hypothesis test
+prop.test(x = 136, n = 341, p = 0.33, 
+          alternative = "greater")
+```
+
+\columnsend
+
+### Exact inference for binomial data
+
+\footnotesize
+
+Definition of the $p$-value: the probability of observing 136 or more successes out of 341 trials if the null hypothesis $H_0: p = 0.33$ were true.
+
+\vspace{0.1cm}
+
+\scriptsize
+
+```{r}
+#use pbinom( )
+pbinom(135, 341, p = 0.33, lower.tail = FALSE)
+
+#use binom.test( )
+binom.test(x = 136, n = 341, p = 0.33, alternative = "greater")
+```
+
+### Inference for the difference of two proportions
+
+\small
+
+The one-sample $z$-test for a population proportion is analogous to the one-sample $t$-test for a population mean:
+
+  - Sample statistic: $\hat{p}$, Parameter: $p$, Null hypothesis: $H_0: p = p_0$
+  - Sample statistic: $\overline{x}$, Parameter: $\mu$, Null hypothesis: $H_0: \mu = \mu_0$
+  
+Similarly, there exists a two-sample $z$-test for the difference of population proportions that is analogous to the two-sample $t$-test for the difference of population means:
+
+  - Sample statistic: $\hat{p}_1 - \hat{p}_2$, Parameter: $p_1 - p_2$, Null hypothesis: $H_0: p_1 - p_2 = 0$
+  - Sample statistic: $\overline{x}_1 - \overline{x}_2$, Parameter: $\mu_1 - \mu_2$, Null hypothesis: $H_0: \mu_1 - \mu_2 = 0$
+
+For completeness, slides 13-14 show the details of the two-sample proportions test. We will focus on learning a more flexible approach for analyzing the association between two categorical variables.
+
+### Inference for the difference of two proportions...
+
+\small
+
+The normal model can be applied to $\hat{p}_1 - \hat{p}_2$ if 
+
+  1. The two samples are independent, the observations in each sample are independent, and
+  
+  2. At least 10 successes and 10 failures are expected in each sample. 
+  
+The standard error of the difference in sample proportions is
+\[\sqrt{\dfrac{p_1(1 - p_1)}{n_1} + \dfrac{p_2(1 - p_2)}{n_2}} \]
+
+In hypothesis testing, the following estimate of $p$ is used to compute the standard error:
+\[\hat{p} = \dfrac{n_1\hat{p}_1 + n_2\hat{p}_2}{n_1 + n_2} = \dfrac{x_1 + x_2}{n_1 + n_2} \]
+ 
+### Fatal vehicle collisions...
+
+\small
+
+Does the population proportion of alcohol-related fatal collisions differ between MA and UT?
+
+\scriptsize
+
+```{r, echo = FALSE}
+collision.table = matrix(c(136, 205, 58, 179), nrow = 2, ncol = 2, byrow = T)
+dimnames(collision.table) = list("State" = c("MA", "UT"),
+                           "Cause" = c("Alcohol", "Not Alcohol"))
+addmargins(collision.table)
+```
+
+
+```{r}
+#analyze the data
+prop.test(x = c(136, 58), n = c(341, 237))
+```
+ 
+#  Inference for two-way tables
+
+### Inference for two-way tables
+
+\small
+
+A two-way table summarizes information about the relationship between two categorical variables.
+
+Testing for a difference between $p_1$ and $p_2$ is equivalent to testing for association in a two-way table that has two rows and two columns.
+
+\vspace{0.5cm}
+
+\begin{center}
+\begin{tabular}{l|cc|c} 
+   & \textbf{Outcome: Success} & \textbf{Outcome: Failure} & \textbf{Total}\\ \hline
+  \textbf{Group 1} & $x_1$ & $n_1 - x_1$ & $n_1$  \\
+  \textbf{Group 2} & $x_2$ &  $n_2 - x_2$ & $n_2$ \\ \hline
+  \textbf{Total} & $x_1 + x_2$ & $(n_1 - x_1) + (n_2 - x_2)$ & $n_1 + n_2$  \\ 
+\end{tabular}\\
+\end{center}
+
+### Treating HIV$^{+}$ infants
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+  
+In resource-limited settings, single-dose nevirapine is given to an HIV$^{+}$ woman during birth to prevent mother-to-child transmission of the virus.
+
+  - Exposure of the infant to nevirapine (NVP) may foster the growth of resistant strains of the virus in the child.
+
+  - If the child is HIV$^+$, should they be treated with nevirapine or a more expensive drug, lopinarvir (LPV)?
+
+In this setting, the possible outcomes are virologic failure (the virus becomes resistant) versus stable disease (virus growth is prevented).
+
+\column{0.52\textwidth}
+
+\footnotesize
+
+The following table summarizes the results of a 2012 study comparing NVP versus LPV in treatment of HIV-infected infants.\footnote{Violari, et al. \textit{NEJM} 2012; 366: 2380-2389.} Children were randomized to receive either NVP or LPV.
+
+\begin{center}
+\begin{tabular}{l|cc|c} 
+   & \textbf{Stable Disease} & \textbf{Virologic Failure} & \textbf{Total}\\ \hline
+  \textbf{NVP} & 87 & 60 & 147  \\
+  \textbf{LPV} & 113 & 27 & 140 \\ \hline
+  \textbf{Total} & 200 & 87 & 287  \\ 
+\end{tabular}\\
+\end{center}
+
+\columnsend
+
+### Formulating hypotheses in a two-way table
+
+\small
+
+The main question of interest:
+
+  - Do the data support the claim of a difference in outcome by treatment? 
+
+If there is no difference in outcome by treatment, then knowing treatment provides no information about outcome; treatment assignment and outcome are *independent* (i.e., *not associated*).
+
+  - $H_{0}$: Treatment and outcome are not associated.
+
+  - $H_{A}$: Treatment and outcome are associated.
+  
+      - This is inherently a two-sided alternative.
+      
+### The $\chi^2$ test of independence
+
+\small
+
+In the $\chi^2$ test, the observed number of cell counts are compared to the number of **expected** cell counts, where the expected counts are calculated under the null hypothesis.
+
+  - The test statistic quantifies how far the observed results deviate from what is expected under the null hypothesis.
+
+  - A larger test statistic represents stronger evidence against the null hypothesis of independence.
+
+### Expected cell counts
+
+\small
+
+If treatment had no effect on outcome, what would we expect to see?
+
+  - Let $A$ = {assignment to NVP}
+  
+  - Let $B$ = {virologic failure}
+
+Under the hypothesis of independence, 
+
+$$ P(A\text{ and } B) = P(A) \times P(B) = \left(\frac{147}{287}\right) \left(\frac{87}{287}\right)$$
+
+The expected cell count in the upper right corner would be 
+
+$$(287) \left(\frac{147}{287}\right) \left(\frac{87}{287}\right) = 44.56$$
+
+What about the other cells?
+
+### Formula for expected cell counts
+
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+The expected count for the $i^{th}$ row and $j^{th}$ column is 
+
+\[E_{i, j} = \dfrac{(\text{row $i$ total}) \times (\text{column $j$ total}) }{n}, \]
+where $n$ is the total number of observations.
+
+\column{0.55\textwidth}
+
+\footnotesize
+
+\begin{center}
+\begin{tabular}{l|cc|c} 
+   & \textbf{Stable Disease} & \textbf{Virologic Failure} & \textbf{Total}\\ \hline
+  \textbf{NVP} & 87 \textcolor{blue}{(102.44)} & 60 \textcolor{blue}{(44.56)} & 147  \\
+  \textbf{LPV} & 113 \textcolor{blue}{(97.56)} & 27 \textcolor{blue}{(42.44)} & 140 \\ \hline
+  \textbf{Total} & 200 & 87 & 287  \\ 
+\end{tabular}\\
+\end{center}
+
+
+\columnsend
+
+### Visual comparison of observed versus expected
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE, fig.width = 12, fig.height = 6}
+library(openintro)
+data(COL)
+
+hiv.table = matrix(c(87, 113, 60, 27), nrow = 2, ncol = 2, byrow = F)
+dimnames(hiv.table) = list("Drug" = c("NVP", "LPV"),
+                           "Outcome" = c("Stable Disease", "V. Failure"))
+hiv.prop.table = prop.table(hiv.table, 1)
+
+expected.table = chisq.test(hiv.table)$expected
+expected.prop.table = prop.table(expected.table, 1)
+
+#have to transpose so R plots bars as exposures
+par(mfrow = c(1, 2))
+barplot(t(as.matrix(hiv.prop.table)), col = c(COL[4], COL[1]), density = 30, angle = 45,
+        main = "Observed Counts")
+
+barplot(t(as.matrix(expected.prop.table)), col = c(COL[4], COL[1]), density = 30, angle = 45,
+        main = "Expected Counts under Null Hypothesis")
+```
+
+
+### The $\chi^2$ test statistic
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+The **$\chi^2$ test statistic** is calculated as
+\[\chi^2 = \sum_{i = 1}^r \sum_{j = 1}^c \dfrac{(O_{i, j} - E_{i, j})^2}{E_{i, j}}, \]
+and is approximately distributed $\chi^2$ with degrees of freedom $(r - 1)(c - 1)$, where $r$ is the number of rows and $c$ is the number of columns. 
+
+ - $O_{i, j}$ represents the observed count in row $i$, column $j$. 
+
+- $E_{i, j}$ represents the expected count in row $i$, column $j$.
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+Assumptions for the $\chi^2$ test:
+
+ - *Independence*. Each case that contributes a count to the table must be independent of all other cases in the table.
+  
+  - *Sample size*. Each expected cell count must be greater than or equal to 10.\footnote{Some sources use a less strict sample size condition. For example, the \texttt{chisq.test()} function only shows a warning if one of the expected counts is smaller than 5.} 
+  
+      \begin{itemize}
+      
+      \footnotesize
+  
+      \item For tables larger than $2 \times 2$, it is appropriate to use the test if no more than 1/5 of the expected counts are less than 5, and all expected counts are greater than 1.
+      
+      \end{itemize}
+      
+These assumptions must be met for the test statistic to be approximately distributed $\chi^2$.
+
+\columnsend
+
+### The $\chi^2$ test in \textsf{R}
+
+\scriptsize
+
+```{r}
+hiv.table <- matrix(c(87, 113, 60, 27), nrow = 2, ncol = 2, byrow = F)
+dimnames(hiv.table) <- list("Drug" = c("NVP", "LPV"),
+                           "Outcome" = c("Stable Disease", "V. Failure"))
+chisq.test(hiv.table)
+chisq.test(hiv.table)$expected
+```
+
+### Residuals in the $\chi^2$ test
+
+\small
+
+For each cell in a table, the **residual** equals
+\[\dfrac{O_{i, j} - E_{i, j}}{\sqrt{E_{i,j}}}. \]
+
+Residuals with a large magnitude contribute the most to the $\chi^2$ statistic. 
+
+  - If a residual is positive, the observed value is greater than the expected value.
+  
+  - If a residual is negative, the observed value is less than the expected.
+
+### Residuals in the $\chi^2$ test...
+
+\footnotesize
+
+```{r}
+chisq.test(hiv.table)$residuals
+```
+
+\small
+
+Examining the residuals can be informative for understanding direction of association.
+
+  - Which drug is associated with stable disease; i.e., which drug should be recommended for treatment of HIV-infected infants?
+
+### Treating *C. difficile* infection
+
+\small
+
+*Clostridium difficile* is a bacterium that causes inflammation of the colon. Antibiotic treatment is typically not effective. Infusion of feces from healthy donors has been reported as an effective treatment.
+
+A randomized trial was conducted to compare the efficacy of donor-feces infusion versus vancomycin, the antibiotic typically prescribed to treat *C. difficile* infection.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{rrrr}
+		\hline
+		& Cured & Uncured & Sum \\ 
+		\hline
+		Fecal Infusion & 13 & 3 & 16 \\ 
+		Vancomycin & 4 & 9 & 13 \\ 
+		Sum & 17 & 12 & 29 \\ 
+		\hline
+	\end{tabular}
+	\caption{Fecal Infusion Study Results} 
+	\label{fecalStudyResultsTest}
+\end{table}
+
+Can a $\chi^2$ test be used to analyze these results?
+
+### Fisher's exact test
+
+\small
+
+Fisher's exact test works even when sample sizes are small.\footnote{In this course, Fisher's exact test is only discussed in the context of $2 \times 2$ tables.}
+
+In this particular experiment, we observed 17 cured individuals (out of 29 total) when 16 were assigned to fecal infusion and 13 to vancomycin. 
+
+  - Under $H_0: p_1 = p_2$, individuals in one treatment group are just as likely to be cured as individuals in the other group.
+  
+  - If $H_0$ is true (and the study had the same setup): 
+  
+      \begin{itemize}
+      
+      \footnotesize
+      
+      \item What is the probability that of the 17 cured individuals, 13 were in the fecal infusion group?
+      
+      \item What are the possible sets of results that indicate stronger evidence in favor of fecal infusion?
+  
+      \item What is the probability of seeing even stronger evidence in favor of fecal infusion as an effective treatment?
+      
+      \end{itemize}
+  
+The $p$-value for Fisher's exact test is calculated by adding together the individual conditional probabilities of obtaining each table that is **as extreme or more extreme than the one observed**, under the null hypothesis and given that the marginal totals are considered fixed.
+
+### The hypergeometric distribution
+
+\small
+
+Let $X$ represent the number of successes in a series of repeated Bernoulli trials, where sampling is done without replacement.
+
+  - In a population of size $N$, there are $m$ total successes.
+  
+  - What is the probability of observing exactly $k$ successes when drawing a sample of size $n$?
+  
+For example, imagine an urn with $m$ white balls and $N - m$ red balls. Draw $n$ balls without replacement. What is the probability of observing $k$ white balls in the sample?
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l|cc|c} 
+   & \textbf{White Ball} & \textbf{Red Ball} & \textbf{Total}\\ \hline
+  \textbf{Sampled} & $k$ & \textcolor{gray}{$n - k$}  & $n$  \\
+  \textbf{Not Sampled} & \textcolor{gray}{$m - k$} & \textcolor{gray}{$N - n - (m - k)$} & \textcolor{gray}{$N - n$} \\ \hline
+  \textbf{Total} & $m$ & $N - m$ & $N$  \\ 
+\end{tabular}\\
+\end{center}
+\end{table}
+
+
+### The hypergeometric distribution...
+
+\small
+
+To calculate $P(X = k)$ where $X \sim \text{HGeom}(m, N - m, n)$, use \texttt{dhyper( )}:
+
+\vspace{0.2cm}
+
+\scriptsize
+
+```{r, eval = FALSE}
+dhyper(k, m, N - m, n)
+```
+
+\small
+
+Suppose the urn contains 10 white balls, 15 red balls, and a sample of size 8 is drawn. What is the probability of observing 5 white balls in the sample?
+
+\scriptsize
+
+```{r}
+dhyper(5, 10, 25 - 10, 8)
+```
+
+
+### Treating *C. difficile* infection...
+
+\small
+
+Given that 17 individuals out of 29 were cured and that 16 individuals were in the fecal infusion group (and that $H_0$ is true), what is the probability that 13 of the cured individuals were in the fecal infusion group?
+
+  - $N = 29$, $m = 17$, and $n = 16$
+  
+  - Calculate $P(X = 13)$.
+
+\scriptsize
+
+```{r}
+#probability of observed results
+dhyper(13, 17, 29 - 17, 16)
+```
+
+
+### Fisher's exact test...
+
+\small
+
+For a one-sided $p$-value...
+
+  - Sum the probabilities of the results as or more extreme than those observed; that is, the probability of the observed table and that of all tables that are more extreme in the direction specified by the alternative hypothesis.
+
+\scriptsize
+  
+```{r}
+#one-sided p-value
+phyper(12, 17, 29 - 17, 16, lower.tail = FALSE)
+```
+
+\small
+  
+For a two-sided $p$-value...
+
+  - Consider extreme tables to be all tables with probabilities less than that of the observed; sum the probabilities of tables representing results as or more extreme than those observed.
+  
+### Treating *C. difficile* infection...
+
+\scriptsize
+
+```{r}
+#enter the data
+infusion.table = matrix(c(13, 3, 4, 9), nrow = 2, ncol = 2, byrow = T)
+dimnames(infusion.table) = list("Outcome" = c("Cured", "Uncured"),
+                                "Treatment" = c("Fecal Infusion", 
+                                                "Vancomycin"))
+
+fisher.test(infusion.table, alternative = "greater")
+```
+
+### Treating *C. difficile* infection...
+
+\columnsbegin
+
+\column{0.30\textwidth}
+
+\scriptsize
+
+```{r, echo = FALSE}
+k <- c(0:16)
+prob <- round(dhyper(0:16, 17, 29 - 17, 16), 6)
+
+data.frame(k, prob)
+```
+\column{0.70\textwidth}
+
+\scriptsize
+
+```{r}
+#P(X leq 5) + P(X geq 13)
+phyper(5, 17, 29 - 17, 16) + 
+  phyper(12, 17, 29 - 17, 16, lower.tail = F)
+
+#two-sided p-value
+fisher.test(infusion.table)
+```
+
+\columnsend
+
+# Measures of effect size in two-by-two tables
+
+### Measures of effect size for categorical outcomes
+
+\small
+
+Recent article: \textcolor{blue}{\href{https://www.nytimes.com/2023/07/13/health/aspartame-cancer-who-sweetener.html}{"Aspartame Is a Possible Cause of Cancer in Humans, a W.H.O. Agency Says"}}
+
+  \footnotesize
+
+  - Many studies have investigated potential links between artificial sweeteners and cancer.
+  
+  - "The highest category of aspartame intake ($\geq 143$ mg/day) was associated with elevated relative risk of non-Hodgkin lymphoma (RR = 1.64, 95\% CI 1.17 - 2.29) in men."\footnote{\href{https://health.gov/our-work/nutrition-physical-activity/dietary-guidelines/previous-dietary-guidelines/2015/advisory-report/appendix-e-2/appendix-e-241}{Study referenced in 2015 dietary guidelines advisory report}}
+  
+  - "High consumption of aspartame was associated with stomach cancer (OR = 2.27, 95\% CI 0.99 - 5.44), while a lower risk was observed for breast cancer (OR = 0.28, 95\% CI 0.08 - 0.83)."\footnote{\href{https://onlinelibrary.wiley.com/doi/10.1002/ijc.34577}{Study by Palomar-Cros, et al.}}
+  
+\small
+
+Results from studies done to investigate the effect of a risk factor on an outcome of interest are often reported as relative risks (RRs) or odds ratios (ORs). 
+
+  - Important caveat: RR and OR should always be examined in the context of the **absolute risk**; i.e., estimate of risk in the baseline group.
+
+
+### Relative risk in a $2 \times 2$ table
+
+\small
+
+The **relative risk (RR)** is a measure of the risk of a certain event occurring in one group relative to the risk of the event occuring in another group.
+
+The risk of virologic failure among the NVP group is
+\[\dfrac{\text{\# in NVP group and had virologic failure}}{\text{total \# in NVP group}} = \dfrac{60}{147} = 0.408 \]
+
+The risk of virologic failure among the LPV group is
+\[\dfrac{\text{\# in LPV group and had virologic failure}}{\text{total \# in LPV group}} = \dfrac{27}{140} = 0.193\]
+
+Thus, the relative risk of virologic failure comparing NVP to LPV is $0.408/0.193 = 2.11$.
+
+  - Children treated with NVP are estimated to be more than twice as likely to experience virologic failure.
+
+### Confidence interval for relative risk
+
+\small
+
+Let $y_1$ and $y_2$ represent the observed number of successes in two groups of size $n_1$ and $n_2$. Let the risk (of the event defined as success) in each group be represented as $\hat{p}_1 = y_1/n_1$ and $\hat{p}_2 = y_2/n_2$ and the estimated relative risk be $\widehat{RR} = \hat{p}_1/\hat{p}_2$.
+
+\[\text{SE}_{\text{log($\widehat{RR}$)}} = \sqrt{\dfrac{1 - \hat{p}_1}{y_1} + \dfrac{1 - \hat{p}_2}{y_2}} \]
+
+A $100(1-\alpha)$\% confidence interval for log(RR)\footnote{This CI is valid when all expected cell counts $\geq 10$.} is given by
+\[\log(\widehat{RR}) \pm \left( z^\star \times  \text{SE}_{\text{log($\widehat{RR}$)}} \right) \]
+
+To obtain the confidence interval for RR, exponentiate the bounds of the CI for log(RR).
+
+### Confidence interval for relative risk...
+
+\small
+
+Compute a 95\% CI for the relative risk of virologic failure comparing NPV to LPV.
+
+\[\text{SE}_{\text{log($\widehat{RR}$)}} = \sqrt{\dfrac{1 - \hat{p}_1}{y_1} + \dfrac{1 - \hat{p}_2}{y_2}} = \sqrt{\dfrac{1 - 0.408}{60} + \dfrac{1 - 0.193}{27}} = 0.199\]
+
+95\% CI for log(RR):
+\[\log(2.11) \pm (1.96)(0.199) \rightarrow (0.358, 1.139)\]
+
+95\% CI for RR:
+\[(e^{0.358}, e^{1.139}) \rightarrow (1.430, 3.125) \]
+
+\scriptsize
+
+```{r, warning = FALSE}
+library(epitools)
+riskratio(hiv.table, rev = "rows")$measure
+```
+
+### Odds and the odds ratio in a $2 \times 2$ table
+
+\small
+
+The **odds** of an event $E$ are $\frac{P(E)}{1 - P(E)}$.
+
+The **odds ratio (OR)** is a measure of the odds of a certain event occurring in one group relative to the odds of the event occurring in another group.
+
+The odds of virologic failure among the NVP group is
+\[\dfrac{\text{\# in NVP group and had virologic failure}}{\text{\# in NVP group and did not have virologic failure}} = \dfrac{60}{87} = 0.690 \]
+
+The odds of virologic failure among the LPV group is
+\[\dfrac{\text{\# in LPV group and had virologic failure}}{\text{\# in LPV group and did not have virologic failure}} = \dfrac{27}{113} = 0.239\]
+
+Thus, the odds ratio of virologic failure comparing NVP to LPV is $0.690/0.239 = 2.89$.
+
+  - The odds of virologic failure when treated with NVP are almost three times as large as the odds of virologic failure when treated with LPV.
+
+
+### Odds and probabilities
+
+\small
+
+With some algebra, it is possible to show the following relationship:
+\[\text{odds} = \dfrac{p}{1-p} \qquad p = \frac{\text{odds}}{1 + \text{odds}}\]
+
+Probabilities and odds increase or decrease together. 
+
+  - Note that while probabilities always have values between 0 and 1 (inclusive), odds can be much larger than 1. 
+
+\footnotesize
+
+\begin{table}
+\centering
+\begin{tabular}{c|c|c}
+\textbf{Probability} & \textbf{Odds} = $p/(1-p)$ &\textbf{Odds}\\
+\hline
+0 &0/1 = 0 &0 \\
+1/100 = 0.01 &1/99 = 0.0101 &1 : 99 \\
+1/10 = 0.10 & 1/9 = 0.11 & 1 : 9 \\
+1/4 &1/3 &1 : 3 \\
+1/3 &1/2 &1 : 2 \\
+1/2 &$(\frac{1}{2})/(\frac{1}{2})=1$ &1 : 1 \\
+2/3 &$(2/3)/(1/3)=2$ &2 : 1 \\
+3/4 &3 &3 : 1 \\
+1 &1/$0\approx\infty$ &$\infty$ \\
+\end{tabular}
+\end{table}
+
+### Confidence interval for odds ratio
+
+\small
+
+Let $a$, $b$, $c$, and $d$ represent the four cell counts in a $2 \times 2$ table.
+
+\[\text{SE}_{\log(\widehat{OR})} = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}\]
+
+A $100(1-\alpha)$\% confidence interval for log(OR)\footnote{This CI is valid when all expected cell counts $\geq 10$.} is given by
+\[\log(\widehat{OR}) \pm \left( z^\star \times  \text{SE}_{\text{log($\widehat{OR}$)}} \right) \]
+
+To obtain the confidence interval for OR, exponentiate the bounds of the CI for log(OR). 
+
+### Confidence interval for odds ratio...
+
+\small
+
+Compute a 95\% CI for the odds ratio of virologic failure comparing NPV to LPV.
+
+\[\text{SE}_{\log(\widehat{OR})} = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}} = \sqrt{\frac{1}{87} + \frac{1}{60} + \frac{1}{113} + \frac{1}{27}} = 0.272\]
+
+95\% CI for log(OR):
+
+\[\log(2.89) \pm (1.96)(0.272) \rightarrow (0.578, 1.595) \]
+
+95\% CI for OR:
+
+\[(e^{0.578}, e^{1.595}) \rightarrow (1.693, 4.920)\]
+
+\scriptsize
+
+```{r}
+oddsratio(hiv.table, rev = "rows", method = "wald")$measure
+```
+
+### Relative risk versus odds ratio
+
+\small
+
+The relative risk cannot be used in studies that use **outcome-dependent sampling**, such as a case-control study:
+
+  - Suppose in the HIV study, researchers had identified 100 HIV-positive infants who had experienced virologic failure (cases) and 100 who had stable disease (controls), then recorded the number in each group who had been treated with NVP or LPV.
+  
+  - With this design, the sample proportion of infants with virologic failure no longer estimates the population proportion. 
+  
+      - Similarly, the sample proportion of infants with virologic failure in a treatment group no longer estimates the proportion of infants who would experience virologic failure in a hypothetical population treated with that drug.
+      
+The odds ratio remains valid even when it is not possible to estimate incidence of an outcome from sample data.

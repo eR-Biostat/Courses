@@ -1,0 +1,926 @@
+---
+title: "Unit 4: Introduction to Inference"
+author: "Statistics S-100 Teaching Team"
+date: "Summer 2024"
+output:
+  beamer_presentation:
+    includes:
+      in_header: ../slides_header.tex
+    fig_width: 3.25
+    fig_height: 3
+    fig_caption: false
+    toc: true
+    keep_tex: true
+classoption: "aspectratio=169"
+slide_level: 3
+---
+
+#  Sampling variability
+
+### Statistical inference
+
+\small
+
+The goal of **statistical inference** is to learn about a population based on the information in a single sample:
+
+  - Estimation is the framework for using a **sample statistic** to estimate a **population parameter**.
+
+  - Conducting a **hypothesis test** allows us to quantify the strength of evidence for a specific conjecture made about a population parameter.
+  
+  
+This unit illustrates the principles of inference in the setting of estimating a population mean.
+
+  - Future units will extend inference to other settings.
+  
+  - We will also discuss important caveats and common misunderstandings in future units.
+
+### Youth Risk Factor Behavior Surveillance System (YRBSS)
+
+\columnsbegin
+
+\column{0.40\textwidth}
+
+\footnotesize
+
+- The YRBSS is a survey conducted by the US CDC to measure health-related activity in high school aged youth.
+
+- 2.6 million high school students participated between 1991 and 2013.
+
+- The `yrbss` data in the `oibiostat` package contains responses from 13,583 participants in 2013.
+
+
+\column{0.60\textwidth}
+
+\scriptsize
+
+```{r}
+#load the data
+library(oibiostat)
+data("yrbss")
+
+yrbss[c(1:3, 13582, 13583), c(1:3, 6:8)]
+```
+
+\columnsend
+
+### Population parameter versus sample statistic
+
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\small
+
+**Population parameter**
+
+\vspace{0.25cm}
+
+The CDC was interested in estimating the health behaviors of the *target population*; i.e., all high school students in the US in 2013.
+
+\vspace{0.5cm}
+
+The population mean weight among all high school students in the US in 2013 is an example of a **population parameter**.
+
+  - Typically, the value of a population parameter is unknown.
+  
+  - The symbol $\mu$ is used to denote a population mean.
+
+
+\column{0.49\textwidth}
+
+\small
+
+**Sample statistic**
+
+\vspace{0.25cm}
+
+The descriptive measures for a sample are referred to as **sample statistics**.
+
+\vspace{0.3cm}
+
+The sample mean weight among the 13,572 students in `yrbss` is an example of a sample statistic.
+
+  - The value of a sample statistic is known.
+  
+  - The symbol $\overline{x}$ is used to denote a sample mean.
+  
+\vspace{0.3cm}
+  
+The sample mean is a **point estimate** of the population mean; i.e., a single value estimate of the population mean.
+
+\columnsend
+
+### Sampling variability
+
+\small
+
+In nearly all studies, there is one target population and one sample.
+
+  - The CDC took a random sample of 13,572 high school students from the population of 21.2 million high school students in the US.
+  
+Suppose that a different random sample (of the same size) were taken from the same population:
+
+  - The sample could consist of different participants, thus...
+  
+  - The sampled weight values could be different, producing a different sample mean weight than in the initial sample.
+  
+**Sampling variability** refers to the idea that the value of an estimate (i.e., a sample statistic) varies from sample to sample.
+
+  - The value of a sample statistic is not fixed until a specific sample is observed.
+  
+  - The sample mean $\overline{X}$ is a random variable. When we observe a specific sample mean $\overline{x}$, we are observing one possible value that $\overline{X}$ can take on.
+
+### Sampling from a population
+
+\small
+
+Typically, the exact values of population parameters are unknown.\footnote{Hence, the need for inference...}
+
+But, we can observe the effect of sampling variability in a **hypothetical** setting where $\mu$ is known. This hypothetical setting allows us to understand how the distribution of $\overline{X}$ behaves.
+
+- Suppose that the 13,572 individuals in `yrbss` represent our target population.
+
+    - Let mean weight in `yrbss` be the population parameter, $\mu_{weight}$.
+    
+- Take a random sample from `yrbss` (e.g., $n = 30$) and calculate $\overline{x}_{weight}$, the mean weight among the sampled individuals.
+
+    - How well does $\overline{x}_{weight}$ estimate $\mu_{weight}$?
+
+- Repeatedly take a random sample and compute the sample mean in order to construct a **sampling distribution of $\overline{X}$**.
+    
+ 
+
+### Taking one random sample of size 30 from `yrbss`
+
+\footnotesize
+
+```{r initial_sampling_yrbss, message = FALSE}
+#load the dataset
+library(oibiostat)
+data("yrbss")
+```
+
+```{r inital_sampling_yrbss_b}
+#remove rows with missing values
+yrbss_complete <- yrbss[complete.cases(yrbss$weight), ]
+
+#set parameters
+sample_size <- 30
+
+#obtain random sample of row numbers
+set.seed(5011) 
+sample_rows <- sample(1:nrow(yrbss_complete), sample_size)
+
+#calculate point estimates from sampled rows
+mean(yrbss_complete$weight[sample_rows]); sd(yrbss_complete$weight[sample_rows])
+```
+
+\normalsize
+
+### The sample mean as a random variable
+
+\small
+
+Any sample statistic is a random variable, due to the nature of random sampling from a population.\footnote{Some additional formalism: Each observation $X_1, X_2, ..., X_n$ in a sample of size $n$ can be thought of as a random variable. A function of random variables is itself a random variable, hence why $\overline{X}$ is a random variable.}
+
+  - The value of a sample statistic varies from sample to sample.
+  
+  - The value of a sample statistic is not fixed until a specific sample is observed.
+  
+### The sample mean as a random variable...
+
+\columnsbegin
+
+\column{0.55\textwidth}
+
+```{r, message = FALSE, include = FALSE}
+library(tidyverse)
+library(infer)
+library(wesanderson)
+library(patchwork)
+
+wes_green <- wes_palette("Royal2")[5]
+
+samp_dist30 <- yrbss_complete %>% 
+  rep_sample_n(size = 30, reps = 1000) %>% 
+  group_by(replicate) %>% 
+  summarize(statistic = mean(weight))
+
+samp_dist50 <- yrbss_complete %>% 
+  rep_sample_n(size = 50, reps = 1000) %>% 
+  group_by(replicate) %>% 
+  summarize(statistic = mean(weight))
+
+samp_dist100 <- yrbss_complete %>% 
+  rep_sample_n(size = 100, reps = 1000) %>% 
+  group_by(replicate) %>% 
+  summarize(statistic = mean(weight))
+```
+
+\small
+
+The \textbf{sampling distribution of $\overline{X}$} conveys the sample-to-sample variability in $\overline{X}$.
+
+\begin{itemize}
+    
+  \small
+
+  \item The sampling distribution of $\overline{X}$ is centered at $\mu$; i.e., $E(\overline{X}) = \mu$.
+    
+  \item The standard deviation of the sampling distribution, SD$(\overline{X})$, is referred to as the \textbf{standard error of the sample statistic}.
+    
+  \item The standard error is influenced by:
+    
+  \begin{itemize}
+    
+    \item the underlying variation of the data
+        
+    \item the sample size $n$
+
+\end{itemize}
+
+\end{itemize}
+
+\scriptsize 
+
+\column{0.40\textwidth}
+
+\scriptsize
+
+```{r, echo = FALSE, message = FALSE, }
+samp_dist30 %>% 
+  ggplot(aes(x = statistic)) +
+  geom_histogram(col = "white", fill = wes_green) +
+  labs(title = expression(Approximate~Sampling~Distribution~of~bar(X)~","~"n = 30")) +
+  theme(text = element_text(size = 7))    
+```
+
+
+
+\columnsend
+
+### Sampling distribution of a sample statistic...
+
+```{r, echo = FALSE, message = FALSE, fig.width = 8, fig.height = 3}
+p1 <- samp_dist30 %>% 
+  ggplot(aes(x = statistic)) +
+  geom_histogram(col = "white", fill = wes_green) +
+  coord_cartesian(xlim = c(55, 85)) +
+  labs(title = expression(Approx.~Sampling~Distribution~of~bar(X)~","~"n = 30")) +
+  theme(text = element_text(size = 7))   
+
+p2 <- samp_dist50 %>% 
+  ggplot(aes(x = statistic)) +
+  geom_histogram(col = "white", fill = wes_green) +
+  coord_cartesian(xlim = c(55, 85)) +
+  labs(title = expression(Approx.~Sampling~Distribution~of~bar(X)~","~"n = 50")) +
+  theme(text = element_text(size = 7))   
+
+p3 <- samp_dist100 %>% 
+  ggplot(aes(x = statistic)) +
+  geom_histogram(fill = wes_green) +
+  coord_cartesian(xlim = c(55, 85)) +
+  labs(title = expression(Approx.~Sampling~Distribution~of~bar(X)~","~"n = 100")) +
+  theme(text = element_text(size = 7))   
+
+p1 + p2 + p3
+```
+  
+\footnotesize
+
+As $n$ increases, the sampling distribution becomes more symmetric and bell-shaped, in addition to becoming more narrow (i.e., the variability decreases).   
+  
+### Central Limit Theorem (CLT) for the sample mean
+
+\small
+
+If a sufficiently large sample of $n$ independent observations are collected from a population with mean $\mu$ and standard deviation $\sigma$, the sampling distribution of $\overline{X}$ is well approximated by a normal distribution with the following parameters:
+\[E(\overline{X}) = \mu \qquad \text{SD}(\overline{X}) = \frac{\sigma}{\sqrt{n}} \]
+
+  - The underlying distribution of individual observations does not need to be normally distributed for the CLT to apply, but the distribution should not be strongly skewed.
+  
+  - One rule of thumb: the sample size should be at least $n = 30$.
+  
+  - Larger sample sizes are recommended if it is known that the underlying distribution of individual observations exhibits skew.
+  
+  - By the Law of Large Numbers (LLN), $E(\overline{X}) \rightarrow \mu$ as $n \rightarrow \infty$.
+
+### A note about handling missingness...
+
+\small
+
+Earlier, we based our analysis only on individuals with data for the \texttt{weight} variable.
+
+  - This is an example of doing a **complete case analysis (CCA)**, an analysis restricted to individuals with complete information.
+
+  - Our conclusions were based on information from 12,579 cases out of the 13,583 survey participants. The rate of missingness for \texttt{weight} was 7.39\%. 
+  
+  - Why might it be important to be transparent about how we handled the missing data?
+  
+**Imputation** is a common approach for dealing with missingness that involves using information on other variables to fill in the missing values with plausible ones. The details are beyond the level of this course.\footnote{Check out \textcolor{blue}{\href{https://www.bmj.com/content/338/bmj.b2393}{this article from the BMJ}} if you are interested in learning more about the topic.}
+
+
+# Confidence intervals
+
+
+### Confidence intervals
+
+\small
+
+A **confidence interval** provides an estimate for a population parameter along with a margin of error that gives a plausible range of values for the population parameter. 
+
+A confidence interval for a population mean $\mu$ has the general form
+\[\overline{x} \pm m \rightarrow (\overline{x} - m, \overline{x} + m), \]
+where $m$ is the margin of error.
+
+To calculate $m$, we use what is known about the *sampling variability* of $\overline{X}$. 
+
+### Using $s$ as an approximation of $\sigma$
+
+\small
+
+The **standard error** of the sample mean, $\text{SE}(\overline{X})$, measures the sample-to-sample variability of $\overline{X}$; i.e., the extent to which sample means oscillate around the population mean.
+
+  - From theory, the standard error equals $\dfrac{\sigma}{\sqrt{n}}$.
+  
+  - In practice, however, $\sigma$ is typically unknown.
+  
+  - The sample standard deviation $s$ is a reasonably good estimate of $\sigma$.
+  
+Thus, $\text{SE}(\overline{X})$ is approximately equal to $\dfrac{s}{\sqrt{n}}$.
+
+  - Using $s$ to estimate $\sigma$ introduces another source of variability.
+  
+  - Can adjust for this by modeling the sampling distribution of $\overline{X}$ with the $t$ distribution rather than the normal.
+
+### The $t$ Distribution
+
+\columnsbegin
+
+\column{0.55\textwidth}
+
+\footnotesize
+
+The $t$ distribution is symmetric, bell-shaped, and centered at 0.
+
+  - Its shape is very close to the (standard) normal distribution, but the tails of a $t$ distribution are thicker. This adjusts for the variability introduced by using $s$ as an estimate of $\sigma$.
+
+  - It has one parameter, *degrees of freedom (df)*.\footnote{Degrees of freedom can be represented as $\nu$.}
+  
+  - When $df$ is large ($df \geq 30$), the $t$ and $z$ distributions are virtually identical.
+  
+\column{0.45\textwidth}
+
+\centering
+![](./figures/tDistConvergeToNormalDist.pdf)
+
+\columnsend
+
+### General Form for a confidence interval
+
+\small
+
+A $(1 - \alpha)(100)$\% CI for $\mu$ is given by
+\[\overline{x} \pm t^\star \times \dfrac{s}{\sqrt{n}}, \]
+where $t^\star$, the critical $t$-value, is the point on a $t$ distribution with degrees of freedom $n-1$ that has area $(1 - \alpha/2)$ to the left (and area $\alpha/2$ to the right).
+
+  - The **margin of error** $t^\star \dfrac{s}{\sqrt{n}}$ consists of the **standard error** $\dfrac{s}{\sqrt{n}}$ and the critical $t$-value $t^\star$.
+    
+  - The standard error is computed from features of the sample: $s$ and $n$.
+    
+  - The critical $t$-value $t^\star$ changes based on the desired level of confidence (and sample size). 
+  
+Common confidence levels: 90\%, 95\%, 99\%
+
+
+### Calculating the critical $t$-value, $t^\star$
+
+\small
+
+The function \texttt{qt( )} identifies the point on a $t$ distribution with *df* degrees of freedom that has area $p$ to the left.
+
+  - For $t_{df = n-1}$, \texttt{qt(p, df)} calculates $t$ such that $p = P(T \leq t)$.
+  
+  - For a 95\% confidence interval, find the critical $t$-value such that 95\% of the distribution is between $-t^\star$ and $t^\star$.
+  
+  - The critical $t$-value for a 95\% confidence interval where $n = 30$ is 2.045.
+
+\scriptsize
+
+```{r}  
+qt(0.975, df = 29)
+```
+
+### Calculating a confidence interval
+
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+The confidence interval for population mean weight, from the earlier sample of 30 individuals:
+
+\[\overline{x} \pm t^\star \frac{s}{\sqrt{n}} \] 
+\[69.628 \pm (2.045)\frac{18.264}{\sqrt{30}}\] 
+\[(62.81, 76.45) \text{ kg} \]
+
+\vspace{0.5cm}
+
+**Interpretation**: With 95\% confidence, the interval (62.81, 76.45) kg captures the population mean weight of high school students (who responded to the YRBSS survey in 2013).
+
+\column{0.55\textwidth}
+
+\scriptsize
+
+```{r}
+#letting R do the work
+t.test(yrbss_complete$weight[sample_rows])$conf.int
+```
+
+\vspace{0.5cm}
+
+\footnotesize
+
+Full explanation of \texttt{t.test}() coming in the labs.
+
+\columnsend
+
+
+
+### Interpreting a Confidence Interval
+
+\small
+
+Suppose that from a random sample of 60 American adults, a 95\% confidence interval for the population mean weight is (160.89, 185.71) lbs.
+
+It is tempting to conclude $\mu$ is within the interval (160.89, 185.71) lbs with probability 0.95...
+
+  - However, it would be **incorrect** to claim $P(160.89 \leq \mu \leq 185.71) = 0.95$.
+  
+  - Before the sample is observed, it is valid to state that the *random interval* $(\overline{X} - t^\star_{0.975} \frac{s}{\sqrt{n}}, \overline{X} + t^\star_{0.975} \frac{s}{\sqrt{n}})$ contains $\mu$ with probability 0.95.
+    
+  - Once the sample is observed, the interval is a *fixed interval*, and either does or does not contain $\mu$. 
+  
+The correct interpretation relies on the theoretical construct of repeated sampling. If many samples of $n = 60$ were taken and a CI calculated for each one, approximately 95\% of the intervals would contain $\mu$.
+
+  - Intuitive explanation: a CI expresses values of $\mu$ consistent with the observed data.
+  
+\normalsize  
+  
+### Interpreting a Confidence Interval...
+
+\small
+
+Twenty-five samples of size $n = 60$ were taken from the 'artificial' population, then a 95\% CI for the population mean adult weight calculated based on each sample. Only 1 of these 25 intervals did not contain the population mean, $\mu = 169.7$ lbs.\footnote{In a realistic setting, $\mu$ is not known. Here, the complete dataset is treated as the population.}
+
+\centering
+![](./figures/95PercentConfidenceInterval.pdf){ width=75% }
+
+### Hidden assumptions
+
+\small
+
+1. The data used to calculate the confidence interval are from a random sample taken from the target population. 
+
+2. While the population mean from the target population is not known, the target population is well-defined. 
+
+Both conditions are true in this classroom example of sampling from \texttt{yrbss}, but may be difficult to verify in practice.
+
+
+# Hypothesis testing
+
+### Intuition behind hypothesis testing
+
+\small
+
+Let's first think about a simple coin tossing example. Suppose a friend gives you a coin and asks you to investigate whether it is fair or biased.
+
+  - First, make a hypothesis. Let's assume that the coin is fair and that the probability of seeing heads is equal to 0.50.\footnote{This is an example of a hypothesis test for a single \textit{proportion}, rather than a \textit{mean}. We'll return to this in Unit 9, but the logic of hypothesis testing is the same regardless of the population parameter of interest.}
+  
+  - Suppose you plan to flip the coin 20 times and record the outcomes.
+  
+      - If the coin is actually fair, what should the sampling distribution of the number of heads (out of 20 tosses) look like?
+      
+  - You carry out the 20 tosses...
+  
+      - Suppose you see 12 heads. Do you think the coin is biased?
+      
+      - Suppose you see 19 heads. Do you think the coin is biased?
+
+### Example: Cherry Blossom Ten Mile Run
+
+\small
+
+The Cherry Blossom Ten Mile Run is an annual road race in Washington, D.C. The race takes place on the first Sunday in April so as to coincide with the bloom of the 3,000 cherry trees planted as a gift from the Japanese government in 1912. In recent years about 15,000 amateur runners participated.
+
+In 2006, the mean time for all runners who finished the race was 93.3 minutes.
+
+Is the typical US runner getting faster or slower over time?
+
+We will address this question using a random sample of 100 runners who finished the 2017 Cherry Blossom Ten Mile Run. 
+
+### Example: Cherry Blossom Ten Mile Run...
+
+\small
+
+Let's apply the logic of hypothesis testing:
+
+  - First, make a hypothesis about the population parameter of interest.
+  
+      - Hypothesize that the population mean run time in 2017 is equal to the 2006 time.
+      
+      - $H_0$: $\mu = 93.3$ minutes
+      
+  - If it were true that $\mu = 93.3$, what would the sampling distribution of $\overline{X}$ look like when $n = 100$?
+  
+      - We can use simulation to help us visualize this distribution.\footnote{We'll have to make some assumptions to visualize the null distribution. More on this in the lab...}
+      
+   - Where does the observed sample mean run time in 2017 fall on the sampling distribution?
+   
+      - Does the evidence support the initial hypothesis that $\mu = 93.3$ minutes?
+      
+      - Or, does the evidence suggest that the population mean run time in 2017 was different from 93.3 minutes?
+
+
+### Logic of hypothesis testing
+
+\small
+
+Observations come from either of two competing distributions:
+ 
+  - The *null* distribution: a usual distribution that has been true in the past
+
+  - The *alternative* distribution: new distribution induced by an intervention or a changing condition
+
+We conclude that observations come from the null distribution, unless...
+
+  - The value of an **observed statistic** is so extreme that it would be unlikely to occur under the null distribution.
+  
+In other words, we compare the observed statistic and hypothesized null value to determine which of the following conclusions is more plausible: 
+
+  - The difference is small enough that the observed data come from the null distribution. Any discrepancy is simply due to sampling variability.
+  
+  - The difference is large enough that the observed data do not come from the null distribution. The discrepancy seems too large to be solely due to sampling variability.
+
+
+### Formal approach to hypothesis testing
+
+1. Formulate null and alternative hypotheses.
+
+2. Specify a significance level, $\alpha$.
+
+3. Calculate a test statistic.
+
+4. Calculate a $p$-value.
+
+5. Draw conclusions in the context of the original problem.
+
+### 1.  Null and alternative hypotheses
+
+\small
+
+Start with a conjecture about the population parameter of interest, then formulate statistical null and alternative hypotheses.
+
+The **null hypothesis** ($H_0$) posits a value for the population parameter of interest and represents a claim to be tested.
+
+  - $H_0$ can also be thought of as representing the status quo; i.e., no change from the past.
+  
+  - $H_0: \mu = \mu_0$
+
+The **alternative hypothesis** ($H_A$) is an alternative claim and is often represented by a range of parameter values.
+
+  - $H_A: \mu \neq \mu_0$, or $H_A: \mu < \mu_0$, or $H_A: \mu > \mu_0$
+
+Generally, an investigator suspects that the null hypothesis is not true and performs a hypothesis test in order to evaluate the strength of evidence against the null hypothesis.
+
+
+### 1. Null and alternative hypotheses...
+
+\small
+
+We are interested in assessing whether run times seem different in 2017 versus 2006. 
+
+- $H_0: \mu = 93.3 \text{ min}$\footnote{A null hypothesis has the general format $H_0: \mu = \mu_0$. The symbol $\mu_0$ represents the numeric value that $\mu$ is hypothesized to equal under the null. In this case, the mean run time in 2006 is chosen as $\mu_0$.} 
+
+- $H_A: \mu \neq 93.3 \text{ min}$
+
+This form of $H_A$ is called a two-sided alternative.
+   
+- $H_A: \mu < 93.3 \text{ min}$ would be a one-sided alternative.
+
+The choice of one- or two-sided alternative is context-dependent.
+
+### 2. Specifying a significance level $\alpha$
+
+\small
+
+The significance level $\alpha$ can be thought of as the value that quantifies how rare or unlikely an event must be in order to represent sufficient evidence against $H_0$. 
+
+  - i.e., if the observed statistic occurs with probability smaller than $\alpha$ under the assumption that $H_0$ is true, then it is considered an extreme observation
+
+  - Typically, $\alpha$ is chosen to be a small value such as 0.10, 0.05, or 0.01.
+  
+  - Always specify $\alpha$ **before** looking at the data!
+
+In the context of decision errors, $\alpha$ is the probability of making a Type I error. 
+
+  - Type I error refers to incorrectly rejecting the null hypothesis.\footnote{More on decision errors coming in Unit 6.}
+
+### 3. Calculate a test statistic
+
+\small
+
+The test statistic measures the discrepancy between the observed data and what would be expected if the null hypothesis were true.
+
+  - When considering the sampling distribution of $\overline{X}$, how many standard deviations is the observed sample mean from the hypothesized population mean, $\mu_0$?
+  
+  - Recall that the standard deviation of $\overline{X}$ is well-approximated by $\frac{s}{\sqrt{n}}$.
+
+When testing hypotheses about a population mean, the test statistic is 
+
+\[t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}},\]
+
+where the test statistic $t$ follows a $t$ distribution with $n-1$ degrees of freedom.
+
+  - A larger test statistic indicates greater departure from $\mu_0$ and stronger evidence against $H_0$ (and in favor of $H_A$).
+
+### 4. Calculate a $p$-value
+
+\small
+
+**If the null hypothesis were true**, what is the probability that we would observe a result **as or more extreme** than the observed sample value?
+
+  - The $p$-value is a conditional probability computed *assuming that $H_0$ is true*.
+  
+  - The $p$-value is **not** the probability that $H_0$ is true (nor is it the probability that $H_A$ is false).
+
+
+Using what is known about the distribution of the test statistic, calculate the $p$-value associated with the test statistic then compare it to the significance level $\alpha$.
+
+  - A result is considered unusual if its $p$-value is less than $\alpha$.
+
+### 4. Calculate a $p$-value...
+
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+For a two-sided alternative, $H_A: \mu \neq \mu_0$, the $p$-value is the total area from both tails of the null distribution that are beyond the absolute value of the test statistic.
+
+\[p\text{-value} = 2 P(T \geq |t|) = P(T \leq -|t|) + P(T \geq |t|)\]
+
+\begin{figure}[]
+\includegraphics[]
+{figures/pValueTwoSided.pdf}
+\end{figure}
+
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+For a one-sided alternative, the $p$-value is the area in the tail of the null distribution that matches the direction of the alternative.
+
+\vspace{0.1cm}
+
+For $H_A: \mu > \mu_0$:
+\[p\text{-value} = P(T \geq t) \]
+
+\centering
+![](./figures/pValueOneSidedR.pdf){width=80%}
+
+\raggedright
+
+For $H_A: \mu < \mu_0$:
+\[p\text{-value} = P(T \leq t) \]
+
+\centering
+![](./figures/pValueOneSidedL.pdf){width=80%}
+
+
+\columnsend
+
+### 4. Calculate a $p$-value...
+
+\scriptsize
+
+```{r, message = FALSE, warning = FALSE, include = FALSE}
+library(openintro)
+data("run17")
+
+set.seed(1020)
+run17.10m <- run17[run17$event == "10 Mile", ]
+cherry.sample <- run17.10m[sample(1:nrow(run17.10m), 100, replace = FALSE), ]
+```
+
+```{r}
+t.test(cherry.sample$net_sec/60, mu = 93.3, alternative = "two.sided")
+```
+
+\footnotesize 
+
+Alternatively, compute the test statistic and use `pt()`.
+
+\scriptsize
+
+```{r}
+2*pt(3.0486, df = 100 - 1, lower.tail = FALSE) #two-sided p-value
+
+pt(3.0486, df = 100 - 1, lower.tail = FALSE) #p-value for HA: mu > 93.3
+```
+
+
+### 5. Draw conclusions
+
+\small
+
+The smaller the $p$-value, the stronger the evidence against the null hypothesis. 
+
+  - If the $p$-value is as small or smaller than $\alpha$, we **reject** the null hypothesis. The result is statistically significant at level $\alpha$ and there is evidence to accept the alternative hypothesis.
+  
+  - If the $p$-value is larger than $\alpha$, we **fail to reject** the null hypothesis. The result is not statistically significant at level $\alpha$. In other words, the evidence does not contradict the null hypothesis. 
+
+A subtle but important point: not rejecting $H_0$ is not the same as proving that $H_0$ is true.  We simply do not have sufficient evidence that $H_0$ is not true!
+
+
+### 5. Draw conclusions...
+
+\small 
+
+A $p$-value represents the probability of observing a test statistic **as extreme or more extreme** than what was observed, under the **assumption that the null hypothesis is true.**
+
+Interpretation in context:
+
+  - Let's use the $p$-value for $H_A: \mu > 93.3$ min. 
+  
+  - The chance of seeing a sample of 100 runners with mean completion time of 98.5 minutes or greater if the actual mean completion time for all runners in 2017 were actually 93.3 minutes equals 0.0015.
+  
+Conclusion:
+
+  - Since 0.0015 is very small (relative to $\alpha = 0.05$), these data suggest evidence against the null hypothesis that the mean completion time in 2017 is 93.3 minutes. There is evidence at the $\alpha = 0.05$ significance level to reject $H_0$ and accept $H_A: \mu > 93.3$ min.
+  
+  - It would be very unusual to see a sample mean of 98.5 minutes or greater if the population mean were actually 93.3 minutes, so we can conclude that the mean completion time in 2017 is greater than 93.3 minutes.
+
+### 5. Draw conclusions...
+
+\small
+
+What if the sample mean had actually been 94.5 minutes, with a one-sided $p$-value of 0.241?
+
+Conclusion:
+
+  - Since 0.241 is not small (relative to $\alpha = 0.05$), these data *do not suggest evidence against the null hypothesis* that the mean completion time in 2017 is 93.3 minutes. 
+  
+  - Instead, these data are consistent with the sample-to-sample variation that we would expect when drawing a random sample of 100 completion times when the average completion time is actually 93.3 minutes. 
+  
+  - Since $p > \alpha$, there is insufficient evidence to reject $H_0$; i.e., we fail to reject $H_0$.
+  
+  - **Note**: In statistics, we do not "accept" $H_0$. We simply have not seen evidence against $H_0$.
+
+### Guidance on interpreting $p$-values
+
+\small
+
+A $p$-value represents the probability of observing results *as or more extreme than what was observed*, under the *assumption that the null hypothesis is true*.
+
+  - A "small" $p$-value suggests that the null hypothesis is not true; i.e., represents evidence that we can reject the null hypothesis.
+  
+      - Conceptual thinking: We observed results that are so unlikely to happen if the null is true that it makes more sense to conclude that the null is false.
+      
+      - Example: We flip a coin 100 times and see heads 95 times. This is so unlikely to happen with a fair coin that it seems reasonable to conclude the coin is biased.
+  
+  - A "large" $p$-value indicates that there is insufficient evidence against the null hypothesis; i.e., the results are consistent with the null hypothesis (being true).
+  
+      - This is **not** the same as claiming that we have found evidence that the null is true! We simply have not yet observed evidence indicating the null hypothesis is false.
+      
+      - Example: We flip a coin 100 times and see heads 45 times. This is not that unlikely to happen with a fair coin, so we can't conclude the coin is biased. We also have not proven that the coin is fair.
+
+
+### Guidance on interpreting $p$-values...
+
+\small  
+      
+What is considered extreme enough evidence to be convincing?
+  
+  - A common practice is to consider $p$-values smaller than 0.05 to be "statistically significant".
+      
+      - Intuition: If we see results that would only happen less than 5\% of the time when the null hypothesis is true, then we have sufficient evidence against the null hypothesis.
+      
+  - In scientific literature, this benchmark is referred to as $\alpha$; i.e., the significance level. 
+      
+  - The value of $\alpha$ is pre-specified before an analysis is done. Common values of $\alpha$ include 0.10, 0.05, 0.01, etc.
+  
+However, we should avoid thinking of $\alpha = 0.05$ as a definitive cutoff.
+
+  - How should we interpret a $p$-value of 0.08?
+  
+  - How should we interpret a $p$-value of 0.045?
+
+### Assumptions
+
+\small
+
+The same assumptions behind the CLT are behind hypothesis testing:
+
+  - Observations are independent of each other.
+  
+  - The sample size is reasonably large.
+  
+The same hidden assumptions behind confidence intervals also apply:
+
+  - The data used for the hypothesis test are representative of the target population.
+  
+  - The target population is well-defined.
+
+
+### Two-sided vs. One-sided Hypothesis Tests
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\small
+
+Make this choice **before** looking at the data!
+
+\vspace{0.25cm}
+
+In practice, two-sided tests are seen as more rigorous and are typically expected by most journals and regulatory authorities.
+
+\vspace{0.25cm}
+
+It is "easier" to reject $H_0$ for a one-sided test than a two-sided test, when conducted at the same $\alpha$ level.\footnote{More about choosing between one-sided and two-sided tests in \textit{OI Biostat} Section 4.3.5}
+
+\column{0.50\textwidth}
+
+\begin{figure}[]
+\includegraphics[]
+{figures/twoSidedTestConservative.pdf}
+\end{figure}
+
+\columnsend
+
+# The relationship between tests and confidence intervals
+
+### Two-sided tests and confidence intervals
+
+\small
+
+The relationship between a hypothesis test and the corresponding confidence interval is defined by the significance level, $\alpha$.
+
+  - Hypothesis test: Is the sample statistic far enough away from the hypothesized null value to be considered extreme?
+  
+  - Confidence interval: Is the hypothesized null value close enough to the sample statistic to be plausible?
+  
+The "far enough" and "close enough" are defined by $\alpha$.
+
+  - If a 95\% CI for a parameter does not contain the hypothesized null value, then the data contradict the null hypothesis at significance level $\alpha = 0.05$.
+  
+  - If a 95\% CI for a parameter does contain the hypothesized null value, then the data do not contradict the null hypothesis at significance level $\alpha = 0.05$.
+
+### Two-sided tests and confidence intervals...
+
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+If a 95% confidence interval for a population mean does not contain a hypothesized value $\mu_0$, then: 
+
+  - The data contradict the the null hypothesis $H_0: \mu = \mu_0$ at significance level $\alpha = 0.05$ 
+ 
+  - The implied two-sided alternative hypothesis is $H_A: \mu \neq \mu_0$
+
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+Based on the following 95\% confidence interval computed from the 2017 sample of run times, is there sufficient evidence to reject $H_0: \mu = 93.3$ minutes at the $\alpha = 0.05$ significance level?
+
+\vspace{0.3cm}
+
+\scriptsize
+
+```{r}
+t.test(cherry.sample$net_sec/60, 
+       conf.level = 0.95)$conf.int
+```
+
+\columnsend
+
+### In practice...
+
+\small
+
+A confidence interval provides a range of plausible values for a parameter.
+
+A hypothesis test measures the strength of evidence against a null hypothesis.
+
+Both are important tools for conducting inference.
+
+  - A lot more information/guidance about interpreting confidence intervals and hypothesis tests coming up in future units.

@@ -1,0 +1,1606 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+  aspectratio=169]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{amsmath,verbatim}
+
+\usepackage{multirow}
+\usepackage{fancyvrb}
+\usepackage{manfnt}
+\usepackage[normalem]{ulem}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue}
+
+%\usepackage[colorlinks=true]{hyperref}
+
+\mode<presentation>{\usetheme{Malmoe}}
+
+%\synctex=1
+
+\setbeamertemplate{headline}{}
+
+
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{\scriptsize$\diamond$}
+\setbeamercovered{transparent}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]{} 
+
+
+\definecolor{forest}{rgb}{0, .5, 0}
+\definecolor{brick}{rgb}{.5, 0, 0}
+\definecolor{darkgreen}{rgb}{0, .5, 0}
+\definecolor{darkred}{rgb}{.7, .15, .15}
+\definecolor{darkblue}{rgb}{0, 0, .5}
+\definecolor{Green}{rgb}{0.2,1,0.2}
+
+
+\newcommand{\R}{\textsf{R}}
+\newcommand{\RStudio}{\textsl{R Studio}}
+
+\usepackage[english]{babel}
+%\usepackage{palatino}
+\usepackage[T1]{fontenc}
+
+
+% make all tt fonts bold to look more like Verbatim
+\usepackage{lmodern}
+\renewcommand\ttfamily{\usefont{T1}{lmtt}{m}{n}}
+
+% Comment these out if you don't want a slide with just the
+% part/section/subsection/subsubsection title:
+\AtBeginPart{
+  \let\insertpartnumber\relax
+  \let\partname\relax
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \let\insertsectionnumber\relax
+  \let\sectionname\relax
+  \frame{\sectionpage}
+}
+\AtBeginSubsection{
+  \let\insertsubsectionnumber\relax
+  \let\subsectionname\relax
+  \frame{\subsectionpage}
+}
+
+\newcommand{\columnsbegin}{\begin{columns}}
+	\newcommand{\columnsend}{\end{columns}}
+
+\newenvironment{twocol}[4]{
+\begin{columns}[c]
+\column{#1\textwidth}
+#3
+\column{#2\textwidth}
+#4
+\end{columns}
+}
+
+\def\begincols{\begin{columns}}
+\def\begincol{\begin{column}}
+\def\endcol{\end{column}}
+\def\endcols{\end{columns}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Unit 4: Introduction to Inference},
+  pdfauthor={Statistics S-100 Teaching Team},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Unit 4: Introduction to Inference}
+\author{Statistics S-100 Teaching Team}
+\date{Summer 2024}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}[allowframebreaks]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+\hypertarget{sampling-variability}{%
+\section{Sampling variability}\label{sampling-variability}}
+
+\begin{frame}{Statistical inference}
+\protect\hypertarget{statistical-inference}{}
+\small
+
+The goal of \textbf{statistical inference} is to learn about a
+population based on the information in a single sample:
+
+\begin{itemize}
+\item
+  Estimation is the framework for using a \textbf{sample statistic} to
+  estimate a \textbf{population parameter}.
+\item
+  Conducting a \textbf{hypothesis test} allows us to quantify the
+  strength of evidence for a specific conjecture made about a population
+  parameter.
+\end{itemize}
+
+This unit illustrates the principles of inference in the setting of
+estimating a population mean.
+
+\begin{itemize}
+\item
+  Future units will extend inference to other settings.
+\item
+  We will also discuss important caveats and common misunderstandings in
+  future units.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Youth Risk Factor Behavior Surveillance System
+(YRBSS)}
+\protect\hypertarget{youth-risk-factor-behavior-surveillance-system-yrbss}{}
+\columnsbegin
+
+\column{0.40\textwidth}
+
+\footnotesize
+
+\begin{itemize}
+\item
+  The YRBSS is a survey conducted by the US CDC to measure
+  health-related activity in high school aged youth.
+\item
+  2.6 million high school students participated between 1991 and 2013.
+\item
+  The \texttt{yrbss} data in the \texttt{oibiostat} package contains
+  responses from 13,583 participants in 2013.
+\end{itemize}
+
+\column{0.60\textwidth}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#load the data}
+\FunctionTok{library}\NormalTok{(oibiostat)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"yrbss"}\NormalTok{)}
+
+\NormalTok{yrbss[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{13582}\NormalTok{, }\DecValTok{13583}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\DecValTok{6}\SpecialCharTok{:}\DecValTok{8}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       age gender grade height weight   helmet.12m
+## 1      14 female     9     NA     NA        never
+## 2      14 female     9     NA     NA        never
+## 3      15 female     9   1.73  84.37        never
+## 13582  17 female    12   1.60  77.11    sometimes
+## 13583  17 female    12   1.57  52.16 did not ride
+\end{verbatim}
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{Population parameter versus sample statistic}
+\protect\hypertarget{population-parameter-versus-sample-statistic}{}
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\small
+
+\textbf{Population parameter}
+
+\vspace{0.25cm}
+
+The CDC was interested in estimating the health behaviors of the
+\emph{target population}; i.e., all high school students in the US in
+2013.
+
+\vspace{0.5cm}
+
+The population mean weight among all high school students in the US in
+2013 is an example of a \textbf{population parameter}.
+
+\begin{itemize}
+\item
+  Typically, the value of a population parameter is unknown.
+\item
+  The symbol \(\mu\) is used to denote a population mean.
+\end{itemize}
+
+\column{0.49\textwidth}
+
+\small
+
+\textbf{Sample statistic}
+
+\vspace{0.25cm}
+
+The descriptive measures for a sample are referred to as \textbf{sample
+statistics}.
+
+\vspace{0.3cm}
+
+The sample mean weight among the 13,572 students in \texttt{yrbss} is an
+example of a sample statistic.
+
+\begin{itemize}
+\item
+  The value of a sample statistic is known.
+\item
+  The symbol \(\overline{x}\) is used to denote a sample mean.
+\end{itemize}
+
+\vspace{0.3cm}
+
+The sample mean is a \textbf{point estimate} of the population mean;
+i.e., a single value estimate of the population mean.
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Sampling variability}
+\protect\hypertarget{sampling-variability-1}{}
+\small
+
+In nearly all studies, there is one target population and one sample.
+
+\begin{itemize}
+\tightlist
+\item
+  The CDC took a random sample of 13,572 high school students from the
+  population of 21.2 million high school students in the US.
+\end{itemize}
+
+Suppose that a different random sample (of the same size) were taken
+from the same population:
+
+\begin{itemize}
+\item
+  The sample could consist of different participants, thus\ldots{}
+\item
+  The sampled weight values could be different, producing a different
+  sample mean weight than in the initial sample.
+\end{itemize}
+
+\textbf{Sampling variability} refers to the idea that the value of an
+estimate (i.e., a sample statistic) varies from sample to sample.
+
+\begin{itemize}
+\item
+  The value of a sample statistic is not fixed until a specific sample
+  is observed.
+\item
+  The sample mean \(\overline{X}\) is a random variable. When we observe
+  a specific sample mean \(\overline{x}\), we are observing one possible
+  value that \(\overline{X}\) can take on.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sampling from a population}
+\protect\hypertarget{sampling-from-a-population}{}
+\small
+
+Typically, the exact values of population parameters are
+unknown.\footnote{Hence, the need for inference...}
+
+But, we can observe the effect of sampling variability in a
+\textbf{hypothetical} setting where \(\mu\) is known. This hypothetical
+setting allows us to understand how the distribution of \(\overline{X}\)
+behaves.
+
+\begin{itemize}
+\item
+  Suppose that the 13,572 individuals in \texttt{yrbss} represent our
+  target population.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Let mean weight in \texttt{yrbss} be the population parameter,
+    \(\mu_{weight}\).
+  \end{itemize}
+\item
+  Take a random sample from \texttt{yrbss} (e.g., \(n = 30\)) and
+  calculate \(\overline{x}_{weight}\), the mean weight among the sampled
+  individuals.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    How well does \(\overline{x}_{weight}\) estimate \(\mu_{weight}\)?
+  \end{itemize}
+\item
+  Repeatedly take a random sample and compute the sample mean in order
+  to construct a \textbf{sampling distribution of \(\overline{X}\)}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Taking one random sample of size 30 from
+\texttt{yrbss}}
+\protect\hypertarget{taking-one-random-sample-of-size-30-from-yrbss}{}
+\footnotesize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#load the dataset}
+\FunctionTok{library}\NormalTok{(oibiostat)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"yrbss"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#remove rows with missing values}
+\NormalTok{yrbss\_complete }\OtherTok{\textless{}{-}}\NormalTok{ yrbss[}\FunctionTok{complete.cases}\NormalTok{(yrbss}\SpecialCharTok{$}\NormalTok{weight), ]}
+
+\CommentTok{\#set parameters}
+\NormalTok{sample\_size }\OtherTok{\textless{}{-}} \DecValTok{30}
+
+\CommentTok{\#obtain random sample of row numbers}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{5011}\NormalTok{) }
+\NormalTok{sample\_rows }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(yrbss\_complete), sample\_size)}
+
+\CommentTok{\#calculate point estimates from sampled rows}
+\FunctionTok{mean}\NormalTok{(yrbss\_complete}\SpecialCharTok{$}\NormalTok{weight[sample\_rows]); }\FunctionTok{sd}\NormalTok{(yrbss\_complete}\SpecialCharTok{$}\NormalTok{weight[sample\_rows])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 69.628
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 18.26424
+\end{verbatim}
+
+\normalsize
+\end{frame}
+
+\begin{frame}{The sample mean as a random variable}
+\protect\hypertarget{the-sample-mean-as-a-random-variable}{}
+\small
+
+Any sample statistic is a random variable, due to the nature of random
+sampling from a
+population.\footnote{Some additional formalism: Each observation $X_1, X_2, ..., X_n$ in a sample of size $n$ can be thought of as a random variable. A function of random variables is itself a random variable, hence why $\overline{X}$ is a random variable.}
+
+\begin{itemize}
+\item
+  The value of a sample statistic varies from sample to sample.
+\item
+  The value of a sample statistic is not fixed until a specific sample
+  is observed.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The sample mean as a random variable\ldots{}}
+\protect\hypertarget{the-sample-mean-as-a-random-variable-1}{}
+\columnsbegin
+
+\column{0.55\textwidth}
+
+\small
+
+The \textbf{sampling distribution of $\overline{X}$} conveys the
+sample-to-sample variability in \(\overline{X}\).
+
+\begin{itemize}
+    
+  \small
+
+  \item The sampling distribution of $\overline{X}$ is centered at $\mu$; i.e., $E(\overline{X}) = \mu$.
+    
+  \item The standard deviation of the sampling distribution, SD$(\overline{X})$, is referred to as the \textbf{standard error of the sample statistic}.
+    
+  \item The standard error is influenced by:
+    
+  \begin{itemize}
+    
+    \item the underlying variation of the data
+        
+    \item the sample size $n$
+
+\end{itemize}
+
+\end{itemize}
+
+\scriptsize
+
+\column{0.40\textwidth}
+
+\scriptsize
+
+\includegraphics{unit_04_intro_inference_files/figure-beamer/unnamed-chunk-3-1.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Sampling distribution of a sample statistic\ldots{}}
+\protect\hypertarget{sampling-distribution-of-a-sample-statistic}{}
+\includegraphics{unit_04_intro_inference_files/figure-beamer/unnamed-chunk-4-1.pdf}
+
+\footnotesize
+
+As \(n\) increases, the sampling distribution becomes more symmetric and
+bell-shaped, in addition to becoming more narrow (i.e., the variability
+decreases).
+\end{frame}
+
+\begin{frame}{Central Limit Theorem (CLT) for the sample mean}
+\protect\hypertarget{central-limit-theorem-clt-for-the-sample-mean}{}
+\small
+
+If a sufficiently large sample of \(n\) independent observations are
+collected from a population with mean \(\mu\) and standard deviation
+\(\sigma\), the sampling distribution of \(\overline{X}\) is well
+approximated by a normal distribution with the following parameters:
+\[E(\overline{X}) = \mu \qquad \text{SD}(\overline{X}) = \frac{\sigma}{\sqrt{n}} \]
+
+\begin{itemize}
+\item
+  The underlying distribution of individual observations does not need
+  to be normally distributed for the CLT to apply, but the distribution
+  should not be strongly skewed.
+\item
+  One rule of thumb: the sample size should be at least \(n = 30\).
+\item
+  Larger sample sizes are recommended if it is known that the underlying
+  distribution of individual observations exhibits skew.
+\item
+  By the Law of Large Numbers (LLN), \(E(\overline{X}) \rightarrow \mu\)
+  as \(n \rightarrow \infty\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{A note about handling missingness\ldots{}}
+\protect\hypertarget{a-note-about-handling-missingness}{}
+\small
+
+Earlier, we based our analysis only on individuals with data for the
+\texttt{weight} variable.
+
+\begin{itemize}
+\item
+  This is an example of doing a \textbf{complete case analysis (CCA)},
+  an analysis restricted to individuals with complete information.
+\item
+  Our conclusions were based on information from 12,579 cases out of the
+  13,583 survey participants. The rate of missingness for
+  \texttt{weight} was 7.39\%.
+\item
+  Why might it be important to be transparent about how we handled the
+  missing data?
+\end{itemize}
+
+\textbf{Imputation} is a common approach for dealing with missingness
+that involves using information on other variables to fill in the
+missing values with plausible ones. The details are beyond the level of
+this
+course.\footnote{Check out \textcolor{blue}{\href{https://www.bmj.com/content/338/bmj.b2393}{this article from the BMJ}} if you are interested in learning more about the topic.}
+\end{frame}
+
+\hypertarget{confidence-intervals}{%
+\section{Confidence intervals}\label{confidence-intervals}}
+
+\begin{frame}{Confidence intervals}
+\protect\hypertarget{confidence-intervals-1}{}
+\small
+
+A \textbf{confidence interval} provides an estimate for a population
+parameter along with a margin of error that gives a plausible range of
+values for the population parameter.
+
+A confidence interval for a population mean \(\mu\) has the general form
+\[\overline{x} \pm m \rightarrow (\overline{x} - m, \overline{x} + m), \]
+where \(m\) is the margin of error.
+
+To calculate \(m\), we use what is known about the \emph{sampling
+variability} of \(\overline{X}\).
+\end{frame}
+
+\begin{frame}{Using \(s\) as an approximation of \(\sigma\)}
+\protect\hypertarget{using-s-as-an-approximation-of-sigma}{}
+\small
+
+The \textbf{standard error} of the sample mean,
+\(\text{SE}(\overline{X})\), measures the sample-to-sample variability
+of \(\overline{X}\); i.e., the extent to which sample means oscillate
+around the population mean.
+
+\begin{itemize}
+\item
+  From theory, the standard error equals \(\dfrac{\sigma}{\sqrt{n}}\).
+\item
+  In practice, however, \(\sigma\) is typically unknown.
+\item
+  The sample standard deviation \(s\) is a reasonably good estimate of
+  \(\sigma\).
+\end{itemize}
+
+Thus, \(\text{SE}(\overline{X})\) is approximately equal to
+\(\dfrac{s}{\sqrt{n}}\).
+
+\begin{itemize}
+\item
+  Using \(s\) to estimate \(\sigma\) introduces another source of
+  variability.
+\item
+  Can adjust for this by modeling the sampling distribution of
+  \(\overline{X}\) with the \(t\) distribution rather than the normal.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The \(t\) Distribution}
+\protect\hypertarget{the-t-distribution}{}
+\columnsbegin
+
+\column{0.55\textwidth}
+
+\footnotesize
+
+The \(t\) distribution is symmetric, bell-shaped, and centered at 0.
+
+\begin{itemize}
+\item
+  Its shape is very close to the (standard) normal distribution, but the
+  tails of a \(t\) distribution are thicker. This adjusts for the
+  variability introduced by using \(s\) as an estimate of \(\sigma\).
+\item
+  It has one parameter, \emph{degrees of freedom
+  (df)}.\footnote{Degrees of freedom can be represented as $\nu$.}
+\item
+  When \(df\) is large (\(df \geq 30\)), the \(t\) and \(z\)
+  distributions are virtually identical.
+\end{itemize}
+
+\column{0.45\textwidth}
+
+\centering
+
+\includegraphics{./figures/tDistConvergeToNormalDist.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{General Form for a confidence interval}
+\protect\hypertarget{general-form-for-a-confidence-interval}{}
+\small
+
+A \((1 - \alpha)(100)\)\% CI for \(\mu\) is given by
+\[\overline{x} \pm t^\star \times \dfrac{s}{\sqrt{n}}, \] where
+\(t^\star\), the critical \(t\)-value, is the point on a \(t\)
+distribution with degrees of freedom \(n-1\) that has area
+\((1 - \alpha/2)\) to the left (and area \(\alpha/2\) to the right).
+
+\begin{itemize}
+\item
+  The \textbf{margin of error} \(t^\star \dfrac{s}{\sqrt{n}}\) consists
+  of the \textbf{standard error} \(\dfrac{s}{\sqrt{n}}\) and the
+  critical \(t\)-value \(t^\star\).
+\item
+  The standard error is computed from features of the sample: \(s\) and
+  \(n\).
+\item
+  The critical \(t\)-value \(t^\star\) changes based on the desired
+  level of confidence (and sample size).
+\end{itemize}
+
+Common confidence levels: 90\%, 95\%, 99\%
+\end{frame}
+
+\begin{frame}[fragile]{Calculating the critical \(t\)-value,
+\(t^\star\)}
+\protect\hypertarget{calculating-the-critical-t-value-tstar}{}
+\small
+
+The function \texttt{qt( )} identifies the point on a \(t\) distribution
+with \emph{df} degrees of freedom that has area \(p\) to the left.
+
+\begin{itemize}
+\item
+  For \(t_{df = n-1}\), \texttt{qt(p, df)} calculates \(t\) such that
+  \(p = P(T \leq t)\).
+\item
+  For a 95\% confidence interval, find the critical \(t\)-value such
+  that 95\% of the distribution is between \(-t^\star\) and \(t^\star\).
+\item
+  The critical \(t\)-value for a 95\% confidence interval where
+  \(n = 30\) is 2.045.
+\end{itemize}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =} \DecValTok{29}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.04523
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Calculating a confidence interval}
+\protect\hypertarget{calculating-a-confidence-interval}{}
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+The confidence interval for population mean weight, from the earlier
+sample of 30 individuals:
+
+\[\overline{x} \pm t^\star \frac{s}{\sqrt{n}} \]
+\[69.628 \pm (2.045)\frac{18.264}{\sqrt{30}}\]
+\[(62.81, 76.45) \text{ kg} \]
+
+\vspace{0.5cm}
+
+\textbf{Interpretation}: With 95\% confidence, the interval (62.81,
+76.45) kg captures the population mean weight of high school students
+(who responded to the YRBSS survey in 2013).
+
+\column{0.55\textwidth}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#letting R do the work}
+\FunctionTok{t.test}\NormalTok{(yrbss\_complete}\SpecialCharTok{$}\NormalTok{weight[sample\_rows])}\SpecialCharTok{$}\NormalTok{conf.int}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 62.80802 76.44798
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+
+\vspace{0.5cm}
+
+\footnotesize
+
+Full explanation of \texttt{t.test}() coming in the labs.
+
+\columnsend
+\end{frame}
+
+\begin{frame}{Interpreting a Confidence Interval}
+\protect\hypertarget{interpreting-a-confidence-interval}{}
+\small
+
+Suppose that from a random sample of 60 American adults, a 95\%
+confidence interval for the population mean weight is (160.89, 185.71)
+lbs.
+
+It is tempting to conclude \(\mu\) is within the interval (160.89,
+185.71) lbs with probability 0.95\ldots{}
+
+\begin{itemize}
+\item
+  However, it would be \textbf{incorrect} to claim
+  \(P(160.89 \leq \mu \leq 185.71) = 0.95\).
+\item
+  Before the sample is observed, it is valid to state that the
+  \emph{random interval}
+  \((\overline{X} - t^\star_{0.975} \frac{s}{\sqrt{n}}, \overline{X} + t^\star_{0.975} \frac{s}{\sqrt{n}})\)
+  contains \(\mu\) with probability 0.95.
+\item
+  Once the sample is observed, the interval is a \emph{fixed interval},
+  and either does or does not contain \(\mu\).
+\end{itemize}
+
+The correct interpretation relies on the theoretical construct of
+repeated sampling. If many samples of \(n = 60\) were taken and a CI
+calculated for each one, approximately 95\% of the intervals would
+contain \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  Intuitive explanation: a CI expresses values of \(\mu\) consistent
+  with the observed data.
+\end{itemize}
+
+\normalsize
+\end{frame}
+
+\begin{frame}{Interpreting a Confidence Interval\ldots{}}
+\protect\hypertarget{interpreting-a-confidence-interval-1}{}
+\small
+
+Twenty-five samples of size \(n = 60\) were taken from the `artificial'
+population, then a 95\% CI for the population mean adult weight
+calculated based on each sample. Only 1 of these 25 intervals did not
+contain the population mean, \(\mu = 169.7\)
+lbs.\footnote{In a realistic setting, $\mu$ is not known. Here, the complete dataset is treated as the population.}
+
+\centering
+
+\includegraphics[width=0.75\textwidth,height=\textheight]{./figures/95PercentConfidenceInterval.pdf}
+\end{frame}
+
+\begin{frame}{Hidden assumptions}
+\protect\hypertarget{hidden-assumptions}{}
+\small
+
+\begin{enumerate}
+\item
+  The data used to calculate the confidence interval are from a random
+  sample taken from the target population.
+\item
+  While the population mean from the target population is not known, the
+  target population is well-defined.
+\end{enumerate}
+
+Both conditions are true in this classroom example of sampling from
+\texttt{yrbss}, but may be difficult to verify in practice.
+\end{frame}
+
+\hypertarget{hypothesis-testing}{%
+\section{Hypothesis testing}\label{hypothesis-testing}}
+
+\begin{frame}{Intuition behind hypothesis testing}
+\protect\hypertarget{intuition-behind-hypothesis-testing}{}
+\small
+
+Let's first think about a simple coin tossing example. Suppose a friend
+gives you a coin and asks you to investigate whether it is fair or
+biased.
+
+\begin{itemize}
+\item
+  First, make a hypothesis. Let's assume that the coin is fair and that
+  the probability of seeing heads is equal to
+  0.50.\footnote{This is an example of a hypothesis test for a single \textit{proportion}, rather than a \textit{mean}. We'll return to this in Unit 9, but the logic of hypothesis testing is the same regardless of the population parameter of interest.}
+\item
+  Suppose you plan to flip the coin 20 times and record the outcomes.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If the coin is actually fair, what should the sampling distribution
+    of the number of heads (out of 20 tosses) look like?
+  \end{itemize}
+\item
+  You carry out the 20 tosses\ldots{}
+
+  \begin{itemize}
+  \item
+    Suppose you see 12 heads. Do you think the coin is biased?
+  \item
+    Suppose you see 19 heads. Do you think the coin is biased?
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Cherry Blossom Ten Mile Run}
+\protect\hypertarget{example-cherry-blossom-ten-mile-run}{}
+\small
+
+The Cherry Blossom Ten Mile Run is an annual road race in Washington,
+D.C. The race takes place on the first Sunday in April so as to coincide
+with the bloom of the 3,000 cherry trees planted as a gift from the
+Japanese government in 1912. In recent years about 15,000 amateur
+runners participated.
+
+In 2006, the mean time for all runners who finished the race was 93.3
+minutes.
+
+Is the typical US runner getting faster or slower over time?
+
+We will address this question using a random sample of 100 runners who
+finished the 2017 Cherry Blossom Ten Mile Run.
+\end{frame}
+
+\begin{frame}{Example: Cherry Blossom Ten Mile Run\ldots{}}
+\protect\hypertarget{example-cherry-blossom-ten-mile-run-1}{}
+\small
+
+Let's apply the logic of hypothesis testing:
+
+\begin{itemize}
+\item
+  First, make a hypothesis about the population parameter of interest.
+
+  \begin{itemize}
+  \item
+    Hypothesize that the population mean run time in 2017 is equal to
+    the 2006 time.
+  \item
+    \(H_0\): \(\mu = 93.3\) minutes
+  \end{itemize}
+\item
+  If it were true that \(\mu = 93.3\), what would the sampling
+  distribution of \(\overline{X}\) look like when \(n = 100\)?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We can use simulation to help us visualize this
+    distribution.\footnote{We'll have to make some assumptions to visualize the null distribution. More on this in the lab...}
+  \end{itemize}
+\item
+  Where does the observed sample mean run time in 2017 fall on the
+  sampling distribution?
+
+  \begin{itemize}
+  \item
+    Does the evidence support the initial hypothesis that \(\mu = 93.3\)
+    minutes?
+  \item
+    Or, does the evidence suggest that the population mean run time in
+    2017 was different from 93.3 minutes?
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Logic of hypothesis testing}
+\protect\hypertarget{logic-of-hypothesis-testing}{}
+\small
+
+Observations come from either of two competing distributions:
+
+\begin{itemize}
+\item
+  The \emph{null} distribution: a usual distribution that has been true
+  in the past
+\item
+  The \emph{alternative} distribution: new distribution induced by an
+  intervention or a changing condition
+\end{itemize}
+
+We conclude that observations come from the null distribution,
+unless\ldots{}
+
+\begin{itemize}
+\tightlist
+\item
+  The value of an \textbf{observed statistic} is so extreme that it
+  would be unlikely to occur under the null distribution.
+\end{itemize}
+
+In other words, we compare the observed statistic and hypothesized null
+value to determine which of the following conclusions is more plausible:
+
+\begin{itemize}
+\item
+  The difference is small enough that the observed data come from the
+  null distribution. Any discrepancy is simply due to sampling
+  variability.
+\item
+  The difference is large enough that the observed data do not come from
+  the null distribution. The discrepancy seems too large to be solely
+  due to sampling variability.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Formal approach to hypothesis testing}
+\protect\hypertarget{formal-approach-to-hypothesis-testing}{}
+\begin{enumerate}
+\item
+  Formulate null and alternative hypotheses.
+\item
+  Specify a significance level, \(\alpha\).
+\item
+  Calculate a test statistic.
+\item
+  Calculate a \(p\)-value.
+\item
+  Draw conclusions in the context of the original problem.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{1. Null and alternative hypotheses}
+\protect\hypertarget{null-and-alternative-hypotheses}{}
+\small
+
+Start with a conjecture about the population parameter of interest, then
+formulate statistical null and alternative hypotheses.
+
+The \textbf{null hypothesis} (\(H_0\)) posits a value for the population
+parameter of interest and represents a claim to be tested.
+
+\begin{itemize}
+\item
+  \(H_0\) can also be thought of as representing the status quo; i.e.,
+  no change from the past.
+\item
+  \(H_0: \mu = \mu_0\)
+\end{itemize}
+
+The \textbf{alternative hypothesis} (\(H_A\)) is an alternative claim
+and is often represented by a range of parameter values.
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_A: \mu \neq \mu_0\), or \(H_A: \mu < \mu_0\), or
+  \(H_A: \mu > \mu_0\)
+\end{itemize}
+
+Generally, an investigator suspects that the null hypothesis is not true
+and performs a hypothesis test in order to evaluate the strength of
+evidence against the null hypothesis.
+\end{frame}
+
+\begin{frame}{1. Null and alternative hypotheses\ldots{}}
+\protect\hypertarget{null-and-alternative-hypotheses-1}{}
+\small
+
+We are interested in assessing whether run times seem different in 2017
+versus 2006.
+
+\begin{itemize}
+\item
+  \(H_0: \mu = 93.3 \text{ min}\)\footnote{A null hypothesis has the general format $H_0: \mu = \mu_0$. The symbol $\mu_0$ represents the numeric value that $\mu$ is hypothesized to equal under the null. In this case, the mean run time in 2006 is chosen as $\mu_0$.}
+\item
+  \(H_A: \mu \neq 93.3 \text{ min}\)
+\end{itemize}
+
+This form of \(H_A\) is called a two-sided alternative.
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_A: \mu < 93.3 \text{ min}\) would be a one-sided alternative.
+\end{itemize}
+
+The choice of one- or two-sided alternative is context-dependent.
+\end{frame}
+
+\begin{frame}{2. Specifying a significance level \(\alpha\)}
+\protect\hypertarget{specifying-a-significance-level-alpha}{}
+\small
+
+The significance level \(\alpha\) can be thought of as the value that
+quantifies how rare or unlikely an event must be in order to represent
+sufficient evidence against \(H_0\).
+
+\begin{itemize}
+\item
+  i.e., if the observed statistic occurs with probability smaller than
+  \(\alpha\) under the assumption that \(H_0\) is true, then it is
+  considered an extreme observation
+\item
+  Typically, \(\alpha\) is chosen to be a small value such as 0.10,
+  0.05, or 0.01.
+\item
+  Always specify \(\alpha\) \textbf{before} looking at the data!
+\end{itemize}
+
+In the context of decision errors, \(\alpha\) is the probability of
+making a Type I error.
+
+\begin{itemize}
+\tightlist
+\item
+  Type I error refers to incorrectly rejecting the null
+  hypothesis.\footnote{More on decision errors coming in Unit 6.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{3. Calculate a test statistic}
+\protect\hypertarget{calculate-a-test-statistic}{}
+\small
+
+The test statistic measures the discrepancy between the observed data
+and what would be expected if the null hypothesis were true.
+
+\begin{itemize}
+\item
+  When considering the sampling distribution of \(\overline{X}\), how
+  many standard deviations is the observed sample mean from the
+  hypothesized population mean, \(\mu_0\)?
+\item
+  Recall that the standard deviation of \(\overline{X}\) is
+  well-approximated by \(\frac{s}{\sqrt{n}}\).
+\end{itemize}
+
+When testing hypotheses about a population mean, the test statistic is
+
+\[t = \frac{\overline{x} - \mu_0}{s/\sqrt{n}},\]
+
+where the test statistic \(t\) follows a \(t\) distribution with \(n-1\)
+degrees of freedom.
+
+\begin{itemize}
+\tightlist
+\item
+  A larger test statistic indicates greater departure from \(\mu_0\) and
+  stronger evidence against \(H_0\) (and in favor of \(H_A\)).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{4. Calculate a \(p\)-value}
+\protect\hypertarget{calculate-a-p-value}{}
+\small
+
+\textbf{If the null hypothesis were true}, what is the probability that
+we would observe a result \textbf{as or more extreme} than the observed
+sample value?
+
+\begin{itemize}
+\item
+  The \(p\)-value is a conditional probability computed \emph{assuming
+  that \(H_0\) is true}.
+\item
+  The \(p\)-value is \textbf{not} the probability that \(H_0\) is true
+  (nor is it the probability that \(H_A\) is false).
+\end{itemize}
+
+Using what is known about the distribution of the test statistic,
+calculate the \(p\)-value associated with the test statistic then
+compare it to the significance level \(\alpha\).
+
+\begin{itemize}
+\tightlist
+\item
+  A result is considered unusual if its \(p\)-value is less than
+  \(\alpha\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{4. Calculate a \(p\)-value\ldots{}}
+\protect\hypertarget{calculate-a-p-value-1}{}
+\columnsbegin
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+For a two-sided alternative, \(H_A: \mu \neq \mu_0\), the \(p\)-value is
+the total area from both tails of the null distribution that are beyond
+the absolute value of the test statistic.
+
+\[p\text{-value} = 2 P(T \geq |t|) = P(T \leq -|t|) + P(T \geq |t|)\]
+
+\begin{figure}[]
+\includegraphics[]
+{figures/pValueTwoSided.pdf}
+\end{figure}
+
+\column{0.45\textwidth}
+
+\footnotesize
+
+For a one-sided alternative, the \(p\)-value is the area in the tail of
+the null distribution that matches the direction of the alternative.
+
+\vspace{0.1cm}
+
+For \(H_A: \mu > \mu_0\): \[p\text{-value} = P(T \geq t) \]
+
+\centering
+
+\includegraphics[width=0.8\textwidth,height=\textheight]{./figures/pValueOneSidedR.pdf}
+
+\raggedright
+
+For \(H_A: \mu < \mu_0\): \[p\text{-value} = P(T \leq t) \]
+
+\centering
+
+\includegraphics[width=0.8\textwidth,height=\textheight]{./figures/pValueOneSidedL.pdf}
+
+\columnsend
+\end{frame}
+
+\begin{frame}[fragile]{4. Calculate a \(p\)-value\ldots{}}
+\protect\hypertarget{calculate-a-p-value-2}{}
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(cherry.sample}\SpecialCharTok{$}\NormalTok{net\_sec}\SpecialCharTok{/}\DecValTok{60}\NormalTok{, }\AttributeTok{mu =} \FloatTok{93.3}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  cherry.sample$net_sec/60
+## t = 3.0486, df = 99, p-value = 0.002949
+## alternative hypothesis: true mean is not equal to 93.3
+## 95 percent confidence interval:
+##   95.10571 101.83796
+## sample estimates:
+## mean of x 
+##  98.47183
+\end{verbatim}
+
+\footnotesize
+
+Alternatively, compute the test statistic and use \texttt{pt()}.
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\SpecialCharTok{*}\FunctionTok{pt}\NormalTok{(}\FloatTok{3.0486}\NormalTok{, }\AttributeTok{df =} \DecValTok{100} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#two{-}sided p{-}value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.002948914
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pt}\NormalTok{(}\FloatTok{3.0486}\NormalTok{, }\AttributeTok{df =} \DecValTok{100} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#p{-}value for HA: mu \textgreater{} 93.3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.001474457
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{5. Draw conclusions}
+\protect\hypertarget{draw-conclusions}{}
+\small
+
+The smaller the \(p\)-value, the stronger the evidence against the null
+hypothesis.
+
+\begin{itemize}
+\item
+  If the \(p\)-value is as small or smaller than \(\alpha\), we
+  \textbf{reject} the null hypothesis. The result is statistically
+  significant at level \(\alpha\) and there is evidence to accept the
+  alternative hypothesis.
+\item
+  If the \(p\)-value is larger than \(\alpha\), we \textbf{fail to
+  reject} the null hypothesis. The result is not statistically
+  significant at level \(\alpha\). In other words, the evidence does not
+  contradict the null hypothesis.
+\end{itemize}
+
+A subtle but important point: not rejecting \(H_0\) is not the same as
+proving that \(H_0\) is true. We simply do not have sufficient evidence
+that \(H_0\) is not true!
+\end{frame}
+
+\begin{frame}{5. Draw conclusions\ldots{}}
+\protect\hypertarget{draw-conclusions-1}{}
+\small
+
+A \(p\)-value represents the probability of observing a test statistic
+\textbf{as extreme or more extreme} than what was observed, under the
+\textbf{assumption that the null hypothesis is true.}
+
+Interpretation in context:
+
+\begin{itemize}
+\item
+  Let's use the \(p\)-value for \(H_A: \mu > 93.3\) min.
+\item
+  The chance of seeing a sample of 100 runners with mean completion time
+  of 98.5 minutes or greater if the actual mean completion time for all
+  runners in 2017 were actually 93.3 minutes equals 0.0015.
+\end{itemize}
+
+Conclusion:
+
+\begin{itemize}
+\item
+  Since 0.0015 is very small (relative to \(\alpha = 0.05\)), these data
+  suggest evidence against the null hypothesis that the mean completion
+  time in 2017 is 93.3 minutes. There is evidence at the
+  \(\alpha = 0.05\) significance level to reject \(H_0\) and accept
+  \(H_A: \mu > 93.3\) min.
+\item
+  It would be very unusual to see a sample mean of 98.5 minutes or
+  greater if the population mean were actually 93.3 minutes, so we can
+  conclude that the mean completion time in 2017 is greater than 93.3
+  minutes.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{5. Draw conclusions\ldots{}}
+\protect\hypertarget{draw-conclusions-2}{}
+\small
+
+What if the sample mean had actually been 94.5 minutes, with a one-sided
+\(p\)-value of 0.241?
+
+Conclusion:
+
+\begin{itemize}
+\item
+  Since 0.241 is not small (relative to \(\alpha = 0.05\)), these data
+  \emph{do not suggest evidence against the null hypothesis} that the
+  mean completion time in 2017 is 93.3 minutes.
+\item
+  Instead, these data are consistent with the sample-to-sample variation
+  that we would expect when drawing a random sample of 100 completion
+  times when the average completion time is actually 93.3 minutes.
+\item
+  Since \(p > \alpha\), there is insufficient evidence to reject
+  \(H_0\); i.e., we fail to reject \(H_0\).
+\item
+  \textbf{Note}: In statistics, we do not ``accept'' \(H_0\). We simply
+  have not seen evidence against \(H_0\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Guidance on interpreting \(p\)-values}
+\protect\hypertarget{guidance-on-interpreting-p-values}{}
+\small
+
+A \(p\)-value represents the probability of observing results \emph{as
+or more extreme than what was observed}, under the \emph{assumption that
+the null hypothesis is true}.
+
+\begin{itemize}
+\item
+  A ``small'' \(p\)-value suggests that the null hypothesis is not true;
+  i.e., represents evidence that we can reject the null hypothesis.
+
+  \begin{itemize}
+  \item
+    Conceptual thinking: We observed results that are so unlikely to
+    happen if the null is true that it makes more sense to conclude that
+    the null is false.
+  \item
+    Example: We flip a coin 100 times and see heads 95 times. This is so
+    unlikely to happen with a fair coin that it seems reasonable to
+    conclude the coin is biased.
+  \end{itemize}
+\item
+  A ``large'' \(p\)-value indicates that there is insufficient evidence
+  against the null hypothesis; i.e., the results are consistent with the
+  null hypothesis (being true).
+
+  \begin{itemize}
+  \item
+    This is \textbf{not} the same as claiming that we have found
+    evidence that the null is true! We simply have not yet observed
+    evidence indicating the null hypothesis is false.
+  \item
+    Example: We flip a coin 100 times and see heads 45 times. This is
+    not that unlikely to happen with a fair coin, so we can't conclude
+    the coin is biased. We also have not proven that the coin is fair.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Guidance on interpreting \(p\)-values\ldots{}}
+\protect\hypertarget{guidance-on-interpreting-p-values-1}{}
+\small
+
+What is considered extreme enough evidence to be convincing?
+
+\begin{itemize}
+\item
+  A common practice is to consider \(p\)-values smaller than 0.05 to be
+  ``statistically significant''.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Intuition: If we see results that would only happen less than 5\% of
+    the time when the null hypothesis is true, then we have sufficient
+    evidence against the null hypothesis.
+  \end{itemize}
+\item
+  In scientific literature, this benchmark is referred to as \(\alpha\);
+  i.e., the significance level.
+\item
+  The value of \(\alpha\) is pre-specified before an analysis is done.
+  Common values of \(\alpha\) include 0.10, 0.05, 0.01, etc.
+\end{itemize}
+
+However, we should avoid thinking of \(\alpha = 0.05\) as a definitive
+cutoff.
+
+\begin{itemize}
+\item
+  How should we interpret a \(p\)-value of 0.08?
+\item
+  How should we interpret a \(p\)-value of 0.045?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Assumptions}
+\protect\hypertarget{assumptions}{}
+\small
+
+The same assumptions behind the CLT are behind hypothesis testing:
+
+\begin{itemize}
+\item
+  Observations are independent of each other.
+\item
+  The sample size is reasonably large.
+\end{itemize}
+
+The same hidden assumptions behind confidence intervals also apply:
+
+\begin{itemize}
+\item
+  The data used for the hypothesis test are representative of the target
+  population.
+\item
+  The target population is well-defined.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Two-sided vs.~One-sided Hypothesis Tests}
+\protect\hypertarget{two-sided-vs.-one-sided-hypothesis-tests}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\small
+
+Make this choice \textbf{before} looking at the data!
+
+\vspace{0.25cm}
+
+In practice, two-sided tests are seen as more rigorous and are typically
+expected by most journals and regulatory authorities.
+
+\vspace{0.25cm}
+
+It is ``easier'' to reject \(H_0\) for a one-sided test than a two-sided
+test, when conducted at the same \(\alpha\)
+level.\footnote{More about choosing between one-sided and two-sided tests in \textit{OI Biostat} Section 4.3.5}
+
+\column{0.50\textwidth}
+
+\begin{figure}[]
+\includegraphics[]
+{figures/twoSidedTestConservative.pdf}
+\end{figure}
+
+\columnsend
+\end{frame}
+
+\hypertarget{the-relationship-between-tests-and-confidence-intervals}{%
+\section{The relationship between tests and confidence
+intervals}\label{the-relationship-between-tests-and-confidence-intervals}}
+
+\begin{frame}{Two-sided tests and confidence intervals}
+\protect\hypertarget{two-sided-tests-and-confidence-intervals}{}
+\small
+
+The relationship between a hypothesis test and the corresponding
+confidence interval is defined by the significance level, \(\alpha\).
+
+\begin{itemize}
+\item
+  Hypothesis test: Is the sample statistic far enough away from the
+  hypothesized null value to be considered extreme?
+\item
+  Confidence interval: Is the hypothesized null value close enough to
+  the sample statistic to be plausible?
+\end{itemize}
+
+The ``far enough'' and ``close enough'' are defined by \(\alpha\).
+
+\begin{itemize}
+\item
+  If a 95\% CI for a parameter does not contain the hypothesized null
+  value, then the data contradict the null hypothesis at significance
+  level \(\alpha = 0.05\).
+\item
+  If a 95\% CI for a parameter does contain the hypothesized null value,
+  then the data do not contradict the null hypothesis at significance
+  level \(\alpha = 0.05\).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Two-sided tests and confidence intervals\ldots{}}
+\protect\hypertarget{two-sided-tests-and-confidence-intervals-1}{}
+\columnsbegin
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+If a 95\% confidence interval for a population mean does not contain a
+hypothesized value \(\mu_0\), then:
+
+\begin{itemize}
+\item
+  The data contradict the the null hypothesis \(H_0: \mu = \mu_0\) at
+  significance level \(\alpha = 0.05\)
+\item
+  The implied two-sided alternative hypothesis is
+  \(H_A: \mu \neq \mu_0\)
+\end{itemize}
+
+\column{0.50\textwidth}
+
+\footnotesize
+
+Based on the following 95\% confidence interval computed from the 2017
+sample of run times, is there sufficient evidence to reject
+\(H_0: \mu = 93.3\) minutes at the \(\alpha = 0.05\) significance level?
+
+\vspace{0.3cm}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(cherry.sample}\SpecialCharTok{$}\NormalTok{net\_sec}\SpecialCharTok{/}\DecValTok{60}\NormalTok{, }
+       \AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}\SpecialCharTok{$}\NormalTok{conf.int}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  95.10571 101.83796
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+
+\columnsend
+\end{frame}
+
+\begin{frame}{In practice\ldots{}}
+\protect\hypertarget{in-practice}{}
+\small
+
+A confidence interval provides a range of plausible values for a
+parameter.
+
+A hypothesis test measures the strength of evidence against a null
+hypothesis.
+
+Both are important tools for conducting inference.
+
+\begin{itemize}
+\tightlist
+\item
+  A lot more information/guidance about interpreting confidence
+  intervals and hypothesis tests coming up in future units.
+\end{itemize}
+\end{frame}
+
+\end{document}
