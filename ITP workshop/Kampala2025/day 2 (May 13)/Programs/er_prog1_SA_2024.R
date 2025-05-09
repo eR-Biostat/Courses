@@ -1,0 +1,7 @@
+dim(mtcars)
+names(mtcars)
+head(mtcars)
+plot(mtcars$wt,mtcars$mpg)
+cor(mtcars$wt,mtcars$mpg)
+fit.lm=lm(mtcars$mpg~mtcars$wt)
+summary(fit.lm)
