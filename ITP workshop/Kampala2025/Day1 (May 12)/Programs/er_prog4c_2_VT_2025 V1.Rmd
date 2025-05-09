@@ -1,0 +1,1197 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat" 
+  topic: <font size = "10" > **Visualizing Data and Exploratory Data analysis using <tt>ggplot2</tt> in  R**</font>
+  author: "Ziv Shkedy and Thi Huyen Nguyen"
+  date: "26-04-2025"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+library(TeachingDemos)
+library(gridExtra)
+```
+
+
+# 1. Introduction
+
+> "Exploratory data analysis can never be the whole story, but nothing else can serve as the foundation stone - as the first step"
+>
+> --- John W. Tukey (1977)
+
+
+###  Location, Spread and Shape in univariate data
+
+In this course, we focus on descriptive measures, numerical and graphical, to
+characterize and visualize the features of a particular univariate distribution. 
+The following three main factors are usually used to specify a particular distribution:
+
+  * Location
+  * Spread
+  * Shape
+
+Each of these control different characteristics of a distribution.
+
+
+### R datasets for illustraions
+
+In order to simplify the usage of slides, the data we used for illustrations are R datasets. We give a short description  of each data in the relevant slides.
+* More details can be found with <tt>help(dataset)</tt> or (for datasets of the first part) in
+
+  * The singers data: [singers](https://stat.ethz.ch/R-manual/R-devel/library/lattice/html/singer.html).
+  * The airquality data: [airquality](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/airquality.html).
+  * The cars data: [mtcars](https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars).
+  * The Old Faithful Geyser Data: [oldfaithful](      https://stat.ethz.ch/R-manual/R-patched/library/datasets/html/faithful.html).
+  * The Boston data: [boston](https://www.statology.org/boston-dataset-r/). 
+
+
+
+### Basic R functions for illustraions
+
+The following basic graphical functions are used for visualization:
+
+   - <tt>plot()</tt>
+   - <tt>lines()</tt>
+   - <tt>hist()</tt>
+   - <tt>boxplot()</tt>
+   - <tt>qqnorm()</tt>
+    
+### The <tt>lattice</tt> R package
+
+The following <tt>lattice</tt> graphical functions are used for visualization:
+    
+   - <tt>dotplot()</tt>
+   - <tt>histogram()</tt>
+   - <tt>bwplot()</tt>
+   - <tt>qqmath()</tt>
+   
+
+### The <tt>ggplot2</tt> R package
+    
+The following <tt>ggplot2</tt> graphical functions are used for visualization:
+
+   - <tt>ggplot()</tt>
+   - <tt>geom_point()</tt>
+   - <tt>theme_bw()</tt>
+   - <tt>geom_smooth()</tt>
+   - <tt>geom_histogram()</tt> 
+   - <tt>geom_boxplot()</tt>
+   - <tt>geom="density"</tt>
+   - <tt>geom_violin()</tt>
+   - <tt>facet_wrap()</tt>
+   - <tt>qplot()</tt>
+   - <tt>stat_summary()</tt>
+   - <tt>geom_density_ridges() +  theme_ridges()</tt> 
+
+### Online references
+
+* Basic Skills in Visualising Data and Exploratory Data Analysis Using R - An interactive online book for the course: [BookVD](https://erbiostat.wixsite.com/vdeda1).
+* Book: R Graphics Cookbook, 2nd edition by Winston Chang: [RGraphics](https://r-graphics.org/).
+* Website: From Data to Viz: [Viz](https://www.data-to-viz.com/).
+
+
+# 2. Working with the <tt>ggplot2</tt> R package for vizualization
+
+### The layers of a <tt>ggplot2</tt> figure 
+
+A key idea behind <tt>ggplot2</tt> is that it allows to easily building up a complex plot layer by layer. Each layer adds an extra level of information to the plot. In that way we can build sophisticated plots tailored to the problem at hand. 
+
+
+### The <tt>mtcars</tt> data 
+
+The data gives information about fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+```{r,echo=TRUE}
+head(mtcars)
+```
+
+For our example, we focus on <tt>mpg</tt>, <tt>hp</tt> and <tt>cyl</tt>.
+
+
+### The <tt>mtcars</tt> data 
+
+
+Bivariate data (miles/(US) per gallon, horsepower). We wish to produce a basic scatterplot: mgp Vs. h using the R function <tt>plot()</tt>.
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+plot(mtcars$hp,mtcars$mpg)
+```
+
+
+### Linear regression 
+
+We consider a simple linear regression model of the form
+$$\mbox{mpg}_{i}=\beta_{0}+\beta_{1} \times \mbox{hp}_{i} + \varepsilon_{i}$$.
+In R, we can fit the model using the <tt>lm()</tt> function.
+
+```{r,echo=TRUE}
+fit.lm<-lm(mtcars$mpg~mtcars$hp)
+```
+
+The fitted model
+
+```{r,echo=TRUE}
+summary(fit.lm)
+```
+
+
+### First layer: basic plot 
+
+Basic plot using <tt>ggplot2</tt>, scaterplot and labels.
+
+```{r, echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +
+        geom_point() +
+        labs(x = "Horsepower",y= "Miles Per Gallon")
+gg
+```
+
+
+
+### What is <tt>aes()</tt> function?
+
+The <tt>aes()</tt> function is a generate **aesthetic** mappings that describe how variables in the data are mapped to visual properties (Aesthetics) of geoms. The <tt>aes()</tt> is a quoting function. This means that its inputs are quoted to be evaluated in the context of the data. For example, in Figure 2 we use <tt>aes(hp, mpg)</tt>. This means that we specify the vraiables <tt>mpg</tt> and <tt>hp</tt> to be used in the plot. For more details use the <tt>ggplot2</tt> Cheat Sheet: [ggplot2](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
+
+### Second layer: add Cylinders information 
+
+We wish to add colors to the data points (by Cylinders number), we use <tt>aes(color=as.factor(cyl)), size=5</tt>.
+
+```{r,echo=TRUE,,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +
+        geom_point(aes(color=as.factor(cyl)), size=5) +
+        labs(x = "Horsepower",y= "Miles Per Gallon",color= "# of Cylinders")
+gg
+```
+
+
+### The <tt>geom()</tt> function 
+
+A ggplot2 <tt>geom</tt> "tells" the plot how do we want to display the data in R. For example, <tt>geom_bar()</tt>  makes a bar chart while <tt>geom_point(aes(color=as.factor(cyl)), size=5)</tt> produces a scaterplot with points. Note that <tt>aes(color=as.factor(cyl))</tt>: uses different colors acording to the <tt>cyl</tt> levels.
+
+### Third layer: change the background 
+
+In order to change the theme (to make the figure clear) we use <tt>theme_bw()</tt>.
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +
+        geom_point(aes(color=as.factor(cyl)), size=5) + labs(x = "Horsepower",y= "Miles Per Gallon",color= "# of Cylinders")+
+        theme_bw()
+gg
+```
+
+
+### Fourth layer: add the regression line 
+
+To add a regression line we use <tt>geom_smooth(method="lm", se=FALSE)</tt>. To produce the figure we use
+
+* <tt>ggplot(data,aes(variables))</tt>.
+* <tt>geom_point(size)</tt>.
+* <tt>aes(color the data points)</tt>.
+* <tt>geom_smooth(add regression line)</tt>.
+* <tt>labs(add labels)</tt>.
+
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +
+        geom_point(aes(color=as.factor(cyl)), size=5) + geom_smooth(method="lm", se=FALSE) +
+        labs(x = "Horsepower",y= "Miles Per Gallon", color= "# of Cylinders") +  theme_bw()
+gg
+```
+
+
+
+### Fourth layer: add confidence intervals to the plot 
+
+To add confidence internal around the regression line we use
+<tt>geom_smooth(method="lm", se=TRUE)</tt>.
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) + geom_point(aes(color=as.factor(cyl)), size=5) +
+        geom_smooth(method="lm", se=TRUE) +
+        labs(x = "Horsepower",y= "Miles Per Gallon",color= "# of Cylinders") +theme_bw()
+gg
+```
+
+### Fifth layer: add a smoother 
+
+A loess smother can be added using <tt>geom_smooth(method="loess"", se=TRUE)</tt>
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +geom_point(aes(color=as.factor(cyl)), size=5) +
+        geom_smooth(method="lm", se=TRUE) + geom_smooth(method="loess",colour = "blue", size = 1.5)+
+        labs(x = "Horsepower",y= "Miles Per Gallon",color= "# of Cylinders") + theme_bw()
+gg
+```
+
+### Visualizing correlation patterns  across cylinders  
+
+
+We can vizulaize how the dependence between mpg and hp changes with Cylinder numbers.
+
+```{r,echo=TRUE,fig.cap="Miles/(US) per gallon vs. Horsepower"}
+qplot(hp,mpg,data = mtcars, colour = factor(cyl))+
+geom_smooth(method = "lm",se = F)
+```
+
+
+
+# 3. Location
+
+### Two normal densities
+
+Location is the center of the distribution. Figure~XXX shows presents distributions with different locations, two normal densities with mean equal to 0 (the black line) and mean equal to 2 (the red line).
+
+```{r,echo=TRUE,fig.cap="Two normal densities"}
+x<-seq(from=-5,to=5,length=1000)
+dx1<-dnorm(x,0,1)
+dx2<-dnorm(x,2,1)
+plot(x,dx1,type="l")
+lines(x,dx2,col=2)
+```
+
+### Two random samples
+
+Figure~XX shows a histograms for two $random$ $samples$ drawn from normal distribution with the same variance but different  mean. Both histograms show that the data are symmetric around the sample mean but the histogram of $x_{2}$ is located to the right relative to the histogram of $x_{1}$. 
+
+
+```{r,echo=TRUE,fig.cap="Two normal densities"}
+x1 <- rnorm(10000, 0, 1)
+x2 <- rnorm(10000, 2, 1)
+par(mfrow = c(2, 1))
+hist(x1, col = 0, nclass = 50, xlim = c(-4, 6))
+hist(x2, col = 0, nclass = 50, xlim = c(-4, 6))
+```
+
+
+#  4. Graphical displays for location
+
+We focus of the follwoing queations:
+
+* How can we visualize the distribution ?
+* How can we visualize a shift in location ?
+* Numerical summaries for location (look at the book): mean. median, trimmed mean...
+
+
+```{r,echo=TRUE,fig.cap="Two normal densities"}
+x<-seq(from=-5,to=5,length=1000)
+dx1<-dnorm(x,0,1)
+dx2<-dnorm(x,2,1)
+plot(x,dx1,type="l")
+lines(x,dx2,col=2)
+```
+
+###  The <tt>singer</tt> dataset
+
+The singer datset (the R object <tt>singer</tt>) is a data frame giving the heights of singers in the New York Choral Society. The variables are named <tt>height</tt> (inches) and <tt>voice.part</tt> which is the voice group of the singer
+
+   * Alto.
+   * Sporano.
+   * Tenor.
+   * Bass.
+   
+Each voice group is subdivided into two groups, high voice and low voice (for example Bass1 and Bass2 and the lower and higher Bass voices, respectivly). Our main focus: the distribution of the singers' <tt>height</tt>.
+
+###  The singer dataset
+
+* The data:
+
+```{r,echo=TRUE}
+head(singer)
+```
+
+### Stripplot (using the <tt>lattice</tt> package)
+
+In a **Stripplot** we plot the data of each voice group in a different strip. We use the syntax <tt>voice.part~height</tt>. In Figure~XX we can see a clear main pattern in the data: It is easy to distinguish between women (Sopranos and Altos) and men (Tenors and Basses). Women are clearly shorter than men.
+
+```{r,echo=TRUE,fig.cap="Stripplot"}
+dotplot(singer$voice.part~singer$height, 
+		aspect=1,
+		xlab="Mean Height (inches)")
+```
+
+### Stripplot (using <tt>ggplot2</tt>): first layer
+
+An equivalent stripplot can be produced using the <tt>ggplot()</tt> package. Using the function <tt>geom_jitter</tt> implies that observatios with the same values will be ploted side by side and will not overlap so sample size would be seen as well in the plot.  
+
+
+```{r,echo=TRUE,fig.cap="Dotplot"}
+ggplot(singer, 
+       aes(voice.part,height)) + 
+       geom_point()
+```
+
+
+```{r,echo=TRUE,fig.cap="Dotplot with jitter"}
+ggplot(singer, 
+       aes(voice.part,height)) + 
+       geom_jitter(position = position_jitter(width = .05))
+```
+
+
+
+### Mean by voice group
+
+In order to get a better insight of other patterns, we can summarize the distribution of each group with the sample mean. In R this can be done using the function <tt>tapply()</tt>. To calculate mean of height by the voice group in the singer dataset we use
+
+```{r,echo=TRUE,fig.cap="Stripplot"}
+attach(singer)
+tapply(singer$height,singer$voice.part,mean)
+```
+
+### Mean by voice group
+
+The group means point on the pattern that was already detected: on average men are taller than women. In addition, we can see that within each gender group, singers with lower voice are taller than singers with higher voice.For example, the average of the two bass groups (71.38 and 70.71 for Bass 1 and Bass 2 respectively) are higher than the average in the tenor groups (69.90 and 68.90 for Tenor 1 and Tenor 2 respectively). 
+
+
+### Mean by voice group
+
+Among women, the sopranos are shorter, on average, than the altos. Within each voice group (all except the sopranos), the singers with lower voices (the second voice group Bass 2, Tenor 2 and Alto 2) are taller than the singers with the higher voices (the first group Bass 1, Tenor 1 and Alto 1). For example the mean of the Bass 2 group (71.38) is higher than the mean of the Bass 1 group (70.71)
+
+
+### Stripplot (<tt>ggplot2</tt>): second layer
+
+Figure~XX shows the same information as before with the addtion of the mean for each voice group. Note that we use the function <tt>stat_summary()</tt> with the option <tt>fun.y = "mean"</tt> to calculate the mean.
+
+
+```{r,echo=TRUE,fig.cap="Stripplot"}
+ggplot(singer, aes(voice.part,height)) +
+geom_point() +
+stat_summary(geom = "point", fun.y = "mean", colour = "red", size = 4)
+```
+
+### Boxplot (<tt>lattice</tt>)
+
+Graphical display of the location of each distribution is the box plot. The location of each group is summarized by the median (the dot inside the box). Other aspects of this plot will be discussed in later chapters). Note that the function <tt>bwplot()</tt> is a part of the <tt>lattice</tt> package.
+
+
+```{r,echo=TRUE,fig.cap="Boxplot"}
+bwplot(as.factor(singer$voice.part)~ singer$height,
+		data=singer,
+		aspect=1,
+		xlab="Height (inches)")
+```		
+### Multiway histogram (<tt>lattice</tt>)
+
+The multiway histogram presents the distributions of heights across the voice groups. Note how the distribution of height is shiffted from left to right across the voice levels.
+
+```{r,echo=TRUE,fig.cap="Multiway histogram"}
+histogram(~ singer$height | singer$voice.part,
+		data=singer, layout = c(2, 4), 
+		  aspect = 0.5,xlab = "height")
+```
+
+
+### Multiway histogram (<tt>ggplot2</tt>)
+
+An equivalent multiway histogram can be produce with the <tt>ggplot2</tt> package.
+We have addtional two layers in the basic plot: the first layer spacifys the plot type <tt>histogram()</tt> and the second layer indicates the factor for the plot partions. The function <tt>facet_wrap(factor)</tt>.is used to produce the histograms by voice group. 
+
+
+```{r,echo=TRUE,fig.cap="Multiway histogram"}
+ggplot(singer, aes(height)) +
+geom_histogram() +
+facet_wrap(~voice.part,ncol = 2)
+```
+
+```{r,echo=TRUE,fig.cap="Multiway histogram"}
+ggplot(singer, aes(height,fill = voice.part)) +
+geom_histogram() +
+facet_wrap(~voice.part,ncol = 2)
+```
+
+# 5. Spread
+
+### Two normal densities
+
+Figure~XXXX shows two normal densities that have different variability (or spread). * The density with the black line has variance 1 and density with the green line has variance 2.  
+
+```{r,echo=TRUE,fig.cap="Two normal densities"}
+dx3<-dnorm(x,0,2)
+plot(x,dx1,type="l")
+lines(x,dx3,col=3)
+```
+
+### Spread in random samples
+
+Two samples  were drawn from normal distribution with mean equal to 0 but with different variance. The two distributions have the same shape, both histograms are symmetric around 0 as expected. The spread in the histogram of $x_{2}$ is much higher than the spread in the histogram of $x_{1}$.
+
+```{r,echo=TRUE,fig.cap="Two normal densities"}
+x1 <- rnorm(10000, 0, 0.75)
+x2 <- rnorm(10000, 0, 2)
+par(mfrow = c(2, 1))
+hist(x1, col = 0, nclass = 25, xlim = c(-4, 6), ylim = c(0, 1000))
+hist(x2, col = 0, nclass = 50, xlim = c(-4, 6), ylim = c(0, 1000))
+```
+]
+
+
+### Main concepts
+
+Up till now we summarized the distribution of the data with location estimators.
+In this chapter we focus on the spread. We want to measure how close the data are to each other and how concentrate the data around the center of the distribution. Numerical summaries for spread (see in the book):
+ 
+    * The sample variance.
+    * The fourth-spared.
+
+  
+Graphical displays for spread:
+ 
+   * boxplot.
+   * violin plot.
+   
+
+# 6. Boxplot: A graphical display for spread and location
+
+A Boxplot is a graphical display which shows the location, the spread and the shape of the distribution. The location is summarized by the median, the spread is summarized by the fourth-spread which is simply the length of the box in the boxplot.
+Inside the box: $50\%$ of the data.
+
+
+```{r,echo=TRUE,echo=TRUE,fig.cap="Histograms and boxplots"}
+x1<-rnorm(1000,0,1)
+par(mfrow=c(2,2))
+hist(x1,main="random sample from N(0,1)",xlim=c(-10,10))
+boxplot(x1,ylim=c(-10,10))
+x2<-rnorm(1000,0,3)
+hist(x2,main="random sample from N(0,9)",xlim=c(-10,10))
+boxplot(x2,ylim=c(-10,10))
+```
+
+### Boxplot: A graphical display for spread and location
+
+The upper and lower adjacent values in the boxplot are given by
+
+$$\mbox{Upper adjacent value} = \textit{Min}  \left \{ max(X),Q_{3}+1.5(Q_{3}-Q_{1}) \right \}$$
+
+$$\mbox{Lower adjacent value} = \textit{max}  \left \{ min(X),Q_{1}-1.5(Q_{3}-Q_{1}) \right \}$$
+
+The upper and lower adjacent values are used to identify extrime values. 
+Observations higher than the upper adjacent value or smaller than the lower adjacent value are considered to be outliers. 
+
+### Example: the airqiality data
+
+Daily air quality measurements in New York, May to September 1973. The histogram and boxplot for the airquality data: Ozone level. A skewed distribution with few outliers at the upper tail (histogram). In the boxplot these outliers can be identified above the upper adjacent value.
+
+```{r,echo=TRUE,fig.cap="Histogram and Boxplot"}
+par(mfrow=c(1,2))
+airquality1<-na.omit(airquality)
+hist(airquality1$Ozone)
+boxplot(airquality1$Ozone)
+```
+
+### Online tutorials
+
+#### YouTube tutorial: Boxplot in R
+
+For a short online YouTube tutorials:
+
+  * by Data Science Tutorials, about boxplot using the <tt>ggplot2</tt> package see
+    [YTVD8](https://www.youtube.com/watch?v=48UvtcXTb9U).
+    
+  * by LawrenceStats, about boxplot  using the <tt>ggplot2</tt> package see 
+    [YTVD9](https://www.youtube.com/watch?v=48UvtcXTb9U)
+
+#### Web tutorial: Advanced boxplots in R
+
+* Example for advanced  boxplots in R using the <tt>ggplot2</tt>  package and code to produce the plots can be found in the R Graph Gallery website here [WAVD2]( https://www.r-graph-gallery.com/boxplot).
+
+
+### Boxplot for the singers data
+
+A boxplot for  the singers' height by voice group that was produced using the function <tt>geom_boxplot()</tt>.
+
+
+```{r,echo=TRUE,fig.cap="Boxplot"}
+ggplot(singer, aes(voice.part,height)) + geom_boxplot()
+```
+
+### Boxplot for the singers data
+
+The same boxplot in which colors (by group) are added to the boxplot  using the argument <tt>fill=voice.part</tt>. Note that the object <tt>voice.part</tt> is a factor.
+
+
+```{r,echo=TRUE,fig.cap="Boxplot"}
+ggplot(singer, aes(voice.part,height,fill=voice.part)) + geom_boxplot()
+```
+
+### Boxplot for the singers data
+
+The data are added to the boxplot using the argument <tt>geom = c("boxplot", "jitter")</tt>.
+
+```{r}
+qplot(voice.part, height, data = singer, geom = c("boxplot", "jitter"))
+```
+
+### Violin plot for the singers data
+
+When the argument <tt>geom_violin()</tt> is used instead of <tt>geom_boxplot()</tt> the boxplot  become a violin plot.
+
+```{r,echo=TRUE,fig.cap="Violin plot"}
+ggplot(singer, aes(voice.part,height)) + geom_violin()
+```
+
+### Violin plot for the singers data
+
+```{r,echo=TRUE,fig.cap="Conbined violin and boxplot"}
+ggplot(singer, aes(x = voice.part, y = height, fill = voice.part)) +
+  geom_violin(alpha = 0.6) +
+  geom_boxplot(width = 0.1, color = "black", alpha = 0.5) +
+  theme_minimal()
+```
+
+# 7. Shape: histograms and density edtimates
+
+### Two densities
+
+Figure ~XXXX shows two beta densities having diffent shapes. Black line: $Beta(2,2)$, red line: $Beta(2,4)$.
+
+
+```{r figchp12i,echo=TRUE,fig.cap="Shape"}
+x<-seq(from=0,to=1,length=1000)
+dx1 <- dbeta(x, 2, 2)
+dx2 <- dbeta(x, 2, 4)
+plot(x,dx1,type="l",ylim=c(0,2.5))
+lines(x,dx2,col=2)
+```
+
+
+### Four random samples
+
+4 samples (each with 10000 observations) that were drawn from different distributions. $x_{1}$ and $x_{2}$: samples were drawn from symmetric distributions. 
+The distributions of $x_{3}$ is skewed to the left and the distribution of $x_{4}$ to the right.
+
+```{r,echo=TRUE,fig.cap="Four densities"}
+x1 <- rbeta(10000, 1, 1)
+x2 <- rbeta(10000, 2, 2)
+x3 <- rbeta(10000, 8, 3)
+x4 <- rbeta(10000, 3, 8)
+par(mfrow = c(2, 2))
+hist(x1, col = 0, nclass = 50)
+hist(x2, col = 0, nclass = 50)
+hist(x3, col = 0, nclass = 50)
+hist(x4, col = 0, nclass = 50)
+```
+
+
+### Density and density estimate
+
+So far we used histogram to visualize the shape of the distribution of the observations in the sample. In this chapter we discuss density estimates as a method to estimate and visualized the distribution in the population.  
+
+### Density and density estimate
+
+A density function of $N(0,1)$ that represents the distribution of a random variable in the population. Suppose that we draw a random sample of size $n$ from the population. The histogram can be used to visualize the shape of the distribution. 
+It is an estimate for the density in the population. 
+
+```{r,echo=TRUE,fig.cap="Four densities"}
+x<-seq(from=-3,to=3,length=1000)
+dx1<-dnorm(x,0,1)
+par(mfrow=c(1,2))
+plot(x,dx1,type="l")
+title("a")
+x1 <- rnorm(1000, 0, 1)
+hist(x1, col = 0, nclass = 50, xlim = c(-3.5,3.5),main=" ")
+title("b")
+```
+
+### Density and density estimate
+
+A second approach to estimate the distribution of the population is to use a smooth version of the histogram, i.e., a density estimate. The density estimate for our example is shown (in red) panel c and d.
+
+```{r ,,echo=TRUE,fig.cap="Two normal densities"}
+x<-seq(from=-3,to=3,length=1000)
+dx1<-dnorm(x,0,1)
+par(mfrow=c(1,2))
+#plot(x,dx1,type="l")
+#title("a")
+#x1 <- rnorm(1000, 0, 1)
+#hist(x1, col = 0, nclass = 50, xlim = c(-3.5,3.5),main=" ")
+#title("b")
+dx2<-density(x1)
+hist(x1, col = 0, nclass = 50, xlim = c(-3.5,3.5),main=" ",probability =T)
+lines(dx2$x,dx2$y,col=2,lwd=2)
+title("c")
+plot(x,dx1,type="l",ylim=c(0,0.55))
+lines(dx2$x,dx2$y,col=2,lwd=2)
+title("d")
+```
+
+### Online tutorials 
+
+#### YouTube tutorial: Creating density plots and enhancing it with the <tt>ggplot2</tt> package 
+
+A short online YouTube tutorial by LawrenceStats, about density plot using the <tt>ggplot2</tt> package see [YTVD10](https://www.youtube.com/watch?v=kvg0y90GX0Y).
+
+
+###3 Web tutorial: the ridgeline chart
+
+* A Web tutorial about the ridgeline chart using the <tt>ggplot2</tt> and <tt>ggridges</tt> package is given in the the R Graph Gallery website [WAVD4](https://www.r-graph-gallery.com/ridgeline-plot.html).
+
+
+#  8. The old faithful data
+
+The data gives information about waiting time between eruptions and the duration of the eruption for the Old Faithful geyser in Yellowstone National Park, Wyoming, USA. We focus on two variables:
+  
+   * <tt>eruptions</tt>:	numeric,	Eruption time in mins.
+   * <tt>waiting</tt>:	numeric,	Waiting time to next eruption (in mins)
+
+
+
+```{r,echo=TRUE}
+head(faithful)
+```
+
+Figure~xxx shows a Histogram of eruptions time and reveals a A bi-model. it was prduced using the <tt>hist()</tt> function, basic graphical function in R.
+
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+hist(faithful$eruptions,nclass=20,col=2)
+```
+
+
+###  The old faithful data
+
+
+
+It is an example for a failure of the boxplot to capture this feature (the bi-model) of the data .
+
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+qplot(rep(1,length(eruptions)),eruptions, data=faithful, geom = c("boxplot"))
+```
+
+###  The old faithful data
+
+We add the data to the boxplot, using the option <tt>geom = c("boxplot", "jitter")</tt> and we identify the two parts of the  eruptions time distribution.
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+qplot(rep(1,length(eruptions)),eruptions, data=faithful, geom = c("boxplot", "jitter"))
+```
+
+
+###  The old faithful data
+
+The histogram is able to capture the shape of the distribution. 
+
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+qplot(eruptions, data=faithful, geom="histogram")
+```
+
+
+###  The old faithful data
+
+A density estimate was produced using the opion <tt>geom="density")</tt> provides a smooth estimate of the distribuon.
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+qplot(eruptions, data=faithful, geom="density")
+```
+
+
+###  The old faithful data
+
+We can plot both histogram and density in the same plot.
+
+```{r,echo=TRUE,fig.cap="The fathful data"}
+hist(faithful$eruptions,nclass=15,probability = TRUE)
+dx<-density(faithful$eruptions)
+lines(dx$x,dx$y,lwd=2,col=2)
+```
+
+
+
+#  9. The singer data
+
+###  The singer data
+
+We use density plots to visualize the shit of the distribution of the singers' height across the voice part groups. The histograms ravel the shifts within and between the voice groups.
+
+
+```{r,echo=TRUE,fig.cap="The singers data"}
+ggplot(singer, aes(height,fill = voice.part)) +
+geom_histogram() +
+facet_wrap(~voice.part,ncol = 2)
+```
+
+###  The singer data
+
+In the density plots, The difference between the sopranos and altos (women singers, the densities in the left) and the tenors and basses (men singers, densities in the right) is clearly seen. The difference within each group is more difficult to detect. 
+```{r,echo=TRUE,fig.cap="The singers data"}
+qplot(height, data=singer, geom="density", xlim = c(50,80),
+fill = voice.part, alpha = I(0.2))
+```
+
+###  The singer data
+
+A ridgeline charts visualizes the difference between the groups and within each voice group. Note that the R package <tt>ggridges</tt> should be instaled to produce the plot.
+
+```{r,echo=TRUE,fig.cap="The singers data"}
+library(ggridges)
+ggplot(singer, aes(x=height,y=voice.part,fill = voice.part)) +
+  geom_density_ridges() +
+  theme_ridges() + 
+  theme(legend.position = "none")
+```
+
+
+# 10. Shape: the normal probability plot
+
+###  Normal probability plot
+
+A normal probability plot is a plot in which the quantile of the samples are plotted versus the corresponding quantiles of a standard normal distribution $N(0,1)$.In this chapter we discuss the normal probability plot as a graphical tools to vizualise the shape of a distribution. Using histograms and boxplots we are able to investigate the shape of the distribution focusing on the follwing issues:
+
+  * How nearly symmetric the distribution of the data is.
+  * Whether the distribution of the data is single-peaked, or whether it is multi-peaked.
+  * Whether it is skewed.
+  * How far we  from a Normal distribution ?
+  
+
+### Quantile of $N(\mu,\sigma^{2})$: Definition and a simple example
+
+A qq normal plot is a graphical disply to investigate how now nearly is the sample to a normal distribution. Let $q_{\mu,\sigma}(f)$ be a quantile of $N(\mu,\sigma^{2})$, it can be expressed as
+
+$$q_{\mu,\sigma}(f)=\mu+\sigma q_{0,1}(f).$$
+
+For example, the $2.5 \% $ quantile of the standard normal distribution is -1.96. 
+
+```{r,echo=TRUE}
+qnorm(0.025,0,1)
+```
+
+For $N(2,5^{2})$ we have 
+
+$$q_{2,5}(2.5 \% )=2+ 5 \times - 1.96=-7.8$$
+
+
+```{r,echo=TRUE}
+qnorm(0.025,2,5)
+```
+
+
+### YouTube tutorial: QQ-plots in RStudio
+
+For a short online YouTube tutorials by UTSSC, about normal probability plot using R studio see [YTVD12](https://www.youtube.com/watch?v=louihSVsMC0).
+
+
+### A sample from N(0,1)
+
+We use the R function <tt>qqnorm()</tt> to produce the normal probabilty plot.
+Data were sampled from $N(0,1)$. we expect that all points in the normal probability plot will lay on the on the $45^o$ line. 
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+x <- rnorm(1000, 0, 1)
+par(mfrow = c(2, 2))
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+### A Sample from N(2,1)
+
+A sample  from $N(2,1)$, i.e., it represents a shift model with the same variabiliy comapre to $N(0,1)$. In this case we expect that all points in the normal probability plot will lay above and parallel to the $45^{o}$ lines. 
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+par(mfrow = c(2, 2))
+x <- rnorm(1000, 2, 1)
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+### A Sample from N(0,2)
+
+The sample was drawn from $N(0,2^2)$ which implies that the mean is the same as $N(0,1)$ but the variability is higher. We expect the points in the normal probability plot to form a straight line with higher slope than 1.
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+par(mfrow = c(2, 2))
+x <- rnorm(1000, 0, 2)
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+### A Sample from $t_{(3)}$
+
+A $t_{(3)}$ distribution (red line) has the same mean as $N(0,1)$ but longer tails. 
+Note that the two distribution and centered around zero. 
+
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+par(mfrow = c(1, 1))
+qx <- seq(from = -7, to = 7, length = 1000)
+xn <- dnorm(qx, mean = 0, sd = 1)
+xt <- dt(qx, 3)
+plot(qx, xn, xlim = c(-7, 7), type = "l")
+lines(qx, xt, col=2)
+```
+
+### A Sample from $t_{(3)}$
+
+For the normal probability plot we expect that the points will lay on the $45^o$ line in the center but with more extreme values .
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+par(mfrow = c(2, 2))
+x <- rt(1000, 3)
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+
+
+
+### A Sample from $t_{(3)}$
+
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+par(mfrow = c(2, 2))
+x <- rt(1000, 3)
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+
+### A Sample from $U(-3,3)$
+
+The data of this example are uniformly distributed across the minimum and maximum values. We expect the points in the normal probability plot to cross the $45^o$ lines and to lay relatively far from the line.
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+x <- runif(1000, -3, 3)
+par(mfrow = c(2, 2))
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+### A Sample from $U(-3,3)$
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+x <- runif(1000, -3, 3)
+par(mfrow = c(2, 2))
+hist(x, nclass = 25, col = 0)
+boxplot(x, boxcol = 2, medcol = 1)
+qqnorm(x)
+abline(0, 1)
+```
+
+
+#  11. The cars data
+
+### Normal probability plot
+
+Normal probability plot for for mpg. 
+
+* $N(0,1)$ ?
+* $N(\mu,\sigma^{2})$ ?
+
+
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+qqnorm(mtcars$mpg)
+```
+
+
+###  The cars data
+
+Normal probability plot for for the z-score  of mpg.
+
+* $N(0,1)$ ?
+
+
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+m.mpg<-mean(mtcars$mpg)
+sd.mpg<-sqrt(var(mtcars$mpg))
+z<-(mtcars$mpg-m.mpg)/sd.mpg
+qqnorm(z)
+abline(0,1,col=2)
+```
+
+# 12. The signer dataset
+
+### Normal probability plot
+
+Normal probability plot for the height.
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+qqmath(~ height,
+		distribution = qnorm,
+		data=singer,
+	       layout=c(1,1), 
+             prepanel = prepanel.qqmathline,
+            panel = function(x, ...) {
+            panel.grid()
+            panel.qqmathline(x, ...)
+            panel.qqmath(x, ...)
+            },
+		aspect=1,
+		xlab = "f-value",
+		ylab="height")
+```
+
+
+### The signer dataset
+
+Normal probability plot for the height (by voice group).
+
+```{r,echo=TRUE,fig.cap="Normal probability plot"}
+qqmath(~ height | voice.part,
+		distribution = qnorm,
+		data=singer,
+	       layout=c(4,2), 
+             prepanel = prepanel.qqmathline,
+            panel = function(x, ...) {
+            panel.grid()
+            panel.qqmathline(x, ...)
+            panel.qqmath(x, ...)
+            },
+		aspect=1,
+		xlab = "f-value",
+		ylab="height")
+```
+
+
+# 13. Vizualizing caterogical data
+
+### The Boston data
+
+In this part , we focus on the Boston dataset which is a part of the MASS R package. The Boston dataset contains information about various attributes for suburbs in Boston, Massachusetts. To access the data you need to install the package. More information can be found in https://www.statology.org/boston-dataset-r/. We use the code below to access the data.
+
+
+```{r,echo=TRUE}
+library(MASS)
+data(Boston)
+names(Boston)
+```
+
+
+
+### Categorical data
+
+The variable <tt>crim</tt> is a numerical variable that give information about the  per capita crime rate by town. We define a new categorical variable <tt>crim_cat</tt> by Re-codeing the variable <tt>crim</tt> into three categories:
+
+crim <5: Low.
+crim 5-15: Medium.
+crim >15: High.
+
+```{r,echo=TRUE}
+Boston3=Boston %>% 
+  mutate(crim_cat=cut(crim,
+             breaks = c(0, 5, 15, Inf),
+             labels = c("Low",
+                        "Medium",
+                        "High")))
+table(Boston3$crim_cat)
+```
+
+
+### Density plot
+
+The variable <tt>age</tt> is the proportion of owner-occupied units built prior to 1940. Similar to Section XX, we can vizualize the distribution of <tt>age</tt> across the categories of <tt>crim_cat</tt>.
+
+```{r,echo=TRUE}
+library(ggridges)
+ggplot(Boston3, aes(x=age,y=crim_cat,fill = crim_cat)) +
+  geom_density_ridges() +
+  theme_ridges() + 
+  theme(legend.position = "none")
+
+```
+
+### Pie chart for categorical data
+
+```{r,echo=TRUE}
+counttab=as.data.frame(table(Boston3$crim_cat))
+colnames(counttab)=c("Category", "Freq")
+counttab
+```
+
+```{r,echo=TRUE}
+plot1=ggplot(counttab, aes(x="", y=Freq, fill=Category)) +
+  geom_bar(stat="identity", width=1, color="black") +
+  coord_polar("y", start=0)+theme_void()
+
+plot1
+```
+
+### Adding numerical information to the plot
+
+```{r,echo=TRUE}
+counttab=as.data.frame(table(Boston3$crim_cat))
+colnames(counttab)=c("Category", "Freq")
+plot2=ggplot(counttab, aes(x="", y=Freq, fill=Category)) +
+  geom_bar(stat="identity", width=1, color="black") +
+  coord_polar("y", start=0)+theme_void()+
+  geom_text(aes(label = Freq),
+            position = position_stack(vjust = 0.5))
+plot2
+```
+
+
+
+
+### Barplot
+```{r,echo=TRUE}
+plot31=ggplot(counttab, aes(x=Category, y=Freq, fill=Category)) + 
+  geom_bar(stat = "identity", color="black")+
+  theme_void()
+
+plot32=ggplot(counttab, aes(x=Category, y=Freq, fill=Category)) + 
+  geom_bar(stat = "identity", color="black")+
+  theme_void()+ 
+  geom_text(aes(label = Freq),vjust=-1)
+
+library(gridExtra)
+grid.arrange(plot31, plot32, ncol=2)
+```
+
+
+### Adding numerical information to the plot
+
+```{r,echo=TRUE}
+counttab1=as.data.frame(table(Boston3$crim_cat,Boston3$chas))
+colnames(counttab1)=c("Category","Chas1", "Freq")
+counttab1
+plot31a=ggplot(counttab1, aes(x=Category, y=Freq, fill=Category)) + 
+   geom_bar(stat = "identity", color="black")+
+   geom_text(aes(label = Freq),vjust=-1)+
+   facet_wrap(~as.factor(Chas1),labeller = as_labeller(c("1" = "Chas=1", "0" = "Chas=0")))+
+   theme_void()
+plot31a
+```
+
+

@@ -1,0 +1,508 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat" 
+  topic: <font size = "10" > **Introduction to Visualization using <tt>ggplot2</tt> in R**</font>
+  author: "Ziv Shkedy et al"
+  date: "07-05-2025"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+library(TeachingDemos)
+```
+
+
+# The wind speed in the airquality dataset
+
+The <tt>airquality</tt> dataset gives information about 153 daily air quality measurements in New York, May to September 1973. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(airquality)
+head(airquality)
+```
+The variable <tt>Wind</tt> is the average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport.\newline
+The mean wind speed is $\hat{\mu}=\bar{x}=9.95$ and the sample standard deviation is $\hat{\sigma}=s=3.52$. This sample mean is a point estimate of
+the population mean. If a different random sample of 153 days were taken the new sample mean would likely be different as a result of sampling variation. Note that while estimates
+generally vary from one sample to another, the population mean is a fixed value.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+wind<-airquality$Wind
+mean(wind)
+sd(wind)
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of wind speed."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density of wind speed alpha = 0.2."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density of wind speed alpha = 0.5."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.5, fill = "orange")+
+  ylab("Density")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of wind speed."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of wind speed with data points."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = 0.5)+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of wind speed with data points $\alpha = 0.1$."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = 0.1)+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of wind speed with data points theme black and white."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = 0.5)+
+  xlab("") +
+  theme_bw()
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of wind speed."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_violin(fill = "lightblue")+
+  xlab("")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of wind speed with data points."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = 0.5)+
+  xlab("")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of wind speed with data points changing in the points."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = Wind), color = "red", size = 1.5, alpha = 0.8)+
+  xlab("")
+```
+
+
+# The NHANES dataset
+
+The NHANES dataset consists of data from the US National Health and Nutrition Examination Study. Information about 76 variables is available for 10000 subjects included in the study. 
+
+## The BMI variable
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+names(NHANES)
+bmi<-na.omit(NHANES$BMI)
+length(bmi)
+mean(bmi)
+var(bmi)
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of BMI."}
+ggplot(NHANES, aes(x = BMI)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of BMI changing colors."}
+ggplot(NHANES, aes(x = BMI)) +
+  geom_histogram(fill = "green", color = "red")+
+  ylab("Frequency")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density plot of BMI."}
+ggplot(NHANES, aes(x = BMI)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of BMI."}
+ggplot(NHANES, aes(x = "", y = BMI)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of BMI with data points."}
+ggplot(NHANES, aes(x = "", y = BMI)) +
+  geom_boxplot(fill = "skyblue", color = "black") +
+  geom_jitter(aes(x = "", y = BMI), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of BMI with data points with mean."}
+ggplot(NHANES, aes(x = "", y = BMI)) +  
+  geom_boxplot(fill = "skyblue", color = "black") +  
+  geom_jitter(aes(x = "", y = BMI), color = "black", size = 0.1, alpha = 0.5) +  
+  stat_summary(fun = mean, size = 0.5, color = "red") +  
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of BMI with data points with mean changing theme."}
+ggplot(NHANES, aes(x = "", y = BMI)) +  
+  geom_boxplot(fill = "skyblue", color = "black") +  
+  geom_jitter(aes(x = "", y = BMI), color = "black", size = 0.1, alpha = 0.5) +  
+  stat_summary(fun = mean, size = 0.5, color = "red") +  
+  xlab("") + 
+  theme_bw()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of BMI."}
+ggplot(NHANES, aes(x = "", y = BMI)) +
+  geom_violin(fill = "lightblue")+
+  xlab("")
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of BMI with mean and SD."}
+# Calculate mean and standard deviation
+NHANES_summary <- NHANES %>%
+  summarize(mean_BMI = mean(BMI, na.rm = TRUE),
+            sd_BMI = sd(BMI, na.rm = TRUE))
+
+# Plot with mean and +/- SD
+ggplot(NHANES, aes(x = "", y = BMI)) +
+  geom_violin(fill = "lightblue") +
+  stat_summary(fun = mean,  size = 0.5, color = "red") +
+  geom_errorbar(aes(ymin = NHANES_summary$mean_BMI - NHANES_summary$sd_BMI,
+                    ymax = NHANES_summary$mean_BMI + NHANES_summary$sd_BMI),
+                width = 0.2, color = "blue") +
+  xlab("") +
+  ylab("BMI")
+```
+
+## The Number of sleep hours per night variable
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+sleep<-na.omit(NHANES$SleepHrsNight)
+length(sleep)
+mean(sleep)
+var(sleep)
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of sleep hours per night."}
+ggplot(NHANES, aes(x = SleepHrsNight)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  xlab("Sleep hours per night")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of sleep hours per night modified binwidth."}
+ggplot(NHANES, aes(x = SleepHrsNight)) +  
+  geom_histogram(fill = "skyblue", color = "black", binwidth = 1) + 
+  ylab("Frequency")+
+  xlab("Sleep hours per night")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of sleep hours per night with mean."}
+# Calculate the mean sleep hours per night
+mean_sleep <- NHANES %>%
+  summarize(mean_SleepHrsNight = mean(SleepHrsNight, na.rm = TRUE)) %>%
+  pull(mean_SleepHrsNight)
+
+# Plot with histogram, mean line, and mean text annotation
+
+ggplot(NHANES, aes(x = SleepHrsNight)) +  
+  geom_histogram(fill = "skyblue", color = "black", binwidth = 1) +  # Adjust binwidth if necessary
+  ylab("Frequency") +  
+  xlab("Sleep hours per night") +
+  geom_vline(aes(xintercept = mean_sleep), color = "red", linetype = "dashed", size = 1) +
+  annotate("text", x = mean_sleep, y = max(table(NHANES$SleepHrsNight)), 
+           label = paste("Mean:", round(mean_sleep, 2)), color = "red", vjust = -1)
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density of number of sleep hours per night."}
+ggplot(NHANES, aes(x = SleepHrsNight)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")+
+  xlab("Sleep hours per night")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of number of sleep hours per night."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  ylab("Sleep hours per night")+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of number of sleep hours per night with data points."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = SleepHrsNight), color = "black", size = 0.1, alpha = 0.5)+
+  ylab("Sleep hours per night")+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of number of sleep hours per night."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +
+  geom_violin(fill = "lightblue")+
+  xlab("")+
+  ylab("Sleep hours per night")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of number of sleep hours per night with data points."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = SleepHrsNight), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")+
+  ylab("Sleep hours per night")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin and box plots of number of sleep hours per night with data points."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +  
+  geom_violin(fill = "lightblue") +  
+  geom_jitter(aes(x = "", y = SleepHrsNight), color = "black", size = 0.1, alpha = 0.5) +  
+  stat_summary(fun = mean, size = 0.5, color = "red") +
+  geom_boxplot(fill = "yellow", color = "black", alpha = 0.2) +
+  xlab("") +  
+  ylab("Sleep hours per night")
+```
+
+
+
+## The total cholestrol level
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+names(NHANES)
+totchol<-na.omit(NHANES$TotChol)
+length(totchol)
+mean(totchol)
+sqrt(var(totchol))
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of the total cholestrol level."}
+ggplot(NHANES, aes(x = TotChol)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  xlab("The total cholesterol level")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of the total cholestrol level with mean and SD."}
+# calculate mean and SD of TotChol
+TotChol_summary <- NHANES %>%
+  summarize(mean_TotChol = mean(TotChol, na.rm = TRUE),
+            sd_TotChol = sd(TotChol, na.rm = TRUE))
+
+ggplot(NHANES, aes(x = TotChol)) +
+  geom_histogram(fill = "skyblue", color = "black") +  
+  geom_vline(aes(xintercept = TotChol_summary$mean_TotChol), color = "red", linetype = "solid", size = 1) +  # Add mean line
+  geom_vline(aes(xintercept = (TotChol_summary$mean_TotChol - TotChol_summary$sd_TotChol)), color = "red", linetype = "dashed", size = 1) +  # Add SD lines
+  geom_vline(aes(xintercept = (TotChol_summary$mean_TotChol + TotChol_summary$sd_TotChol)), color = "red", linetype = "dashed", size = 1) +
+  ylab("Frequency") +  
+  xlab("The total cholesterol level")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density of the total cholesterol level."}
+ggplot(NHANES, aes(x = TotChol)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")+
+  xlab("The total cholesterol level")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of the total cholesterol level."}
+ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  ylab("The total cholesterol level")+
+  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of the total cholesterol level changing colors."}
+ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_boxplot(fill = "red", color = "blue")+
+  ylab("The total cholesterol level")+
+  xlab("")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of the total cholesterol level with data points."}
+ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_boxplot(fill = "red", color = "blue")+
+  ylab("The total cholesterol level")+
+  geom_jitter(aes(x = "", y = TotChol), color = "green", size = 0.1, alpha = 0.5)+
+  xlab("")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of the total cholesterol level."}
+ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_violin(fill = "lightblue")+
+  xlab("")+
+  ylab("The total cholesterol level")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of the total cholesterol level changing theme."}
+ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = TotChol), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")+
+  ylab("The total cholesterol level") +
+  theme_minimal()
+```
+
