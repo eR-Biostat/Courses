@@ -1,0 +1,211 @@
+---
+title: "Exploratory analysis of the Old Faithful dataset"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+subtitle: Ziv Shkedy (October, 2021)
+layout: page
+toc: yes
+---
+
+---
+<!-- output: html_document -->
+<!--   use_bookdown: TRUE -->  
+--- 
+
+```{r,echo=FALSE}
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(mvtnorm)
+```
+
+\newpage
+
+
+# Introduction
+
+Old Faithful is a geyser that is found in Yellowstone National Park, in Wyoming. It is one of the most famous attractions at Yellowstone National Park. Old Faithful is unique because of how long and how often it erupts. Our aim is to explore the time between eruptions and the duration of the eruption. For the analysis we use basic graphical R functions and functions to calculate descriptive statistics for the data.
+
+
+# The data
+
+Data recorded from 1990 measured the time between eruptions and the duration of the eruption, both taken in minutes. This data set was based on 272 observations of Old Faithful's eruptions and consists of 2 varuables: eruption time in mins and waiting time to next eruption (in mins). Both variables are numeric. 
+
+```{r}
+head(faithful)
+```
+
+
+
+# Analysis of the old faithful data
+
+## Eruption time and waiting time
+
+
+By looking at the scatter plot, we can see a visual representation of the data. 
+
+```{r}
+plot(faithful$eruptions,faithful$waiting)
+```
+
+The information on the scatter plot would lead you to believe that seeing a eruption around 3.0 minutes would be rare. This is because there are two clusters of data, the first cluster is eruptions over 3.5 minutes and the second cluster is below 2.5 minutes. Very few eruptions are between 2.5 and 3.5 minutes so you are most likely to see an eruptions over 3.5 minutes or under 2.5 minutes.\newline
+
+If you are planning on visiting Old Faithful, on average, you are going to wait around 70.9 minutes to see it erupt for about 3.49 minutes. 
+
+
+```{r}
+mean(faithful$eruptions)
+mean(faithful$waiting)
+```
+
+Median eruption and waiting time are equal to:
+
+```{r}
+median(faithful$eruptions)
+median(faithful$waiting)
+```
+
+Based on the data, the longest waiting time is 
+
+```{r}
+max(faithful$waiting)
+```
+
+and the minimum eruption time is 
+
+
+```{r}
+min(faithful$eruptions)
+```
+
+
+Let us look once again in the scatterplot. We can add labels name and title
+
+
+```{r}
+plot(faithful$eruptions,faithful$waiting,
+     xlab="eruptions",ylab="waiting")
+title("The old faithful data")
+```
+
+In the next figure we use different colors for the two clusters.
+
+```{r}
+plot(faithful$eruptions,faithful$waiting,
+     xlab="eruptions",ylab="waiting")
+points(faithful$eruptions[faithful$eruptions>3.2],faithful$waiting[faithful$eruptions>3.2],col=2)
+title("The old faithful data")
+```
+
+
+
+## Distribution of euption time 
+
+The next graphs that are shown give the frequency of eruption time of Old Faithful. Note that the histogram revaels a bi-model distribution with two modes.  
+
+
+```{r}
+par(mfrow=c(1,2))
+hist(faithful$eruptions)
+boxplot(faithful$eruptions)
+```
+
+We can change the color of the figures:
+
+
+```{r}
+par(mfrow=c(1,2))
+hist(faithful$eruptions, col=2)
+boxplot(faithful$eruptions,col=3)
+```
+
+
+## Distribution of euption time in seconds
+
+The eruptions time is given in minutes. We can define a new R object that will give the eruption time in seconds.
+
+```{r}
+eruptions.1<-faithful$eruptions*60
+par(mfrow=c(1,2))
+hist(faithful$eruptions, col=2,main="minutes")
+hist(eruptions.1, col=3,main="seconds")
+```
+
+
+
+## Distribution of waiting time
+
+The histogram for the waiting times, shows a similar pattern. The clusters of high frequencies of wait times mimic a similar pattern as the Frequency of the Eruption Duration, with two clusters of data towards the middle-right and middle-left. There is a dip in wait time frequency between these two clusters.
+
+```{r}
+par(mfrow=c(1,2))
+hist(faithful$waiting)
+boxplot(faithful$waiting)
+```
+
+We can add a title for the figure by
+
+```{r}
+par(mfrow=c(1,2))
+hist(faithful$waiting, main="waiting")
+boxplot(faithful$waiting)
+title("waiting")
+```
+
+## Waiting time by day 
+
+A plot of the eruptions time by day. 
+
+```{r}
+par(mfrow=c(1,1))
+plot(faithful$waiting)
+title("waiting")
+```
+
+We define a new object, the mean  eruption time, and add to the plot (in red)
+
+```{r}
+mw<-mean(faithful$waiting)
+par(mfrow=c(1,1))
+plot(faithful$waiting,type="l",xlab="Day")
+abline(mw,0,col=2)
+title("waiting")
+```
+
+
+# Discussion
+
+In this dosument we use basic R functions for graphical dispaly:
+
+  * plot().
+  * hist().
+  * boxplot().
+  * points()
+  * title()
+  * abline()
+  
+In addtion we use several functions in R to produce descriptive statistics of the data:
+
+
+  * mean().
+  * median().
+  * min() and max().
+  * var().
+  
+  
+# Summary
+
+## What did we study in the practical session ?
+
+  * How to define new variables (=R objects).
+  * How to produce a basic plot in R.
+  * How to calculate summary statistics in R.
+  * How to add labs and title for the basic plot.
+  * How to create a PDF document for the output using R markdown (including sections and subsections).
+
+## What to do next ?
+
+Choose any dataset that you want and produce a similar document.
+
