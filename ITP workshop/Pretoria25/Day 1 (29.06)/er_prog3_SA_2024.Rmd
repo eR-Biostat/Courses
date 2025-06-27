@@ -1,0 +1,209 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat" 
+  topic: <font size = "10" > **Simple linear regression using R **</font>
+  author: "Ziv Shkedy et al"
+  date: "15-12-2023"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+
+```
+
+# 1. The data
+
+
+## The <tt>mtcars</tt> dataset
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(mtcars)
+head(mtcars)
+```
+
+## Miles/(US) gallon vs. the car's Weight
+
+### Scaterplot
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="mog vs. weight"}
+#plot(mtcars$wt,mtcars$mpg, ylab = "mpg", xlab = "weight (1000 lbs)")
+qplot(wt,mpg,data = mtcars)
+```
+
+### Correlation
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+cor(mtcars$wt,mtcars$mpg)
+```
+
+
+# 2. Simple linear regression using R
+
+## The <tt>lm()</tt> R function
+
+For the <tt>mtcars</tt> dataset, we consider the model
+
+$$mpg_{i}=\beta_{0}+\beta_{1} \times weight_{i}+\varepsilon_{i}$$.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+fit.lm<-lm(mtcars$mpg~mtcars$wt)
+summary(fit.lm)
+```
+
+The parametr estimates for the intercept and slope are equal. respectivly, to $\hat{\beta}_{0}=37.28$ and $\hat{\beta}_{1}=-5.34$ 
+
+# 3. Data and estimated model
+
+Figure 2 shows the data (mpg vs. weight) and fitted regression line, $\hat{mpg}_{i}=37.28-5.34 \times wt_{i}$
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Data and fitted model"}
+qplot(wt,mpg,data = mtcars)+
+geom_smooth(method = "lm",se = F)
+```
+
+
+# 4. Model diagnostic
+
+
+
+## The <tt>mtcars</tt> dataset
+
+For the <tt>mtcars</tt> data, the residuals from the model can be obtained by calling to the object <tt>resid</tt>, Figure 5 shows the diagnostic plots for the regression model. 
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Diagnostic plots for the residuals"}
+fit.lm$resid
+par(mfrow=c(1,2))
+qqnorm(fit.lm$resid)
+abline(0,1)
+plot(fit.lm$fit,fit.lm$resid)
+abline(0,0,col=2)
+```
+
+
+
+
