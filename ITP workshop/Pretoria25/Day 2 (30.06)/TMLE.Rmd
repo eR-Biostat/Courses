@@ -1,0 +1,162 @@
+---
+title: "TMLE"
+output: html_document
+date: "2023-11-27"
+---
+## Page: https://www.khstats.com/blog/tmle/tutorial
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# install.packages("gt")
+# Q
+install.packages("earth")
+# install.packages("ranger")
+library(tidyverse) # for data manipulation
+library(gt) # for table printing
+library(SuperLearner) # for ensemble learning
+library(earth)
+library(ranger)
+set.seed(7) # for reproducible results
+```
+## Generate the Data
+## W1, W2 
+```{r}
+generate_data <- function(n){ 
+    W1 <- rbinom(n, size=1, prob=0.2) # binary confounder
+    W2 <- rbinom(n, size=1, prob=0.5) # binary confounder
+    W3 <- round(runif(n, min=2, max=7)) # continuous confounder
+    W4 <- round(runif(n, min=0, max=4)) # continuous confounder
+    A  <- rbinom(n, size=1, prob= plogis(-0.2 + 0.2*W2 + log(0.1*W3) + 0.3*W4 + 0.2*W1*W4)) # binary treatment depends on confounders
+    Y <- rbinom(n, size=1, prob= plogis(-1 + A - 0.1*W1 + 0.2*W2 + 0.3*W3 - 0.1*W4 + sin(0.1*W2*W4))) # binary outcome depends on confounders
+    return(tibble(Y, W1, W2, W3, W4, A))
+}
+
+n <- 1000
+dat_obs <- generate_data(n) # generate a data set with n observations
+
+dat_obs %>%
+  head() %>%
+  gt() %>%
+  tab_header("Simulated data set.")
+```
+```{r}
+sl_libs <- c('SL.glmnet', 'SL.ranger', 'SL.earth', 'SL.glm') # a library of machine learning algorithms (penalized regression, random forests, and multivariate adaptive regression splines)
+```
+
+Fit a super-learner:  Is a linear combination of Learners, with estimated weights.
+```{r}
+Y <- dat_obs$Y
+W_A <- dat_obs %>% select(-Y) # remove the outcome to make a matrix of predictors (A, W1, W2, W3, W4) for SuperLearner
+Q <- SuperLearner(Y = Y, # Y is the outcome vector
+        X = W_A, # W_A is the matrix of W1, W2, W3, W4, and A
+        family=binomial(), # specify we have a binary outcome
+        SL.library = sl_libs) # specify our superlearner library of LASSO, RF (ranger), and MARS (earth)
+
+```
+Form the predictions for 3 cases( A, A=0, A=1) 
+```{r}
+Q_A <- as.vector(predict(Q)$pred) # obtain predictions for everyone using the treatment they actually received
+W_A1 <- W_A %>% mutate(A = 1)  # data set where everyone received treatment
+Q_1 <- as.vector(predict(Q, newdata = W_A1)$pred) # predict on that everyone-exposed data set
+W_A0 <- W_A %>% mutate(A = 0) # data set where no one received treatment, everyone is control
+Q_0 <- as.vector(predict(Q, newdata = W_A0)$pred)
+```
+MAKE A 3 COLUMN DATASET WITH THE PREDICTIONS
+```{r}
+dat_tmle <- tibble(Y = dat_obs$Y, A = dat_obs$A, Q_A, Q_0, Q_1)
+dat_tmle %>%
+  head() %>%
+  gt() %>%
+  tab_header("TMLE Algorithm after Step 1")
+```
+
+## Straight prediction
+```{r}
+ate_gcomp <- mean(dat_tmle$Q_1 - dat_tmle$Q_0)
+ate_gcomp
+```
+
+##   Estimate the Probability of Treatment
+```{r}
+A <- dat_obs$A
+W <- dat_obs %>% select(-Y, -A) # matrix of predictors that only contains the confounders W1, W2, W3, and W4
+g <- SuperLearner(Y = A, # outcome is the A (treatment) vector
+        X = W, # W is a matrix of predictors
+        family=binomial(), # treatment is a binomial outcome
+        SL.library=sl_libs) # using same candidate learners 
+## could use different learners
+```
+
+## The inverse probability of receiving treatment.
+```{r}
+g_w <- as.vector(predict(g)$pred) # Pr(A=1|W)
+H_1 <- 1/g_w
+
+## The negative inverse probability of not receiving treatment.
+
+H_0 <- -1/(1-g_w) # Pr(A=0|W) is 1-Pr(A=1|W)
+
+```
+If the observation was treated, the inverse probability of receiving treatment, and if they were not treated, the negative inverse probability of not receiving treatment. 
+
+```{r}
+dat_tmle <- # add clever covariate data to dat_tmle
+  dat_tmle %>%
+  bind_cols(
+         H_1 = H_1,
+         H_0 = H_0) %>%
+  mutate(H_A=case_when(A==1 ~ H_1,# if A is 1 (treated), assign H_1
+         A == 0 ~ H_0))  # if A is 0 (not treated), assign H_0
+
+dat_tmle %>% head() %>% gt() %>% tab_header("TMLE Algorithm after Step 2") %>% fmt_number(everything(), decimals = 2)
+```
+```{r}
+glm_fit <- glm(Y ~ -1 + offset(qlogis(Q_A)) + H_A, data=dat_tmle, family=binomial)
+eps <- coef(glm_fit)
+
+```
+
+```{r}
+
+H_A <- dat_tmle$H_A # for cleaner code in Q_A_update
+Q_A_update <- plogis(qlogis(Q_A) + eps*H_A)
+Q_1_update <- plogis(qlogis(Q_1) + eps*H_1)
+Q_0_update <- plogis(qlogis(Q_0) + eps*H_0)
+```
+
+```{r}
+tmle_ate <- mean(Q_1_update - Q_0_update)
+tmle_ate
+
+```
+
+
+```{r}
+infl_fn <- (Y - Q_A_update) * H_A + Q_1_update - Q_0_update - tmle_ate
+
+tmle_se <- sqrt(var(infl_fn)/nrow(dat_obs))
+```
+
+
+```{r}
+conf_low <- tmle_ate - 1.96*tmle_se
+conf_high <- tmle_ate + 1.96*tmle_se
+pval <- 2 * (1 - pnorm(abs(tmle_ate / tmle_se)))
+
+tibble(tmle_ate, conf_low, conf_high) %>% head() %>% gt() %>% tab_header("TMLE Estimate of the ATE") %>% fmt_number(everything(), decimals = 3)
+
+```
+```{r}
+install.packages("tmle")
+tmle_fit <-
+  tmle::tmle(Y = Y, # outcome vector
+           A = A, # treatment vector
+           W = W, # matrix of confounders W1, W2, W3, W4
+           Q.SL.library = sl_libs[1:3], # superlearning libraries from earlier for outcome regression Q(A,W)
+           g.SL.library = sl_libs) # superlearning libraries from earlier for treatment regression g(W)
+
+tmle_fit
+```
+
