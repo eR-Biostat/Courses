@@ -1,0 +1,1089 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat" 
+  topic: <font size = "10" > **Foundations for inference using R**</font>
+  author: "Ziv Shkedy and Thi Huyen Nguyen based on **Chapter 4** in the  book of Julie Vu and Dave Harrington *Introductory Statistics for the
+Life and Biomedical Sciences* (https://www.openintro.org/book/biostat/)"
+  date: "26-03-2025"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+library(TeachingDemos)
+library(gridExtra)
+```
+
+# 1. Variability in estimates
+
+## 1.2 A point estimate for the population parameter
+
+A natural way to estimate features of the population, such as the population mean weight,is to use the corresponding summary statistic calculated from the sample. For example, the sample mean $\bar{x}$ is a point parameter estimate for the population (unknown) mean $\mu$ and the sample variance $s^{2}$ is a point parameter estimate for the population variance $\sigma^{2}$.
+
+## 1.3 Example: the wind speed in the airquality dataset
+
+### Data and point estimates
+
+The <tt>airquality</tt> dataset gives information about 153 daily air quality measurements in New York, May to September 1973.  
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(airquality)
+```
+
+The first 6 lines of the dataset are shown below.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(airquality)
+head(airquality)
+```
+
+The variable <tt>Wind</tt> is the average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport.\newline
+The mean wind speed is $\hat{\mu}=\bar{x}=9.95$ and the sample standard deviation is $\hat{\sigma}=s=3.52$. This sample mean is a point estimate of
+the population mean. If a different random sample of 153 days were taken the new sample mean would likely be different as a result of sampling variation. Note that while estimates generally vary from one sample to another, the population mean ($\mu$) and variance $(\sigma^{2})$ are fixed values (the parameters in the population).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+wind<-airquality$Wind
+mean(wind)
+sd(wind)
+```
+### Visualization
+
+Figure 1 and 2 show a histogram and boxplot of the data. Both Figures indicate a slightly skewed distribution to the right.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density plot of wind speed."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")
+```
+
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of wind speed."}
+ggplot(airquality, aes(x = "", y = Wind)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = 0.5)+
+  xlab("")
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of wind speed."}
+#ggplot(airquality, aes(x = "", y = Wind)) +
+#  geom_violin(fill = "lightblue")+
+#  xlab("")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot of wind speed."}
+#ggplot(airquality, aes(x = "", y = Wind)) +
+#  geom_violin(fill = "lightblue")+
+#  geom_jitter(aes(x = "", y = Wind), color = "black", size = 1, alpha = #0.5)+
+#  xlab("")
+```
+
+## 1.4 The variability of the sample mean
+
+Point estimates become more accurate with increasing sample size. Figure 3 shows the sample
+mean weight calculated for random samples drawn from $N(0,1)$, where sample size increases by 1 for each draw until sample size equals 500. The red dashed horizontal line in the figure is drawn at zero, the population mean. Note how a sample size around 50 may produce a sample mean that is relativly higher or lower than the population mean. As sample size increases, the fluctuations around the
+population mean decrease; in other words, as sample size increases, the sample mean becomes less variable and provides a more reliable estimate of the population mean.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+ni<-seq(from=1,to=1000,by=1)
+m.x<-c(1:length(ni))
+for(i in 1:length(ni))
+{
+xsample<-rnorm(ni[i],0,1)
+m.x[i]<-mean(xsample)
+}
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Sample means of random samples from $N(0,1)$."}
+plot(ni,m.x,type="l")
+abline(0,0,col=2)
+```
+
+## 1.5 The sampling distribution for the mean
+
+The sample mean of the wind speed is 9.95 pmh. Another random sample of
+153 days might produce a different value of $\bar{x}$. Repeated random sampling could result in additional different values. Each sample
+mean $\bar{x}$ can be thought of as a single observation from a random variable X. The distribution of
+X is called the sampling distribution of the sample mean, and has its own mean and standard deviation. The concept of a sampling distribution
+can be illustrated by taking repeated random samples from $N(0,1)$. Figure 4 shows a histogram
+of sample means from 1,000 random samples of size 50 from $N(0,1)$. The histogram provides an
+approximation of the theoretical sampling distribution of $\bar{X}$ for samples of size 50.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+ni<-50
+m.x<-c(1:1000)
+for(i in 1:1000)
+{
+xsample<-rnorm(ni,0,1)
+m.x[i]<-mean(xsample)
+}
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="A histogram of 1000 sample means from $N(0,1)$, n = 50."}
+par(mfrow=c(1,1))
+#plot(c(1:1000),m.x,type="l",xlab="sample",ylab="sample mean")
+#abline(0,0,col=2)
+hist(m.x,nclass=50,main=" ",xlab="sample mean")
+```
+
+## 1.6 The Central Limit Theorem
+
+Since the complete sampling distribution consists of means for all possible samples of size 50,
+drawing a much larger number of samples provides a more accurate view of the distribution; the
+left panel of Figure 5 shows the distribution calculated from 100,000 sample means.
+A normal probability plot of these sample means is shown in the right panel of Figure 5. All
+of the points closely fall around a straight line, implying that the distribution of sample means is
+nearly normal. This result follows from the Central Limit Theorem.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+ni<-50
+m.x<-c(1:100000)
+for(i in 1:100000)
+{
+xsample<-rnorm(ni,0,1)
+m.x[i]<-mean(xsample)
+}
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The central limit theorem. A histogram of 100000 sample means from $N(0,1)$ (left panel) and a normal probability plot (right panel), n = 50."}
+par(mfrow=c(1,2))
+hist(m.x,nclass=50,main=" ",xlab="sample mean")
+qqnorm(m.x)
+```
+
+The sampling distribution for the mean is unimodal and symmetric around the mean of the
+random variable $\bar{X}$. Statistical theory can be used to show that the mean of the sampling distribution
+for $\bar{X}$ is exactly equal to the population mean $\mu$.
+However, in almost any study, conclusions about a population parameter must be drawn from
+the data collected from a single sample. The sampling distribution of $\bar{X}$ is a theoretical concept,
+since obtaining repeated samples by conducting a study many times is not possible. In other words,
+it is not feasible to calculate the population mean $\mu$ by finding the mean of the sampling distribution
+for $\bar{X}$.
+
+# 2. Standard error of the mean
+
+## 2.1 Estimation of the variability of $\bar{X}$
+
+The standard error (SE) of the sample mean measures the sample-to-sample variability of $\bar{X}$ , the extent to which values of the repeated samplemeans oscillate around the populationmean. The error
+theoretical standard error of the sample mean is calculated by dividing the population standard
+deviation ($\sigma_{X}$) by the square root of the sample size $n$. Since the population standard deviation is typically unknown, the sample standard deviation $s$ is often used in the definition of a standard
+error; $s$ is a reasonably good estimate of $\sigma_{X}$. If $\bar{X}$ represents the sample mean weight, its standard
+error (denoted by SE) is given by
+
+$$SE_{\bar{X}}=\frac{s}{\sqrt{n}}$$.
+
+This estimate tends to be sufficiently good when the sample size is at least 30 and the population
+distribution is not strongly skewed. In the case of skewed distributions, a larger sample size is
+necessary.
+
+## 2.2 Example: $SE_(\bar{X})$ for samples from $N(0,1)$
+
+
+Larger sample sizes produce sampling distributions that have lower
+variability. Increasing the sample size causes the distribution of $\bar{X}$ to be clustered more tightly
+around the population mean $\mu$, allowing for more accurate estimates of $\mu$ from a single sample, as
+shown in Figure 6 that presents the histograms of 1000 samples of size 50 (upper panel) and 100 (lower panel) taken from $N(0,1)$.
+Note that when sample size is large, it is more likely that any particular sample will have a mean close to the population mean
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+ni1<-50
+ni2<-100
+m.x1<-m.x2<-c(1:100000)
+for(i in 1:100000)
+{
+xsample1<-rnorm(ni1,0,1)
+xsample2<-rnorm(ni2,0,1)
+m.x1[i]<-mean(xsample1)
+m.x2[i]<-mean(xsample2)
+}
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histograms of 100000 sample means from $N(0,1)$, n = 50,100."}
+par(mfrow=c(2,1))
+hist(m.x1,nclass=50,main="n=50",xlab="sample mean",xlim=c(-0.7,0.7))
+hist(m.x2,nclass=50,main="n=100",xlab="sample mean",xlim=c(-0.7,0.7))
+```
+
+
+# 3. Confidence intervals
+
+## 3.1 Interval estimates for a population parameter
+
+While a point estimate consists of a single value, an interval estimate provides a plausible
+range of values for a parameter. When estimating a population mean $\mu$, a confidence interval for $\mu$  has the general form
+$$(\bar{x} -m; \bar{x} +m) = \bar{x} \pm m , $$
+where $m$ is the margin of error. Intervals that have this form are called two-sided confidence intervals because they provide both lower and upper bounds, $\bar{x} - m$  and $\bar{x} +m$ , respectively. 
+
+## 3.2 Confidence interval based on a Normal distribution
+
+The standard error of the sample mean is the standard deviation of its distribution; additionally,
+the distribution of sample means is nearly normal and centered at $\mu$. Under the normal model,
+the sample mean $\bar{x}$ will be within 1.96 standard errors (i.e., standard deviations) of the population
+mean $\mu$ approximately 95% of the time. Thus, if an interval is constructed that spans 1.96 standard
+errors from the point estimate in either direction, a data analyst can be 95% confident that
+the interval
+$$\bar{x} \pm 1.96 \times SE$$
+contains the population mean. As shown in Figure 7, $-1.96$ and $1.96$ are the $2.5\%$ and $97.5\%$ quantiles of the standard normal distribution $N(0,1)$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The $2.5$ ($Z_{0.025}$) and $97.5$ ($Z_{0.975}$) quantiles of $N(0,1)$."}
+x<-seq(from=-3,to=3,length=1000)
+dx<-dnorm(x,0,1)
+qx<-qnorm(0.025,0,1)
+qx
+plot(x,dx,type="l",ylab="f(x)")
+lines(c(qx,qx),c(0,0.35))
+lines(-c(qx,qx),c(0,0.35))
+text(-1.96,0.375,"-1.96")
+text(1.96,0.375,"1.96")
+text(-2.5,0.005,"0.025")
+text(2.5,0.005,"0.025")
+text(0,0.005,"0.95")
+```
+
+## 3.3 Coverage rate
+
+The value $95\%$ is an approximation, accurate when the sampling
+distribution for the sample mean is close to a normal distribution. This assumption holds when
+the sample size is sufficiently large. The phrase "$95\%$ confident" has a subtle interpretation: if many samples were drawn from a
+population, and a confidence interval is calculated from each one using Equation 4.2, about $95\%$
+of those intervals would contain the population mean$\mu$. Figure 8 illustrates this process with 100 confidence intervals obtained for 100
+samples of size $n=25$ taken from $N(0,1)$. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+ni1<-25
+B<-100
+m.x1<-sd.x<-UL<-LL<-SE<-c(1:B)
+for(i in 1:B)
+{
+xsample<-rnorm(ni1,0,1)
+m.x1[i]<-mean(xsample)
+sd.x[i]<-sqrt(var(xsample))
+SE[i]<-sd.x[i]/sqrt(ni1)
+LL[i]<-m.x1[i]-1.96*SE[i]
+UL[i]<-m.x1[i]+1.96*SE[i]
+}
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap=" Confidence intervals for 100 samples (n=25) from $N(0,1)$."}
+plot(c(1:B),m.x1,ylim=c(-1,1),xlab="Sample",ylab="95% C.I")
+abline(0,0,col=2)
+for(i in 1:B)
+{
+lines(c(i,i),c(LL[i],UL[i]))  
+}  
+```
+
+## 3.4 Example: a $95\%$ confidence interval for the wind speed
+
+### Calculation of the lower and upper limits
+
+Figure 9 shows the histogram for the average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport in 1973.\newline
+The mean wind speed is $\hat{\mu}=\bar{x}=9.95$ and the sample standard deviation is $\hat{\sigma}=s=3.52$.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The $2.5$ and $97.5$ quantiles in $N(0,1)$."}
+wind<-airquality$Wind
+M.wind<-mean(wind)
+SD.wind<-sqrt(var(wind))
+M.wind
+SD.wind
+```
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of wind speed and confidence interval for the population mean."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")
+```
+
+The standard error for the sample mean is equal to 0.2848,
+
+$$\frac{3.52}{\sqrt{153}}=0.2848$$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+n<-length(wind)
+SE<-SD.wind/sqrt(n)
+SE
+```
+
+A $95\%$ confidence interval for the wind speed is given by
+
+$$\bar{x}_{wind} \pm 1.96 \times SE = 9.95 \pm 1.96 \times 0.2848$$,
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+LL<-M.wind-1.96*SE
+UL<-M.wind+1.96*SE
+c(LL,UL)
+```
+
+### Visualization
+
+Let us look at Figure 10 which shows the histogram of the average wind per day and, the sample mean and the upper and lower limits of the $95%$ confidence intervals (red lines) and sample mean (green line). Figure 11 shows the data with the $95\%$ confidence interval.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="A histogram for the wind speed and confidence interval."}
+wind<-airquality$Wind
+M.wind<-mean(wind)
+SD.wind<-sqrt(var(wind))
+M.wind
+SD.wind
+hist(wind,col=0)
+lines(c(LL,LL),c(0,50),col=2,lwd=2)
+lines(c(UL,UL),c(0,50),col=2,lwd=2)
+lines(c(M.wind,M.wind),c(0,50),col=3,lwd=2)
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The daily average wind speed and a confidnce interval for the population mean."}
+wind<-airquality$Wind
+ni<-length(wind)
+M.wind<-mean(wind)
+plot(c(1:ni),wind)
+lines(c(1,ni),c(UL,UL),col=2,lwd=2)
+lines(c(1,ni),c(LL,LL),col=2,lwd=2)
+lines(c(1,ni),c(M.wind,M.wind),col=3,lwd=2)
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Dot plot of wind speed with 95% CI."}
+#ggplot(airquality, aes(x = Wind, y = c(1:length(airquality$Wind)))) +
+#  geom_point(position = position_jitter(width = 0.05), color = "blue") +
+#  ylab("")+
+#  geom_vline(xintercept = LL, color = "red", linetype = "dashed")+
+#  geom_vline(xintercept = UL, color = "red", linetype = "dashed")+
+#  geom_text(aes(x = LL-0.5, y = min(c(1:length(airquality$Wind))-0.5) , #label = "LL"), color = "red")+
+#  geom_text(aes(x = UL+0.5, y = min(c(1:length(airquality$Wind))-0.5) , #label = "UL"), color = "red")
+```
+
+### A $95\%$ confidence interval using the R function <tt>z.test</tt>
+
+The R function <tt>z.test</tt> requires a knowledge about the population variance. Let us assume that the population standard deviation, $\sigma$ is know and is equal to 3.52 ($\sigma=3.52$). \newline  
+
+
+A general call of the function <tt>z.test()</tt> have the form of
+\newline
+
+      <tt>z.test(variable,standard deviation)</tt> 
+
+\newline
+
+For the variable <tt>wind</tt> we have
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(TeachingDemos)
+wind=na.omit(airquality$Wind)
+sigma=3.52
+z.test(wind,sd=sigma)
+```
+
+
+
+## 3.5 Changing the confidence level
+
+Ninety-five percent confidence intervals are the most commonly used interval estimates, but
+intervals with confidence levels other than $95\%$ can also be constructed. The general formula for a
+confidence interval (for the population mean $\mu$) with confidence level of $1-2 \times \alpha$  is given by
+$$\bar{x} \pm z_{\alpha} \times SE $$
+where $z_{\alpha}$ is chosen according to the confidence level. When calculating a 95% confidence level, $z_{\alpha}$
+is 1.96, since, as shown in Figure 12, the area within 1.96 standard deviations of the mean captures 95% of the distribution.
+
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Quantiles for  $N(0,1)$."}
+x<-seq(from=-3,to=3,length=1000)
+dx<-dnorm(x,0,1)
+qx<-qnorm(0.025,0,1)
+plot(x,dx,type="l",ylab="f(x)")
+lines(c(qx,qx),c(0,0.35))
+lines(-c(qx,qx),c(0,0.35))
+text(-1.96,0.375,"-1.96")
+text(1.96,0.375,"1.96")
+text(0,0.005,"0.95")
+```
+
+To construct a $99\%$ confidence interval, $z_{\alpha}$ must be chosen such that 99% of the normal curve
+is captured between $-z_{\alpha}$ and $z_{\alpha}$.In this case, $\alpha=0.005$ so $1-2 \times \alpha=0.99$ and $z_{0.005}=-2.575$ (the red line in Figure 13).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The 0.005 abd 0.995 quantiles of $N(0,1)$ (the red lines)."}
+qx1<-qnorm(0.005,0,1)
+qx1
+plot(x,dx,type="l",ylab="f(x)")
+lines(c(qx,qx),c(0,0.35),lty=2)
+lines(c(qx1,qx1),c(0,0.35),col=2)
+lines(-c(qx,qx),c(0,0.35),lty=2)
+lines(-c(qx1,qx1),c(0,0.35),col=2)
+text(-1.96,0.375,"-1.96")
+text(1.96,0.375,"1.96")
+text(-2.575,0.375,"-2.575")
+text(2.575,0.375,"2.575")
+text(-2.85,0.005,"0.005",cex=0.75,col=2)
+text(2.85,0.005,"0.005",cex=0.75,col=2)
+text(0,0.005,"0.99",cex=0.75,col=2)
+```
+
+
+## 3.6 Example: The NHANES dataset
+
+The NHANES dataset consists of data from the US National Health and Nutrition Examination Study. Information about 76 variables is available for 10000 individuals included in the study. The 10000 indivuduals are **considered as the population**. In this section we focus on the BMI (the R object <tt>BMI</tt>).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+```
+
+### The population parameters
+
+After removing the individuals with missing values for BMI, 9634 individuals will be considered as the **population**. For these individuals, $\mu=26.66$ and $\sigma^{2}=54.41$. These are the parameters of the population.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+#dim(NHANES)
+#names(NHANES)
+bmi<-na.omit(NHANES$BMI)
+length(bmi)
+mean(bmi)
+var(bmi)
+```
+
+
+### Visualization
+
+Figure 14 and 15 show the histogram and violin plot for the BMI in the population. Both figures reveal a long tail in the right side of the distribution.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of BMI."}
+#ggplot(NHANES, aes(x = BMI)) +
+#  geom_histogram(fill = "skyblue", color = "black")+
+#  ylab("Frequency")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density plot for the BMI."}
+ggplot(NHANES, aes(x = BMI)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Violin plot for the BMI."}
+ggplot(NHANES, aes(x = "", y = BMI)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = BMI), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")
+```
+
+### A random sample of size 50 from the data
+
+Out of the population (of 9634 individuals) we draw a random sample of 50 individuals. The sample mean and variance are equal to $\bar{x}=26.768$ and $s^{2}=87.67349$, respectively.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+set.seed(123456)
+x.bmi<-sample(na.omit(NHANES$BMI),size=50,replace=FALSE)
+length(x.bmi)
+mean(x.bmi)
+var(x.bmi)
+```
+
+### Visualization
+
+A histogram and a violin plot for the BMI sample are shown in Figure 16. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram and violin of a random sample for the BMI (n=50)."}
+hist_bmi = ggplot(data.frame(BMI = x.bmi), aes(x = BMI)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  ggtitle("Histogram")
+
+violin_bmi = ggplot(data.frame(BMI = x.bmi), aes(x = "", y = BMI)) +
+  geom_violin(fill = "lightblue")+
+  xlab("")+
+  ggtitle("Violin plot")
+grid.arrange(hist_bmi, violin_bmi, ncol = 2)
+```
+
+
+
+### A $95\%$ C.I for the mean BMI
+
+The standard error of the sample mean is equal to
+
+$$\frac{s}{\sqrt{n}}=\sqrt{\frac{87.67349}{50}}=1.3241.$$
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+n<-length(x.bmi)
+SD.x<-sqrt(var(x.bmi))
+SE<-SD.x/sqrt(n)
+SE
+```
+
+For a $95\%$ confidence level, $\alpha=0.025$ and $Z_{\alpha}=1.96$. The confidence interval is given by 
+
+$$\bar{x} \pm m = \bar{x} \pm 1.96 \times SE.$$
+
+For the BMI sample we get
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+LL<-mean(x.bmi)-1.96*SE
+UL<-mean(x.bmi)+1.96*SE
+c(LL,UL)
+```
+
+This implies that with a confidence of $95\%$ we can conclude that the true mean in the population, $\mu$, is between 24.16 to 29.36. Note that the true mean $\mu=26.78$.
+
+### Visualization
+
+The histogram of the sample with  a $95\%$ confidence interval is shown in Figure 17.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram for the BMI with a 95% confidence interval for the population mean."}
+M.bmi<-mean(x.bmi)
+hist(x.bmi,col=0,xlab="BMI",main="BMI")
+lines(c(LL,LL),c(0,50),col=2,lwd=2)
+lines(c(UL,UL),c(0,50),col=2,lwd=2)
+lines(c(M.bmi,M.bmi),c(0,50),col=3,lwd=2)
+```
+
+# 4. Hypothesis testing
+
+## 4.1 The Formal Approach to Hypothesis Testing
+
+### Formulating null and alternative hypotheses
+
+
+In this section we focus on the wind speed in the <tt>airquality</tt> data. The claim to be tested is that the population mean of the average wind speed is equal to 9 mph. 
+$$ H_{0} : \mu = 9$$.
+This implies that under the null hypothesis, the population mean $\mu=\mu_{0}=9$. In the absence of prior evidence that the wind speed is slower or faster, 
+reasonable to begin with an alternative hypothesis that allows for population n mean under the alternative to be in either direction.
+ $$H_{A} : \mu \ne 9$$.
+ 
+
+### Specifying a significance level, $\alpha$
+
+It is important to specify how rare or unlikely an event must be in order to represent sufficient
+evidence against the null hypothesis. This should be done during the design phase of a study, to
+prevent any bias that could result from defining ’rare’ only after analyzing the results.
+When testing a statistical hypothesis, an investigator specifies a significance level, $\alpha$, that defines
+a ’rare’ event. Typically, $\alpha$ is chosen to be 0:05, though it may be larger or smaller, depending on context.
+An $\alpha$ level of 0:05 implies that an event
+occurring with probability lower than $5\%$ will be considered sufficient evidence against $H_{0}$.
+
+### Calculating the test statistic
+
+Calculating the test statistic $t$ is analogous to standardizing observations with Z-scores. The test statistic quantifies the number of standard deviations between the sample
+mean $\bar{x}$ and the population mean $\mu$. If the population standard deviation is known the test statistic given by
+
+$$t=\frac{\bar{x}-\mu_{0}}{\sigma/\sqrt{n}}. $$
+
+If $\sigma$ is unknown, which is typicaly the case, we use the parameter estimate from the sample, $s$,
+
+$$t=\frac{\bar{x}-\mu_{0}}{s/ \sqrt{n}}. $$
+
+### Calculating the $p$-value
+The p-value is the probability of observing a sample mean as or more extreme than the observed
+value, under the assumption that the null hypothesis is true. In samples of size 40 or more, the
+t-statistic will have a standard normal distribution $N(0,1)$ unless the data are strongly skewed or extreme
+outliers are present. 
+
+  * For two-sided tests, with $H_{A} : \mu \ne \mu_{0}$, the p-value is the sum of the area of the two tails defined
+by the t-statistic: $$ 2 \times P(Z > |t|) . $$
+
+  * For one-sided tests with $H_{A}: \mu > \mu_{0}$ , the $p$-value is given by $P (Z > t)$. For $H_{A}:\mu < \mu_{0}$ , the $p$-value is the area to the left of the t-statistic, $P(Z \le t)$.
+
+
+### Drawing a conclusion
+
+For a significant level $\alpha$,
+
+ * If $p-\mbox{value} > \alpha$, the observed sample mean is not extreme enough to warrant rejecting H0; more formally
+stated, there is insufficient evidence to reject H0. A high $p$-value suggests that the difference
+between the observed sample mean and $\mu_{0} can reasonably be attributed to random chance.
+* If $p-\mbox{value} \le \alpha$ , there is sufficient evidence to reject $H_{0}$ and accept $H_{A}$. 
+
+## 4.2 Example: wind speed in New York 1973
+
+### The sample and point estimators
+
+Recall that for the <tt>airquality</tt> dataset $n=153$ with sample mean and variance equal to $\bar{x}=9.957516$ and $s^{2}=3.523001$. Figure 9 shows the distribution of the wind speed.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="The $2.5$ and $97.5$ quantiles in $N(0,1)$."}
+wind<-airquality$Wind
+M.wind<-mean(wind)
+SD.wind<-sqrt(var(wind))
+M.wind
+SD.wind
+```
+
+### Hypothesis testing
+
+We wish to test the null hypothesis versus a two sided alternative, that is
+
+$$H_{0}:\mu=9\;\;\mbox{Vs.}\;\; H_{1}:\mu \ne 9$$
+
+### Test statistic
+
+$$ t=\frac{\bar{x}-\mu_{0}}{s/\sqrt{n}}=\frac{9.957-9}{3.523 / \sqrt{153}}=3.3619$$
+
+
+### $p$-value
+
+The $p$-value is equal to $(1-P(Z \le |3.3619|)) \times 2=2 \times 0.000387=0.000774<0.05$ and therefore the null hypothesis is rejected. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+1-pnorm(3.3619,0,1)
+2*(1-pnorm(3.3619,0,1))
+```
+
+Note that the $p$-value is equal to twice the area above the test statistic 3.3691 in Figure 18.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Illustraion of the p-value. Red line: the observed test statistic"}
+x<-seq(from=-4,to=4,length=1000)
+dx<-dnorm(x,0,1)
+qx<-qnorm(0.025,0,1)
+plot(x,dx,type="l",xlim=c(-4.5,4.5))
+lines(c(qx,qx),c(0,0.35))
+lines(-c(qx,qx),c(0,0.35))
+lines(c(3.3619,3.2619),c(0,0.35),col=2,lwd=2)
+text(3.3619,0.375,"t=3.3619",col=2)
+text(1.96,0.375,"1.96")
+```
+
+
+### Using the R function <tt>z.test()</tt>
+
+We assume that in the **population** $\sigma=s=3.523$ and produce the follwoing results using the function <tt>z.test</tt>.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+wind<-airquality$Wind
+M.wind<-mean(wind)
+SD.wind<-sqrt(var(wind))
+#SD.wind
+z.test(wind,SD.wind,mu=9)
+```
+
+
+## 4.3 Example: the NHANES data set analysis of the number of sleep hours per night
+
+### The population 
+
+In this section, the variable of interest is the number of sleeping hours per night (the variable <tt>SleepHrsNight</tt>). Information about the number of sleeping hours per night is available for 7755 individuals (i.e., the population). The population mean and variance are $\mu=6.927$ and $\sigma^{2}=1.813$, respectively.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+#dim(NHANES)
+sleep<-na.omit(NHANES$SleepHrsNight)
+length(sleep)
+mean(sleep)
+var(sleep)
+```
+
+
+### Visualization
+
+Figure 19, 20 and 21 show the histogram, dotplot and boxplot of the number of sleeping hours in the population and reveal a discrete distribution as expected. Note that the number of sleeping hours per night is a count variable.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of sleep hours per night."}
+ggplot(NHANES, aes(x = SleepHrsNight)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  xlab("Sleep hours per night")
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Dot plot of sleep hours per night."}
+ ggplot(NHANES, aes(x = c(1:length(NHANES$SleepHrsNight)), y = SleepHrsNight)) +
+   geom_point(position = position_jitter(height = 0.05), color = "blue") +
+   xlab("Subject")+
+   ylab("Sleep hours per night")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot of sleep hours per night."}
+ggplot(NHANES, aes(x = "", y = SleepHrsNight)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  geom_jitter(aes(x = "", y = SleepHrsNight), color = "black", size = 0.1, alpha = 0.5)+
+  ylab("Sleep hours per night")+
+  xlab("")
+```
+
+### A random sample of size 150 from the population
+
+We draw a sample of 150 indivuduals from the population ($n=150$). The point estimates from the sample are $\bar{x}=6.8466$ and $\sigma^{2}=1.8622$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+set.seed(456789)
+x.sleep<-sample(na.omit(NHANES$SleepHrsNight),size=150,replace=FALSE)
+length(x.sleep)
+mean(x.sleep)
+var(x.sleep)
+```
+#### Visualization
+
+Figure 22 shows the histogram (left panel) and boxplot (right panel) of the sample.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of sleep hours per night in the sample."}
+hist_sleep = ggplot(data.frame(SleepHrsNight = x.sleep), aes(x = SleepHrsNight)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  xlab("Sleep hours per night")+
+  ggtitle("Histogram")
+```
+
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Box plot of sleep hours per night in the sample."}
+box_sleep = ggplot(data.frame(SleepHrsNight = x.sleep), aes(x = "", y = SleepHrsNight)) +
+  geom_boxplot(fill = "lightblue")+
+  xlab("")+
+  ylab("Sleep hours per night")+
+  ggtitle("Box plot")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Histogram and box plot of sleep hours per night in the sample."}
+grid.arrange(hist_sleep, box_sleep, ncol = 2)
+```
+
+
+#### A $95\%$ C.I for the mean sleep hours per night
+
+The sample standard deveation and the standard error of the sample mean are equal to 1.3646 and 0.1114, respectivly.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+n<-length(x.sleep)
+SD.x<-sqrt(var(x.sleep))
+SD.x
+SE<-SD.x/sqrt(n)
+SE
+```
+
+For the sample, the error margin for a $95\%$ confidence interval is $m=1.96 \times SE=1.96 \times 0.1114$ and the confidence interval is given by $$\bar{x} \pm m=6.8466 \pm 0.2183 = (6.628279,7.065054). $$
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+LL<-mean(x.sleep)-1.96*SE
+UL<-mean(x.sleep)+1.96*SE
+c(LL,UL)
+```
+
+#### Visualization
+
+Figure 23 shows a histogram of the BMI with a $95\%$ confidence interval for the population mean.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with a confidence interval for the population mean."}
+hist_sleep = ggplot(data.frame(SleepHrsNight = x.sleep), aes(x = SleepHrsNight)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  geom_vline(xintercept = LL, color = "red", linetype = "dashed")+
+  geom_vline(xintercept = UL, color = "red", linetype = "dashed")+
+  geom_text(aes(x = LL-0.25, y = 42.5, label = "LL"), color = "red")+
+  geom_text(aes(x = UL+0.25, y = 42.5, label = "UL"), color = "red")+
+  ylab("Frequency")+
+  xlab("Sleep hours per night")+
+  ggtitle("Histogram and C.I")
+hist_sleep
+```
+
+#### Hypothesis testing
+
+We wish to test the null hypothesis $\mu=7$ aginst a one sided alternative $H_{1}:\mu <7$. This can be done using the argument <tt>alternative = 'less'</tt> in the function <tt>z.test</tt>. Note that we assume that in the population, $\sigma=1.3646$. As can be seen in the panel below, for the sample, the mean number of sleeping hours is equal to $\bar{x}=6.8466$ and the test statistic is equal to $-1.3761$. The $p$-\mbox{value}=0.08439 > 0.05$. We cannot reject the null hypothesis and conclude that $\mu=7$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+mean(x.sleep)
+sqrt(var(x.sleep))
+z.test(x.sleep,mu=7, 1.364638, alternative = 'less')
+```
+
+# 5 Hypothesis testing and confidence intervals
+
+## 5.1 Two sided alternatives and confidence intervals
+
+The relationship between a hypothesis test and the corresponding confidence interval is defined
+by the significance level $\alpha$; the two approaches are based on the same inferential logic, and
+differ only in perspective. The hypothesis testing approach asks whether $\bar{x}$ is far enough away
+from $\mu_{0}$ to be considered extreme, while the confidence interval approach asks whether $\mu_{0}$ is close
+enough to $\bar{x}$ to be plausible. In both cases, "far enough" and "close enough" are defined by $\alpha$, which
+determines the value of $z_{\alpha}$ that is used to calculate the margin of error $m = z_{\alpha} \times SE$.
+
+ * *Hypothesis Test*. For a two-sided test, $\bar{x}$ needs to be at l       east    $m$ units    away from $\mu_{0}$ in either
+   direction to be considered extreme. The t-points marking off the      
+   rejection region are equal to
+   the $z_\alpha$ value used in the confidence interval, with the            positive andnegative t-points accounting
+      for the $\pm$ structure in the confidence interval.
+ * *Confidence Interval*. The plausible range of values for $\mu_{0}$ around $\bar{x}$ is    defined as $(\bar{x} - m; \bar{x} +m)$.
+   If $\mu_{0}$ is plausible, it can at most be m units away in either direction    from $\bar{x}$. If the interval
+   does not contain $\mu_{0}$, then $\mu_{0}$ is implausible according to  and there is sufficient evidence to
+   reject $H_{0}$.
+
+## 5.2 Example: the NHANES dataset - analysis of the total cholestrol level
+
+### Population
+
+In this section we focus on the total cholesterol level (the variable <tt>TotChol</tt>). After omitting all individuals with missing values, 8474 individuals are included in the analysis. The population parameters are equal to $\mu=4.879$ and $\sigma=1.075$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(NHANES)
+data(NHANES)
+dim(NHANES)
+totchol<-na.omit(NHANES$TotChol)
+length(totchol)
+mean(totchol)
+sqrt(var(totchol))
+```
+
+
+### Visualization
+
+Figure 24 and 25 present the data and indicate that the population distribution has a long right tail. 
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram with density plot of the total cholestrol level."}
+ggplot(NHANES, aes(x = TotChol)) +
+  geom_histogram(aes(y = ..density..), fill = "skyblue", color = "black") +
+  geom_density(alpha = 0.2, fill = "orange")+
+  ylab("Density")+
+  xlab("The total cholestrol level")
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Boxplot and violin plot of the total cholestrol level."}
+box_cho<-ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_boxplot(fill = "skyblue", color = "black")+
+  ylab("The total cholestrol level")+
+  geom_jitter(aes(x = "", y = TotChol), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")
+
+violin_cho<-ggplot(NHANES, aes(x = "", y = TotChol)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = TotChol), color = "black", size = 0.1, alpha = 0.5)+
+  xlab("")+
+  ylab("The total cholestrol level")
+
+grid.arrange(box_cho,violin_cho, ncol = 2)
+```
+### Sample of size 100 from the population
+
+For a sample of 100 individuals, shown in Figure 26, $\bar{x}=5.0041$ and $s=1.20723$. This implies that the standard error of the sample means is equal to
+$$\frac{1.20723}{10}=0.120723.$$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+set.seed(101112)
+x.totchol<-sample(na.omit(NHANES$TotChol),size=100,replace=FALSE)
+length(x.totchol)
+mean(x.totchol)
+sqrt(var(x.totchol))
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of the total cholestrol level in the sample."}
+ggplot(data.frame(TotChol = x.totchol), aes(x = TotChol)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")+
+  xlab("The total cholestrol level")
+```
+
+
+### Visualization
+
+The distribution of the total cholesterol in the sample is shown in Figure 27.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Box plot and violin plot of the total cholestrol level in the sample."}
+box_totchol = ggplot(data.frame(TotChol = x.totchol), aes(x = "", y = TotChol)) +
+  geom_boxplot(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = TotChol), color = "black", size = 0.5, alpha = 0.5)+
+  xlab("")+
+  ylab("The total cholestrol level")+
+  ggtitle("Box plot")
+
+violin_totchol = ggplot(data.frame(TotChol = x.totchol), aes(x = "", y = TotChol)) +
+  geom_violin(fill = "lightblue")+
+  geom_jitter(aes(x = "", y = TotChol), color = "black", size = 0.5, alpha = 0.5)+
+  xlab("")+
+  ylab("The total cholestrol level")+
+  ggtitle("Violin plot")
+
+grid.arrange(box_totchol, violin_totchol, ncol = 2)
+```
+
+### A $95\%$ confidence intervals for the mean cholestrol level in the population
+
+In the sample, $\bar{x}=5.0041$. A $95\%$ confidence interval ($\alpha=0.025$, $(1-2\alpha) \times 100 =95$) for the population mean is given by
+
+$$5.0041 \pm 1.96 \times 0.120723=(4.767487,5.240713).$$
+
+### Testing the null hypothesis $H_{0}:\mu=5.1$ versus a two sided alternative
+
+We wish to test the hypothesis $H_{0}:\mu=5.1$ versus $H_{1}:\mu  \ne 5.1$. It is assumed that $\sigma=1.075$. With test statistic equal to 0.50326 and $p$-value equal to 0.68, we do not reject the null hypothesis and conclude that $\mu=5.1$. As we showed above, the value of 5.1 is covered by the $95\%$ confidence intervals (4.767487,5.240713)). 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+z.test(x.totchol,mu=5.1, 1.20723)
+```
+
+Figure 28 shows a histogram of the data with a $95\%$ confidence interval (red lines), the sample mean (blue line) and the value of $\mu_{0}$ (green line).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Histogram of the total cholesterol and a 95% confidence interval for the population mean."}
+hist(x.totchol,col=0,main="total cholesterol",xlab="total cholesterol")
+LL<-4.767487
+UL<-5.240713
+mu0<-5.1
+xbar<-5.0041
+lines(c(LL,LL),c(0,50),col=2,lwd=2)
+lines(c(UL,UL),c(0,50),col=2,lwd=2)
+lines(c(mu0,mu0),c(0,50),col=3,lwd=2)
+lines(c(xbar,xbar),c(0,50),col=4,lwd=2)
+```
+
+
+# 6 Decision error (Type I and Type II error)
+
+## 6.1 Type I and Type II errors
+
+Hypothesis tests can potentially result in incorrect decisions, such as rejecting the null hypothesis when the null is actually true or not rejecting the null hypothesis when the alternative is correct. 
+
+  * **Type I error**: rejecting the null hypothesis when the null is true.
+  * **Type II error**: failing to reject the null hypothesis when the           alternative is true.
+
+## 6.2 Significance level and power
+
+The probability of making a Type I error is the same as the significance level $\alpha$, that is
+
+$$ \alpha=P(\mbox{reject}\;H_{0} \; \mbox{when}\;H_{0}\; \mbox{is true}),$$
+
+since $\alpha$ determines the cutoff point for rejecting the null hypothesis. For example, if $\alpha$ is chosen to be 0.05, then
+there is a $5\%$ chance of incorrectly rejecting $H_{0}$.
+
+The probability of making a Type II error is equal to $\beta$,
+$$ \beta=P(\mbox{do not reject}\; H_{0}\; \mbox{when}\;H_{A}\; \mbox{is true}),$$
+The power of the test, $1-\beta$ is the probability to make a correct decision when $H_{A}$ is correct, 
+
+$$ 1-\beta=P(\mbox{reject}\; H_{0}\; \mbox{when}\;H_{A}\; \mbox{is true}).$$
+
+The rate of Type I error can be reduced by lowering $\alpha$ (e.g., to 0.01 instead of 0.05); doing
+so requires an observation to be more extreme to qualify as sufficient evidence against the null
+hypothesis. However, this inevitably raises the rate of Type II errors (and lowering the power $1-\beta$), since the test will now have a
+higher chance of failing to reject the null hypothesis when the alternative is true.
+
+
