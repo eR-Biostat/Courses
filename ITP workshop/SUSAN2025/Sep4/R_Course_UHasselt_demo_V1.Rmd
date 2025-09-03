@@ -1,0 +1,82 @@
+---
+title: "Demo 2"
+author: "Rudradev Sengupta and Ziv Shkedy"
+date: "05 October 2021"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+params:
+  snapshot: lubridate::ymd_hms("2015-01-01 12:30:00")
+  start: lubridate::ymd("2015-01-01")
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+project_start <- params$start
+summary(mtcars)
+```
+
+## Including project metadata: 
+
+```{r date, echo=FALSE}
+paste("Project Start Date:",project_start)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+plot(mtcars$wt,mtcars$mpg)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r,echo = FALSE}
+plot(mtcars$wt,mtcars$mpg)
+```
+
+
+## Short Analysis 
+
+```{r}
+mean(mtcars$mpg)
+fit.lm<-lm(mtcars$mpg~mtcars$wt)
+```
+
+## Output for the regression model
+
+```{r}
+summary(fit.lm)
+```
+
+## Output for the regression model
+
+
+add `inline code` to make it more dynamic like `r pressure$temperature[5]*pressure$pressure[5]` or add ggplot
+
+```{r ggplt, echo=FALSE}
+library(ggplot2)
+gg <- ggplot(mtcars, aes(hp, mpg)) +
+        geom_point(aes(color=as.factor(cyl)), size=5) +
+        geom_smooth(method="lm", se=FALSE) +
+        labs(x = "Horsepower",y= "Miles Per Gallon", 
+             color= "# of Cylinders") +
+        theme_bw()
+gg
+```
+
+# Section
+## Subsection
+### subsubsection

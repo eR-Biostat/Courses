@@ -1,0 +1,25 @@
+---
+title: "Demo 1"
+author: "Rudradev Sengupta & Ziv Shkedy"
+date: "29 September"
+output:
+  html_document: default
+  pdf_document: default
+params:
+  snapshot: lubridate::ymd_hms("2015-01-01 12:30:00")
+  start: lubridate::ymd("2015-01-01")
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# The <tt>mtcars</tt> dataset
+
+```{r}
+summary(mtcars)
+plot(mtcars$wt,mtcars$mpg)
+mean(mtcars$mpg)
+fit.lm<-lm(mtcars$mpg~mtcars$wt)
+summary(fit.lm)
+```

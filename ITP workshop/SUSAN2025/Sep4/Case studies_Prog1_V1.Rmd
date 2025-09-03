@@ -1,0 +1,109 @@
+---
+title: 'Case study 1: analysis of the daily average wind speed in New York in 1973'
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+subtitle: Foundations for inference using R
+layout: page
+---
+
+
+---
+<!-- output: html_document -->
+<!--   use_bookdown: TRUE -->
+--- 
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE,	
+                      warning = FALSE,
+                      eval = TRUE,
+                      tidy = FALSE)
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+```
+
+
+# Case study 1: The wind speed in the airquality dataset
+
+## Exploratory analysis of the daily average of the wind speed
+
+The <tt>airquality</tt> dataset is a R object gives information about 153 daily air quality measurements ($n=153$) in New York, May to September 1973. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+dim(airquality)
+head(airquality)
+```
+
+The variable of primary interest, <tt>Wind</tt>, is the average wind speed in miles per hour at 0700 and 1000 hours at LaGuardia Airport. We use the R package <tt>ggplot2</tt> to explore the data. Figure 1 shows histogram of wind speed.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Figure 1: Histogram of wind speed."}
+ggplot(airquality, aes(x = Wind)) +
+  geom_histogram(fill = "skyblue", color = "black")+
+  ylab("Frequency")
+```
+
+The sample mean ($\bar{x}$) and standard deviation ($s$) of the wind speed are 9.957516 and 3.523001, respectivly.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+wind<-airquality$Wind
+M.wind<-mean(wind)
+SD.wind<-sqrt(var(wind))
+M.wind
+SD.wind
+```
+
+## A $95\%$ confidence interval for the population mean
+
+We constrct a $95\%$ confidence interval for the population mean using the R fucntion <tt>z.test</tt>. We assume that $\sigma=s$ and the function uses the $N(0,1)$ to select the critical value $Z_{\alpha}$. For a $95\%$ confidence interval, $Z_{\alpha}=1.96$.
+A $95\%$ confidence interval for the wind speed is [9.399284; 10.515749]. This means that we are $95\%$ confident that the true average wind speed lies within this range.
+
+
+## Test of hypothesis about the population mean
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(TeachingDemos)
+wind=na.omit(airquality$Wind)
+z.test(wind,sd=SD.wind)
+```
+
+Testing the hypotheses whether the wind speed is equal to 9 versus a two-sided alternative hypothesis at the significant level of 0.05 can be formulated by:
+
+$$H_{0}:\mu=9\;\;\mbox{Vs.}\;\; H_{1}:\mu \ne 9.$$
+
+We use the <tt>z.test()</tt> function and specify <tt>mu=9$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+
+z.test(wind, SD.wind, mu=9)
+```
+
+Since p-value = 0.0007742 which is much smaller than $\alpha = 0.05$, there is sufficient evidence to say that the mean of the wind speed is not equal to 9.
+

@@ -1,0 +1,161 @@
+---
+title: 'Basic Skills in R Markdown: the pdf file'
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+subtitle: Ziv Shkedy (October, 2021)
+layout: page
+toc: yes
+---
+
+
+---
+<!-- output: html_document -->
+<!--   use_bookdown: TRUE -->  
+--- 
+
+
+```{r,echo=FALSE}
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(mvtnorm)
+```
+
+\newpage
+
+
+# Introduction
+
+This document provides basic tools to produce a html file using R markdown. The best way to use this document is to run the file in R studio and then read the <tt>.Rmd</tt> file to see how the output was created. The file can be used to produce a very basic html document an you can add later more components to you document.
+
+# Sections and subsections
+
+This is a an example of a R markdown file that produces htnl output.  This is a section in the document.
+
+## Subsection
+
+This text apears in a subsection
+
+### Subsubsection 
+
+This text is a part of a subsection.
+
+
+
+# Including R code
+
+## Print R code and output
+
+This is an example how to include R code and output in the document. We use the <tt>airquality</tt> data as an example.
+
+
+```{r}
+x<-na.omit(airquality$Ozone)
+print(x) 
+```
+
+## Do not print the R code but print the output
+
+If we do not want to print the R code, but we want to see the output use the option <tt>echo=FALSE</tt>:
+
+```{r,echo=FALSE}
+x<-na.omit(airquality$Ozone)
+print(x) 
+```
+
+
+# Items
+
+This is a text that contains items:
+
+ * Item 1
+ * Item 2
+ * Item 3 
+ * Item 4
+ 
+ 
+# Use R as a part of your text
+
+## Example: summary statistics
+
+The mean Ozone level is 
+
+```{r}
+x<-na.omit(airquality$Ozone)
+mean(x) 
+```
+
+with variance is equal to
+
+```{r}
+var(x) 
+```
+
+## Graphical displays in the document
+
+A histogram for the Ozone level can be produced using the function <tt>qplot</tt> with the option <tt>geom = "histogram"</tt>:
+
+```{r}
+Ozone.R<-data.frame(x)
+qplot(x, data = Ozone.R, geom = "histogram", binwidth = 0.1)
+```
+
+
+To add a caption to the figure we use <tt>{r figchp1,fig.cap="Sepal length (III)"}</tt>.
+
+```{r figchp1,fig.cap="Sepal length (III)"}
+Ozone.R<-data.frame(x)
+qplot(x, data = Ozone.R, geom = "histogram", binwidth = 0.1)
+```
+
+We can refer to the figure from the text in the document. For example, Figure \@ref(fig:figchp2)  presents a histogram that was produced using the function <tt>qplot()</tt> function.
+
+```{r figchp2,fig.cap="Sepal length (III)"}
+Ozone.R<-data.frame(x)
+qplot(x, data = Ozone.R, geom = "histogram", binwidth = 0.1)
+```
+
+# How to add a link to your document
+
+Materials about R markdown are widely available online. 
+
+ * For a YouTube tutorial about R markdown by 
+   Jalayer Academy see [YTRmd1](https://www.youtube.com/watch?v=tKUufzpoHDE).
+ * For a second YouTube tutorial about R markdown  by 
+   Roger Peng see [YTRmd2](https://www.youtube.com/watch?v=DNS7i2m4sB0).
+ 
+A usefull link to a R Markdown:
+
+ * For a free online book about R markdown see see [RMDbook](https://bookdown.org/yihui/rmarkdown/).
+
+# How to create a math formula
+
+To create a math formula, for example a linear regression model of the form
+
+$$y_{i}=\alpha+\beta \times x_{i} + \varepsilon_{i},$$
+we need to use $LaTeX$ syntax. 
+
+
+# Just do it
+
+## Analysis of the cars data
+
+Fit a linear regression model to the <tt>cars</tt> datasets in which the response is the stopping distance and the predictor is the car speed.
+
+## Expected outout
+
+Write a short report with the following structure
+
+  * Introduction
+  * The cars data (including a scapter plot of the data)
+  * Modeling (formulate the model for the cars data)
+  * Application to the data: present the results including the R object with the regression output. Plot os the data   
+    and fitted model and isgnostic plots.
+    
+  
+In your report, include the R code as a part of the text. Produce both html and pdf outputs.
+
+
+
