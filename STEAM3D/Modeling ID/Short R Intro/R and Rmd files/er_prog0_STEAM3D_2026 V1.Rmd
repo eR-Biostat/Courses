@@ -1,0 +1,220 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat and STAEM-3D" 
+  topic: <font size = "10" > **Modeling infectious diseases using R - basic programming in R**</font>
+  author: "Ziv Shkedy, Rashider Aloni and Leyla Kodalci"
+  date: "02-10-2026"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+library(TeachingDemos)
+library(gridExtra)
+```
+
+# 1. Defining objects in R
+
+We consider two vectors, $x$ and $y$:
+
+$x=(1.9,1.2,0.7,2.7,1.2,3.1,2.3,2.1,2.1,1.4)$ and $y=(1.8,1.1,0.6,2.7,1.4,3.0,2.5,1.9,1.8,1.4)$.
+
+We difine the two vectors in R in teh follwoing way. For $x$:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+x<-c(1.9,1.2,0.7,2.7,1.2,3.1,2.3,2.1,2.1,1.4)
+x
+```
+
+and for $y$:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+y<-c(1.8,1.1,0.6,2.7,1.4,3.0,2.5,1.9,1.8,1.4)
+y
+```
+
+
+
+# 2. Calculate the mean of $x$ and $y$ in R
+
+Our first data analysis task is to calculate the mean of $x$ and $y$. In R, the function <tt>mean()</tt> can be used to calculate the sample mean. In our example we use <tt>mean(x)</tt> and <tt>mean(y)</tt>:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+mean(x)
+mean(y)
+```
+
+# 3. Corelation between $x$ and $y$
+
+Our second data analysis task if to calculate and vizualize the corelation between $x$ and $y$. To calculate the corelation we use the function <tt>cor()</tt>.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+cor(x,y)
+```
+
+We use the function <tt>plot</tt> to produce the scaterplot.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+plot(x,y)
+```
+
+# 4. User functions
+
+A function is R. is a code that can be used to produce output. For example, suppose that we want to calculate (1) the mean of two vectors, (2) the corelation between two vectors and (3) to plot a scaterplot. We can wrtie a R function, <tt>discript</tt> that can be used to produce the output.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+discript<-function(x,y)
+{
+print(mean(x))
+print(mean(y))
+print(cor(x,y))
+plot(x,y)
+}
+```
+
+To apply the function to the the vectors $x$ and $y$ we use <tt>discript(x,y)</tt>.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+discript(x,y)
+```
+
+# 5. The cars dataset
+
+The <tt>cars</tt> dataset contains information about cars' speed and cars' stoping distance. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+head(cars)
+```
+
+The first column is the cars' speed and the second column is the cars' stoping distance. Our data analysis task is
+
+  * Calculate the mean of the cars' speed.
+  * Calculate the mean of the cars' stopping distance.
+  * Calculate the corelation between cars' speed and stopping distance and produce    a scaterplot.
+  
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+discript(cars[,1],cars[,2])
+```
