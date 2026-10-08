@@ -1,0 +1,715 @@
+---
+output:
+  bookdown::html_document2:
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: no
+    css: ./lib/stylesArial.css
+    code_folding: hide
+
+params: 
+  department: ">eR-BioStat and STAEM-3D" 
+  topic: <font size = "10" > **Modeling infectious diseases using R - the SIR model**</font>
+  author: "Ziv Shkedy and Rashider Aloni based on Chapter 2-4 in the  book 
+  *Modeling infectious diseases parameters based on serological and social contact data* (https://www.simid.be/modeling-infectious-disease-parameters-based-on-serological-and-social-contact-data/)"
+  date: "10-09-2026"
+  endCode: FALSE
+  RmdLocation: ""
+---
+
+
+<p>
+  <img id="image" src="banner.jpg">
+</p>
+
+
+
+```{r delaycodeprinting, message=FALSE, warning=FALSE, echo = FALSE}
+# You can delete this chunk if you do not want delaycodeprinting and adjust the YAML header accordingly
+library(knitr)
+# The **delaycodeprinting** chunk below allows all R code to be printed at the end of the report (endCode = TRUE) 
+#    or prints the RMDLocation from the YAML header as a code reference (endCode != TRUE)
+#    see code chunk named 'codeprint'
+delay_code_labels <- NULL
+knit_hooks$set(delay = function(before, options, envir) {
+    if (before) {
+        delay_code_labels <<- append(delay_code_labels, options$label)
+        return(NULL)  ## otherwise knitr will print delay_code_labels every time
+    } else {}
+})
+
+if(params$endCode == TRUE){
+  opts_chunk$set(delay = TRUE, #Do not change delay = TRUE
+                 #You may change global options below
+                 echo = FALSE, message = FALSE, warning = FALSE)
+} else {
+  #You may change global options below
+  opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+}
+#Read more about R code chunk options: https://yihui.name/knitr/options/#chunk_options
+```
+
+<!--- R system setup --->
+```{r setup, message=FALSE, warning=FALSE}
+
+## SETUP Folder Location if needed
+
+#setwd("...")
+
+## SETUP themes or other necessary settings like color palette etc.
+
+# theme_set(theme_bw())
+# pal = "Set1"
+# scale_colour_discrete <- function(palname = pal, ...) {
+#   scale_colour_brewer(palette = palname, ...)
+# }
+# scale_fill_discrete <- function(palname = pal, ...) {
+#   scale_fill_brewer(palette = palname, ...)
+# }
+
+```
+
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+<!------------- You can add or delete  to fix title page spacing     --------------> 
+
+<!-------------------------- DO NOT MODIFY TEXT BELOW -------------------------------------> 
+<!------------- The following ~30 lines are the first page of the report ------------------> 
+<!------------- Any parameter modification should be down in the YAML header --------------> 
+
+<br> 
+<br> 
+
+<p id="head2"> `r params$company` </p>
+
+<p id="head3"> &nbsp; `r params$date` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r params$department` </p>
+
+***
+
+<p id="head2"> `r params$training` </p>
+
+<p id="head2"> `r params$topic` </p>
+
+<p id="head2"> `r params$author` </p>
+
+
+
+<!------------- DO NOT MODIFY TEXT ABOVE THIS COMMENT ------------------> 
+
+<!------------- Enter text and code below -------------------> 
+
+```{r init, echo=TRUE, message=FALSE, warning=FALSE}
+
+## load/install libraries
+.libPaths(c("./Rpackages",.libPaths()))
+library(knitr)
+library(tidyverse)
+library(deSolve)
+library(minpack.lm)
+library(ggpubr)
+library(readxl)
+library(gamlss)
+library(data.table)
+library(grid)
+library(png)
+library(nlme)
+library(gridExtra)
+library(mvtnorm)
+library(e1071)
+library(lattice)
+library(ggplot2)
+library(dslabs)
+library(NHANES)
+library(plyr)
+library(dplyr)
+library(nasaweather)
+library(ggplot2)
+library(gganimate)
+library(av)
+library(gifski)
+library(foreach)
+library("DAAG")
+library(DT)
+library(TeachingDemos)
+library(gridExtra)
+```
+
+# 1. The SIR model
+
+
+The starting point in this chapter is the SIR model in endemic equilibrium. In particular, we assume that all parameters are constant over time and the focus goes to  the **age** of the individual as the time scale of primary interest. In Section XXX equilibrium values for the SIR-model with vital dynamics and a constant population were derived in case of homogeneous mixing. In practice however age is a predominant factor in the way an infection spreads through a population given that children have had fewer years of exposure than adults. 
+
+
+## Formulation of the SIR model
+
+Extending the SIR model in terms of changes over **age** and **time** yields the following system of partial differential equations:
+\[
+\begin{eqnarray}
+\frac{\partial S(a,t)}{\partial a}+\frac{\partial S(a,t)}{\partial t}&=&N \mu(a)-(\lambda(a,t)+\mu(a))S(a,t),\nonumber\\
+\frac{\partial I(a,t)}{\partial a}+\frac{\partial I(a,t)}{\partial t}&=&\lambda(a,t)S(a,t)-(\nu+\mu(a))I(a,t),\nonumber\\
+\frac{\partial R(a,t)}{\partial a}+\frac{\partial R(a,t)}{\partial t}&=&\nu I(a,t)-\mu(a)R(a,t),
+\end{eqnarray}
+\]
+
+Here, $S(a,t)$ is the number of individual in the population that are susceptible at age $a$ and time $t$ and $I(a,t)$ and $R(a.t)$ are the number of individual in the population that are infected and immune at age $a$ and time $t$, respectivly.
+
+### Parameters 
+
+ * N: population size.
+ * The force of infection: $\lambda(a,t)$.
+ * The average age at infection, A. For a constant force of infection,
+\[
+A=\frac{1}{\lambda}.
+\]
+ * Death rate and birth rate: $\mu(a)$.
+ * Recovery rate: $\nu$.
+ * The average duration in the infected class: $\frac{1}{\nu}$.
+ 
+### Endemic equilibrium
+
+Under endemic equilibrium, 
+\[
+\frac{\partial S(a,t)}{\partial t}=\frac{\partial I(a,t)}{\partial t}=\frac{\partial R(a,t)}{\partial t}=0,
+\]
+
+the SIR model is simplified 
+
+\[
+\begin{eqnarray}
+\frac{d S(a)}{d a}&=&N \mu(a)-(\lambda(a)+\mu(a))S(a),\nonumber\\
+\frac{d I(a)}{d a}&=&\lambda(a)S(a)-(\nu+\mu(a))I(a),\nonumber\\
+\frac{d R(a)}{d a}&=&\nu I(a)-\mu(a)R(a),
+\end{eqnarray}
+\]
+
+
+
+# 2. The SIR model in a closed population
+
+We consider a closed population, i.e., individuals do not enter or exit to/from the population, that is $\mu(a)=0$. In this case the SIR model is given by
+
+
+\[
+\begin{eqnarray}
+\frac{d S(a)}{d a}&=&-\lambda(a)S(a),\nonumber\\
+\frac{d I(a)}{d a}&=&\lambda(a)S(a)-\nu I(a),\nonumber\\
+\frac{d R(a)}{d a}&=&\nu I(a).
+\end{eqnarray}
+\]
+
+There are two parameters in the model, the force of infection $\lambda$ and the recovery rate $\nu$.
+
+### Model assumptions
+
+  * No mortality access due to the disease.
+  * Life long immunity.
+  
+
+
+## Example 1 ($\lambda=0.2$,D=10 days)
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(deSolve)
+```
+
+
+
+### SIR model with $\lambda =0.2$ and $D=10$ days ($\nu=36.5$) 
+
+For a population in which the average age at infection is 5 years (i.e., the average time that is spent in the susceptible class is 5 years) we have
+\[
+\lambda=\frac{1}{5}=0.2.
+\]
+
+For a recovery rate of 10 days, 
+
+\[
+\nu= \left(\frac{10}{365} \right )^{-1}=36.5
+\]
+
+In R, the object <tt>parameters</tt> is used to store the parameter values.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(lambda = 0.2, v=36.5)
+parameters
+```
+
+We assume a population size of $N=5000$ with one infected individual at age=0, $I(0)=1$. This implies that $S(0)=N-1=4999$ and $R(0)=0$. The <tt>state</tt> vector is given by
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+state <- c(X=4999,Y=1,Z=0)
+state
+```
+
+Note that the R objects <tt>X</tt>,  <tt>Y</tt> and  <tt>Z</tt> correspond to the compartments S, I and R, respectively.
+
+### Model formulation
+
+The SIR model 
+
+
+\[
+\begin{eqnarray}
+\frac{d S(a)}{d a}&=&-\lambda(a)S(a),\nonumber\\
+\frac{d I(a)}{d a}&=&\lambda(a)S(a)-\nu I(a),\nonumber\\
+\frac{d R(a)}{d a}&=&\nu I(a),
+\end{eqnarray}
+\]
+
+can be defined in R  using the<tt>SIR</tt> function in the following way
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+SIR<-function(t,state,parameters)
+{
+with(as.list(c(state, parameters)),
+{
+dX <- -lambda*X 
+dY <- lambda*X - v*Y
+dZ <- v*Y
+list(c(dX, dY, dZ))
+}) 
+}
+```
+
+The object <tt>times</tt> is the ages that we use to integrate the equation system in order to produce the output. In our example, the age ranges from 0 to 40 years old.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+times<-seq(0,40,by=0.01)
+times[1:20]
+```
+
+### Runing the model
+
+We solve the equations system and produce the model's solution using the function >tt>ode</tt> of the R package <tt>deSolve</tt>. In the panel below,
+\[
+S(0)=4999, I(0)=1,R(0)=0,
+\]
+and
+\[
+S(0.05)=4949.259, I(0.05)=22.989501,R(0.05)=27.751380.
+\]
+
+#### Numerical solution
+
+The R object <tt>out</tt> contain the numerical solution of the model. The objects <tt>X</tt>, <tt>Y</tt> and <tt>Z</tt> are the number of susceptible, infected and immune individuals at age a (the R object <tt>times</tt>).
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+require(deSolve)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+head(out)
+```
+
+#### Graphical solution
+
+Figure 1 shows the numerical solution for the example. We notice that, the fraction infected individuals is relatively small
+compared to the fraction susceptible and immune. This is due to the different time
+spent in each compartment. The average duration in the susceptible class is 5 year and after recovery individuals gain life long immunity against reinfection.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Solution for a SIR model with lambda=0,2 and D=10 days."}
+par(mfrow=c(1,2), oma=c(0,0,3,0))
+plot (times,out$X ,type="l",main="S and R", xlab="age", ylab="-",lwd=2)
+lines(times,out$Z,col=3,lwd=2)
+legend(20,4000,c("S","R"),lty=c(1,1),col=c(1,3))
+plot (times,out$Y ,type="l",main="I", xlab="time", ylab="-",lwd=2)
+mtext(outer=TRUE,side=3,"SIR model, D=10 days",cex=1.5)
+```
+
+## Example 2 ($\lambda=0.2$,D=60 days)
+
+
+### SIR with $\lambda =0.2$ D=two months ($\nu=6.08$)
+
+In this example we change the recovery rate from 10 days to two months (60 days) so individuals stay in the infected class a longer time compare to the first example. In this case 
+\[
+\nu= \left(\frac{60}{365} \right )^{-1}=6.08
+\]
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+60/365
+1/(60/365)
+```
+
+The new <tt>parameters</tt> vector is given by
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(lambda = 0.2, v=6.083333)
+parameters
+state <- c(X=4999,Y=1,Z=0)
+#state
+```
+
+### Runing the model
+
+Note that compared to an average duration of 10 days
+in the infected class (Example 1), we expect to observed a high proportion of infected individuals at any age which can be clearly seen in Figure 2.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+require(deSolve)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+head(out)
+```
+
+### Graphical solution
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Solutions for a SIR model D=60 days."}
+par(mfrow=c(1,2), oma=c(0,0,3,0))
+plot (times,out$X ,type="l",main="S and R", xlab="age", ylab="-",lwd=2)
+lines(times,out$Z,col=3,lwd=2)
+legend(20,4000,c("S","R"),lty=c(1,1),col=c(1,3))
+plot (times,out$Y ,type="l",main="Y", xlab="time", ylab="-",lwd=2)
+mtext(outer=TRUE,side=3,"SIR model D=two months", cex=1.5)
+```
+
+## Example 3: age dependent force of infection
+
+In this example we change the formulation of the force of infection and assume that $\lambda(a)=\beta \times I(a)$. Here $\beta$ is the transmission rate and $I(a)$ is the number of infected individuals at age a.
+
+### $\beta=0.0085$ and $\lambda=\beta \times I(a)$ 
+
+For a recovery rate of 10 days, the new <tt>parameters</tt> vector is given by
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(beta=0.0085, v=36.5)
+state <- c(X=4999,Y=1,Z=0)
+parameters
+#state
+times<-seq(0,10,by=0.01)
+#times[1:20]
+```
+
+### Definition of the model
+
+For the <tt>SIR</tt> model, we use <tt>beta Y X</tt> instead of <tt>lambda*Y*X</tt>
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+SIR<-function(t,state,parameters)
+{
+with(as.list(c(state, parameters)),
+{
+dX <- -beta*Y*X 
+dY <- beta*Y*X - v*Y
+dZ <- v*Y
+list(c(dX, dY, dZ))
+}) 
+}
+```
+
+### Runing the model and graphical output
+
+The solution of the model is presnted in Figure 3. Note that the force of infection in this model is not constant but it is proportional for the number of individuals in the infected compartment (Y) presented in Figure 3. 
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Solution for a SIR model with an age dependent force of infection."}
+require(deSolve)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+head(out)
+par(mfrow=c(2,2), oma=c(0,0,3,0))
+plot (times,out$X ,type="l",main="X", xlab="time", ylab="-")
+plot (times,out$Y ,type="l",main="Y", xlab="time", ylab="-")
+plot (times,out$Z ,type="l",main="Y", xlab="time", ylab="-")
+mtext(outer=TRUE,side=3,"SIR model, lambda=beta*I",cex=1.5)
+```
+
+
+# 3. The SIR model in open population
+
+## Dynamic aspects of the SIR model
+
+We consider an open population model in which the birth rate is equal to the death rate, $\mu(a,t)$. We assume life long immunity and that there is no access mortality related to disease. The model formulated below follows individuals over time. This implies that the time unit of interest is the calender time $t$.
+
+\[
+\begin{eqnarray}
+\frac{\partial S(t)}{\partial t}&=&N \mu(t)-(\lambda(t)+\mu(t))S(t),\nonumber\\
+\frac{\partial I(t)}{\partial t}&=&\lambda(t)S(t)-(\nu+\mu(t))I(t),\nonumber\\
+\frac{\partial R(t)}{\partial t}&=&\nu I(t)-\mu(a)R(t),
+\end{eqnarray}
+\]
+
+The above model yields a constant population because of equal birth and death rates:
+\[
+\frac{\partial S(t)}{\partial t}+\frac{\partial I(t)}{\partial t}+\frac{\partial R(t)}{\partial t}=
+\mu (N-S(t)-I(t)-R(t))=0.
+\]
+
+## Equilibrium values
+
+The equilibrium values, $S_{\infty}, I_{\infty}, R_{\infty}$ are the number of indivuduals in each compartment when $t \longrightarrow \infty$ and given by
+ 
+ * $S_{\infty}=\frac{\nu+\mu}{\beta} \times N$.
+ * $I_{\infty}=\frac{\mu}{\beta}(R_{0}-1)$.
+ * $R_{\infty}=N-S_{\infty}-I_{\infty}$.
+
+See Section 4 below for a numerical example.
+
+## Example 1 ($\beta$=0.001)
+
+### Definition of the parameters
+
+For a population with life expectancy of 75 year, $\beta=0.001$ and $v=1$, the parameter and state vectors are given by
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(deSolve)
+parameters <- c(mu=1/75,beta=0.001,v=1)
+print(parameters)
+state <- c(X=4999,Y=1,Z=0)
+print(state)
+times<-seq(0,400,by=0.01)
+#print(times[1:20])
+```
+
+### Alternative definitions
+
+Since we assume that at $t=0$ only one individual is infected, $I(0)=1$ and the test are susceptible, we can define $S(0)=N-1$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+p<-0.0
+N<-5000
+N
+state <- c(X=N-1,Y=1,Z=0)
+print(state)
+```
+
+### Definition of the model in R
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+SIR<-function(t,state,parameters)
+{
+with(as.list(c(state, parameters)),
+{
+dX <- N*mu*(1-p)-beta*Y*X - mu*X
+dY <- beta*Y*X - v*Y - mu*Y
+dZ <- v*Y -mu*Z+N*mu*p
+list(c(dX, dY, dZ))
+}) 
+}
+```
+
+
+### Runing the model with $\beta=0.001$
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+require(deSolve)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+head(out)
+out[40001,]
+outp02<-out #beta=0.001#
+```
+
+### Equilibrium values
+
+For $\mu=\frac{1}{75}$, $\nu=1$, $\beta=0.001$ and $N=5000$, the equilibrium values, the equilibrium values are given by 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+outp02[40001,]
+```
+
+
+### Graphical output
+
+
+Figure 4 shows the fractions of susceptible and infected individuals at each time point together with how the numbers of susceptible and infected individuals in the population reach their equilibrium values. Notice that indeed the equilibrium values for S are I reached the values of $S_{\infty}=1013.333$ and 
+$I_{\infty}=52.45686$, respectively (also shown in Figure 5).
+The damping effects in $S(t)$ and $I(t)$ over time have a slightly different pattern. $S(t)$ oscillates around the equilibrium value and as time passes the magnitude of the oscillations decrease up to the point at which $S(t)$ reaches the endemic equilibrium fraction. For $I(t)$ the oscillations exhibit a different pattern with recurrent epidemics for which the peaks decrease over time. Note that the (time dependent) force of infection is proportional to $I(t)$ since $\lambda(t)=\beta \times  I(t)$.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Susceptible and infected individuals."}
+par(mfrow=c(2,1))
+plot(times,outp02$X,type="l",main="S", xlab="time", ylab="Number of susceptible")
+plot(times,outp02$Y,type="l",main="I", xlab="time", ylab="Number of infected")
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+#times<-seq(0,400,by=0.01)
+#require(deSolve)
+#out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+#head(out)
+#par(mfrow=c(2,2))
+#plot (times,out$X ,type="l",main="S", xlab="time", ylab="-")
+#plot (times,out$Y ,type="l",main="I", xlab="time", ylab="-")
+#plot (times,out$Z ,type="l",main="R", xlab="time", ylab="-")
+#plot(out$X,out$Y,type="l")
+#mtext(outer=TRUE,side=3,"SIR model",cex=1.5)
+#par(mfrow=c(2,1))
+#plot (times,out$X ,type="l",main="S", xlab="time", ylab="-")
+#plot (times,out$Y ,type="l",main="I", xlab="time", ylab="-")
+#mtext(outer=TRUE,side=3,"SIR model",cex=1.5)
+```
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Equilibrium plot."}
+par(mfrow=c(1,1))
+plot(out$X,out$Y,type="l",xlab="S",ylab="I")
+```
+
+## Example 2: changing the transmission rate ($\beta=0.0005$)
+
+### Changing the parameter value
+
+In this example we assume that $\beta=0.001/2=0.0005$. In R, the new <tt>parameter</tt> vector is given by 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(mu=1/75,beta=0.001,v=1)
+parameters <- c(mu=1/75,beta=0.0005,v=1)
+parameters
+```
+### Runing the model ($\beta=0.0005$)
+
+For $\mu=\frac{1}{75}$, $\nu=1$, $\beta=0.0005$ and $N=5000$, the equilibrium values, the equilibrium values are given by 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+outp04<-out #beta=0.0005#
+outp04[40001,]
+```
+
+### Graphical output
+
+Figure 6 and 7 show the solution
+for a second scenario in which $\beta = 0.0005$. We notice that in addition to the new equilibrium values, the time at which the susceptible class builds up is longer and as a result the inter-epidemic period is longer.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Susceptible individuals  for a SIR model with beta=0.001 and beta=0.0005 (red line)."}
+par(mfrow=c(1,1))
+plot(times,outp02$X,type="l",main="S", xlab="time", ylab="Number of susceptible")
+lines(times,outp04$X,col=2)
+legend(100,4000,c("beta=0.001","beta=0.0005"),lty=c(1,1),col=c(1,2))
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Infected individual for a SIR model with beta=0.001 and beta=0.0005 (red line)."}
+par(mfrow=c(1,1))
+plot(times,outp02$Y,type="l",main="I", xlab="time", ylab="Number of infected")
+lines(times,outp04$Y,col=2)
+legend(100,2000,c("beta=0.001","beta=0.0005"),lty=c(1,1),col=c(1,2))
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Equilibrium plot for beta=0.001 and beta=0.0005 (red line)"}
+plot(outp02$X,outp02$Y,type="l")
+lines(outp04$X,outp04$Y,col=2)
+legend(3500,2000,c("beta=0.001","beta=0.0005"),lty=c(1,1),col=c(1,2))
+```
+
+## Example 3: changing population size
+
+### Changeing the popution size to N=2500 (with $\beta=0.001$)
+
+Since the number of new infection in the population is equal to $\beta \ times I(t) \times  S(t)$ a reduction in the population size $N$ implies that at any time, there are less susceptible in the population and the number of new infection is reduced as well. Our straining point is a SIR model for a population with $N=5000$. 
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(mu=1/75,beta=0.001,v=1)
+print(parameters)
+state <- c(X=4999,Y=1,Z=0)
+times<-seq(0,400,by=0.01)
+p<-0.0
+N<-5000
+parameters <- c(mu=1/75,beta=0.001,v=1)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+outp02<-out #N=5000#
+```
+
+We run the same model (with the same parameter setting) for a population with $N=2500$.
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+N<-2500
+parameters <- c(mu=1/75,beta=0.001,v=1)
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+outp04<-out # N=2500
+```
+
+### Graphical output
+
+Figure 9X and 10 shows that although the equilibrium values are only slightly different, it take a linger time to build up the susceptible class after an outbreak and as a result, for the scenario with smaller population,  we expect to see less outbreaks over time. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="SIR model for population size 2500 (red line) and 5000."}
+par(mfrow=c(1,1))
+plot(times,outp02$X,type="l",main="S", xlab="time", ylab="Number of susceptible")
+lines(times,outp04$X,col=2)
+legend(100,4000,c("N=5000","N=2500"),lty=c(1,1),col=c(1,2))
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="SIR model for population size 2500 (red line) and 5000"}
+par(mfrow=c(1,1))
+plot(times,outp02$Y,type="l",main="I", xlab="time", ylab="Number of infected")
+lines(times,outp04$Y,col=2)
+legend(100,2000,c("N=5000","N=2500"),lty=c(1,1),col=c(1,2))
+```
+
+### Equilibrium plot
+
+The equilibriums values for the two senarios are shown in Figure 11. 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Equilibrium plot for population size 2500 (red line) and 5000"}
+plot(outp02$X,outp02$Y,type="l")
+lines(outp04$X,outp04$Y,col=2)
+legend(1000,1500,c("N=5000","N=2500"),lty=c(1,1),col=c(1,2))
+```
+
+# 4. Threshold and Equilibrium Values
+
+## The basic reproductive number
+
+The basic reproductive number, $R_{0}$, represents the number of new infections introduced by one infectious individual in a completely susceptible population. Note that in case the model is formulated in terms of the total number of individuals in each compartment (and not fractions)
+
+\[
+R_{0}=\frac{N \times \beta}{\nu+\mu}.
+\]
+
+## Endemic Equilibrium values
+
+### Susceptible
+
+The number of individual in the susceptible compartment
+
+\[
+S(\infty)=\frac{1}{R_{0}} \times N.
+\]
+
+### Infected
+
+The number of infected individuals
+
+\[
+I(\infty)=\frac{\mu}{\beta}(R_{0}-1).
+\]
+
+
+### Example
+
+We consider the setting of Example 2, a population of size $N=5000$, $\mu=1/75$, $\beta=0.0005$ and $\nu=1$. In this case for $R_{0}, S_{\infty}$ and $I_{\infty}$ we have
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+N=5000
+mu=1/75
+beta=0.0005
+v=1
+R0<-N*beta/(v+mu)
+R0
+Sinf<-1/R0*N
+Sinf
+Iinf<-mu/beta*(R0-1)
+Iinf
+```
+
+From the model solutions we have
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+parameters <- c(mu=1/75,beta=0.0005,v=1)
+print(parameters)
+state <- c(X=4999,Y=1,Z=0)
+times<-seq(0,800,by=0.01)
+lastt<-length(times)
+p<-0.0
+N<-5000
+out <- as.data.frame(ode(y=state,times=times,func=SIR,parms=parameters))
+out[lastt,]
+```
+
+Figure 12 shows the evolution of $S(t)$ and $I(t)$ over time.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE,fig.cap="Susceptible an infected individuals."}
+par(mfrow=c(1,2))
+plot(times,out$X,type="l",main="S", xlab="time", ylab="Number of susceptible")
+plot(times,out$Y,type="l",main="I", xlab="time", ylab="Number of infected")
+```
