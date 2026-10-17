@@ -1,2 +1,2 @@
 # STEAM-3D & The >eR-Biostat initiative
-## Slides for the course
+## Slides for the course in Knowledge translation
